@@ -1,0 +1,19 @@
+PODS:
+  - ACEExpandableTextCell (1.0.3):
+    - SZTextView
+  - IQKeyboardManager (3.3.1)
+  - pop (1.0.7)
+  - SZTextView (1.2.1)
+
+DEPENDENCIES:
+  - ACEExpandableTextCell
+  - IQKeyboardManager
+  - pop (~> 1.0)
+
+SPEC CHECKSUMS:
+  ACEExpandableTextCell: 5fadb1461c7f48b8d97e1d5257eeff5c1ec93a0f
+  IQKeyboardManager: 860a5b9df32cc1435a3e967a08ed87de3e59c12e
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
+
+COCOAPODS: 0.39.0.beta.4
