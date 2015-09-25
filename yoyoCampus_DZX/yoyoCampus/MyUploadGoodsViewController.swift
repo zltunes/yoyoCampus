@@ -47,6 +47,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     var pickerCache = "商品分类"
     
     ///成功后图片
+    
     var successImg = UIImageView()
     
     ///成功后提示label-大

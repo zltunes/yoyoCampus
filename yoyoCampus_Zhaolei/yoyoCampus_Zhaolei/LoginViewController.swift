@@ -88,14 +88,13 @@ class LoginViewController: UIViewController {
         
         //手机号图标
         self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.phoneImg.contentMode = .ScaleAspectFit
         self.phoneImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImg.frame.size)
         self.phoneView.addSubview(self.phoneImg)
         
         //手机号输入框
         self.phoneTextField.frame = CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio)
         self.phoneTextField.frame.origin.x = self.phoneImg.frame.maxX + 22 * Consts.ratio
-        self.phoneTextField.font = Consts.ft18
+        self.phoneTextField.font = Consts.ft16
         self.phoneTextField.textColor = Consts.lightGray
         self.phoneTextField.placeholder = "请输入手机号"
         self.phoneView.addSubview(self.phoneTextField)
@@ -109,14 +108,13 @@ class LoginViewController: UIViewController {
         
         //密码图标
         self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.pwdImg.contentMode = .ScaleAspectFit
         self.pwdImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.pwdImg.frame.size)
         self.pwdView.addSubview(self.pwdImg)
         
         //密码输入框 
         self.pwdTextField.frame = CGRect(x: 0, y: 0, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.pwdTextField.frame.origin.x = self.pwdImg.frame.maxX + 22 * Consts.ratio
-        self.pwdTextField.font = Consts.ft18
+        self.pwdTextField.font = Consts.ft16
         self.pwdTextField.textColor = Consts.lightGray
         self.pwdTextField.secureTextEntry = true
         self.pwdTextField.placeholder = "请输入密码"
@@ -210,7 +208,8 @@ class LoginViewController: UIViewController {
     }
     
     func foget(sender:UIButton){
-        
+        let findPwdVC = FindPwdViewController()
+        self.navigationController?.pushViewController(findPwdVC, animated: true)
     }
     
     func register(sender:UIButton){
@@ -219,7 +218,8 @@ class LoginViewController: UIViewController {
     }
     
     func wechatFastLogin(sender:UITapGestureRecognizer){
-
+        let bindVC = BindToPhoneViewController()
+        self.navigationController?.pushViewController(bindVC, animated: true)
     }
     
     func weiboFastLogin(sender:UITapGestureRecognizer){

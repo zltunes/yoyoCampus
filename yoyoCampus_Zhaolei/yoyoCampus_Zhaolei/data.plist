@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>pickerData</key>
+	<array>
+		<string>2006</string>
+		<string>2007</string>
+		<string>2008</string>
+		<string>2009</string>
+		<string>2010</string>
+		<string>2011</string>
+		<string>2012</string>
+		<string>2013</string>
+		<string>2014</string>
+		<string>2015</string>
+	</array>
+</dict>
+</plist>

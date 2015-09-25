@@ -19,18 +19,25 @@
 		35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FC81BB1367A00817020 /* RegisterViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCA1BB1368D00817020 /* FindPwdViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCC1BB1369B00817020 /* FastLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FCF1BB136AD00817020 /* BindTopPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCE1BB136AD00817020 /* BindTopPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FD11BB136CC00817020 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD01BB136CC00817020 /* PersonalInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FD31BB136DB00817020 /* IdleGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD21BB136DB00817020 /* IdleGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FD51BB136EA00817020 /* ShopGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD41BB136EA00817020 /* ShopGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FD71BB136FA00817020 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD61BB136FA00817020 /* ShopViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FDC1BB189C900817020 /* wechat_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35593FDB1BB189C900817020 /* wechat_icon.png */; settings = {ASSET_TAGS = (); }; };
 		35593FDE1BB18B4000817020 /* weibo_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35593FDD1BB18B4000817020 /* weibo_icon.png */; settings = {ASSET_TAGS = (); }; };
+		359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359383131BB4EDD300AA0E15 /* cellWithBtn.swift */; settings = {ASSET_TAGS = (); }; };
+		359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359383141BB4EDD300AA0E15 /* cellWithBtn.xib */; settings = {ASSET_TAGS = (); }; };
+		3597271C1BB3E88200B2E4C9 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3597271D1BB3E88200B2E4C9 /* PersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		359727211BB3EECC00B2E4C9 /* cellWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597271F1BB3EECC00B2E4C9 /* cellWithTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		359727221BB3EECC00B2E4C9 /* cellWithTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359727201BB3EECC00B2E4C9 /* cellWithTextField.xib */; settings = {ASSET_TAGS = (); }; };
+		359727281BB4279F00B2E4C9 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359727271BB4279F00B2E4C9 /* data.plist */; settings = {ASSET_TAGS = (); }; };
 		3598B7951BB02FE700AD6BFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7941BB02FE700AD6BFE /* AppDelegate.swift */; };
 		3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3598B79B1BB02FE800AD6BFE /* Assets.xcassets */; };
 		3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */; };
 		3598B7AA1BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7A91BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift */; };
 		3598B7B51BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */; };
+		35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		35EF49D31BB2E45B00288D98 /* BindToPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E2249198D74FD1E83929D192 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09792426E2B8F8EA634ED62B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -68,13 +75,18 @@
 		35593FC81BB1367A00817020 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		35593FCA1BB1368D00817020 /* FindPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPwdViewController.swift; sourceTree = "<group>"; };
 		35593FCC1BB1369B00817020 /* FastLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastLoginViewController.swift; sourceTree = "<group>"; };
-		35593FCE1BB136AD00817020 /* BindTopPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindTopPhoneViewController.swift; sourceTree = "<group>"; };
-		35593FD01BB136CC00817020 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		35593FD21BB136DB00817020 /* IdleGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleGoodViewController.swift; sourceTree = "<group>"; };
 		35593FD41BB136EA00817020 /* ShopGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodViewController.swift; sourceTree = "<group>"; };
 		35593FD61BB136FA00817020 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		35593FDB1BB189C900817020 /* wechat_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat_icon.png; sourceTree = "<group>"; };
 		35593FDD1BB18B4000817020 /* weibo_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_icon.png; sourceTree = "<group>"; };
+		359383131BB4EDD300AA0E15 /* cellWithBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cellWithBtn.swift; sourceTree = "<group>"; };
+		359383141BB4EDD300AA0E15 /* cellWithBtn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellWithBtn.xib; sourceTree = "<group>"; };
+		3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
+		3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalInfoViewController.xib; sourceTree = "<group>"; };
+		3597271F1BB3EECC00B2E4C9 /* cellWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cellWithTextField.swift; sourceTree = "<group>"; };
+		359727201BB3EECC00B2E4C9 /* cellWithTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellWithTextField.xib; sourceTree = "<group>"; };
+		359727271BB4279F00B2E4C9 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		3598B7911BB02FE700AD6BFE /* yoyoCampus_Zhaolei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yoyoCampus_Zhaolei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3598B7941BB02FE700AD6BFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3598B79B1BB02FE800AD6BFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +98,8 @@
 		3598B7B01BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yoyoCampus_ZhaoleiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yoyoCampus_ZhaoleiUITests.swift; sourceTree = "<group>"; };
 		3598B7B61BB02FE800AD6BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindToPhoneViewController.swift; sourceTree = "<group>"; };
+		35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindToPhoneViewController.xib; sourceTree = "<group>"; };
 		3B6B2F02E825D43080A8D9D8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		691656D5057848C78D2955A9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +172,7 @@
 		35593FA71BB0FF2600817020 /* SwiftSources */ = {
 			isa = PBXGroup;
 			children = (
+				3597271E1BB3EE8D00B2E4C9 /* cell */,
 				3598B7941BB02FE700AD6BFE /* AppDelegate.swift */,
 				35593FAC1BB0FFF100817020 /* Cells.swift */,
 				35593FAE1BB1000700817020 /* CustomNavigationController.swift */,
@@ -165,8 +180,10 @@
 				35593FC81BB1367A00817020 /* RegisterViewController.swift */,
 				35593FCA1BB1368D00817020 /* FindPwdViewController.swift */,
 				35593FCC1BB1369B00817020 /* FastLoginViewController.swift */,
-				35593FCE1BB136AD00817020 /* BindTopPhoneViewController.swift */,
-				35593FD01BB136CC00817020 /* PersonalInfoViewController.swift */,
+				35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */,
+				35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */,
+				3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */,
+				3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */,
 				35593FD21BB136DB00817020 /* IdleGoodViewController.swift */,
 				35593FD41BB136EA00817020 /* ShopGoodViewController.swift */,
 				35593FD61BB136FA00817020 /* ShopViewController.swift */,
@@ -181,6 +198,7 @@
 				3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */,
 				3598B7A01BB02FE800AD6BFE /* Info.plist */,
 				3598B79B1BB02FE800AD6BFE /* Assets.xcassets */,
+				359727271BB4279F00B2E4C9 /* data.plist */,
 			);
 			name = support;
 			sourceTree = "<group>";
@@ -192,6 +210,17 @@
 				35593FDD1BB18B4000817020 /* weibo_icon.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		3597271E1BB3EE8D00B2E4C9 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				3597271F1BB3EECC00B2E4C9 /* cellWithTextField.swift */,
+				359727201BB3EECC00B2E4C9 /* cellWithTextField.xib */,
+				359383131BB4EDD300AA0E15 /* cellWithBtn.swift */,
+				359383141BB4EDD300AA0E15 /* cellWithBtn.xib */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 		3598B7881BB02FE700AD6BFE = {
@@ -373,10 +402,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				35593F811BB0FBA100817020 /* ProgressHUD.bundle in Resources */,
+				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
 				3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */,
+				359727221BB3EECC00B2E4C9 /* cellWithTextField.xib in Resources */,
+				35EF49D31BB2E45B00288D98 /* BindToPhoneViewController.xib in Resources */,
 				35593FDE1BB18B4000817020 /* weibo_icon.png in Resources */,
 				3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */,
 				35593FDC1BB189C900817020 /* wechat_icon.png in Resources */,
+				3597271D1BB3E88200B2E4C9 /* PersonalInfoViewController.xib in Resources */,
+				359727281BB4279F00B2E4C9 /* data.plist in Resources */,
 				35593FC31BB103E200817020 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,14 +472,16 @@
 				35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */,
 				35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */,
 				35593FAD1BB0FFF100817020 /* Cells.swift in Sources */,
+				35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */,
+				3597271C1BB3E88200B2E4C9 /* PersonalInfoViewController.swift in Sources */,
 				35593FD31BB136DB00817020 /* IdleGoodViewController.swift in Sources */,
 				35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */,
-				35593FCF1BB136AD00817020 /* BindTopPhoneViewController.swift in Sources */,
 				35593FA41BB0FF0800817020 /* Consts.swift in Sources */,
+				359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */,
+				359727211BB3EECC00B2E4C9 /* cellWithTextField.swift in Sources */,
 				35593FD51BB136EA00817020 /* ShopGoodViewController.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
 				35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */,
-				35593FD11BB136CC00817020 /* PersonalInfoViewController.swift in Sources */,
 				35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */,
 				35593FD71BB136FA00817020 /* ShopViewController.swift in Sources */,
 				3598B7951BB02FE700AD6BFE /* AppDelegate.swift in Sources */,

@@ -183,7 +183,16 @@ class Consts {
         }
         return label
     }
-    
+    ///UI偷懒用，构造一个普通圆角按钮
+    class func setUpNormalBtn(title:String!,frame:CGRect!,font:UIFont!,tintColor:UIColor!)->UIButton{
+        let btn = UIButton(type: .System)
+        btn.setTitle(title, forState: .Normal)
+        btn.frame = frame
+        btn.titleLabel?.font = font
+        btn.tintColor = tintColor
+//        btn.sizeToFit()
+        return btn
+    }
     ///UI偷懒用,构造一个颜色为主题颜色,字体为设定的按钮字体的圆角按钮
     class func setUpButton(title : String!,frame: CGRect!,font: UIFont! ,radius : CGFloat)->UIButton{
         let btn = UIButton(frame: frame)
@@ -213,7 +222,25 @@ class Consts {
         label.sizeToFit()
         return label
     }
+    ///UI偷懒用，构造一个UITextField
+    class func setUpUITextField(frame:CGRect,origin_X:CGFloat,font:UIFont,textColor:UIColor,placeholder:String) -> UITextField{
+        let textField = UITextField(frame: frame)
+        textField.frame.origin.x = origin_X
+        textField.font = font
+        textField.textColor = textColor
+        textField.placeholder = placeholder
+        return textField
+    }
     
+    
+    ///UI偷懒用，构造一个UIView
+    class func setUpUIView(frame:CGRect!,cornerRadius:CGFloat!,maskToBounds:Bool!,backColor:UIColor)->UIView{
+        let view = UIView(frame: frame)
+        view.layer.cornerRadius = cornerRadius
+        view.layer.masksToBounds = maskToBounds
+        view.backgroundColor = backColor
+        return view
+    }
     ///将服务器端返回的Unicode编码的文字转成UTF8String
     class func unicodeStringDecode(originString: NSString)->NSString{
         let tmp1 : NSString = originString.stringByReplacingOccurrencesOfString("\\u", withString: "\\U")
