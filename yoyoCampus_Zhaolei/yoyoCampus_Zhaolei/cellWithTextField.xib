@@ -14,33 +14,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJw-dr-zzr">
-                        <rect key="frame" x="21" y="11" width="61" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="61" id="aJP-SM-LvZ"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jD4-xe-RWY">
-                        <rect key="frame" x="92" y="7" width="220" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jD4-xe-RWY">
+                        <rect key="frame" x="104" y="7" width="208" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jD4-xe-RWY" firstAttribute="leading" secondItem="oJw-dr-zzr" secondAttribute="trailing" constant="10" id="DGx-rV-jm3"/>
-                    <constraint firstItem="oJw-dr-zzr" firstAttribute="centerY" secondItem="jD4-xe-RWY" secondAttribute="centerY" id="NuM-xh-9Qc"/>
-                    <constraint firstItem="oJw-dr-zzr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Nuu-1Y-R9A"/>
-                    <constraint firstItem="oJw-dr-zzr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="U5V-SV-Kpj"/>
+                    <constraint firstItem="jD4-xe-RWY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7nB-cY-CXL"/>
+                    <constraint firstItem="jD4-xe-RWY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="L4r-cD-1pU"/>
+                    <constraint firstItem="jD4-xe-RWY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="96" id="nQw-np-y9m"/>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="qpa-m4-YGl"/>
-                    <constraint firstItem="oJw-dr-zzr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="ytZ-zu-ajf"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="textField" destination="jD4-xe-RWY" id="t3g-nd-lQn"/>
-                <outlet property="textLabel" destination="oJw-dr-zzr" id="Zvp-hI-vvD"/>
             </connections>
         </tableViewCell>
     </objects>

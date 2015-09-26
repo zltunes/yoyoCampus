@@ -84,8 +84,12 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     func setUpActions(){
         self.table.dataSource = self
         self.table.delegate = self
-        self.table.registerClass(cellWithTextField.self, forCellReuseIdentifier: "cellWithTextField")
-        self.table.registerClass(cellWithBtn.self, forCellReuseIdentifier: "cellWithBtn")
+//        self.table.registerClass(cellWithTextField.self, forCellReuseIdentifier: "cellWithTextField")
+//        self.table.registerClass(cellWithBtn.self, forCellReuseIdentifier: "cellWithBtn")
+        let nibWithTextField = UINib(nibName: "cellWithTextField", bundle: nil)
+        let nibWithBtn = UINib(nibName: "cellWithBtn", bundle: nil)
+        self.table.registerNib(nibWithTextField, forCellReuseIdentifier: "cellWithTextField")
+        self.table.registerNib(nibWithBtn, forCellReuseIdentifier: "cellWithBtn")
     }
     
     func setUpOnlineData(){

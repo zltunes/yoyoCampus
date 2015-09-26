@@ -47,7 +47,6 @@ class BindToPhoneViewController: UIViewController {
         //phoneImgView
         self.phoneImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImgView.frame.size)
 
-        
         //verifyCodeImgView
         self.verifyCodeImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.verifyCodeImgView.frame.size)
         

@@ -42,10 +42,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbL-mC-zNV">
-                    <rect key="frame" x="29" y="488" width="261" height="30"/>
+                    <rect key="frame" x="29" y="476" width="261" height="42"/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="niv-h4-l3J"/>
+                        <constraint firstAttribute="height" constant="42" id="niv-h4-l3J"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <state key="normal" title="下一步">
@@ -155,7 +155,7 @@
                 <constraint firstItem="THl-DC-eqx" firstAttribute="top" secondItem="YWv-WK-1ej" secondAttribute="bottom" constant="45" id="Jgm-Vj-o1M"/>
                 <constraint firstItem="YWv-WK-1ej" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Lqo-cF-kl1"/>
                 <constraint firstItem="m3G-wq-QhG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Mbr-Vc-ZGf"/>
-                <constraint firstItem="lbL-mC-zNV" firstAttribute="top" secondItem="VRz-ZQ-EaL" secondAttribute="bottom" constant="73" id="UjM-8R-kCh"/>
+                <constraint firstItem="lbL-mC-zNV" firstAttribute="top" secondItem="VRz-ZQ-EaL" secondAttribute="bottom" constant="61" id="UjM-8R-kCh"/>
                 <constraint firstItem="lbL-mC-zNV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="X2c-Ba-6Zv"/>
                 <constraint firstItem="lbL-mC-zNV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="29" id="anX-wx-OqP"/>
                 <constraint firstItem="m3G-wq-QhG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="dMr-oz-jx8"/>
