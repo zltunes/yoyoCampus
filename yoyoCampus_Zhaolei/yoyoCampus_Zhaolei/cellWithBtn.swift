@@ -10,6 +10,7 @@ import UIKit
 
 class cellWithBtn: UITableViewCell {
 
+    @IBOutlet var label: UILabel!
     @IBOutlet var button: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()

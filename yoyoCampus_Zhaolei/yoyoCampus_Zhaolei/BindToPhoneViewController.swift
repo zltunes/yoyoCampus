@@ -68,10 +68,22 @@ class BindToPhoneViewController: UIViewController {
     }
     
     @IBAction func finish(sender: UIButton) {
+        let verifyCode:NSString = self.veriftCodeTextField.text!
+        if !Consts.checkPhoneNum(self.phoneTextField.text!){
+            Tool.showErrorHUD("请输入正确的手机号!")
+        }else if verifyCode.length == 0{
+            Tool.showErrorHUD("请输入验证码!")//此处需要检测验证码!!!
+        }else{
+            //绑定手机完成后去设置个人信息
         let personalInfoViewController = PersonalInfoViewController()
         self.navigationController?.pushViewController(personalInfoViewController, animated: true)
+        }
     }
 
+    ///实现点击UIView内部关闭键盘
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 

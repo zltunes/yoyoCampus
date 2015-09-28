@@ -12,7 +12,6 @@
 		35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F9F1BB0FC3E00817020 /* AFPickerView.m */; settings = {ASSET_TAGS = (); }; };
 		35593FA41BB0FF0800817020 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FA31BB0FF0800817020 /* Consts.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FA61BB0FF0E00817020 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FA51BB0FF0E00817020 /* Tool.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FAD1BB0FFF100817020 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FAC1BB0FFF100817020 /* Cells.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FAF1BB1000700817020 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FAE1BB1000700817020 /* CustomNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FC31BB103E200817020 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35593FC21BB103E200817020 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FC61BB1366C00817020 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -68,7 +67,6 @@
 		35593FA11BB0FC6400817020 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		35593FA31BB0FF0800817020 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		35593FA51BB0FF0E00817020 /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
-		35593FAC1BB0FFF100817020 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		35593FAE1BB1000700817020 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		35593FC21BB103E200817020 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		35593FC61BB1366C00817020 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -172,21 +170,10 @@
 		35593FA71BB0FF2600817020 /* SwiftSources */ = {
 			isa = PBXGroup;
 			children = (
-				3597271E1BB3EE8D00B2E4C9 /* cell */,
 				3598B7941BB02FE700AD6BFE /* AppDelegate.swift */,
-				35593FAC1BB0FFF100817020 /* Cells.swift */,
 				35593FAE1BB1000700817020 /* CustomNavigationController.swift */,
-				35593FC61BB1366C00817020 /* LoginViewController.swift */,
-				35593FC81BB1367A00817020 /* RegisterViewController.swift */,
-				35593FCA1BB1368D00817020 /* FindPwdViewController.swift */,
-				35593FCC1BB1369B00817020 /* FastLoginViewController.swift */,
-				35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */,
-				35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */,
-				3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */,
-				3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */,
-				35593FD21BB136DB00817020 /* IdleGoodViewController.swift */,
-				35593FD41BB136EA00817020 /* ShopGoodViewController.swift */,
-				35593FD61BB136FA00817020 /* ShopViewController.swift */,
+				35C2FF8C1BB81D87006A4058 /* 登录注册相关 */,
+				35C2FF8D1BB81DE2006A4058 /* 进入详情页 */,
 			);
 			name = SwiftSources;
 			sourceTree = "<group>";
@@ -273,6 +260,32 @@
 				3598B7B61BB02FE800AD6BFE /* Info.plist */,
 			);
 			path = yoyoCampus_ZhaoleiUITests;
+			sourceTree = "<group>";
+		};
+		35C2FF8C1BB81D87006A4058 /* 登录注册相关 */ = {
+			isa = PBXGroup;
+			children = (
+				3597271E1BB3EE8D00B2E4C9 /* cell */,
+				35593FC61BB1366C00817020 /* LoginViewController.swift */,
+				35593FC81BB1367A00817020 /* RegisterViewController.swift */,
+				35593FCA1BB1368D00817020 /* FindPwdViewController.swift */,
+				35593FCC1BB1369B00817020 /* FastLoginViewController.swift */,
+				35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */,
+				35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */,
+				3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */,
+				3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */,
+			);
+			name = "登录注册相关";
+			sourceTree = "<group>";
+		};
+		35C2FF8D1BB81DE2006A4058 /* 进入详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				35593FD21BB136DB00817020 /* IdleGoodViewController.swift */,
+				35593FD41BB136EA00817020 /* ShopGoodViewController.swift */,
+				35593FD61BB136FA00817020 /* ShopViewController.swift */,
+			);
+			name = "进入详情页";
 			sourceTree = "<group>";
 		};
 		7AE451773A6ACC7D1CD8BF03 /* Pods */ = {
@@ -471,7 +484,6 @@
 			files = (
 				35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */,
 				35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */,
-				35593FAD1BB0FFF100817020 /* Cells.swift in Sources */,
 				35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */,
 				3597271C1BB3E88200B2E4C9 /* PersonalInfoViewController.swift in Sources */,
 				35593FD31BB136DB00817020 /* IdleGoodViewController.swift in Sources */,
@@ -621,6 +633,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = yoyoCampus_Zhaolei/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "zhaolei.yoyoCampus-Zhaolei";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -636,6 +649,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = yoyoCampus_Zhaolei/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "zhaolei.yoyoCampus-Zhaolei";
 				PRODUCT_NAME = "$(TARGET_NAME)";

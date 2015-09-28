@@ -85,11 +85,6 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func goBack(){
-//        let label = UILabel()
-//        label.font = Consts.ft15
-//        label.text = "啊啊啊啊"
-//        label.sizeToFit()
-//        print(label.frame.height)
         self.navigationController?.popViewControllerAnimated(true)
     }
     

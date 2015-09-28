@@ -76,7 +76,8 @@ class LoginViewController: UIViewController {
         self.img.contentMode = .ScaleAspectFit
         self.img.layer.cornerRadius = self.img.frame.width / 2   //圆角半径＝width/2，形成原型
         self.img.layer.masksToBounds = true
-        self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
+//        self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
+        self.img.image = UIImage(named: "register_icon_just a sign")
         self.view.addSubview(self.img)
         
         //手机号背景
@@ -94,7 +95,7 @@ class LoginViewController: UIViewController {
         //手机号输入框
         self.phoneTextField.frame = CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio)
         self.phoneTextField.frame.origin.x = self.phoneImg.frame.maxX + 22 * Consts.ratio
-        self.phoneTextField.font = Consts.ft16
+        self.phoneTextField.font = Consts.ft15
         self.phoneTextField.textColor = Consts.lightGray
         self.phoneTextField.placeholder = "请输入手机号"
         self.phoneView.addSubview(self.phoneTextField)
@@ -114,7 +115,7 @@ class LoginViewController: UIViewController {
         //密码输入框 
         self.pwdTextField.frame = CGRect(x: 0, y: 0, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.pwdTextField.frame.origin.x = self.pwdImg.frame.maxX + 22 * Consts.ratio
-        self.pwdTextField.font = Consts.ft16
+        self.pwdTextField.font = Consts.ft15
         self.pwdTextField.textColor = Consts.lightGray
         self.pwdTextField.secureTextEntry = true
         self.pwdTextField.placeholder = "请输入密码"
@@ -204,6 +205,11 @@ class LoginViewController: UIViewController {
         }
         else if !Consts.checkPassword(pwd){
             Tool.showErrorHUD("密码至少6位!")
+        }else{
+            //判断是否第一次登录!
+            //若是第一次登录，跳转到个人信息界面
+            let personalInfoVC = PersonalInfoViewController()
+            self.navigationController?.pushViewController(personalInfoVC, animated: true)
         }
     }
     
@@ -225,5 +231,8 @@ class LoginViewController: UIViewController {
     func weiboFastLogin(sender:UITapGestureRecognizer){
 
     }
-
+    ///实现点击UIView内部关闭键盘
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

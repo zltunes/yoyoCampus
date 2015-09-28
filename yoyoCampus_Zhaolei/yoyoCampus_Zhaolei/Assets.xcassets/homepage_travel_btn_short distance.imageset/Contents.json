@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "homepage_travel_btn_short distance.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "homepage_travel_btn_short distance@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "homepage_travel_btn_short distance@3x.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

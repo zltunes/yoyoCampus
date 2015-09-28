@@ -69,7 +69,8 @@ class RegisterViewController: UIViewController {
         self.img.contentMode = .ScaleAspectFit
         self.img.layer.cornerRadius = self.img.frame.width / 2   //圆角半径＝width/2，形成原型
         self.img.layer.masksToBounds = true
-        self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
+//        self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
+        self.img.image = UIImage(named: "register_icon_just a sign")
         self.view.addSubview(self.img)
         
         //手机号背景
@@ -118,10 +119,10 @@ class RegisterViewController: UIViewController {
         self.pwdAgainView.addSubview(self.pwdAgainImg)
         
         //手机号textField
-        self.phoneTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.phoneImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft16, textColor: Consts.lightGray, placeholder: "请输入手机号");
+        self.phoneTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.phoneImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入手机号");
         self.phoneView.addSubview(self.phoneTextField)
         //验证码textfield
-        self.verifyCodeTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width/2, height: 90 * Consts.ratio),origin_X: self.verifyCodeImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft16, textColor: Consts.lightGray, placeholder: "请输入验证码")
+        self.verifyCodeTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width/2, height: 90 * Consts.ratio),origin_X: self.verifyCodeImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入验证码")
         self.verifyCodeView.addSubview(self.verifyCodeTextField)
         //获取验证码btn
         self.getVerifyCodeBtn = Consts.setUpNormalBtn("获取验证码", frame: CGRect(x: self.verifyCodeTextField.frame.maxX + 22 * Consts.ratio, y: 0, width: self.verifyCodeView.frame.width/4, height: 40 * Consts.ratio), font: Consts.ft11, tintColor: Consts.lightGray)
@@ -133,10 +134,14 @@ class RegisterViewController: UIViewController {
         self.verifyCodeView.addSubview(self.getVerifyCodeBtn)
         
         //密码textfield
-        self.pwdTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.pwdImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft16, textColor: Consts.tintGreen, placeholder: "请输入密码")
+        self.pwdTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.pwdImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.tintGreen, placeholder: "请输入密码")
+        self.pwdTextField.secureTextEntry = true
+        self.pwdTextField.textColor = Consts.lightGray
         self.pwdView.addSubview(self.pwdTextField)
         //再次输入密码textField
-        self.pwdAgainTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.pwdAgainImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft16, textColor: Consts.tintGreen, placeholder: "请再次输入密码")
+        self.pwdAgainTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.pwdAgainImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.tintGreen, placeholder: "请再次输入密码")
+        self.pwdAgainTextField.secureTextEntry = true
+        self.pwdAgainTextField.textColor = Consts.lightGray
         self.pwdAgainView.addSubview(self.pwdAgainTextField)
         
         //注册
@@ -169,8 +174,16 @@ class RegisterViewController: UIViewController {
              Tool.showErrorHUD("密码至少6位!")
         }else if pwd != pwdAgain{
             Tool.showErrorHUD("两次输入的密码不一致!")
+        }else{
+            //注册成功后跳转到登录界面
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
+    }
+    
+    ///实现点击UIView内部关闭键盘
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     /*

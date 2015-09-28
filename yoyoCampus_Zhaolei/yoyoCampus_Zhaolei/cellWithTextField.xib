@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jD4-xe-RWY">
@@ -22,17 +22,27 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jA-pQ-BlB">
+                        <rect key="frame" x="8" y="11" width="52" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7nB-cY-CXL"/>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="L4r-cD-1pU"/>
-                    <constraint firstItem="jD4-xe-RWY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="96" id="nQw-np-y9m"/>
+                    <constraint firstItem="jD4-xe-RWY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="96" id="nQw-np-y9m">
+                        <variation key="heightClass=regular-widthClass=compact" constant="92"/>
+                    </constraint>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="qpa-m4-YGl"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="label" destination="9jA-pQ-BlB" id="bye-MQ-AO8"/>
                 <outlet property="textField" destination="jD4-xe-RWY" id="t3g-nd-lQn"/>
             </connections>
+            <point key="canvasLocation" x="341" y="353"/>
         </tableViewCell>
     </objects>
 </document>
