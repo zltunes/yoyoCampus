@@ -17,8 +17,7 @@ class CustomNavigationController: UINavigationController {
         self.navigationBar.setBackgroundImage(Consts.imageFromColor(Consts.tintGreen, size: self.navigationBar.frame.size), forBarMetrics: UIBarMetrics.Default)
         
         if (self.respondsToSelector("interactivePopGestureRecognizer")) {
-            //为什么要这句？
-            self.interactivePopGestureRecognizer!.delegate = nil//右滑手势
+            self.interactivePopGestureRecognizer!.delegate = nil
         }
     }
 

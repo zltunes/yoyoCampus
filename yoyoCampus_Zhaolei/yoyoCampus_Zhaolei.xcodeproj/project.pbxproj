@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		353DFCC21BC54BF20039293B /* ShopGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		353DFCC31BC54BF20039293B /* ShopGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		353DFCC71BC54D3A0039293B /* shopRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */; settings = {ASSET_TAGS = (); }; };
+		353DFCC81BC54D3A0039293B /* shopRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353DFCC61BC54D3A0039293B /* shopRemarkCell.xib */; settings = {ASSET_TAGS = (); }; };
 		35593F811BB0FBA100817020 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35593F7E1BB0FBA100817020 /* ProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F801BB0FBA100817020 /* ProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F9F1BB0FC3E00817020 /* AFPickerView.m */; settings = {ASSET_TAGS = (); }; };
@@ -18,11 +22,10 @@
 		35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FC81BB1367A00817020 /* RegisterViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCA1BB1368D00817020 /* FindPwdViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCC1BB1369B00817020 /* FastLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FD31BB136DB00817020 /* IdleGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD21BB136DB00817020 /* IdleGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FD51BB136EA00817020 /* ShopGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD41BB136EA00817020 /* ShopGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FD71BB136FA00817020 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FD61BB136FA00817020 /* ShopViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FDC1BB189C900817020 /* wechat_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35593FDB1BB189C900817020 /* wechat_icon.png */; settings = {ASSET_TAGS = (); }; };
 		35593FDE1BB18B4000817020 /* weibo_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35593FDD1BB18B4000817020 /* weibo_icon.png */; settings = {ASSET_TAGS = (); }; };
+		3577407E1BC4163F0005281B /* remarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3577407C1BC4163F0005281B /* remarkCell.swift */; settings = {ASSET_TAGS = (); }; };
+		3577407F1BC4163F0005281B /* remarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3577407D1BC4163F0005281B /* remarkCell.xib */; settings = {ASSET_TAGS = (); }; };
 		359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359383131BB4EDD300AA0E15 /* cellWithBtn.swift */; settings = {ASSET_TAGS = (); }; };
 		359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359383141BB4EDD300AA0E15 /* cellWithBtn.xib */; settings = {ASSET_TAGS = (); }; };
 		3597271C1BB3E88200B2E4C9 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -35,6 +38,8 @@
 		3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */; };
 		3598B7AA1BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7A91BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift */; };
 		3598B7B51BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */; };
+		35C200041BB96070006A4058 /* IdleGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C200021BB96070006A4058 /* IdleGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		35C200051BB96070006A4058 /* IdleGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C200031BB96070006A4058 /* IdleGoodViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35EF49D31BB2E45B00288D98 /* BindToPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		E2249198D74FD1E83929D192 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09792426E2B8F8EA634ED62B /* libPods.a */; };
@@ -59,6 +64,10 @@
 
 /* Begin PBXFileReference section */
 		09792426E2B8F8EA634ED62B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodViewController.swift; sourceTree = "<group>"; };
+		353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopGoodViewController.xib; sourceTree = "<group>"; };
+		353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopRemarkCell.swift; sourceTree = "<group>"; };
+		353DFCC61BC54D3A0039293B /* shopRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = shopRemarkCell.xib; sourceTree = "<group>"; };
 		35593F7E1BB0FBA100817020 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		35593F7F1BB0FBA100817020 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		35593F801BB0FBA100817020 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
@@ -73,11 +82,10 @@
 		35593FC81BB1367A00817020 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		35593FCA1BB1368D00817020 /* FindPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPwdViewController.swift; sourceTree = "<group>"; };
 		35593FCC1BB1369B00817020 /* FastLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastLoginViewController.swift; sourceTree = "<group>"; };
-		35593FD21BB136DB00817020 /* IdleGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleGoodViewController.swift; sourceTree = "<group>"; };
-		35593FD41BB136EA00817020 /* ShopGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodViewController.swift; sourceTree = "<group>"; };
-		35593FD61BB136FA00817020 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		35593FDB1BB189C900817020 /* wechat_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat_icon.png; sourceTree = "<group>"; };
 		35593FDD1BB18B4000817020 /* weibo_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_icon.png; sourceTree = "<group>"; };
+		3577407C1BC4163F0005281B /* remarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remarkCell.swift; sourceTree = "<group>"; };
+		3577407D1BC4163F0005281B /* remarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remarkCell.xib; sourceTree = "<group>"; };
 		359383131BB4EDD300AA0E15 /* cellWithBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cellWithBtn.swift; sourceTree = "<group>"; };
 		359383141BB4EDD300AA0E15 /* cellWithBtn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellWithBtn.xib; sourceTree = "<group>"; };
 		3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +104,8 @@
 		3598B7B01BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yoyoCampus_ZhaoleiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yoyoCampus_ZhaoleiUITests.swift; sourceTree = "<group>"; };
 		3598B7B61BB02FE800AD6BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35C200021BB96070006A4058 /* IdleGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleGoodViewController.swift; sourceTree = "<group>"; };
+		35C200031BB96070006A4058 /* IdleGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdleGoodViewController.xib; sourceTree = "<group>"; };
 		35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindToPhoneViewController.swift; sourceTree = "<group>"; };
 		35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindToPhoneViewController.xib; sourceTree = "<group>"; };
 		3B6B2F02E825D43080A8D9D8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +138,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		353DFCBF1BC549930039293B /* 商品详情  */ = {
+			isa = PBXGroup;
+			children = (
+				353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */,
+				353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */,
+				353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */,
+				353DFCC61BC54D3A0039293B /* shopRemarkCell.xib */,
+			);
+			name = "商品详情 ";
+			sourceTree = "<group>";
+		};
 		35593F771BB0FB0C00817020 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +218,17 @@
 				35593FDD1BB18B4000817020 /* weibo_icon.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		3577407B1BC40F6A0005281B /* 个人闲置 */ = {
+			isa = PBXGroup;
+			children = (
+				35C200021BB96070006A4058 /* IdleGoodViewController.swift */,
+				35C200031BB96070006A4058 /* IdleGoodViewController.xib */,
+				3577407C1BC4163F0005281B /* remarkCell.swift */,
+				3577407D1BC4163F0005281B /* remarkCell.xib */,
+			);
+			name = "个人闲置";
 			sourceTree = "<group>";
 		};
 		3597271E1BB3EE8D00B2E4C9 /* cell */ = {
@@ -281,9 +313,8 @@
 		35C2FF8D1BB81DE2006A4058 /* 进入详情页 */ = {
 			isa = PBXGroup;
 			children = (
-				35593FD21BB136DB00817020 /* IdleGoodViewController.swift */,
-				35593FD41BB136EA00817020 /* ShopGoodViewController.swift */,
-				35593FD61BB136FA00817020 /* ShopViewController.swift */,
+				3577407B1BC40F6A0005281B /* 个人闲置 */,
+				353DFCBF1BC549930039293B /* 商品详情  */,
 			);
 			name = "进入详情页";
 			sourceTree = "<group>";
@@ -415,13 +446,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				35593F811BB0FBA100817020 /* ProgressHUD.bundle in Resources */,
+				353DFCC81BC54D3A0039293B /* shopRemarkCell.xib in Resources */,
 				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
 				3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */,
 				359727221BB3EECC00B2E4C9 /* cellWithTextField.xib in Resources */,
 				35EF49D31BB2E45B00288D98 /* BindToPhoneViewController.xib in Resources */,
+				353DFCC31BC54BF20039293B /* ShopGoodViewController.xib in Resources */,
+				35C200051BB96070006A4058 /* IdleGoodViewController.xib in Resources */,
 				35593FDE1BB18B4000817020 /* weibo_icon.png in Resources */,
 				3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */,
 				35593FDC1BB189C900817020 /* wechat_icon.png in Resources */,
+				3577407F1BC4163F0005281B /* remarkCell.xib in Resources */,
 				3597271D1BB3E88200B2E4C9 /* PersonalInfoViewController.xib in Resources */,
 				359727281BB4279F00B2E4C9 /* data.plist in Resources */,
 				35593FC31BB103E200817020 /* Main.storyboard in Resources */,
@@ -484,19 +519,20 @@
 			files = (
 				35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */,
 				35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */,
+				35C200041BB96070006A4058 /* IdleGoodViewController.swift in Sources */,
 				35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */,
 				3597271C1BB3E88200B2E4C9 /* PersonalInfoViewController.swift in Sources */,
-				35593FD31BB136DB00817020 /* IdleGoodViewController.swift in Sources */,
+				353DFCC71BC54D3A0039293B /* shopRemarkCell.swift in Sources */,
 				35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */,
 				35593FA41BB0FF0800817020 /* Consts.swift in Sources */,
+				3577407E1BC4163F0005281B /* remarkCell.swift in Sources */,
 				359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */,
 				359727211BB3EECC00B2E4C9 /* cellWithTextField.swift in Sources */,
-				35593FD51BB136EA00817020 /* ShopGoodViewController.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
 				35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */,
 				35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */,
-				35593FD71BB136FA00817020 /* ShopViewController.swift in Sources */,
 				3598B7951BB02FE700AD6BFE /* AppDelegate.swift in Sources */,
+				353DFCC21BC54BF20039293B /* ShopGoodViewController.swift in Sources */,
 				35593FAF1BB1000700817020 /* CustomNavigationController.swift in Sources */,
 				35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */,
 			);

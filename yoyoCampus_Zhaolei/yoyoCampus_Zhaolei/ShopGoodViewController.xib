@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopGoodViewController" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
+            <connections>
+                <outlet property="detailBtn" destination="6cB-di-Cnj" id="Q7X-OZ-MwU"/>
+                <outlet property="goodNameLabel" destination="Ahp-cm-hh4" id="qTl-sY-DxM"/>
+                <outlet property="horizontalScroll" destination="5aR-hL-nOe" id="liW-2J-eRS"/>
+                <outlet property="interestCountLabel" destination="Abs-Tr-OCd" id="vnu-RS-hdh"/>
+                <outlet property="originPriceLabel" destination="wWr-ag-NWw" id="4Ek-kF-1hN"/>
+                <outlet property="photoImgView" destination="o3E-4R-J7C" id="wmR-SS-9Wh"/>
+                <outlet property="presentPriceLabel" destination="Np2-wN-79L" id="tr9-Dd-FBA"/>
+                <outlet property="remarkBtn" destination="2Fg-mq-o1m" id="I4c-h6-Jkl"/>
+                <outlet property="roundBtn" destination="BtI-7f-LOu" id="ib5-dh-tcK"/>
+                <outlet property="shopNameBtn" destination="s0b-DN-fk5" id="poo-rp-I0z"/>
+                <outlet property="shopNameLabel" destination="s0b-DN-fk5" id="2zu-ZL-WfN"/>
+                <outlet property="soldCountLabel" destination="hys-rX-jzq" id="qQn-3D-fKN"/>
+                <outlet property="timeLabel" destination="Pmc-0I-PkT" id="GE4-li-XBI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Commodity editor_btn_picture" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-4R-J7C">
+                    <rect key="frame" x="8" y="70" width="304" height="204"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="xianzhi_icon_visitor" translatesAutoresizingMaskIntoConstraints="NO" id="8Ak-AM-cfr">
+                    <rect key="frame" x="14" y="345" width="14" height="9"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="xianzhi_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="rHX-si-utj">
+                    <rect key="frame" x="113" y="345" width="9" height="10"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hys-rX-jzq">
+                    <rect key="frame" x="130" y="340" width="60" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmc-0I-PkT">
+                    <rect key="frame" x="240" y="340" width="72" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abs-Tr-OCd">
+                    <rect key="frame" x="33" y="340" width="70" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QC0-l9-zV6">
+                    <rect key="frame" x="8" y="394" width="304" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaJ-ed-m7F">
+                    <rect key="frame" x="8" y="363" width="304" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fg-mq-o1m">
+                    <rect key="frame" x="157" y="372" width="150" height="18"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="评论">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-di-Cnj">
+                    <rect key="frame" x="8" y="372" width="150" height="18"/>
+                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="详情">
+                        <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aR-hL-nOe">
+                    <rect key="frame" x="8" y="398" width="304" height="121"/>
+                </scrollView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-cm-hh4">
+                    <rect key="frame" x="8" y="277" width="304" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-DN-fk5">
+                    <rect key="frame" x="33" y="311" width="89" height="24"/>
+                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="新东方"/>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BtI-7f-LOu">
+                    <rect key="frame" x="8" y="311" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWr-ag-NWw">
+                    <rect key="frame" x="157" y="311" width="72" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-wN-79L">
+                    <rect key="frame" x="240" y="311" width="72" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOE-wo-EEn">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <items>
+                        <tabBarItem title="店铺" image="xiangqing_tab bar_shop" id="Vuh-BF-BN1"/>
+                        <tabBarItem title="收藏" image="xiangqing_tab bar_collect_n" id="BSg-hn-puB"/>
+                        <tabBarItem title="咨询" image="xiangqing_tab bar_message" id="fXk-xG-OYt"/>
+                        <tabBarItem title="去下单" image="xiangqing_tab bar_collect_p" id="mWX-nc-jk4"/>
+                    </items>
+                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="barTintColor" white="0.88" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="selectedImageTintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                </tabBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="429" y="366"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Commodity editor_btn_picture" width="97" height="72"/>
+        <image name="xiangqing_tab bar_collect_n" width="22" height="19"/>
+        <image name="xiangqing_tab bar_collect_p" width="22" height="19"/>
+        <image name="xiangqing_tab bar_message" width="21" height="18"/>
+        <image name="xiangqing_tab bar_shop" width="22" height="20"/>
+        <image name="xianzhi_icon_like" width="9" height="10"/>
+        <image name="xianzhi_icon_visitor" width="14" height="9"/>
+    </resources>
+</document>

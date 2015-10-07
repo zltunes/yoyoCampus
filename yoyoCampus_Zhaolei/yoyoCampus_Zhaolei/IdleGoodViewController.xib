@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IdleGoodViewController" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
+            <connections>
+                <outlet property="bigImgView" destination="k4X-I1-km1" id="PUx-pj-XQz"/>
+                <outlet property="bottomView" destination="e2C-TL-RP3" id="nbj-6E-XXf"/>
+                <outlet property="collectBtn_img" destination="S93-kh-PET" id="Wg0-Sf-EK9"/>
+                <outlet property="collectBtn_text" destination="Ecs-Ur-cdk" id="bAy-oF-y18"/>
+                <outlet property="consultBtn_img" destination="4EL-Kj-zXT" id="HAx-34-16t"/>
+                <outlet property="consultBtn_text" destination="yaW-eb-Ici" id="UnR-pi-0rr"/>
+                <outlet property="detailBtn" destination="Fyq-oh-N0F" id="AYK-Ah-EHu"/>
+                <outlet property="goodNameLabel" destination="xRc-xU-SQs" id="fZo-N1-USq"/>
+                <outlet property="horizontalScroll" destination="LHX-zd-c1f" id="Hm3-rU-t4w"/>
+                <outlet property="praiseBtn" destination="BcP-Am-feG" id="IJP-Pd-U8t"/>
+                <outlet property="praiseCountLabel" destination="K4x-mP-rDR" id="aSl-kz-NhT"/>
+                <outlet property="presentPriceLabel" destination="WHc-pw-FyJ" id="ICH-vC-Peb"/>
+                <outlet property="previewCountLabel" destination="mdL-z3-mEO" id="HA9-Zz-dKG"/>
+                <outlet property="remarkBtn" destination="Ws2-uV-TKH" id="8zz-Vl-CU6"/>
+                <outlet property="remarkTextView" destination="rSI-EQ-69b" id="QhC-re-f72"/>
+                <outlet property="repostRemarkBtn" destination="UvB-Jh-eDj" id="C63-RE-DVT"/>
+                <outlet property="rightBottomView" destination="wfa-8I-sze" id="GPD-la-vst"/>
+                <outlet property="roundBtn" destination="EiB-Tc-JNA" id="XEI-1S-xnr"/>
+                <outlet property="shopNameBtn" destination="8gP-ou-PD7" id="8J9-v7-pIk"/>
+                <outlet property="timeLabel" destination="rUx-UV-jrp" id="THJ-zi-XJC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-xU-SQs">
+                    <rect key="frame" x="8" y="277" width="304" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-pw-FyJ">
+                    <rect key="frame" x="240" y="311" width="72" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="xianzhi_icon_visitor" translatesAutoresizingMaskIntoConstraints="NO" id="yvM-0d-nAd">
+                    <rect key="frame" x="14" y="345" width="14" height="9"/>
+                </imageView>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gP-ou-PD7">
+                    <rect key="frame" x="33" y="311" width="89" height="24"/>
+                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="新东方"/>
+                    <connections>
+                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="hXS-db-x2m"/>
+                    </connections>
+                </button>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="xianzhi_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="nNQ-cU-Q9d">
+                    <rect key="frame" x="113" y="345" width="9" height="10"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUx-UV-jrp">
+                    <rect key="frame" x="240" y="340" width="72" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LCj-YD-Cwf">
+                    <rect key="frame" x="8" y="365" width="304" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSg-Z5-77r">
+                    <rect key="frame" x="8" y="396" width="304" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyq-oh-N0F">
+                    <rect key="frame" x="8" y="374" width="150" height="18"/>
+                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="详情">
+                        <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="yTl-7E-27h"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-Tc-JNA">
+                    <rect key="frame" x="8" y="311" width="20" height="20"/>
+                    <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="1Ws-5n-poD"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Commodity editor_btn_picture" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
+                    <rect key="frame" x="8" y="70" width="304" height="204"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdL-z3-mEO">
+                    <rect key="frame" x="33" y="340" width="70" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2C-TL-RP3">
+                    <rect key="frame" x="0.0" y="515" width="320" height="53"/>
+                    <subviews>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EL-Kj-zXT">
+                            <rect key="frame" x="207" y="3" width="46" height="30"/>
+                            <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="xiangqing_tab bar_message"/>
+                            <connections>
+                                <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="pSp-4Z-hK7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecs-Ur-cdk">
+                            <rect key="frame" x="52" y="33" width="46" height="17"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="收藏"/>
+                            <connections>
+                                <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="5tf-lU-bev"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaW-eb-Ici">
+                            <rect key="frame" x="207" y="33" width="46" height="17"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <state key="normal" title="咨询">
+                                <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="bze-mG-aOu"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S93-kh-PET">
+                            <rect key="frame" x="52" y="3" width="46" height="30"/>
+                            <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="xiangqing_tab bar_collect_n"/>
+                            <connections>
+                                <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="BIc-EF-f5Q"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.88232421875" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ws2-uV-TKH">
+                    <rect key="frame" x="157" y="374" width="150" height="18"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="评论">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="hkh-wz-IPe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcP-Am-feG">
+                    <rect key="frame" x="279" y="241" width="25" height="25"/>
+                    <state key="normal" backgroundImage="xiangqing_btn_dianzan"/>
+                    <connections>
+                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="Be4-NX-XfI"/>
+                    </connections>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHX-zd-c1f">
+                    <rect key="frame" x="8" y="400" width="304" height="115"/>
+                </scrollView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfa-8I-sze">
+                    <rect key="frame" x="0.0" y="515" width="320" height="53"/>
+                    <subviews>
+                        <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-Jh-eDj">
+                            <rect key="frame" x="266" y="12" width="46" height="30"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="发表">
+                                <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="kJW-Qg-cX5"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="写评论......" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-EQ-69b">
+                            <rect key="frame" x="29" y="13" width="229" height="27"/>
+                            <color key="backgroundColor" white="0.8823242188" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <real key="value" value="0.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.8823242188" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4x-mP-rDR">
+                    <rect key="frame" x="130" y="340" width="60" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="400" y="362"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Commodity editor_btn_picture" width="97" height="72"/>
+        <image name="xiangqing_btn_dianzan" width="25" height="25"/>
+        <image name="xiangqing_tab bar_collect_n" width="22" height="19"/>
+        <image name="xiangqing_tab bar_message" width="21" height="18"/>
+        <image name="xianzhi_icon_like" width="9" height="10"/>
+        <image name="xianzhi_icon_visitor" width="14" height="9"/>
+    </resources>
+</document>

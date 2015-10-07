@@ -229,7 +229,8 @@ class LoginViewController: UIViewController {
     }
     
     func weiboFastLogin(sender:UITapGestureRecognizer){
-
+        let idleVC = IdleGoodViewController()
+        self.navigationController?.pushViewController(idleVC, animated: true)
     }
     ///实现点击UIView内部关闭键盘
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
