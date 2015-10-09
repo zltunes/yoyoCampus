@@ -48,6 +48,11 @@ class LoginViewController: UIViewController {
     
     var weiboTapGesture = UITapGestureRecognizer()
     
+    //测试btn，进入其他页面
+    var gerenxianzhiBtn = UIButton()
+    
+    var shangpinxiangqingBtn = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -79,6 +84,16 @@ class LoginViewController: UIViewController {
 //        self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
         self.img.image = UIImage(named: "register_icon_just a sign")
         self.view.addSubview(self.img)
+        
+        //测试btn
+        self.gerenxianzhiBtn = Consts.setUpNormalBtn("个人闲置", frame: CGRect(x: newWidth * 0.7, y: self.view.frame.height/6, width: 100, height: 50), font: Consts.ft15, tintColor: Consts.black)
+        self.gerenxianzhiBtn.tag = 0
+        self.gerenxianzhiBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
+        self.shangpinxiangqingBtn = Consts.setUpNormalBtn("商品详情", frame: CGRect(x: newWidth * 0.7, y: self.view.frame.height/6+60, width: 100, height: 50), font: Consts.ft15, tintColor: Consts.black)
+        self.shangpinxiangqingBtn.tag = 1
+        self.shangpinxiangqingBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(self.gerenxianzhiBtn)
+        self.view.addSubview(self.shangpinxiangqingBtn)
         
         //手机号背景
         self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 480 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
@@ -229,11 +244,21 @@ class LoginViewController: UIViewController {
     }
     
     func weiboFastLogin(sender:UITapGestureRecognizer){
-        let idleVC = IdleGoodViewController()
-        self.navigationController?.pushViewController(idleVC, animated: true)
+
     }
     ///实现点击UIView内部关闭键盘
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    //测试进入其他界面
+    func btnClicked(sender:UIButton){
+        if sender.tag == 0{
+            let VC1 = IdleGoodViewController()
+            self.navigationController?.pushViewController(VC1, animated: true)
+        }else if sender.tag == 1{
+            let VC2 = ShopGoodViewController()
+            self.navigationController?.pushViewController(VC2, animated: true)
+        }
     }
 }

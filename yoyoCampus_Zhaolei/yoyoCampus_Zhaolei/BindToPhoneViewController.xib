@@ -123,6 +123,7 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="finish:" destination="-1" eventType="touchUpInside" id="kli-rk-5UN"/>

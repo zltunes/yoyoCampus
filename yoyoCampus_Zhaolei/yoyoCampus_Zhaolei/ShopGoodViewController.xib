@@ -16,7 +16,6 @@
                 <outlet property="remarkBtn" destination="2Fg-mq-o1m" id="I4c-h6-Jkl"/>
                 <outlet property="roundBtn" destination="BtI-7f-LOu" id="ib5-dh-tcK"/>
                 <outlet property="shopNameBtn" destination="s0b-DN-fk5" id="poo-rp-I0z"/>
-                <outlet property="shopNameLabel" destination="s0b-DN-fk5" id="2zu-ZL-WfN"/>
                 <outlet property="soldCountLabel" destination="hys-rX-jzq" id="qQn-3D-fKN"/>
                 <outlet property="timeLabel" destination="Pmc-0I-PkT" id="GE4-li-XBI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -78,6 +77,11 @@
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aR-hL-nOe">
                     <rect key="frame" x="8" y="398" width="304" height="121"/>
+                    <subviews>
+                        <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="DWo-FL-aG4">
+                            <rect key="frame" x="133" y="84" width="39" height="37"/>
+                        </pageControl>
+                    </subviews>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-cm-hh4">
                     <rect key="frame" x="8" y="277" width="304" height="30"/>
@@ -113,7 +117,6 @@
                         <tabBarItem title="店铺" image="xiangqing_tab bar_shop" id="Vuh-BF-BN1"/>
                         <tabBarItem title="收藏" image="xiangqing_tab bar_collect_n" id="BSg-hn-puB"/>
                         <tabBarItem title="咨询" image="xiangqing_tab bar_message" id="fXk-xG-OYt"/>
-                        <tabBarItem title="去下单" image="xiangqing_tab bar_collect_p" id="mWX-nc-jk4"/>
                     </items>
                     <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="barTintColor" white="0.88" alpha="1" colorSpace="calibratedWhite"/>
@@ -123,9 +126,12 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="429" y="366"/>
         </view>
+        <tabBarItem title="去下单" image="xiangqing_tab bar_collect_p" id="mWX-nc-jk4"/>
+        <tabBarItem title="去下单 " image="Merchant_btn_picture" id="M6a-cb-6gv"/>
     </objects>
     <resources>
         <image name="Commodity editor_btn_picture" width="97" height="72"/>
+        <image name="Merchant_btn_picture" width="79" height="79"/>
         <image name="xiangqing_tab bar_collect_n" width="22" height="19"/>
         <image name="xiangqing_tab bar_collect_p" width="22" height="19"/>
         <image name="xiangqing_tab bar_message" width="21" height="18"/>

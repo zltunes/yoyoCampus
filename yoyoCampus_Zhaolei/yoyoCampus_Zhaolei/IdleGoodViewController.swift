@@ -212,12 +212,15 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         if(scrollView == self.horizontalScroll){
             let offset : CGPoint = scrollView.contentOffset
             self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2, y: offset.y)
-            var tmpPage = Int(Float(offset.x))/Int(Float(self.horizontalScroll.frame.width))
-            let remain = Int(Float(offset.x))%Int(Float(self.horizontalScroll.frame.width))
-            //人为判断四舍五入,否则会出现左至右和右至左的切换时机不同
-            if(remain > Int(Float(self.horizontalScroll.frame.width / 2))){
-                tmpPage += 1
-            }
+//            var tmpPage = Int(Float(offset.x))/Int(Float(self.horizontalScroll.frame.width))
+//            let remain = Int(Float(offset.x))%Int(Float(self.horizontalScroll.frame.width))
+//            //人为判断四舍五入,否则会出现左至右和右至左的切换时机不同
+//            if(remain > Int(Float(self.horizontalScroll.frame.width / 2))){
+//                tmpPage += 1
+//            }
+            //计算当前在第几页
+            //用UIScrollView水平滚动的距离－页面宽度/2,除以页面宽度的结果＋1，即可得到当前为第几页
+            let tmpPage = Int(floor((offset.x - self.view.frame.width/2)/self.view.frame.width)+1)
             self.pageCtl.currentPage = tmpPage
         }
     }

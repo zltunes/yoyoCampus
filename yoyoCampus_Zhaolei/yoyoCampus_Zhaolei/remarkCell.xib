@@ -53,7 +53,7 @@
                 <outlet property="remarkLabel" destination="BtN-xL-EH9" id="AY7-q0-250"/>
                 <outlet property="timeLabel" destination="Zha-sC-ush" id="wX9-hr-npq"/>
             </connections>
-            <point key="canvasLocation" x="455" y="433.5"/>
+            <point key="canvasLocation" x="406" y="557.5"/>
         </tableViewCell>
     </objects>
     <resources>

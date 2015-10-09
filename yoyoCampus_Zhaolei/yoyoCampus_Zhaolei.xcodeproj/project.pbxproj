@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */; settings = {ASSET_TAGS = (); }; };
+		352D69BF1BC68EBA009A9A91 /* shopDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */; settings = {ASSET_TAGS = (); }; };
 		353DFCC21BC54BF20039293B /* ShopGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		353DFCC31BC54BF20039293B /* ShopGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		353DFCC71BC54D3A0039293B /* shopRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		09792426E2B8F8EA634ED62B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopDetailCell.swift; sourceTree = "<group>"; };
+		352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = shopDetailCell.xib; sourceTree = "<group>"; };
 		353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodViewController.swift; sourceTree = "<group>"; };
 		353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopGoodViewController.xib; sourceTree = "<group>"; };
 		353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopRemarkCell.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */,
 				353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */,
 				353DFCC61BC54D3A0039293B /* shopRemarkCell.xib */,
+				352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */,
+				352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */,
 			);
 			name = "商品详情 ";
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352D69BF1BC68EBA009A9A91 /* shopDetailCell.xib in Resources */,
 				35593F811BB0FBA100817020 /* ProgressHUD.bundle in Resources */,
 				353DFCC81BC54D3A0039293B /* shopRemarkCell.xib in Resources */,
 				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
@@ -528,6 +535,7 @@
 				3577407E1BC4163F0005281B /* remarkCell.swift in Sources */,
 				359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */,
 				359727211BB3EECC00B2E4C9 /* cellWithTextField.swift in Sources */,
+				352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
 				35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */,
 				35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */,
