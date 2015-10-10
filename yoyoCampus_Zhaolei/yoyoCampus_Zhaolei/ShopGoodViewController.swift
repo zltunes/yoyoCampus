@@ -36,6 +36,12 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBOutlet var pageCtl: UIPageControl!
     
+    @IBOutlet var tabbar: UITabBar!
+    
+    @IBOutlet var toBuyBtn: UIButton!//tag = 6为字体加粗
+    
+    @IBOutlet var collectBtn: UIButton!//tag = 4,收藏心形
+    
     
     ///指示器视图
     var scrollIndicator = UIScrollView()
@@ -84,6 +90,8 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         self.view.backgroundColor = Consts.grayView
         
+        self.toBuyBtn.titleLabel?.font = UIFont.boldSystemFontOfSize(20.0)
+        
         self.goodNameLabel.text = "恒通驾校报名"
         
         self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
@@ -123,10 +131,12 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         //1------detailView
         self.detailView.frame = CGRect(x:0,y:0, width:self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.detailView.backgroundColor = Consts.grayView
+        self.detailView.showsVerticalScrollIndicator = false
         
         //2------remarkView
         self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.remarkTableView.backgroundColor = Consts.grayView
+        self.remarkTableView.showsVerticalScrollIndicator = false
         
         self.horizontalScroll.addSubview(self.detailView)
         self.horizontalScroll.addSubview(self.remarkTableView)
@@ -170,17 +180,16 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             UIView.beginAnimations(nil, context: nil)//开始动画
             UIView.setAnimationDuration(0.25)//持续时间
             UIView.setAnimationCurve(.EaseIn)
-            self.detailBtn.titleLabel?.textColor = Consts.tintGreen
-            self.remarkBtn.titleLabel?.textColor = Consts.darkGray
+            self.detailBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+            self.remarkBtn.setTitleColor(Consts.darkGray, forState: .Normal)
             UIView.commitAnimations()
             break
         case 1://评价
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             UIView.setAnimationCurve(.EaseIn)
-            print("tabchangeto:case1")
-            self.remarkBtn.titleLabel?.textColor = Consts.tintGreen
-            self.detailBtn.titleLabel?.textColor = Consts.darkGray
+            self.remarkBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+            self.detailBtn.setTitleColor(Consts.darkGray, forState: .Normal)
             UIView.commitAnimations()
             break
         default:
@@ -259,13 +268,27 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBAction func btnClicked(sender: UIButton) {
         switch(sender.tag){
-        case 0:
+        case 0://新东方
             break
-        case 1:
+        case 1://详情
             self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
             break
-        case 2:
+        case 2://评论
             self.horizontalScroll.contentOffset = CGPoint(x: self.horizontalScroll.frame.width, y: 0)
+            break
+        case 3://店铺
+            break
+        case 4://收藏
+            self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+            sender.tag = 10//变为“已收藏”状态
+            break
+        case 5://咨询
+            break
+        case 6://去下单
+            break
+        case 10://取消收藏
+            self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+            sender.tag = 4//变为“未收藏”状态
             break
         default:
             break

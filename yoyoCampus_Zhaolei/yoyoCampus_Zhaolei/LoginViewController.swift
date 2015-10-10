@@ -44,10 +44,6 @@ class LoginViewController: UIViewController {
     
     var weiboLabel = UILabel()
     
-    var wechatTapGesture = UITapGestureRecognizer()
-    
-    var weiboTapGesture = UITapGestureRecognizer()
-    
     //测试btn，进入其他页面
     var gerenxianzhiBtn = UIButton()
     
@@ -81,7 +77,6 @@ class LoginViewController: UIViewController {
         self.img.contentMode = .ScaleAspectFit
         self.img.layer.cornerRadius = self.img.frame.width / 2   //圆角半径＝width/2，形成原型
         self.img.layer.masksToBounds = true
-//        self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
         self.img.image = UIImage(named: "register_icon_just a sign")
         self.view.addSubview(self.img)
         
@@ -201,6 +196,7 @@ class LoginViewController: UIViewController {
         self.registerBtn.addTarget(self, action: "register:", forControlEvents: .TouchUpInside)
         self.wechatBtn.addTarget(self, action: "wechatFastLogin:", forControlEvents: .TouchUpInside)
         self.weiboBtn.addTarget(self, action: "weiboFastLogin:", forControlEvents: .TouchUpInside)
+
     }
     
     func setUpOnlineData(){
@@ -238,12 +234,12 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(registerVC, animated: true)
     }
     
-    func wechatFastLogin(sender:UITapGestureRecognizer){
+    func wechatFastLogin(sender:UIButton){
         let bindVC = BindToPhoneViewController()
         self.navigationController?.pushViewController(bindVC, animated: true)
     }
     
-    func weiboFastLogin(sender:UITapGestureRecognizer){
+    func weiboFastLogin(sender:UIButton){
 
     }
     ///实现点击UIView内部关闭键盘

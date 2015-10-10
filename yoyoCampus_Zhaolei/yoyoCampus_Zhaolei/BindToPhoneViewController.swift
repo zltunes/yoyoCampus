@@ -80,6 +80,36 @@ class BindToPhoneViewController: UIViewController {
         }
     }
 
+    @IBAction func startTime(sender: UIButton) {
+        var timeout = 60
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), UInt64(1.0) * NSEC_PER_SEC, 0)//每秒执行
+        dispatch_source_set_event_handler(timer, {
+            if(timeout<=0){ //倒计时结束，关闭
+                dispatch_source_cancel(timer);
+                dispatch_async(dispatch_get_main_queue(), {
+                    //设置界面的按钮显示 根据自己需求设置
+                    self.getVerifyCodeBtn.setTitle("发送验证码", forState: .Normal)
+                    self.getVerifyCodeBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+                    self.getVerifyCodeBtn.userInteractionEnabled = true;
+                });
+            }else{
+                //            int minutes = timeout / 60;
+                let seconds = timeout % 61;
+                let strTime = "\(seconds)"
+                dispatch_async(dispatch_get_main_queue(), {
+                    //设置界面的按钮显示 根据自己需求设置
+                    self.getVerifyCodeBtn.setTitle("\(strTime)秒后重新发送", forState: .Normal)
+                    self.getVerifyCodeBtn.setTitleColor(Consts.lightGray, forState: .Normal)
+                    self.getVerifyCodeBtn.userInteractionEnabled = false
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(timer);
+    }
+        
     ///实现点击UIView内部关闭键盘
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)

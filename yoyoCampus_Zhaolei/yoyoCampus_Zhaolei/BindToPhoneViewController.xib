@@ -60,13 +60,13 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83c-4g-eTG">
                             <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtD-UU-pUx">
-                                    <rect key="frame" x="197" y="11" width="75" height="27"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtD-UU-pUx">
+                                    <rect key="frame" x="179" y="11" width="93" height="27"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="75" id="VMa-b7-Hxi"/>
+                                        <constraint firstAttribute="width" constant="93" id="VMa-b7-Hxi"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <state key="normal" title="获取验证码">
+                                    <state key="normal" title="发送验证码">
                                         <color key="titleColor" red="0.10196078431372549" green="0.71764705882352942" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <userDefinedRuntimeAttributes>
@@ -77,6 +77,9 @@
                                             <integer key="value" value="8"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="startTime:" destination="-1" eventType="touchUpInside" id="liu-bs-NVd"/>
+                                    </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lh6-a6-YDc">
                                     <rect key="frame" x="8" y="13" width="25" height="25"/>
@@ -85,7 +88,7 @@
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nLh-I4-BJU">
-                                    <rect key="frame" x="41" y="10" width="148" height="30"/>
+                                    <rect key="frame" x="41" y="10" width="130" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
@@ -96,7 +99,7 @@
                                 <constraint firstItem="DtD-UU-pUx" firstAttribute="trailing" secondItem="83c-4g-eTG" secondAttribute="trailingMargin" id="BjB-oQ-V5F"/>
                                 <constraint firstItem="lh6-a6-YDc" firstAttribute="centerY" secondItem="nLh-I4-BJU" secondAttribute="centerY" id="Fxa-31-Qt8"/>
                                 <constraint firstItem="lh6-a6-YDc" firstAttribute="leading" secondItem="83c-4g-eTG" secondAttribute="leadingMargin" id="O3U-Xl-3mT"/>
-                                <constraint firstItem="DtD-UU-pUx" firstAttribute="leading" secondItem="nLh-I4-BJU" secondAttribute="trailing" constant="8" symbolic="YES" id="OVk-1G-KEi"/>
+                                <constraint firstItem="DtD-UU-pUx" firstAttribute="leading" secondItem="nLh-I4-BJU" secondAttribute="trailing" constant="8" id="OVk-1G-KEi"/>
                                 <constraint firstItem="nLh-I4-BJU" firstAttribute="leading" secondItem="lh6-a6-YDc" secondAttribute="trailing" constant="8" symbolic="YES" id="PfT-3G-llr"/>
                                 <constraint firstItem="nLh-I4-BJU" firstAttribute="top" secondItem="83c-4g-eTG" secondAttribute="top" constant="10" id="Ves-EA-ZMO"/>
                                 <constraint firstItem="DtD-UU-pUx" firstAttribute="top" secondItem="83c-4g-eTG" secondAttribute="top" constant="11" id="lfw-pl-dI1"/>
@@ -123,7 +126,6 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="finish:" destination="-1" eventType="touchUpInside" id="kli-rk-5UN"/>

@@ -144,6 +144,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         
         ///2⃣️remarkTableView
         self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
+        self.remarkTableView.showsVerticalScrollIndicator = false
         self.remarkTableView.backgroundColor = Consts.grayView
         
         //设置水平滑动.frame已在xib定义
@@ -188,8 +189,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             UIView.setAnimationCurve(.EaseIn)
-            self.detailBtn.titleLabel?.textColor = Consts.tintGreen
-            self.remarkBtn.titleLabel?.textColor = Consts.darkGray
+            self.detailBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+            self.remarkBtn.setTitleColor(Consts.darkGray, forState: .Normal)
             UIView.commitAnimations()
             break
         case 1:
@@ -198,8 +199,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             UIView.setAnimationCurve(.EaseIn)
-            self.remarkBtn.titleLabel?.textColor = Consts.tintGreen
-            self.detailBtn.titleLabel?.textColor = Consts.darkGray
+            self.remarkBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+            self.detailBtn.setTitleColor(Consts.darkGray, forState: .Normal)
             UIView.commitAnimations()
             break
         default:
@@ -212,12 +213,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         if(scrollView == self.horizontalScroll){
             let offset : CGPoint = scrollView.contentOffset
             self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2, y: offset.y)
-//            var tmpPage = Int(Float(offset.x))/Int(Float(self.horizontalScroll.frame.width))
-//            let remain = Int(Float(offset.x))%Int(Float(self.horizontalScroll.frame.width))
-//            //人为判断四舍五入,否则会出现左至右和右至左的切换时机不同
-//            if(remain > Int(Float(self.horizontalScroll.frame.width / 2))){
-//                tmpPage += 1
-//            }
             //计算当前在第几页
             //用UIScrollView水平滚动的距离－页面宽度/2,除以页面宽度的结果＋1，即可得到当前为第几页
             let tmpPage = Int(floor((offset.x - self.view.frame.width/2)/self.view.frame.width)+1)
@@ -263,19 +258,37 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     //btn已全部绑定该函数,根据tag区分
     @IBAction func BtnClicked(sender: UIButton) {
-        let newWidth = self.view.frame.width
-        if sender.tag == 2{//详情
-            self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
-        }else if sender.tag == 3{//评论
-            self.horizontalScroll.contentOffset = CGPoint(x:self.horizontalScroll.frame.width, y: 0)
-        }else if sender.tag == 6{//发表
-            self.remarkTextView.resignFirstResponder()
-        }else if sender.tag == 0{//图片点赞
-            self.praiseBtn.setBackgroundImage(UIImage(named: "xiangqing_btn_dianzan_p"), forState: .Normal)
+        switch(sender.tag){
+        case 0://点赞
+            self.praiseBtn.setImage(UIImage(named: "xiangqing_btn_dianzan_p"), forState: .Normal)
             self.praiseBtn.tag = 10
-        }else if sender.tag == 10{//图片取消点赞
-            self.praiseBtn.setBackgroundImage(UIImage(named: "xiangqing_btn_dianzan"), forState: .Normal)
+            break
+        case 10://取消点赞
+            self.praiseBtn.setImage(UIImage(named: "xiangqing_btn_dianzan"), forState: .Normal)
             self.praiseBtn.tag = 0
+            break
+        case 1://新东方
+            break
+        case 2://详情
+            self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
+            break
+        case 3://评论
+            self.horizontalScroll.contentOffset = CGPoint(x:self.horizontalScroll.frame.width, y: 0)
+            break
+        case 4://收藏
+            self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+            sender.tag = 11
+        case 11://取消收藏
+            self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+            sender.tag = 4
+            break
+        case 5://咨询
+            break
+        case 6://发表
+            self.remarkTextView.resignFirstResponder()
+            break
+        default:
+            break
         }
     }
 

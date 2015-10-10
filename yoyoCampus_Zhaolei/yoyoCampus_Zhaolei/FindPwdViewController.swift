@@ -122,15 +122,19 @@ class FindPwdViewController: UIViewController {
         self.phoneTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.phoneImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入手机号");
         self.phoneView.addSubview(self.phoneTextField)
         //验证码textfield
-        self.verifyCodeTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width/2, height: 90 * Consts.ratio),origin_X: self.verifyCodeImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入验证码")
+        self.verifyCodeTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width/3, height: 90 * Consts.ratio),origin_X: self.verifyCodeImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入验证码")
         self.verifyCodeView.addSubview(self.verifyCodeTextField)
         //获取验证码btn
-        self.getVerifyCodeBtn = Consts.setUpNormalBtn("获取验证码", frame: CGRect(x: self.verifyCodeTextField.frame.maxX + 22 * Consts.ratio, y: 0, width: self.verifyCodeView.frame.width/4, height: 40 * Consts.ratio), font: Consts.ft11, tintColor: Consts.lightGray)
+        self.getVerifyCodeBtn = UIButton(type: .Custom)
+        self.getVerifyCodeBtn.frame = CGRect(x: self.verifyCodeTextField.frame.maxX + 100 * Consts.ratio, y: 0, width: self.verifyCodeView.frame.width/3.2, height: 65 * Consts.ratio)
+        self.getVerifyCodeBtn.setTitle("发送验证码", forState: .Normal)
+        self.getVerifyCodeBtn.titleLabel?.font = Consts.ft11
+        self.getVerifyCodeBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
         self.getVerifyCodeBtn.center.y = self.verifyCodeTextField.center.y
-        self.getVerifyCodeBtn.layer.cornerRadius = 5.0
+        self.getVerifyCodeBtn.layer.cornerRadius = 8.0
         self.getVerifyCodeBtn.layer.masksToBounds = true
         self.getVerifyCodeBtn.layer.borderWidth = 1.0
-        self.getVerifyCodeBtn.layer.borderColor = Consts.lightGray.CGColor
+        self.getVerifyCodeBtn.layer.borderColor = Consts.tintGreen.CGColor
         self.verifyCodeView.addSubview(self.getVerifyCodeBtn)
         
         //密码textfield
@@ -155,6 +159,7 @@ class FindPwdViewController: UIViewController {
     
     func setUpActions(){
         self.registerBtn.addTarget(self, action: "finish:", forControlEvents: .TouchUpInside)
+        self.getVerifyCodeBtn.addTarget(self, action: "startTime", forControlEvents: .TouchUpInside)
     }
     
     func goBack(){
@@ -183,5 +188,36 @@ class FindPwdViewController: UIViewController {
     ///实现点击UIView内部关闭键盘
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    
+    func startTime(){
+        var timeout = 60
+        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+        dispatch_source_set_timer(timer, dispatch_walltime(nil, 0), UInt64(1.0) * NSEC_PER_SEC, 0)//每秒执行
+        dispatch_source_set_event_handler(timer, {
+            if(timeout<=0){ //倒计时结束，关闭
+                dispatch_source_cancel(timer);
+                dispatch_async(dispatch_get_main_queue(), {
+                    //设置界面的按钮显示 根据自己需求设置
+                    self.getVerifyCodeBtn.setTitle("发送验证码", forState: .Normal)
+                    self.getVerifyCodeBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+                    self.getVerifyCodeBtn.userInteractionEnabled = true;
+                });
+            }else{
+                //            int minutes = timeout / 60;
+                let seconds = timeout % 61;
+                let strTime = "\(seconds)"
+                dispatch_async(dispatch_get_main_queue(), {
+                    //设置界面的按钮显示 根据自己需求设置
+                    self.getVerifyCodeBtn.setTitle("\(strTime)秒后重新发送", forState: .Normal)
+                    self.getVerifyCodeBtn.setTitleColor(Consts.lightGray, forState: .Normal)
+                    self.getVerifyCodeBtn.userInteractionEnabled = false
+                });
+                timeout--;
+            }
+        });
+        dispatch_resume(timer);
     }
 }

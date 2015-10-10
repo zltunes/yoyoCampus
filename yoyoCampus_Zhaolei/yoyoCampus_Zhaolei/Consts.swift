@@ -98,12 +98,6 @@ class Consts {
     //颜色
     /*********************************************/
     
-    ///红色,RGB:211,122,107,alpha = 1
-//    static let red = UIColor(red: 211 / 255, green: 122 / 225, blue: 107 / 225, alpha: 1)
-    
-    ///高亮红色,RGB:211,122,107,alpha = 0.5
-//    static let highlightedRed = UIColor(red: 211 / 255, green: 122 / 225, blue: 107 / 225, alpha: 0.5)
-    
     ///主色调绿色,RGB:82,197,176,alpha = 1
     static let tintGreen = UIColor(red: 82 / 255, green: 197 / 255, blue: 176 / 255, alpha: 1)
     
