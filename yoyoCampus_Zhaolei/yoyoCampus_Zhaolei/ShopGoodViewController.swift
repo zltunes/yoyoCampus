@@ -14,9 +14,9 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBOutlet var goodNameLabel: UILabel!
     
-    @IBOutlet var roundBtn: UIButton!
+    @IBOutlet var roundBtn: UIButton!//tag:0
 
-    @IBOutlet var shopNameBtn: UIButton!
+    @IBOutlet var shopNameBtn: UIButton!//tag:0
     
     @IBOutlet var originPriceLabel: UILabel!
     
@@ -28,11 +28,14 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBOutlet var timeLabel: UILabel!
     
-    @IBOutlet var detailBtn: UIButton!
+    @IBOutlet var detailBtn: UIButton!//tag:1
     
-    @IBOutlet var remarkBtn: UIButton!
+    @IBOutlet var remarkBtn: UIButton!//tag:2
     
     @IBOutlet var horizontalScroll: UIScrollView!
+    
+    @IBOutlet var pageCtl: UIPageControl!
+    
     
     ///指示器视图
     var scrollIndicator = UIScrollView()
@@ -47,7 +50,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var remarkTableView = UITableView()
     
     //页控制器
-    var pageCtl = UIPageControl()
+//    var pageCtl = UIPageControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +60,10 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.setUpOnlineData()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.pageCtl.removeObserver(self, forKeyPath: "currentPage", context: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,7 +97,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         self.interestCountLabel.text = "10 人感兴趣"
         
-        self.soldCountLabel.text = "已售 10"
+        self.soldCountLabel.text = "15 人已购买"
         
         self.timeLabel.text = "2015-09-02"
         
@@ -134,7 +141,6 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.pageCtl.pageIndicatorTintColor = UIColor.clearColor()
         self.pageCtl.currentPageIndicatorTintColor = UIColor.clearColor()
         self.pageCtl.enabled = false
-        self.horizontalScroll.addSubview(self.pageCtl)
     }
     
     func setUpActions(){
@@ -143,8 +149,10 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         self.detailView.delegate = self
         self.detailView.dataSource = self
+        self.detailView.registerNib(UINib.init(nibName: "shopDetailCell", bundle: nil), forCellReuseIdentifier: "shopDetailCell")
         self.remarkTableView.delegate = self
         self.remarkTableView.dataSource = self
+        self.remarkTableView.registerNib(UINib.init(nibName: "shopRemarkCell", bundle: nil), forCellReuseIdentifier: "shopRemarkCell")
         
         //注意离开本页面的时候要removeObserver,此处使用KVO编程，为pageCtl(数据模型－－被监听对象)添加监听器（self--视图组件）,监听器要重写observerKeyForKeyPath方法
         self.pageCtl.addObserver(self, forKeyPath: "currentPage", options: .New, context: nil)
@@ -170,6 +178,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             UIView.setAnimationCurve(.EaseIn)
+            print("tabchangeto:case1")
             self.remarkBtn.titleLabel?.textColor = Consts.tintGreen
             self.detailBtn.titleLabel?.textColor = Consts.darkGray
             UIView.commitAnimations()
@@ -203,21 +212,66 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        <#code#>
+        if(tableView == self.detailView){
+            let cell = self.detailView.dequeueReusableCellWithIdentifier("shopDetailCell") as!
+                shopDetailCell
+            cell.tagLabel.text = "报名须知"
+            //detailLabel允许多行显示
+            cell.detailLabel.lineBreakMode = .ByCharWrapping
+            cell.detailLabel.numberOfLines = 0
+            cell.detailLabel.sizeToFit()
+            cell.detailLabel.text = "报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知。"
+            return cell
+        }else{
+            let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("shopRemarkCell") as! shopRemarkCell
+            cell.nameLabel.text = "宇宙无敌小可爱"
+            cell.timeLabel.text = "2016-01-19"
+            cell.remarkLabel.lineBreakMode = .ByCharWrapping
+            cell.remarkLabel.numberOfLines = 0
+            cell.remarkLabel.sizeToFit()
+            cell.remarkLabel.text = "很不错的地方很不错的地方很不错的地方很不错的地方很不错的地方很不错的地方很不错的地方。"
+            cell.likeCountLabel.text = "(15)"
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        if(tableView == self.detailView){
+            return 2
+        }else{
+            return 3
+        }
+        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (tableView == self.detailView){
             self.detailView.deselectRowAtIndexPath(indexPath, animated: true)
         }else if(tableView == self.remarkTableView){
-            
+            self.remarkTableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        return cell.frame.height
+    }
+    
+    @IBAction func btnClicked(sender: UIButton) {
+        switch(sender.tag){
+        case 0:
+            break
+        case 1:
+            self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
+            break
+        case 2:
+            self.horizontalScroll.contentOffset = CGPoint(x: self.horizontalScroll.frame.width, y: 0)
+            break
+        default:
+            break
+        }
+    }
+
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }

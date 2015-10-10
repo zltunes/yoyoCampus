@@ -7,45 +7,77 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="111" id="KGk-i7-Jjw" customClass="shopRemarkCell" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
+            <rect key="frame" x="0.0" y="0.0" width="319" height="111"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="110.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="319" height="110.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register_icon_just a sign" translatesAutoresizingMaskIntoConstraints="NO" id="QEo-Ga-Uox">
-                        <rect key="frame" x="14" y="9" width="39" height="39"/>
+                        <rect key="frame" x="8" y="9" width="39" height="39"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEH-uY-Zzo">
-                        <rect key="frame" x="71" y="9" width="145" height="19"/>
+                        <rect key="frame" x="65" y="9" width="145" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-4r-26V">
-                        <rect key="frame" x="71" y="25" width="145" height="18"/>
+                        <rect key="frame" x="65" y="27" width="145" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcT-JX-X6q">
-                        <rect key="frame" x="71" y="46.5" width="197" height="30.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcT-JX-X6q">
+                        <rect key="frame" x="65" y="40.5" width="207" height="51.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xianzhi_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="Yle-XP-0Tt">
-                        <rect key="frame" x="202" y="89" width="16" height="14"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2t-uh-9fE">
-                        <rect key="frame" x="226" y="85" width="42" height="21"/>
+                        <rect key="frame" x="245" y="89" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htj-t9-Dpz">
+                        <rect key="frame" x="217" y="88" width="23" height="23"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="xianzhi_icon_like">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A64-02-MMe">
+                        <rect key="frame" x="228" y="10" width="16" height="16"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOx-3z-5Vj">
+                        <rect key="frame" x="246" y="10" width="16" height="16"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wr7-oz-SVy">
+                        <rect key="frame" x="264" y="10" width="16" height="16"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-Xa-lDM">
+                        <rect key="frame" x="210" y="10" width="16" height="16"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80n-fG-2rd">
+                        <rect key="frame" x="192" y="10" width="16" height="16"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="185" y="405.5"/>
+            <connections>
+                <outlet property="likeBtn" destination="htj-t9-Dpz" id="f8t-vo-cmK"/>
+                <outlet property="likeCountLabel" destination="A2t-uh-9fE" id="ZL6-jY-AFd"/>
+                <outlet property="nameLabel" destination="hEH-uY-Zzo" id="cV8-CW-5f8"/>
+                <outlet property="photo" destination="QEo-Ga-Uox" id="HEW-BB-8QZ"/>
+                <outlet property="remarkLabel" destination="QcT-JX-X6q" id="PUC-UL-oeX"/>
+                <outlet property="star1" destination="80n-fG-2rd" id="Gbm-Kd-HKo"/>
+                <outlet property="star2" destination="WQD-Xa-lDM" id="e9y-qp-mcq"/>
+                <outlet property="star3" destination="A64-02-MMe" id="d6j-SG-1OO"/>
+                <outlet property="star4" destination="GOx-3z-5Vj" id="uGD-tq-6PY"/>
+                <outlet property="star5" destination="Wr7-oz-SVy" id="U7a-3v-hiv"/>
+                <outlet property="timeLabel" destination="ZLf-4r-26V" id="PfP-i1-YZf"/>
+            </connections>
+            <point key="canvasLocation" x="78.5" y="356.5"/>
         </tableViewCell>
     </objects>
     <resources>

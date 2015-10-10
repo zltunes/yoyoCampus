@@ -18,6 +18,7 @@ class shopDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.backgroundColor = Consts.grayView
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

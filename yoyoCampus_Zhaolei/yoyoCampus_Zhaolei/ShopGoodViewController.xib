@@ -11,6 +11,7 @@
                 <outlet property="horizontalScroll" destination="5aR-hL-nOe" id="liW-2J-eRS"/>
                 <outlet property="interestCountLabel" destination="Abs-Tr-OCd" id="vnu-RS-hdh"/>
                 <outlet property="originPriceLabel" destination="wWr-ag-NWw" id="4Ek-kF-1hN"/>
+                <outlet property="pageCtl" destination="DWo-FL-aG4" id="1t8-4m-2oi"/>
                 <outlet property="photoImgView" destination="o3E-4R-J7C" id="wmR-SS-9Wh"/>
                 <outlet property="presentPriceLabel" destination="Np2-wN-79L" id="tr9-Dd-FBA"/>
                 <outlet property="remarkBtn" destination="2Fg-mq-o1m" id="I4c-h6-Jkl"/>
@@ -61,19 +62,15 @@
                     <rect key="frame" x="8" y="363" width="304" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fg-mq-o1m">
-                    <rect key="frame" x="157" y="372" width="150" height="18"/>
-                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="评论">
-                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-di-Cnj">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-di-Cnj">
                     <rect key="frame" x="8" y="372" width="150" height="18"/>
                     <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="详情">
                         <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="mOT-Fx-2uc"/>
+                    </connections>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aR-hL-nOe">
                     <rect key="frame" x="8" y="398" width="304" height="121"/>
@@ -89,18 +86,24 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-DN-fk5">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-DN-fk5">
                     <rect key="frame" x="33" y="311" width="89" height="24"/>
                     <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="新东方"/>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="3Kh-4u-n8T"/>
+                    </connections>
                 </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BtI-7f-LOu">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BtI-7f-LOu">
                     <rect key="frame" x="8" y="311" width="20" height="20"/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="36K-4q-5sk"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWr-ag-NWw">
-                    <rect key="frame" x="157" y="311" width="72" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <rect key="frame" x="173" y="315" width="60" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -122,6 +125,16 @@
                     <color key="barTintColor" white="0.88" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="selectedImageTintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tabBar>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fg-mq-o1m">
+                    <rect key="frame" x="162" y="372" width="150" height="18"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="评论">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="t7q-23-2S3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="429" y="366"/>

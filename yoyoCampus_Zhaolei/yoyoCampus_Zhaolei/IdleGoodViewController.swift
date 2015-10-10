@@ -193,11 +193,11 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             UIView.commitAnimations()
             break
         case 1:
+            self.bottomView.hidden = true
+            self.rightBottomView.hidden = false
             UIView.beginAnimations(nil, context: nil)
             UIView.setAnimationDuration(0.25)
             UIView.setAnimationCurve(.EaseIn)
-            self.bottomView.hidden = true
-            self.rightBottomView.hidden = false
             self.remarkBtn.titleLabel?.textColor = Consts.tintGreen
             self.detailBtn.titleLabel?.textColor = Consts.darkGray
             UIView.commitAnimations()
@@ -266,10 +266,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let newWidth = self.view.frame.width
         if sender.tag == 2{//详情
             self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
-            self.tabChangeTo(self.pageCtl.currentPage)
         }else if sender.tag == 3{//评论
             self.horizontalScroll.contentOffset = CGPoint(x:self.horizontalScroll.frame.width, y: 0)
-            self.tabChangeTo(self.pageCtl.currentPage)
         }else if sender.tag == 6{//发表
             self.remarkTextView.resignFirstResponder()
         }else if sender.tag == 0{//图片点赞

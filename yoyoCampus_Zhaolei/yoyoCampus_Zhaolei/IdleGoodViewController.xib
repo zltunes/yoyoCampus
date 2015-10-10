@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IdleGoodViewController" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
@@ -103,16 +105,22 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2C-TL-RP3">
                     <rect key="frame" x="0.0" y="515" width="320" height="53"/>
                     <subviews>
-                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EL-Kj-zXT">
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EL-Kj-zXT">
                             <rect key="frame" x="207" y="3" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="fXc-IV-Ybc"/>
+                            </constraints>
                             <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="xiangqing_tab bar_message"/>
                             <connections>
                                 <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="pSp-4Z-hK7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecs-Ur-cdk">
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecs-Ur-cdk">
                             <rect key="frame" x="52" y="33" width="46" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="H3N-F9-c6k"/>
+                            </constraints>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="收藏"/>
@@ -120,7 +128,7 @@
                                 <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="5tf-lU-bev"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaW-eb-Ici">
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaW-eb-Ici">
                             <rect key="frame" x="207" y="33" width="46" height="17"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <state key="normal" title="咨询">
@@ -130,8 +138,11 @@
                                 <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="bze-mG-aOu"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S93-kh-PET">
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S93-kh-PET">
                             <rect key="frame" x="52" y="3" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="jvd-c6-99E"/>
+                            </constraints>
                             <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="xiangqing_tab bar_collect_n"/>
                             <connections>
@@ -140,6 +151,18 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.88232421875" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="yaW-eb-Ici" firstAttribute="baseline" secondItem="Ecs-Ur-cdk" secondAttribute="firstBaseline" id="0Kj-g8-mq6"/>
+                        <constraint firstItem="S93-kh-PET" firstAttribute="leading" secondItem="Ecs-Ur-cdk" secondAttribute="leading" id="CUj-ha-qfi"/>
+                        <constraint firstItem="Ecs-Ur-cdk" firstAttribute="top" secondItem="S93-kh-PET" secondAttribute="bottom" id="Kdj-dV-Ff9"/>
+                        <constraint firstItem="yaW-eb-Ici" firstAttribute="top" secondItem="Ecs-Ur-cdk" secondAttribute="top" id="LdQ-hF-gIY"/>
+                        <constraint firstItem="Ecs-Ur-cdk" firstAttribute="baseline" secondItem="yaW-eb-Ici" secondAttribute="firstBaseline" id="Oa9-gg-QZ7"/>
+                        <constraint firstItem="S93-kh-PET" firstAttribute="bottom" secondItem="4EL-Kj-zXT" secondAttribute="bottom" id="Wsm-k7-QfI"/>
+                        <constraint firstItem="4EL-Kj-zXT" firstAttribute="top" secondItem="S93-kh-PET" secondAttribute="top" id="XiN-7N-f49"/>
+                        <constraint firstItem="4EL-Kj-zXT" firstAttribute="leading" secondItem="yaW-eb-Ici" secondAttribute="leading" id="cew-sL-1MV"/>
+                        <constraint firstItem="Ecs-Ur-cdk" firstAttribute="trailing" secondItem="S93-kh-PET" secondAttribute="trailing" id="j0L-x3-gbg"/>
+                        <constraint firstItem="4EL-Kj-zXT" firstAttribute="trailing" secondItem="yaW-eb-Ici" secondAttribute="trailing" id="uUU-Yg-doc"/>
+                    </constraints>
                 </view>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ws2-uV-TKH">
                     <rect key="frame" x="157" y="374" width="150" height="18"/>
@@ -158,14 +181,14 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="Be4-NX-XfI"/>
                     </connections>
                 </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHX-zd-c1f">
-                    <rect key="frame" x="8" y="400" width="304" height="115"/>
-                </scrollView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfa-8I-sze">
                     <rect key="frame" x="0.0" y="515" width="320" height="53"/>
                     <subviews>
-                        <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-Jh-eDj">
+                        <button opaque="NO" tag="6" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-Jh-eDj">
                             <rect key="frame" x="266" y="12" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="k4y-tJ-J9C"/>
+                            </constraints>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="发表">
@@ -175,7 +198,7 @@
                                 <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="kJW-Qg-cX5"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="写评论......" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-EQ-69b">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="写评论......" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-EQ-69b">
                             <rect key="frame" x="29" y="13" width="229" height="27"/>
                             <color key="backgroundColor" white="0.8823242188" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,6 +215,10 @@
                         </textView>
                     </subviews>
                     <color key="backgroundColor" white="0.8823242188" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="rSI-EQ-69b" firstAttribute="centerY" secondItem="UvB-Jh-eDj" secondAttribute="centerY" id="0vG-xL-bta"/>
+                        <constraint firstItem="UvB-Jh-eDj" firstAttribute="leading" secondItem="rSI-EQ-69b" secondAttribute="trailing" constant="8" symbolic="YES" id="3jU-ID-qSd"/>
+                    </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4x-mP-rDR">
                     <rect key="frame" x="130" y="340" width="60" height="21"/>
@@ -199,9 +226,12 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LHX-zd-c1f">
+                    <rect key="frame" x="8" y="400" width="304" height="115"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="400" y="362"/>
+            <point key="canvasLocation" x="342" y="356"/>
         </view>
     </objects>
     <resources>
