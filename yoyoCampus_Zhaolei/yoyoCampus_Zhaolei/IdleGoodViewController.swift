@@ -42,6 +42,9 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     @IBOutlet var consultBtn_img: UIButton!//tag:5
     
     @IBOutlet var consultBtn_text: UIButton!//tag:5
+    
+    //两种咨询方式
+    var popMenu = PopMenu()
 
     ///指示器视图
     var scrollIndicator = UIScrollView()
@@ -283,6 +286,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             sender.tag = 4
             break
         case 5://咨询
+            self.showMenu()
             break
         case 6://发表
             self.remarkTextView.resignFirstResponder()
@@ -356,6 +360,30 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         if(scrollView == self.remarkTableView){
             self.remarkTextView.resignFirstResponder()
         }
+    }
+    
+    //咨询跳出两个选择
+    func showMenu(){
+        print("jinru")
+        //注意空数组的定义.MenuItem为元素类型
+        var items = [MenuItem]()
+        var menuItem = MenuItem(title: "", iconName: "xiangqing_btn_message")//短信
+        items.append(menuItem)
+        menuItem = MenuItem(title: "", iconName: "xiangqing_btn_call")//电话
+        items.append(menuItem)
+        
+        popMenu = PopMenu(frame: self.view.bounds, items: items)
+        popMenu.menuAnimationType = PopMenuAnimationType.NetEase
+        
+        if(popMenu.isShowed == true){
+         return
+        }
+        
+        popMenu.didSelectedItemCompletion = { (selectedItem) in
+            
+        };
+    
+        popMenu.showMenuAtView(self.view)
     }
 
 }

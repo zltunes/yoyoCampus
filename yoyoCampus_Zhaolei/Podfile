@@ -14,4 +14,4 @@ pod 'Reachability'
 
 pod 'SDWebImage'
 
- 
+pod 'PopMenu'

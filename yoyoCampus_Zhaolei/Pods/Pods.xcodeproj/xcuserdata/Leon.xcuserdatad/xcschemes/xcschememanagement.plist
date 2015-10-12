@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PopMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>XHRealTimeBlur.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,7 +67,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00670D67FDC0E8D3A7FCDE2C45E0781A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1893DE70459B9C5430E1E53597BF9817</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2B1DCC5D32E99F297E3D40A8BA02F14C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F285394150FA76EEEBEB8426ED56575</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,32 +102,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>58E780D2226460331CDEAACB9A0E5DFD</key>
+		<key>AE478D4F58963F81F34E4690297A3D45</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>74FDF2BAAF47333269F75B70D4BC295D</key>
+		<key>B1A82B27DFBF57A95D41419376E1DC57</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7969147567CD8110896CF442091A6A26</key>
+		<key>B7D1247F0660EE6DA6EBA56AF1B44D11</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>943CEF9564F44864DA3D8136EA653EBD</key>
+		<key>B9DEA133CEC42AFA96B99ECE4606E189</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DEA4CB68042F51005B3FB70903465680</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F5735F15B9EB96ED26EDC6E6A29D8569</key>
+		<key>F5FA9FD9E580A0FE49F46F16D0620C2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0747CED42360943D4228F267"
+               BlueprintIdentifier = "E240BFF48E0E42E4BF132718"
                BuildableName = "libACEExpandableTextCell.a"
                BlueprintName = "ACEExpandableTextCell"
                ReferencedContainer = "container:Pods.xcodeproj">
