@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopGoodViewController" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
             <connections>
                 <outlet property="collectBtn" destination="DdR-DK-icJ" id="g5H-Ru-pu0"/>
+                <outlet property="collectBtn_text" destination="AhX-29-hVX" id="cZn-QY-ZxJ"/>
                 <outlet property="detailBtn" destination="6cB-di-Cnj" id="Q7X-OZ-MwU"/>
                 <outlet property="goodNameLabel" destination="Ahp-cm-hh4" id="qTl-sY-DxM"/>
                 <outlet property="horizontalScroll" destination="5aR-hL-nOe" id="liW-2J-eRS"/>

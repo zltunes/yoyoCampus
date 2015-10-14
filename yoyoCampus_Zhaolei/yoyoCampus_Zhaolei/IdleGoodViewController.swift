@@ -280,10 +280,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
         case 4://收藏
             self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
-            sender.tag = 11
+            self.collectBtn_img.tag = 11
+            self.collectBtn_text.tag = 11
         case 11://取消收藏
             self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
-            sender.tag = 4
+            self.collectBtn_text.tag = 4
+            self.collectBtn_img.tag = 4
             break
         case 5://咨询
             self.showMenu()
@@ -364,7 +366,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     //咨询跳出两个选择
     func showMenu(){
-        print("jinru")
         //注意空数组的定义.MenuItem为元素类型
         var items = [MenuItem]()
         var menuItem = MenuItem(title: "", iconName: "xiangqing_btn_message")//短信
@@ -380,7 +381,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         }
         
         popMenu.didSelectedItemCompletion = { (selectedItem) in
-            
+            //点击事件
         };
     
         popMenu.showMenuAtView(self.view)

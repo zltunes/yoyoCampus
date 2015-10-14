@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BindToPhoneViewController: UIViewController {
+class BindToPhoneViewController: UIViewController{
 
     @IBOutlet var verifyCodeView: UIView!
     @IBOutlet var phoneView: UIView!
@@ -28,7 +28,7 @@ class BindToPhoneViewController: UIViewController {
         self.setUpActions()
         self.setUpOnlineData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,7 +46,7 @@ class BindToPhoneViewController: UIViewController {
         
         //phoneImgView
         self.phoneImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImgView.frame.size)
-
+        
         //verifyCodeImgView
         self.verifyCodeImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.verifyCodeImgView.frame.size)
         
@@ -114,6 +114,7 @@ class BindToPhoneViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
     /*
     // MARK: - Navigation
 

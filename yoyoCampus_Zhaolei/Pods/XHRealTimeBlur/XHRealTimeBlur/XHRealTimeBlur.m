@@ -171,7 +171,8 @@
 
 - (void)setup {
     self.showDuration = self.disMissDuration = 0.3;
-    self.blurStyle = XHBlurStyleTranslucent;
+//    self.blurStyle = XHBlurStyleTranslucent;
+    self.blurStyle = XHBlurStyleBlackTranslucent;
     self.backgroundColor = [UIColor clearColor];
     
     _hasTapGestureEnable = NO;

@@ -1,0 +1,6 @@
+framework module XHRealTimeBlur {
+  umbrella header "XHRealTimeBlur-umbrella.h"
+
+  export *
+  module * { export * }
+}

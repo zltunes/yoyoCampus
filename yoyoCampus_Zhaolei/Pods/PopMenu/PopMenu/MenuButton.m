@@ -7,7 +7,7 @@
 //
 
 #import "MenuButton.h"
-#import <POP.h>
+#import "POP.h"
 
 // Model
 #import "MenuItem.h"
@@ -36,7 +36,7 @@
         self.iconImageView.userInteractionEnabled = NO;
         [self.iconImageView setImage:menuItem.iconImage forState:UIControlStateNormal];
         self.iconImageView.glowColor = menuItem.glowColor;
-        self.iconImageView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.iconImageView.bounds));
+        self.iconImageView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.iconImageView.bounds) * 8);
         [self addSubview:self.iconImageView];
         
     }

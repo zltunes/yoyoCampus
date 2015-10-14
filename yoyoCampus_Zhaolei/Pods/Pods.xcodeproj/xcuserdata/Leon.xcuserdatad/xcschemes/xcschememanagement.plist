@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CustomIOSAlertView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,6 +59,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>XHRealTimeBlur.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,62 +77,72 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00670D67FDC0E8D3A7FCDE2C45E0781A</key>
+		<key>255F2265862E29E96DBD60E9ACFB642C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1893DE70459B9C5430E1E53597BF9817</key>
+		<key>3DF18F106F287252BD5DDA6DDE54D04F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2B1DCC5D32E99F297E3D40A8BA02F14C</key>
+		<key>3DF8E73E0EFD764B61F1ACABCE753A73</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F285394150FA76EEEBEB8426ED56575</key>
+		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>47C800E42623009B7192B025B3DD25A1</key>
+		<key>4878C70B21CA37D7CB8A476BF986741B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>47DCDBD4A13F326479657F2B9B9B6AF7</key>
+		<key>4FD5FAE493401758206B604011F485D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5352D432641F0656C90741034E32F31E</key>
+		<key>5016A5CF286FA5D7A4D93BA5E1F26728</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AE478D4F58963F81F34E4690297A3D45</key>
+		<key>5855D213D188EE14086C1F827DE7B1FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1A82B27DFBF57A95D41419376E1DC57</key>
+		<key>6847254D016329D4A531D34ED2B6DF81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7D1247F0660EE6DA6EBA56AF1B44D11</key>
+		<key>777F96B093015EBB27EEE562C9870E74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9DEA133CEC42AFA96B99ECE4606E189</key>
+		<key>A2E3735FD621F8B5D4A01DB88A660A89</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5FA9FD9E580A0FE49F46F16D0620C2B</key>
+		<key>B38A6779CDD1805063F17BC67148295F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDABCDF3B0F252CCF26701F677A728BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAF7FB82B247777CDDA4589C3A0527E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

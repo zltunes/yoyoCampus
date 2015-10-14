@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DB5DF49D013FE6DE339BC07 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99CCF8C203C632F43C58926 /* Pods.framework */; };
 		352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */; settings = {ASSET_TAGS = (); }; };
 		352D69BF1BC68EBA009A9A91 /* shopDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */; settings = {ASSET_TAGS = (); }; };
 		353DFCC21BC54BF20039293B /* ShopGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -44,7 +45,6 @@
 		35C200051BB96070006A4058 /* IdleGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C200031BB96070006A4058 /* IdleGoodViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EF49D01BB2E45B00288D98 /* BindToPhoneViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35EF49D31BB2E45B00288D98 /* BindToPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		E2249198D74FD1E83929D192 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09792426E2B8F8EA634ED62B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09792426E2B8F8EA634ED62B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopDetailCell.swift; sourceTree = "<group>"; };
 		352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = shopDetailCell.xib; sourceTree = "<group>"; };
 		353DFCC01BC54BF20039293B /* ShopGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		35EF49D11BB2E45B00288D98 /* BindToPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindToPhoneViewController.xib; sourceTree = "<group>"; };
 		3B6B2F02E825D43080A8D9D8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		691656D5057848C78D2955A9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A99CCF8C203C632F43C58926 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2249198D74FD1E83929D192 /* libPods.a in Frameworks */,
+				2DB5DF49D013FE6DE339BC07 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +337,7 @@
 		98BF19C490AFD5F77C720512 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09792426E2B8F8EA634ED62B /* libPods.a */,
+				A99CCF8C203C632F43C58926 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -354,6 +354,7 @@
 				3598B78E1BB02FE700AD6BFE /* Frameworks */,
 				3598B78F1BB02FE700AD6BFE /* Resources */,
 				853D32F850A326BE9969CE90 /* Copy Pods Resources */,
+				E1EDD3F81B73152AA9704733 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -515,6 +516,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E1EDD3F81B73152AA9704733 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -683,6 +699,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Debug;
 		};
@@ -698,6 +715,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "zhaolei.yoyoCampus-Zhaolei";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
 			name = Release;
 		};

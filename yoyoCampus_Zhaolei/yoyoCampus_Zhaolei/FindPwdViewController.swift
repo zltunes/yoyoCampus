@@ -61,7 +61,7 @@ class FindPwdViewController: UIViewController {
     func setUpInitialLooking(){
         let newWidth = self.view.frame.width
         let newHeight = self.view.frame.height
-        
+            
         self.view.backgroundColor = Consts.grayView
         
         //头像

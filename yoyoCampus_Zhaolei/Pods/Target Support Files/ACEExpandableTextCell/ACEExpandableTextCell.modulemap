@@ -1,0 +1,6 @@
+framework module ACEExpandableTextCell {
+  umbrella header "ACEExpandableTextCell-umbrella.h"
+
+  export *
+  module * { export * }
+}

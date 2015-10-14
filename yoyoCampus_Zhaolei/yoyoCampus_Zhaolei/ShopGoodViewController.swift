@@ -42,6 +42,11 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBOutlet var collectBtn: UIButton!//tag = 4,收藏心形
     
+    @IBOutlet var collectBtn_text: UIButton!//tag=4,收藏文字
+    
+    
+    //两种咨询方式
+    var popMenu = PopMenu()
     
     ///指示器视图
     var scrollIndicator = UIScrollView()
@@ -280,15 +285,18 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             break
         case 4://收藏
             self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
-            sender.tag = 10//变为“已收藏”状态
+            self.collectBtn.tag = 10//变为“已收藏”状态
+            self.collectBtn_text.tag = 10
             break
         case 5://咨询
+            self.showMenu()
             break
         case 6://去下单
             break
         case 10://取消收藏
             self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
-            sender.tag = 4//变为“未收藏”状态
+            self.collectBtn.tag = 4//变为“未收藏”状态
+            self.collectBtn_text.tag = 4
             break
         default:
             break
@@ -301,6 +309,29 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func Share(){
         
+    }
+    
+    //咨询跳出两个选择
+    func showMenu(){
+        //注意空数组的定义.MenuItem为元素类型
+        var items = [MenuItem]()
+        var menuItem = MenuItem(title: "", iconName: "xiangqing_btn_message")//短信
+        items.append(menuItem)
+        menuItem = MenuItem(title: "", iconName: "xiangqing_btn_call")//电话
+        items.append(menuItem)
+        
+        popMenu = PopMenu(frame: self.view.bounds, items: items)
+        popMenu.menuAnimationType = PopMenuAnimationType.NetEase
+        
+        if(popMenu.isShowed == true){
+            return
+        }
+        
+        popMenu.didSelectedItemCompletion = { (selectedItem) in
+            //点击事件
+        };
+        
+        popMenu.showMenuAtView(self.view)
     }
 
 }

@@ -22,9 +22,10 @@ PODS:
   - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Alamofire (3.0.0)
   - CustomIOSAlertView (0.9.3)
   - IQKeyboardManager (3.3.2)
-  - MJRefresh (2.4.10)
+  - MJRefresh (2.4.12)
   - pop (1.0.8)
   - PopMenu (2.4):
     - pop
@@ -33,12 +34,14 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
+  - SwiftyJSON (2.3.0)
   - SZTextView (1.2.1)
   - XHRealTimeBlur (1.7)
 
 DEPENDENCIES:
   - ACEExpandableTextCell
   - AFNetworking
+  - Alamofire (~> 3.0)
   - CustomIOSAlertView
   - IQKeyboardManager
   - MJRefresh
@@ -46,18 +49,30 @@ DEPENDENCIES:
   - PopMenu
   - Reachability
   - SDWebImage
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 3b5d0d4e0c19173b1bf0dc823bde25ad870f70c0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   ACEExpandableTextCell: 5fadb1461c7f48b8d97e1d5257eeff5c1ec93a0f
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Alamofire: b61782387f81bcc538a0284cf2bb5d7995cd0a80
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
-  MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc
+  MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   XHRealTimeBlur: 661fadd5691ba2d349758e8fd5fbdb499ac55f8c
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
