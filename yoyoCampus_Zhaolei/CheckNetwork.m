@@ -12,7 +12,7 @@
 
 + (BOOL)  doesExistenceNetwork
 {
-    Reachability *r = [Reachability reachabilityWithHostName:@"jwc.seu.edu.cn"] ;
+    Reachability *r = [Reachability reachabilityWithHostName:@"http://api2.hloli.me:9001"] ;
     
     switch ([r currentReachabilityStatus])
     {

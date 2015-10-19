@@ -16,6 +16,11 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     @IBOutlet var table: UITableView!
     @IBOutlet var nextBtn: UIButton!
 
+    
+    
+//    登录之后完善个人信息不显式<,从个人设置入口进入本界面则显示<
+    static var backTitle:String? = "<"
+    
     ///提示图片label
     var staticLabel2 = UILabel()
     //弹窗：滚轮
@@ -37,8 +42,9 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     var imgUploaded = false
     
     
-    ///七牛云上传所需token，从服务器获取
-    var upToken:String = ""
+    ///七牛云上传所需token和key，从服务器获取
+    var qiniuToken:String = ""
+    var qiniuKey:String = ""
     
     ///七牛云manager
     var upManager = QNUploadManager()
@@ -47,13 +53,13 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     var imgData = NSData()
     
     ///用户所填写信息暂存
-    var infoData:NSMutableDictionary = ["name":"","school":"","startYear":""]
+    var infoData = ["name":"","location":"","enroll_year":"","image":""]
     
     ///上传
-    var uploadURL:String = Consts.mainUrl
+    var uploadURL:String = ""
     
     ///用户信息更新
-    var userInfoUpdateURL:String = Consts.mainUrl
+    var userInfoUpdateURL:String = ""
     
     var api = YoYoAPI()
     
@@ -128,6 +134,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         
 //        将选好的img转化为nsdata型，图片为jpeg格式
         self.imgData = UIImageJPEGRepresentation(image, 1.0)!
+
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -137,7 +144,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     }
 
     func setUpNavigationController(){
-            Consts.setUpNavigationBarWithBackButton(self, title: "个人信息", backTitle: "<")
+            Consts.setUpNavigationBarWithBackButton(self, title: "个人信息", backTitle: PersonalInfoViewController.backTitle)
     }
     
     func setUpInitialLooking(){
@@ -201,9 +208,23 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
 
     }
     
-    func showAlert(sender:UIButton){
-        self.alert.show()
+//    选择学校和年份
+    func chooseInfo(sender:UIButton){
+        switch(sender.tag){
+        case 0://location
+//            跳转到“选择校区”界面
+            sender.setTitle("东南大学九龙湖校区", forState: .Normal)
+            infoData["location"] = "东南大学九龙湖校区"
+            break
+        case 1://enroll_year
+             self.alert.show()
+            break
+        default:
+            break
+        }
+       
     }
+    
     func setUpActions(){
         self.table.dataSource = self
         self.table.delegate = self
@@ -215,20 +236,24 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     
     func setUpOnlineData(){
-        self.uploadURL = self.uploadURL.stringByAppendingString("/v1.0/static/token/")
-        self.userInfoUpdateURL = self.userInfoUpdateURL.stringByAppendingString("/v1.0/user/")
+        self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
+        self.userInfoUpdateURL = "\(Consts.mainUrl)/v1.0/user/"
         
         //            1:获取token
-        api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "0")
+        api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
         //            用户信息更新
         //            向服务器上传图片
-        upManager.putData(self.imgData, key: "key", token: self.upToken, complete: { (info, key, resp) -> Void in
-            print(info)//QNResponseInfo
-            print(resp)//NSDictionary
-            }, option: nil)
+//        upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
+//            print("七牛上传.")
+////            print(info)//QNResponseInfo
+////            print(resp)//NSDictionary
+//            }, option: nil)
+//        print("七牛上传结束")
         
         //           2:更新用户信息
+//        参数：name,image,enroll_year,location------------------>image是key吗？？？？？
         
+//        api.httpRequest("PUT", url: self.userInfoUpdateURL, params: self.infoData, tag: "info")
     }
     
     func setUpGestures(){
@@ -241,12 +266,9 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+//    name
     func textFieldChanged(sender:UITextField){
-        if sender.tag == 0{
-            self.infoData.setValue(sender.text, forKey: "name")
-        }else if sender.tag == 1{
-            self.infoData.setValue(sender.text, forKey: "school")
-        }
+        self.infoData.updateValue(sender.text!, forKey: "name")
     }
 
     @IBAction func buttonClicked(sender: UIButton) {
@@ -254,7 +276,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         if(sender.titleLabel?.text == "取消"){
             self.alert.close()
         }else if (sender.titleLabel?.text == "确定"){
-            self.infoData.setValue(self.pickerCache, forKey: "startYear")
+            self.infoData.updateValue(self.pickerCache, forKey: "enroll_year")
             self.table.reloadData()
             self.alert.close()
         }
@@ -265,46 +287,47 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     @IBAction func nextBtnClicked(sender: UIButton) {
         if !self.imgUploaded{
             Tool.showErrorHUD("请上传照片!")
-        }else if (self.infoData["name"]?.isEqualToString("") == true){
+        }else if (self.infoData["name"]! == ""){
             Tool.showErrorHUD("请输入昵称!")
-        }else if (self.infoData["school"]?.isEqualToString("") == true){
+        }else if (self.infoData["location"]! == ""){
             Tool.showErrorHUD("请输入学校!")
-        }else if (self.infoData["startYear"]?.isEqualToString("") == true){
+        }else if (self.infoData["enroll_year"]! == ""){
             Tool.showErrorHUD("请选择入学年份!")
         }else{
-
+            setUpOnlineData()
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row != 2{
+        if indexPath.row == 0{
         let cell = self.table.dequeueReusableCellWithIdentifier("cellWithTextField", forIndexPath: indexPath)as! cellWithTextField
-            switch(indexPath.row){
-            case 0:
                 cell.label.text = "昵称"
-                cell.textField.text = self.infoData.objectForKey("name")as? String
-                cell.textField.tag = 0
-                break
-            case 1:
-                cell.label.text = "学校"
-                cell.textField.text = self.infoData.objectForKey("school")as? String
-                cell.textField.tag = 1
-                break
-            default:
-                break
-            }
+                cell.textField.text = self.infoData["name"]
             cell.textField.addTarget(self, action: "textFieldChanged:", forControlEvents: .EditingDidEnd)
             return cell
         }else{
             let cell = self.table.dequeueReusableCellWithIdentifier("cellWithBtn", forIndexPath: indexPath) as! cellWithBtn
-            cell.label.text = "入学年份"
-            cell.button.setTitle(self.infoData.valueForKey("startYear")as? String, forState: .Normal)
-            if(cell.button.titleLabel?.text == ""){
-                cell.button.setTitleColor(Consts.holderGray, forState: .Normal)
-            }else{
-                cell.button.setTitleColor(Consts.lightGray, forState: .Normal)
+            switch(indexPath.row){
+            case 1://学校-->跳到选择校区界面
+                cell.label.text = "学校"
+                cell.button.setTitle(self.infoData["location"], forState: .Normal)
+                cell.button.tag = 0
+                cell.button.addTarget(self, action: "chooseInfo:", forControlEvents: .TouchUpInside)
+                break
+            case 2://入学时间
+                cell.label.text = "入学年份"
+                cell.button.setTitle(self.infoData["enroll_year"], forState: .Normal)
+                if(cell.button.titleLabel?.text == ""){
+                    cell.button.setTitleColor(Consts.holderGray, forState: .Normal)
+                }else{
+                    cell.button.setTitleColor(Consts.lightGray, forState: .Normal)
+                }
+                cell.button.tag = 1
+                cell.button.addTarget(self, action: "chooseInfo:", forControlEvents: .TouchUpInside)
+                break
+            default:
+                break
             }
-            cell.button.addTarget(self, action: "showAlert:", forControlEvents: .TouchUpInside)
             return cell
         }
     }
@@ -361,10 +384,27 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     
     func didReceiveJsonResults(json: JSON, tag: String) {
         switch tag{
-        case 0://token
-            self.upToken = json["token"].string
+        case "token":
+            qiniuToken = json["token"].string!
+            qiniuKey = json["key"].string!
+            infoData["image"] = qiniuKey
+            print("qiniuToken:\(qiniuToken)")
+            print("qiniuKey:\(qiniuKey)")
+            
+            let option = QNUploadOption(mime: nil, progressHandler: { (key, percent) -> Void in
+                print("key:\(key)\npercent\(percent)")
+                }, params: nil, checkCrc:true, cancellationSignal: nil)
+
+            upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
+                self.api.httpRequest("PUT", url: self.userInfoUpdateURL, params: self.infoData, tag: "info")
+                            print(info)//QNResponseInfo
+//                            print(resp)//NSDictionary
+                }, option: option)
             break
-        
+        case "info":
+            break
+        default:
+            break
         }
     }
     /*

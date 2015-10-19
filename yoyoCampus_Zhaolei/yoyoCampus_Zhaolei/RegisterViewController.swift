@@ -44,7 +44,9 @@ class RegisterViewController: UIViewController,APIDelegate{
     
     var api = YoYoAPI()
     
-    var registerURL:String = Consts.mainUrl
+    var registerURL:String = ""
+    
+    var verifyCodeULR:String = ""
     
     var params:[String:AnyObject]? = ["":""]
     
@@ -160,10 +162,23 @@ class RegisterViewController: UIViewController,APIDelegate{
         self.view.addSubview(self.registerBtn)
     }
     
-    func setUpOnlineData(){
-        self.registerURL = self.registerURL.stringByAppendingString("/v1.0/user/")
-        self.params = ["phone_num":self.phoneTextField.text!,"code":self.verifyCodeTextField.text!,"password":self.pwdTextField.text!]
-        api.httpRequest("POST", url: registerURL, params: param, tag: "0")
+    func setUpOnlineData(tag:String){
+        switch(tag){
+            case "register":
+                self.registerURL = "\(Consts.mainUrl)/v1.0/user/"
+                self.params = ["phone_num":self.phoneTextField.text!,"code":self.verifyCodeTextField.text!,"password":self.pwdTextField.text!]
+                api.httpRequest("POST", url: registerURL, params: params, tag: "register")
+            break
+            
+            case "verify":
+                self.verifyCodeULR = "\(Consts.mainUrl)/v1.0/auth/code/"
+                self.params = ["phone_num":self.phoneTextField.text!]
+                api.httpRequest("POST", url: verifyCodeULR, params: params, tag: "verify")
+            break
+            
+        default:
+            break
+        }
     }
     
     func setUpActions(){
@@ -184,19 +199,20 @@ class RegisterViewController: UIViewController,APIDelegate{
         if !Consts.checkPhoneNum(phoneNum){
             Tool.showErrorHUD("请输入正确的手机号!")
         }else if verifyCode.length == 0{
-            Tool.showErrorHUD("请输入验证码!")//验证码的正确性验证需要结合后台
+            Tool.showErrorHUD("请输入验证码!")
         }else if !Consts.checkPassword(pwd){
              Tool.showErrorHUD("密码至少6位!")
         }else if pwd != pwdAgain{
             Tool.showErrorHUD("两次输入的密码不一致!")
         }else{
-            self.setUpOnlineData()
+            self.setUpOnlineData("register")
         }
         
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        print("json:\(json)")
+        if(tag == "register"){
+        print("注册反馈:\(json)")
         //返回参数:user_id,access_token
         if let token = json["access_token"].string{
 //            注册成功-->完善个人信息-->登录到首页
@@ -207,12 +223,15 @@ class RegisterViewController: UIViewController,APIDelegate{
                     plistDict.writeToFile(AppDelegate.filePath, atomically: true)
                     Tool.showSuccessHUD("注册成功!")
                     let vc = PersonalInfoViewController()
+                    PersonalInfoViewController.backTitle = nil
                     self.navigationController?.pushViewController(vc, animated: true)
             }
         }else if json["code"].int == 406{//重复注册
-            Tool.showErrorHUD("该号码已经注册过了哟!")
+            Tool.showErrorHUD("该号码已经注册过了哦!")
+        }else if json["code"].int == 404{//验证码错误
+            Tool.showErrorHUD("验证码不对哦!")
         }
-//        还应该有验证码错误的处理
+    }
     }
     
     ///实现点击UIView内部关闭键盘
@@ -221,6 +240,8 @@ class RegisterViewController: UIViewController,APIDelegate{
     }
     
     func startTime(){
+         if(Consts.checkPhoneNum(self.phoneTextField.text!)){
+//        倒计时
         var timeout = 60
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -235,7 +256,6 @@ class RegisterViewController: UIViewController,APIDelegate{
                     self.getVerifyCodeBtn.userInteractionEnabled = true;
                     });
             }else{
-                //            int minutes = timeout / 60;
                 let seconds = timeout % 61;
                 let strTime = "\(seconds)"
                 dispatch_async(dispatch_get_main_queue(), {
@@ -248,6 +268,12 @@ class RegisterViewController: UIViewController,APIDelegate{
             }
             });
         dispatch_resume(timer);
+
+        setUpOnlineData("verify")
+        }
+        else{
+            Tool.showErrorHUD("请输入正确的手机号!")
+        }
     }
     /*
     // MARK: - Navigation

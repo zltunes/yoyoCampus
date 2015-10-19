@@ -21,16 +21,16 @@
                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hur-wa-hG0">
-                        <rect key="frame" x="9" y="11" width="76" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hur-wa-hG0">
+                        <rect key="frame" x="18" y="11" width="76" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Hur-wa-hG0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="3Z1-Kd-8Nq"/>
-                    <constraint firstItem="bOP-xm-9jg" firstAttribute="leading" secondItem="Hur-wa-hG0" secondAttribute="trailing" constant="15" id="EHq-VF-waR"/>
+                    <constraint firstItem="Hur-wa-hG0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="3Z1-Kd-8Nq"/>
+                    <constraint firstItem="bOP-xm-9jg" firstAttribute="leading" secondItem="Hur-wa-hG0" secondAttribute="trailing" constant="6" id="EHq-VF-waR"/>
                     <constraint firstItem="Hur-wa-hG0" firstAttribute="centerY" secondItem="bOP-xm-9jg" secondAttribute="centerY" id="HUg-vJ-RFN"/>
                     <constraint firstItem="bOP-xm-9jg" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="Typ-ts-exY"/>
                     <constraint firstItem="bOP-xm-9jg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="bbl-LK-EV5"/>

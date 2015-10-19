@@ -45,6 +45,12 @@ class LoginViewController: UIViewController,APIDelegate{
     
     var weiboLabel = UILabel()
     
+    var api = YoYoAPI()
+    
+    var loginURL:String = ""
+    
+    var params = ["":""]
+    
     //测试btn，进入其他页面
     var gerenxianzhiBtn = UIButton()
     
@@ -56,7 +62,6 @@ class LoginViewController: UIViewController,APIDelegate{
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -197,20 +202,46 @@ class LoginViewController: UIViewController,APIDelegate{
         self.registerBtn.addTarget(self, action: "register:", forControlEvents: .TouchUpInside)
         self.wechatBtn.addTarget(self, action: "wechatFastLogin:", forControlEvents: .TouchUpInside)
         self.weiboBtn.addTarget(self, action: "weiboFastLogin:", forControlEvents: .TouchUpInside)
-
+        api.delegate = self
     }
     
-    func setUpOnlineData(){
-
+    func setUpOnlineData(tag:String){
+        switch(tag){
+            case "login":
+                self.loginURL = "\(Consts.mainUrl)/v1.0/auth/login/"
+                self.params = ["phone_num":self.phoneTextField.text!,"password":self.pwdTextField.text!]
+                api.httpRequest("POST", url: loginURL, params: params, tag: "login")
+            break
+            
+            default:
+            break
+        }
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-
-    }
-    
-    
-    func goBack(){
-        
+        switch(tag){
+            case "login":
+                if let token = json["access_token"].string{
+                    var plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)
+                    plistDict?.setValue(token, forKey: "access_token")
+                    plistDict?.setValue(self.phoneTextField.text, forKey: "tel")
+                    plistDict?.setValue(true, forKey: "isLogin")
+                    plistDict?.writeToFile(AppDelegate.filePath, atomically: false)
+//                    如果个人信息不完善，跳转到personinfoVC
+                    let personalInfoVC = PersonalInfoViewController()
+                    PersonalInfoViewController.backTitle = nil
+                    self.navigationController?.pushViewController(personalInfoVC, animated: true)
+                    
+                }else if (json["code"] == 404){
+                    Tool.showErrorHUD("该手机号未注册!")
+                }else if (json["code"] == 406){
+                    Tool.showErrorHUD("密码不对哦!")
+                }
+            break
+            
+        default:
+            break
+        }
     }
     
     func login(sender:UIButton){
@@ -223,10 +254,7 @@ class LoginViewController: UIViewController,APIDelegate{
         else if !Consts.checkPassword(pwd){
             Tool.showErrorHUD("密码至少6位!")
         }else{
-            //判断是否第一次登录!
-            //若是第一次登录，跳转到个人信息界面
-            let personalInfoVC = PersonalInfoViewController()
-            self.navigationController?.pushViewController(personalInfoVC, animated: true)
+            setUpOnlineData("login")
         }
     }
     

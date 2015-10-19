@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class FindPwdViewController: UIViewController {
+class FindPwdViewController: UIViewController,APIDelegate {
 
     var img = UIImageView()
     
@@ -40,13 +41,20 @@ class FindPwdViewController: UIViewController {
     
     var registerBtn = UIButton()
     
+    var api = YoYoAPI()
+    
+    var resetPwdURL:String = ""
+    
+    var verifyCodeULR:String = ""
+    
+    var params:[String:AnyObject]? = ["":""]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -153,13 +161,30 @@ class FindPwdViewController: UIViewController {
         self.view.addSubview(self.registerBtn)
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        switch(tag){
+        case "reset":
+            self.resetPwdURL = "\(Consts.mainUrl)/v1.0/user/reset_password/"
+            self.params = ["password":self.pwdTextField.text!,"code":self.verifyCodeTextField.text!,"phone_num":self.phoneTextField.text!]
+            api.httpRequest("PUT", url: resetPwdURL, params: params, tag: "reset")
+            break
+            
+        case "verify":
+            self.verifyCodeULR = "\(Consts.mainUrl)/v1.0/auth/code/"
+            self.params = ["phone_num":self.phoneTextField.text!]
+            api.httpRequest("POST", url: verifyCodeULR, params: params, tag: "verify")
+            break
+            
+        default:
+            break
+        }
+
     }
     
     func setUpActions(){
         self.registerBtn.addTarget(self, action: "finish:", forControlEvents: .TouchUpInside)
         self.getVerifyCodeBtn.addTarget(self, action: "startTime", forControlEvents: .TouchUpInside)
+        self.api.delegate = self
     }
     
     func goBack(){
@@ -174,14 +199,14 @@ class FindPwdViewController: UIViewController {
         if !Consts.checkPhoneNum(phoneNum){
             Tool.showErrorHUD("请输入正确的手机号!")
         }else if verifyCode.length == 0{
-            Tool.showErrorHUD("请输入验证码!")//验证码的正确性验证需要结合后台
+            Tool.showErrorHUD("请输入验证码!")
         }else if !Consts.checkPassword(pwd){
             Tool.showErrorHUD("密码至少6位!")
         }else if pwd != pwdAgain{
             Tool.showErrorHUD("两次输入的密码不一致!")
         }else{
             //修改密码成功
-            self.navigationController?.popViewControllerAnimated(true)
+            setUpOnlineData("reset")
         }
         
     }
@@ -192,6 +217,7 @@ class FindPwdViewController: UIViewController {
     
     
     func startTime(){
+        if(Consts.checkPhoneNum(self.phoneTextField.text!)){
         var timeout = 60
         let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
@@ -206,7 +232,6 @@ class FindPwdViewController: UIViewController {
                     self.getVerifyCodeBtn.userInteractionEnabled = true;
                 });
             }else{
-                //            int minutes = timeout / 60;
                 let seconds = timeout % 61;
                 let strTime = "\(seconds)"
                 dispatch_async(dispatch_get_main_queue(), {
@@ -219,5 +244,20 @@ class FindPwdViewController: UIViewController {
             }
         });
         dispatch_resume(timer);
+        setUpOnlineData("verify")
+        }else{
+            Tool.showErrorHUD("请输入正确的手机号!")
+        }
+    }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        if(tag == "reset"){
+            if(json["code"].int == 404){
+                Tool.showErrorHUD("验证码不对哦!")
+            }else{
+                Tool.showSuccessHUD("密码修改成功!")
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
     }
 }

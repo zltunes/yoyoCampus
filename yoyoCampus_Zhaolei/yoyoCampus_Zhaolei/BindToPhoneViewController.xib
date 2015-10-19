@@ -24,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Pf-O9-u9b">
-                    <rect key="frame" x="20" y="117" width="280" height="50"/>
+                    <rect key="frame" x="20" y="117" width="280" height="51"/>
                     <subviews>
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-2w-zhg">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="51"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="register_button_phone" translatesAutoresizingMaskIntoConstraints="NO" id="slG-z4-PLi">
                                     <rect key="frame" x="8" y="13" width="17" height="23"/>
@@ -55,10 +55,10 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SX0-k3-Cgf">
-                    <rect key="frame" x="20" y="193" width="280" height="50"/>
+                    <rect key="frame" x="20" y="193" width="280" height="49"/>
                     <subviews>
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83c-4g-eTG">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="49"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtD-UU-pUx">
                                     <rect key="frame" x="179" y="11" width="93" height="27"/>
