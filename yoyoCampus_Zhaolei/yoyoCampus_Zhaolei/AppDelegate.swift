@@ -7,23 +7,59 @@
 //
 
 import UIKit
-
+import SwiftyJSON
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
-
+    
+    
+    ///用户登录状态
+    static var isLogin:Bool = false
+    ///用户手机号
+    static var tel:String = ""
+    ///access_token
+    static var access_token:String = ""
+    ///沙盒，存储isLogin\tel\access_token
+    static var filePath:String = ""
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        //键盘基本设置
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().disableInViewControllerClass(PersonalInfoViewController)
+        
+        //访问沙盒文件PersonInfo.plist
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
+            NSArray
+        let documentDirectory = paths.objectAtIndex(0) as! NSString
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("PersonInfo.plist")
+        
+        let  plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
+        if plistDict == nil{
+//            为.plist创建字典
+            var dict:NSMutableDictionary = ["access_token":""]
+            dict.setObject(false, forKey: "isLogin")
+            dict.setObject("", forKey: "tel")
+            dict.writeToFile(AppDelegate.filePath, atomically:false)
+            print("写入plist")
+        }else{
+            AppDelegate.isLogin = plistDict?.valueForKey("isLogin") as! Bool
+            AppDelegate.tel = plistDict?.valueForKey("tel") as! String
+            AppDelegate.access_token = plistDict?.valueForKey("access_token") as! String
+        }
+        
+        print("isLogin:\(AppDelegate.isLogin)")
+        print("tel:\(AppDelegate.tel)")
+        print("access_token:\(AppDelegate.access_token)")
         
         return true
     }
 
+
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

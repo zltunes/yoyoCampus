@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,AFPickerViewDataSource,AFPickerViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate{
+class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,AFPickerViewDataSource,AFPickerViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,APIDelegate{
     
     @IBOutlet var uploadBtn: UIButton!
 
@@ -35,8 +36,26 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     ///图片上传标记
     var imgUploaded = false
     
+    
+    ///七牛云上传所需token，从服务器获取
+    var upToken:String = ""
+    
+    ///七牛云manager
+    var upManager = QNUploadManager()
+    
+    ///图片编码
+    var imgData = NSData()
+    
     ///用户所填写信息暂存
     var infoData:NSMutableDictionary = ["name":"","school":"","startYear":""]
+    
+    ///上传
+    var uploadURL:String = Consts.mainUrl
+    
+    ///用户信息更新
+    var userInfoUpdateURL:String = Consts.mainUrl
+    
+    var api = YoYoAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +66,6 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         self.setUpAlertView()
         self.setUpActions()
         self.setUpGestures()
-        self.setUpOnlineData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,7 +125,11 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         
         self.uploadBtn.setImage(image,forState: .Normal)
         self.imgUploaded = true
-         picker.dismissViewControllerAnimated(true, completion: nil)
+        
+//        将选好的img转化为nsdata型，图片为jpeg格式
+        self.imgData = UIImageJPEGRepresentation(image, 1.0)!
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     ///取消选择后
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -189,9 +211,23 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         let nibWithBtn = UINib(nibName: "cellWithBtn", bundle: nil)
         self.table.registerNib(nibWithTextField, forCellReuseIdentifier: "cellWithTextField")
         self.table.registerNib(nibWithBtn, forCellReuseIdentifier: "cellWithBtn")
+        self.api.delegate = self
     }
     
     func setUpOnlineData(){
+        self.uploadURL = self.uploadURL.stringByAppendingString("/v1.0/static/token/")
+        self.userInfoUpdateURL = self.userInfoUpdateURL.stringByAppendingString("/v1.0/user/")
+        
+        //            1:获取token
+        api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "0")
+        //            用户信息更新
+        //            向服务器上传图片
+        upManager.putData(self.imgData, key: "key", token: self.upToken, complete: { (info, key, resp) -> Void in
+            print(info)//QNResponseInfo
+            print(resp)//NSDictionary
+            }, option: nil)
+        
+        //           2:更新用户信息
         
     }
     
@@ -235,6 +271,8 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             Tool.showErrorHUD("请输入学校!")
         }else if (self.infoData["startYear"]?.isEqualToString("") == true){
             Tool.showErrorHUD("请选择入学年份!")
+        }else{
+
         }
     }
 
@@ -318,6 +356,15 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         if(scrollView == self.table){
             scrollView.endEditing(true)
+        }
+    }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        switch tag{
+        case 0://token
+            self.upToken = json["token"].string
+            break
+        
         }
     }
     /*

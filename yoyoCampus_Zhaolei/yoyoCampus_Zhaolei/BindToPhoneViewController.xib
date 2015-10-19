@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -30,10 +29,10 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-2w-zhg">
                             <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="slG-z4-PLi">
-                                    <rect key="frame" x="8" y="13" width="25" height="25"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="register_button_phone" translatesAutoresizingMaskIntoConstraints="NO" id="slG-z4-PLi">
+                                    <rect key="frame" x="8" y="13" width="17" height="23"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="4fb-oD-8cm"/>
+                                        <constraint firstAttribute="width" constant="17" id="4fb-oD-8cm"/>
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDJ-bx-u0V">
@@ -45,12 +44,12 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="UDJ-bx-u0V" firstAttribute="trailing" secondItem="BBe-2w-zhg" secondAttribute="trailingMargin" id="5GU-jB-Hij"/>
-                                <constraint firstItem="UDJ-bx-u0V" firstAttribute="centerY" secondItem="slG-z4-PLi" secondAttribute="centerY" id="Ma1-dx-pQ9"/>
+                                <constraint firstItem="UDJ-bx-u0V" firstAttribute="centerY" secondItem="slG-z4-PLi" secondAttribute="centerY" constant="0.5" id="Ma1-dx-pQ9"/>
                                 <constraint firstItem="slG-z4-PLi" firstAttribute="top" secondItem="BBe-2w-zhg" secondAttribute="topMargin" constant="5" id="WsL-1j-Odn"/>
                                 <constraint firstItem="UDJ-bx-u0V" firstAttribute="top" secondItem="BBe-2w-zhg" secondAttribute="top" constant="10" id="X0A-i6-kEL"/>
                                 <constraint firstItem="slG-z4-PLi" firstAttribute="leading" secondItem="BBe-2w-zhg" secondAttribute="leadingMargin" id="ara-bI-GUb"/>
-                                <constraint firstItem="UDJ-bx-u0V" firstAttribute="leading" secondItem="slG-z4-PLi" secondAttribute="trailing" constant="8" symbolic="YES" id="jPb-uN-3sZ"/>
-                                <constraint firstItem="slG-z4-PLi" firstAttribute="bottom" secondItem="BBe-2w-zhg" secondAttribute="bottomMargin" constant="-4" id="uNY-1V-Wea"/>
+                                <constraint firstItem="UDJ-bx-u0V" firstAttribute="leading" secondItem="slG-z4-PLi" secondAttribute="trailing" constant="16" id="jPb-uN-3sZ"/>
+                                <constraint firstItem="slG-z4-PLi" firstAttribute="bottom" secondItem="BBe-2w-zhg" secondAttribute="bottomMargin" constant="-6" id="uNY-1V-Wea"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -82,17 +81,17 @@
                                         <action selector="startTime:" destination="-1" eventType="touchUpInside" id="liu-bs-NVd"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lh6-a6-YDc">
-                                    <rect key="frame" x="8" y="13" width="25" height="25"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="0NZ-Jw-eTh"/>
-                                    </constraints>
-                                </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nLh-I4-BJU">
                                     <rect key="frame" x="41" y="10" width="130" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="sign in_button_security code" translatesAutoresizingMaskIntoConstraints="NO" id="lh6-a6-YDc">
+                                    <rect key="frame" x="8" y="13" width="17" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="17" id="0NZ-Jw-eTh"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -101,11 +100,11 @@
                                 <constraint firstItem="lh6-a6-YDc" firstAttribute="centerY" secondItem="nLh-I4-BJU" secondAttribute="centerY" id="Fxa-31-Qt8"/>
                                 <constraint firstItem="lh6-a6-YDc" firstAttribute="leading" secondItem="83c-4g-eTG" secondAttribute="leadingMargin" id="O3U-Xl-3mT"/>
                                 <constraint firstItem="DtD-UU-pUx" firstAttribute="leading" secondItem="nLh-I4-BJU" secondAttribute="trailing" constant="8" id="OVk-1G-KEi"/>
-                                <constraint firstItem="nLh-I4-BJU" firstAttribute="leading" secondItem="lh6-a6-YDc" secondAttribute="trailing" constant="8" symbolic="YES" id="PfT-3G-llr"/>
+                                <constraint firstItem="nLh-I4-BJU" firstAttribute="leading" secondItem="lh6-a6-YDc" secondAttribute="trailing" constant="16" id="PfT-3G-llr"/>
                                 <constraint firstItem="nLh-I4-BJU" firstAttribute="top" secondItem="83c-4g-eTG" secondAttribute="top" constant="10" id="Ves-EA-ZMO"/>
                                 <constraint firstItem="DtD-UU-pUx" firstAttribute="top" secondItem="83c-4g-eTG" secondAttribute="top" constant="11" id="lfw-pl-dI1"/>
                                 <constraint firstItem="lh6-a6-YDc" firstAttribute="top" secondItem="83c-4g-eTG" secondAttribute="topMargin" constant="5" id="vvX-yX-dz4"/>
-                                <constraint firstItem="lh6-a6-YDc" firstAttribute="bottom" secondItem="83c-4g-eTG" secondAttribute="bottomMargin" constant="-4" id="yMn-Yi-gEv"/>
+                                <constraint firstItem="lh6-a6-YDc" firstAttribute="bottom" secondItem="83c-4g-eTG" secondAttribute="bottomMargin" constant="-6" id="yMn-Yi-gEv"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -149,4 +148,8 @@
             <point key="canvasLocation" x="931" y="276"/>
         </view>
     </objects>
+    <resources>
+        <image name="register_button_phone" width="11" height="17"/>
+        <image name="sign in_button_security code" width="11" height="17"/>
+    </resources>
 </document>

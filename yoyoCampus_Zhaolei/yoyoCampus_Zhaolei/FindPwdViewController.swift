@@ -102,20 +102,20 @@ class FindPwdViewController: UIViewController {
         self.view.addSubview(self.pwdAgainView)
         
         //手机号图标
-        self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.phoneImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImg.frame.size)
+        self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
+        self.phoneImg.image = UIImage.init(named: "register_button_phone")
         self.phoneView.addSubview(self.phoneImg)
         //验证码图标
-        self.verifyCodeImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.verifyCodeImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.verifyCodeImg.frame.size)
+        self.verifyCodeImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
+        self.verifyCodeImg.image = UIImage.init(named: "sign in_button_security code")
         self.verifyCodeView.addSubview(self.verifyCodeImg)
         //密码图标
-        self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.pwdImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.pwdImg.frame.size)
+        self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 35 * Consts.ratio)
+        self.pwdImg.image = UIImage.init(named: "register_button_password")
         self.pwdView.addSubview(self.pwdImg)
         //再次密码图标
-        self.pwdAgainImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.pwdAgainImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.pwdAgainImg.frame.size)
+        self.pwdAgainImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 35 * Consts.ratio)
+        self.pwdAgainImg.image = UIImage.init(named: "register_button_password")
         self.pwdAgainView.addSubview(self.pwdAgainImg)
         
         //手机号textField

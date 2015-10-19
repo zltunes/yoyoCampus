@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController,APIDelegate{
     
     var img = UIImageView()
     
@@ -40,13 +42,18 @@ class RegisterViewController: UIViewController {
     
     var registerBtn = UIButton()
     
+    var api = YoYoAPI()
+    
+    var registerURL:String = Consts.mainUrl
+    
+    var params:[String:AnyObject]? = ["":""]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,20 +109,20 @@ class RegisterViewController: UIViewController {
         self.view.addSubview(self.pwdAgainView)
         
         //手机号图标
-        self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.phoneImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImg.frame.size)
+        self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
+        self.phoneImg.image = UIImage.init(named: "register_button_phone")
         self.phoneView.addSubview(self.phoneImg)
         //验证码图标
-        self.verifyCodeImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.verifyCodeImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.verifyCodeImg.frame.size)
+        self.verifyCodeImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
+        self.verifyCodeImg.image = UIImage.init(named: "sign in_button_security code")
         self.verifyCodeView.addSubview(self.verifyCodeImg)
         //密码图标
-        self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.pwdImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.pwdImg.frame.size)
+        self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 35 * Consts.ratio)
+        self.pwdImg.image = UIImage.init(named: "register_button_password")
         self.pwdView.addSubview(self.pwdImg)
         //再次密码图标
-        self.pwdAgainImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.pwdAgainImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.pwdAgainImg.frame.size)
+        self.pwdAgainImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 35 * Consts.ratio)
+        self.pwdAgainImg.image = UIImage.init(named: "register_button_password")
         self.pwdAgainView.addSubview(self.pwdAgainImg)
         
         //手机号textField
@@ -154,10 +161,13 @@ class RegisterViewController: UIViewController {
     }
     
     func setUpOnlineData(){
-        
+        self.registerURL = self.registerURL.stringByAppendingString("/v1.0/user/")
+        self.params = ["phone_num":self.phoneTextField.text!,"code":self.verifyCodeTextField.text!,"password":self.pwdTextField.text!]
+        api.httpRequest("POST", url: registerURL, params: param, tag: "0")
     }
     
     func setUpActions(){
+        self.api.delegate = self
         self.registerBtn.addTarget(self, action: "register:", forControlEvents: .TouchUpInside)
         self.getVerifyCodeBtn.addTarget(self, action: "startTime", forControlEvents: .TouchUpInside)
     }
@@ -180,10 +190,29 @@ class RegisterViewController: UIViewController {
         }else if pwd != pwdAgain{
             Tool.showErrorHUD("两次输入的密码不一致!")
         }else{
-            //注册成功后跳转到登录界面
-            self.navigationController?.popViewControllerAnimated(true)
+            self.setUpOnlineData()
         }
         
+    }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        print("json:\(json)")
+        //返回参数:user_id,access_token
+        if let token = json["access_token"].string{
+//            注册成功-->完善个人信息-->登录到首页
+            if let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath){
+                    plistDict.setObject(token, forKey: "access_token")
+                    plistDict.setObject(self.phoneTextField.text!, forKey:"tel")
+                    plistDict.setObject(true, forKey: "isLogin")
+                    plistDict.writeToFile(AppDelegate.filePath, atomically: true)
+                    Tool.showSuccessHUD("注册成功!")
+                    let vc = PersonalInfoViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }else if json["code"].int == 406{//重复注册
+            Tool.showErrorHUD("该号码已经注册过了哟!")
+        }
+//        还应该有验证码错误的处理
     }
     
     ///实现点击UIView内部关闭键盘

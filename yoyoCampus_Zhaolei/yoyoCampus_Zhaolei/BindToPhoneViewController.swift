@@ -45,10 +45,10 @@ class BindToPhoneViewController: UIViewController{
         self.verifyCodeView.layer.cornerRadius = 7.0
         
         //phoneImgView
-        self.phoneImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImgView.frame.size)
+//        self.phoneImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImgView.frame.size)
         
         //verifyCodeImgView
-        self.verifyCodeImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.verifyCodeImgView.frame.size)
+//        self.verifyCodeImgView.image = Consts.imageFromColor(Consts.tintGreen, size: self.verifyCodeImgView.frame.size)
         
         //verifyCodeBtn
         self.getVerifyCodeBtn.layer.borderColor = Consts.tintGreen.CGColor

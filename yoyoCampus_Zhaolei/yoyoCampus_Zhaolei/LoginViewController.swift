@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,APIDelegate{
     
     var img = UIImageView()
     
@@ -98,8 +99,8 @@ class LoginViewController: UIViewController {
         self.view.addSubview(self.phoneView)
         
         //手机号图标
-        self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.phoneImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.phoneImg.frame.size)
+        self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
+        self.phoneImg.image = UIImage.init(named: "register_button_phone")
         self.phoneView.addSubview(self.phoneImg)
         
         //手机号输入框
@@ -118,8 +119,8 @@ class LoginViewController: UIViewController {
         self.view.addSubview(self.pwdView)
         
         //密码图标
-        self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 42 * Consts.ratio, height: 42 * Consts.ratio)
-        self.pwdImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.pwdImg.frame.size)
+        self.pwdImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 35 * Consts.ratio)
+        self.pwdImg.image = UIImage.init(named: "register_button_password")
         self.pwdView.addSubview(self.pwdImg)
         
         //密码输入框 
@@ -200,8 +201,13 @@ class LoginViewController: UIViewController {
     }
     
     func setUpOnlineData(){
-        
+
     }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+
+    }
+    
     
     func goBack(){
         
@@ -240,7 +246,7 @@ class LoginViewController: UIViewController {
     }
     
     func weiboFastLogin(sender:UIButton){
-
+        
     }
     ///实现点击UIView内部关闭键盘
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

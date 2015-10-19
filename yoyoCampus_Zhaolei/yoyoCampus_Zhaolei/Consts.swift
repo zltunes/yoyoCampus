@@ -138,7 +138,7 @@ class Consts {
     //地址
     /*********************************************/
     
-    static let mainUrl = "http://api2.hloli.me:9777"
+    static let mainUrl = "http://api2.hloli.me:9001"
     
     /*********************************************/
     //动画相关

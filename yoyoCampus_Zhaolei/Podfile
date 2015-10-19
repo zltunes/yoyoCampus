@@ -23,3 +23,5 @@ pod 'Reachability'
 pod 'SDWebImage'
 
 pod 'PopMenu'
+
+pod 'Qiniu'

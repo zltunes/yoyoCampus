@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HappyDNS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -40,6 +45,11 @@
 			<false/>
 		</dict>
 		<key>PopMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Qiniu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -77,17 +87,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>255F2265862E29E96DBD60E9ACFB642C</key>
+		<key>24B207BC2F92A67EBDAE4034CEEA021F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3DF18F106F287252BD5DDA6DDE54D04F</key>
+		<key>2ABC2ABEBCCF033F7D2B9B452DD5C5F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2DB6C2CD7957113C2BEC554CE594753F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>3DF8E73E0EFD764B61F1ACABCE753A73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E3460036317FC6BA5B3060BDDE268C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E8E795CDBF938D695A535CEDC5EE1AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +127,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4FD5FAE493401758206B604011F485D6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5016A5CF286FA5D7A4D93BA5E1F26728</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>5855D213D188EE14086C1F827DE7B1FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5ACFA9A017ACDDA3383552F3717F353F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,22 +147,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2E3735FD621F8B5D4A01DB88A660A89</key>
+		<key>7A63699A815ECE3C2A3EB73BE224BF6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B38A6779CDD1805063F17BC67148295F</key>
+		<key>958108A227E4BAEB60E53D47A704FD39</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B142A0FCEC5ECC15FAF233700939CC6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>DDABCDF3B0F252CCF26701F677A728BB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FAF7FB82B247777CDDA4589C3A0527E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
