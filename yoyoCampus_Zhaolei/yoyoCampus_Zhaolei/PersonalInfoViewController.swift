@@ -135,7 +135,6 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
 //        将选好的img转化为nsdata型，图片为jpeg格式
         self.imgData = UIImageJPEGRepresentation(image, 1.0)!
 
-        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     ///取消选择后
@@ -235,25 +234,26 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         self.api.delegate = self
     }
     
-    func setUpOnlineData(){
-        self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
-        self.userInfoUpdateURL = "\(Consts.mainUrl)/v1.0/user/"
+    func setUpOnlineData(tag:String){
         
-        //            1:获取token
-        api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
-        //            用户信息更新
-        //            向服务器上传图片
-//        upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
-//            print("七牛上传.")
-////            print(info)//QNResponseInfo
-////            print(resp)//NSDictionary
-//            }, option: nil)
-//        print("七牛上传结束")
-        
-        //           2:更新用户信息
-//        参数：name,image,enroll_year,location------------------>image是key吗？？？？？
-        
-//        api.httpRequest("PUT", url: self.userInfoUpdateURL, params: self.infoData, tag: "info")
+        switch(tag){
+            
+            case "token":
+                self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
+                //1:获取token
+                api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
+            break
+            
+                case "info":
+                self.userInfoUpdateURL = "\(Consts.mainUrl)/v1.0/user/"
+                //2:更新用户信息
+                api.httpRequest("PUT", url: self.userInfoUpdateURL, params: self.infoData, tag: "info")
+            break
+            
+        default:
+            break
+            
+        }
     }
     
     func setUpGestures(){
@@ -294,7 +294,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         }else if (self.infoData["enroll_year"]! == ""){
             Tool.showErrorHUD("请选择入学年份!")
         }else{
-            setUpOnlineData()
+            setUpOnlineData("token")
         }
     }
 
@@ -388,21 +388,22 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             qiniuToken = json["token"].string!
             qiniuKey = json["key"].string!
             infoData["image"] = qiniuKey
-            print("qiniuToken:\(qiniuToken)")
-            print("qiniuKey:\(qiniuKey)")
             
-            let option = QNUploadOption(mime: nil, progressHandler: { (key, percent) -> Void in
-                print("key:\(key)\npercent\(percent)")
-                }, params: nil, checkCrc:true, cancellationSignal: nil)
+//            print("qiniuToken:\(qiniuToken)")
+//            print("qiniuKey:\(qiniuKey)")
+//            查看上传进度
+//            let option = QNUploadOption(mime: nil, progressHandler: { (key, percent) -> Void in
+//                print("key:\(key)\npercent\(percent)")
+//                }, params: nil, checkCrc:true, cancellationSignal: nil)
 
             upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
-                self.api.httpRequest("PUT", url: self.userInfoUpdateURL, params: self.infoData, tag: "info")
-                            print(info)//QNResponseInfo
-//                            print(resp)//NSDictionary
-                }, option: option)
+                    self.setUpOnlineData("info")
+                }, option: nil)
             break
+            
         case "info":
             break
+            
         default:
             break
         }

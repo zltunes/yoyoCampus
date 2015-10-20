@@ -30,7 +30,7 @@ class YoYoAPI: NSObject {
                 var headerValue = tokenDict.valueForKey("access_token") as! String
                 httpHeader = [httpHeaderKay:headerValue]
         }else{
-            print("plist不存在!")
+            
         }
     }
     
