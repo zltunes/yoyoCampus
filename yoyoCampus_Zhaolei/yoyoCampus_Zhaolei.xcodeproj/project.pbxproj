@@ -15,6 +15,13 @@
 		353DFCC31BC54BF20039293B /* ShopGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		353DFCC71BC54D3A0039293B /* shopRemarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */; settings = {ASSET_TAGS = (); }; };
 		353DFCC81BC54D3A0039293B /* shopRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353DFCC61BC54D3A0039293B /* shopRemarkCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3543B0EA1BD7779B00B2BA60 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0E91BD7779B00B2BA60 /* Cells.swift */; settings = {ASSET_TAGS = (); }; };
+		3543B0F01BD777DF00B2BA60 /* PersonalCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0EC1BD777DF00B2BA60 /* PersonalCenterViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3543B0F11BD777DF00B2BA60 /* PersonalInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0ED1BD777DF00B2BA60 /* PersonalInfomationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3543B0F21BD777DF00B2BA60 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0EE1BD777DF00B2BA60 /* SettingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3543B0F31BD777DF00B2BA60 /* UserFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0EF1BD777DF00B2BA60 /* UserFeedbackViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3543B0F81BD7783B00B2BA60 /* MyUploadGoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0F51BD7783B00B2BA60 /* MyUploadGoodsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3543B0FA1BD7783B00B2BA60 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0F71BD7783B00B2BA60 /* TestViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593F811BB0FBA100817020 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35593F7E1BB0FBA100817020 /* ProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
 		35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F801BB0FBA100817020 /* ProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F9F1BB0FC3E00817020 /* AFPickerView.m */; settings = {ASSET_TAGS = (); }; };
@@ -76,6 +83,13 @@
 		353DFCC11BC54BF20039293B /* ShopGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopGoodViewController.xib; sourceTree = "<group>"; };
 		353DFCC51BC54D3A0039293B /* shopRemarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopRemarkCell.swift; sourceTree = "<group>"; };
 		353DFCC61BC54D3A0039293B /* shopRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = shopRemarkCell.xib; sourceTree = "<group>"; };
+		3543B0E91BD7779B00B2BA60 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		3543B0EC1BD777DF00B2BA60 /* PersonalCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCenterViewController.swift; sourceTree = "<group>"; };
+		3543B0ED1BD777DF00B2BA60 /* PersonalInfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfomationViewController.swift; sourceTree = "<group>"; };
+		3543B0EE1BD777DF00B2BA60 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		3543B0EF1BD777DF00B2BA60 /* UserFeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedbackViewController.swift; sourceTree = "<group>"; };
+		3543B0F51BD7783B00B2BA60 /* MyUploadGoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUploadGoodsViewController.swift; sourceTree = "<group>"; };
+		3543B0F71BD7783B00B2BA60 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		35593F7E1BB0FBA100817020 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		35593F7F1BB0FBA100817020 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		35593F801BB0FBA100817020 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
@@ -172,6 +186,26 @@
 			name = "商品详情 ";
 			sourceTree = "<group>";
 		};
+		3543B0EB1BD777A800B2BA60 /* 个人中心 */ = {
+			isa = PBXGroup;
+			children = (
+				3543B0EC1BD777DF00B2BA60 /* PersonalCenterViewController.swift */,
+				3543B0ED1BD777DF00B2BA60 /* PersonalInfomationViewController.swift */,
+				3543B0EE1BD777DF00B2BA60 /* SettingViewController.swift */,
+				3543B0EF1BD777DF00B2BA60 /* UserFeedbackViewController.swift */,
+			);
+			name = "个人中心";
+			sourceTree = "<group>";
+		};
+		3543B0F41BD7782600B2BA60 /* 商品上传 */ = {
+			isa = PBXGroup;
+			children = (
+				3543B0F51BD7783B00B2BA60 /* MyUploadGoodsViewController.swift */,
+				3543B0F71BD7783B00B2BA60 /* TestViewController.swift */,
+			);
+			name = "商品上传";
+			sourceTree = "<group>";
+		};
 		35593F771BB0FB0C00817020 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +240,7 @@
 		35593FA21BB0FEF100817020 /* MyCustomPackage */ = {
 			isa = PBXGroup;
 			children = (
+				3543B0E91BD7779B00B2BA60 /* Cells.swift */,
 				35593FA51BB0FF0E00817020 /* Tool.swift */,
 				35593FA31BB0FF0800817020 /* Consts.swift */,
 				35FE54DD1BD21FF20007543D /* YoYoAPI.swift */,
@@ -219,6 +254,8 @@
 			children = (
 				3598B7941BB02FE700AD6BFE /* AppDelegate.swift */,
 				35593FAE1BB1000700817020 /* CustomNavigationController.swift */,
+				3543B0F41BD7782600B2BA60 /* 商品上传 */,
+				3543B0EB1BD777A800B2BA60 /* 个人中心 */,
 				35C2FF8C1BB81D87006A4058 /* 登录注册相关 */,
 				35C2FF8D1BB81DE2006A4058 /* 进入详情页 */,
 			);
@@ -563,20 +600,27 @@
 			files = (
 				35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */,
 				35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */,
+				3543B0F81BD7783B00B2BA60 /* MyUploadGoodsViewController.swift in Sources */,
 				35C200041BB96070006A4058 /* IdleGoodViewController.swift in Sources */,
+				3543B0F21BD777DF00B2BA60 /* SettingViewController.swift in Sources */,
 				35EF49D21BB2E45B00288D98 /* BindToPhoneViewController.swift in Sources */,
 				3597271C1BB3E88200B2E4C9 /* PersonalInfoViewController.swift in Sources */,
+				3543B0F01BD777DF00B2BA60 /* PersonalCenterViewController.swift in Sources */,
 				353DFCC71BC54D3A0039293B /* shopRemarkCell.swift in Sources */,
 				35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */,
+				3543B0FA1BD7783B00B2BA60 /* TestViewController.swift in Sources */,
 				35593FA41BB0FF0800817020 /* Consts.swift in Sources */,
 				3577407E1BC4163F0005281B /* remarkCell.swift in Sources */,
 				359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */,
+				3543B0EA1BD7779B00B2BA60 /* Cells.swift in Sources */,
 				359727211BB3EECC00B2E4C9 /* cellWithTextField.swift in Sources */,
 				352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
+				3543B0F11BD777DF00B2BA60 /* PersonalInfomationViewController.swift in Sources */,
 				35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */,
 				35FE54DE1BD21FF20007543D /* YoYoAPI.swift in Sources */,
 				35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */,
+				3543B0F31BD777DF00B2BA60 /* UserFeedbackViewController.swift in Sources */,
 				3598B7951BB02FE700AD6BFE /* AppDelegate.swift in Sources */,
 				35089E251BD3ED4500FCB857 /* CheckNetwork.m in Sources */,
 				35FE54E01BD226FD0007543D /* Config.swift in Sources */,
