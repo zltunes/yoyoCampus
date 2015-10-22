@@ -16,7 +16,7 @@ class SettingCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.icon.frame = CGRect(x: 20 * Consts.ratio, y: 20 * Consts.ratio, width: 64 * Consts.ratio, height: 64 * Consts.ratio)
+        self.icon.frame = CGRect(x: 20 * Consts.ratio, y: 20 * Consts.ratio, width: 50 * Consts.ratio, height: 40 * Consts.ratio)
         self.icon.image = Consts.imageFromColor(UIColor.orangeColor(), size: self.icon.frame.size)
         self.addSubview(self.icon)
         
@@ -145,17 +145,17 @@ class PersonalCenterCell1 : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.icon.frame = CGRect(x: 80 * Consts.ratio, y: 20 * Consts.ratio, width: 35 * Consts.ratio, height: 25 * Consts.ratio)
+        self.icon.frame = CGRect(x: 80 * Consts.ratio, y: 22 * Consts.ratio, width: 35 * Consts.ratio, height: 35 * Consts.ratio)
         self.icon.image = Consts.imageFromColor(UIColor.orangeColor(), size: self.icon.frame.size)
         self.addSubview(self.icon)
         
         self.label.text = "test"
-        self.label.font = Consts.ft15
-        self.label.textColor = Consts.lightGray
+        self.label.font = Consts.ft17
+        self.label.textColor = Consts.black
         self.label.sizeToFit()
         self.label.center = CGPoint(x: self.icon.frame.maxX + 30 * Consts.ratio + self.label.frame.width / 2, y: self.icon.center.y)
         self.addSubview(self.label)
-        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.icon.frame.maxY + 20 * Consts.ratio)
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.icon.frame.maxY + 22 * Consts.ratio)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -177,7 +177,7 @@ class PersonCenterCell2 : UITableViewCell {
         self.img.image = Consts.imageFromColor(Consts.tintGreen, size: self.img.frame.size)
         self.addSubview(self.img)
         
-        self.label = Consts.setUpLabel("点击添加商品图片", color: Consts.lightGray, font: Consts.ft15, x: 0, y: self.img.frame.maxY + 36 * Consts.ratio, centerX: self.img.center.x)
+        self.label = Consts.setUpLabel("点击添加商品图片", color: Consts.black, font: Consts.ft15, x: 0, y: self.img.frame.maxY + 36 * Consts.ratio, centerX: self.img.center.x)
         self.addSubview(self.label)
         self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.label.frame.maxY + 20 * Consts.ratio)
     }
@@ -223,14 +223,15 @@ class PersonInfomationCell2 : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
        
         
-        self.label1 = Consts.setUpLabel("昵称", color: Consts.lightGray, font: Consts.ft15, x: 30 * Consts.ratio, y: 20 * Consts.ratio, centerX: nil)
+        self.label1 = Consts.setUpLabel("昵称", color: Consts.lightGray, font: Consts.ft15, x: 30 * Consts.ratio, y: 25 * Consts.ratio, centerX: nil)
         self.addSubview(self.label1)
         
         self.label2 = Consts.setUpLabel("用户昵称", color: Consts.lightGray, font: Consts.ft15, x: 280 * Consts.ratio, y: self.label1.frame.minY, centerX: nil)
+        self.label2.textColor = Consts.black
         self.addSubview(self.label2)
         
         self.accessoryType = .DisclosureIndicator
-        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.label1.frame.maxY + 20 * Consts.ratio)
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.label1.frame.maxY + 25 * Consts.ratio)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -246,7 +247,7 @@ class PersonInfomationCell3 : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.img.frame = CGRect(x: 30 * Consts.ratio, y: 10 * Consts.ratio, width: 50 * Consts.ratio, height: 50 * Consts.ratio)
+        self.img.frame = CGRect(x: 30 * Consts.ratio, y: 25 * Consts.ratio, width: 60 * Consts.ratio, height: 60 * Consts.ratio)
         self.img.contentMode = .ScaleAspectFit
         self.img.layer.cornerRadius = Consts.radius
         self.img.layer.masksToBounds = true
@@ -254,11 +255,11 @@ class PersonInfomationCell3 : UITableViewCell {
         self.addSubview(self.img)
         
         self.label = Consts.setUpLabel("绑定", color: Consts.lightGray, font: Consts.ft15, x: 0, y: 20 * Consts.ratio, centerX: nil)
-        self.label.frame.origin.x = self.frame.width - self.label.frame.width - 20 * Consts.ratio
+        self.label.frame.origin.x = self.frame.width - self.label.frame.width - 30 * Consts.ratio
         self.label.center.y = self.img.center.y
         self.addSubview(self.label)
 
-        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.img.frame.maxY + 10 * Consts.ratio)
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: self.img.frame.maxY + 25 * Consts.ratio)
     }
     
     required init?(coder aDecoder: NSCoder) {

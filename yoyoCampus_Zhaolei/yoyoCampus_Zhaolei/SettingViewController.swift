@@ -34,16 +34,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func setUpNavigationBar(){
-        Consts.setUpNavigationBarWithBackButton(self, title: "个人设置", backTitle: "<")
-        let right = UIBarButtonItem(title: "测试", style: .Plain, target: self, action: "test")
-        right.tintColor = Consts.white
-        self.navigationItem.rightBarButtonItem = right
-    }
-    
-    func test(){
-        let vc = TestViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-//        self.navigationController?.presentViewController(vc, animated: true, completion: nil)
+        Consts.setUpNavigationBarWithBackButton(self, title: "设置", backTitle: "<")
     }
     
     func setUpInitialLooking(){
@@ -61,9 +52,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.view.addSubview(self.settingTable)
         
         self.logOutButton.center = CGPoint(x: newWidth / 2, y: 64 + newHeight / 2)
-        self.logOutButton.bounds = CGRect(x: 0, y: 0, width: 500 * Consts.ratio, height: 64 * Consts.ratio)
+        self.logOutButton.bounds = CGRect(x: 0, y: 0, width: 600 * Consts.ratio, height: 90 * Consts.ratio)
         self.logOutButton.backgroundColor = Consts.tintGreen
-        self.logOutButton.titleLabel?.font = Consts.ft14
+        self.logOutButton.titleLabel?.font = Consts.ft20
         self.logOutButton.layer.cornerRadius = Consts.radius
         self.logOutButton.layer.masksToBounds = true
         self.logOutButton.setTitle("退 出 登 录", forState: .Normal)
@@ -90,8 +81,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func buttonClicked(sender: UIButton){
         if(sender.titleLabel?.text == "退 出 登 录"){
-            print("退出登录")
-            Tool.showSuccessHUD("退出登录")
+            let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)
+            plistDict?.setValue(false, forKey: "isLogin")
+            plistDict?.setValue("", forKey: "tel")
         }
     }
     
@@ -106,12 +98,12 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             switch (indexPath.section){
             case 0:
-                print("check update")
-                Tool.showSuccessHUD("检查更新")
-            case 1:
-                print("feedback")
-                let vc = UserFeedbackViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                Tool.showSuccessHUD("当前已是最新版!")
+                break
+            case 1://跳转至关于界面
+//                let vc = UserFeedbackViewController()
+//                self.navigationController?.pushViewController(vc, animated: true)
+                break
             default:
                 break
             }
@@ -120,22 +112,15 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func setUpTableViewCell(tableView: UITableView,indexPath:NSIndexPath, cell: SettingCell)-> SettingCell{
         if(tableView == self.settingTable){
-//            cell.icon.frame = CGRect(x: 20 * Consts.ratio, y: 20 * Consts.ratio, width: 64 * Consts.ratio, height: 64 * Consts.ratio)
-            cell.icon.image = Consts.imageFromColor(UIColor.orangeColor(), size: cell.icon.frame.size)
-//            cell.addSubview(cell.icon)
             if(indexPath.section == 0){
+                cell.icon.image = UIImage.init(named: "setting_icon_update")
                 cell.label.text = "检查更新"
                 cell.label.sizeToFit()
             }else if(indexPath.section == 1){
-                cell.label.text = "用户反馈"
+                cell.icon.image = UIImage.init(named: "my center_button_about")
+                cell.label.text = "关于我们"
                 cell.label.sizeToFit()
             }
-//            cell.label.font = Consts.ft15
-//            cell.label.textColor = Consts.lightGray
-//            cell.label.sizeToFit()
-//            cell.label.center = CGPoint(x: cell.icon.frame.maxX + 40 * Consts.ratio + cell.label.frame.width / 2, y: cell.icon.center.y)
-//            cell.addSubview(cell.label)
-//            cell.accessoryType = .DisclosureIndicator
             return cell
         }else{
             return cell
@@ -164,15 +149,6 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let footer = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1))
         return footer
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

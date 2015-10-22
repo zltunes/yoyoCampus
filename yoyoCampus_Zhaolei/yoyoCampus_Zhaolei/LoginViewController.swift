@@ -71,6 +71,9 @@ class LoginViewController: UIViewController,APIDelegate{
     
     func setUpNavigationBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "登  录", backTitle:"")
+        let right = UIBarButtonItem(title: "test", style: .Plain, target: self, action: "test")
+        right.tintColor = Consts.white
+        self.navigationItem.rightBarButtonItem = right
     }
 
     func setUpInitialLooking(){
@@ -85,16 +88,6 @@ class LoginViewController: UIViewController,APIDelegate{
         self.img.layer.masksToBounds = true
         self.img.image = UIImage(named: "register_icon_just a sign")
         self.view.addSubview(self.img)
-        
-        //测试btn
-        self.gerenxianzhiBtn = Consts.setUpNormalBtn("个人闲置", frame: CGRect(x: newWidth * 0.7, y: self.view.frame.height/6, width: 100, height: 50), font: Consts.ft15, tintColor: Consts.black)
-        self.gerenxianzhiBtn.tag = 0
-        self.gerenxianzhiBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
-        self.shangpinxiangqingBtn = Consts.setUpNormalBtn("商品详情", frame: CGRect(x: newWidth * 0.7, y: self.view.frame.height/6+60, width: 100, height: 50), font: Consts.ft15, tintColor: Consts.black)
-        self.shangpinxiangqingBtn.tag = 1
-        self.shangpinxiangqingBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(self.gerenxianzhiBtn)
-        self.view.addSubview(self.shangpinxiangqingBtn)
         
         //手机号背景
         self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 480 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
@@ -177,7 +170,7 @@ class LoginViewController: UIViewController,APIDelegate{
         //微信图像
         self.wechatBtn.frame = CGRect(x: 0, y: 1100 * Consts.ratio, width: 85 * Consts.ratio, height: 85 * Consts.ratio)
         self.wechatBtn.center.x = self.view.center.x/2
-        self.wechatBtn.setBackgroundImage(UIImage(named: "wechat_icon"), forState: .Normal)
+        self.wechatBtn.setBackgroundImage(UIImage(named: "Personal information_icon_weixin"), forState: .Normal)
         self.view.addSubview(self.wechatBtn)
         
         //微信label
@@ -187,7 +180,7 @@ class LoginViewController: UIViewController,APIDelegate{
         //微博图像 
         self.weiboBtn.frame = CGRect(x: 0, y: 1100 * Consts.ratio, width: 95 * Consts.ratio, height: 95 * Consts.ratio)
         self.weiboBtn.center.x = self.view.center.x * 1.5
-        self.weiboBtn.setBackgroundImage(UIImage(named: "weibo_icon"), forState: .Normal)
+        self.weiboBtn.setBackgroundImage(UIImage(named: "Personal information_icon_weibo"), forState: .Normal)
         self.view.addSubview(self.weiboBtn)
         
         //微博label
@@ -269,7 +262,7 @@ class LoginViewController: UIViewController,APIDelegate{
     }
     
     func wechatFastLogin(sender:UIButton){
-        let bindVC = BindToPhoneViewController()
+        let bindVC = ConnectPhoneViewController()
         self.navigationController?.pushViewController(bindVC, animated: true)
     }
     
@@ -281,14 +274,9 @@ class LoginViewController: UIViewController,APIDelegate{
         self.view.endEditing(true)
     }
     
-    //测试进入其他界面
-    func btnClicked(sender:UIButton){
-        if sender.tag == 0{
-            let VC1 = IdleGoodViewController()
-            self.navigationController?.pushViewController(VC1, animated: true)
-        }else if sender.tag == 1{
-            let VC2 = ShopGoodViewController()
-            self.navigationController?.pushViewController(VC2, animated: true)
-        }
+//    测试进入其他界面
+    func test(){
+        let vc = TestViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

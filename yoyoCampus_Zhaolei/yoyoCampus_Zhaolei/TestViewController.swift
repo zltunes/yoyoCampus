@@ -1,27 +1,19 @@
 //
 //  TestViewController.swift
-//  yoyoCampus
+//  yoyoCampus_Zhaolei
 //
-//  Created by DuZhiXia on 15/9/17.
-//  Copyright © 2015年 DuZhiXia. All rights reserved.
+//  Created by 赵磊 on 15/10/21.
+//  Copyright © 2015年 赵磊. All rights reserved.
 //
 
 import UIKit
 
 class TestViewController: UIViewController {
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        self.setUpNavigationBar()
-        self.setUpInitialLooking()
-        self.setUpActions()
-        self.setUpOnlineData()
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,54 +21,39 @@ class TestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func setUpNavigationBar(){
-        Consts.setUpNavigationBarWithBackButton(self, title: "测试页面", backTitle: "<")
-    }
-    
-    func setUpInitialLooking(){
-        let newWidth = self.view.frame.width
-        let newHeight = self.view.frame.height
-        
-        self.view.backgroundColor = Consts.grayView
-        
-        let lbl = Consts.setUpLabel("我是测试狂魔", color: Consts.tintGreen, font: Consts.ft24, x: 0, y: 64 + 100 * Consts.ratio, centerX: newWidth / 2)
-        self.view.addSubview(lbl)
-//        print(lbl.frame)
-        
-        let btn1 = Consts.setUpButton("测试1", frame: CGRect(x: 50 * Consts.ratio, y: lbl.frame.maxY + 50 * Consts.ratio, width: newWidth - 50 * 2 * Consts.ratio, height: 96 * Consts.ratio), font: Consts.ft18, radius: Consts.radius)
-        btn1.addTarget(self, action: "buttonClicked:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(btn1)
-        
-        let btn2 = Consts.setUpButton("测试2", frame: CGRect(x: 50 * Consts.ratio, y: btn1.frame.maxY + 50 * Consts.ratio, width: newWidth - 50 * 2 * Consts.ratio, height: 96 * Consts.ratio), font: Consts.ft18, radius: Consts.radius)
-        btn2.addTarget(self, action: "buttonClicked:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(btn2)
-    }
-    
-    func setUpActions(){
-        
-    }
-    
-    func setUpOnlineData(){
-        
-    }
-    
-    func goBack(){
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    func buttonClicked(sender:UIButton){
-        if(sender.titleLabel?.text == "测试1"){
-            let vc = MyUploadGoodsViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
-        }else if(sender.titleLabel?.text == "测试2"){
+    @IBAction func btnClicked(sender: UIButton) {
+        let title:String = (sender.titleLabel?.text)!
+        var vc = UIViewController()
+        switch(title){
+            case "闲置商品发布":
+                vc = MyUploadGoodsViewController()
+            break
             
+            case "个人闲置":
+                vc = IdleGoodViewController()
+            break
+            
+            case "店铺商品":
+                vc = ShopGoodViewController()
+            break
+            
+            case "个人中心":
+                vc = PersonCenterVC()
+            break
+            
+        default:
+            break
         }
-        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     // MARK: - Navigation
 

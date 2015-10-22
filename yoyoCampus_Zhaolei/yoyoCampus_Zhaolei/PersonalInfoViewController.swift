@@ -89,8 +89,6 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             self.goCamera()
         }else if(buttonIndex == 2){
             self.goImage()
-        }else if(buttonIndex == 0){
-            print("取消选择")
         }
     }
     

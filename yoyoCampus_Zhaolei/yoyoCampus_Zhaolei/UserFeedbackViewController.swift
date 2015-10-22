@@ -51,19 +51,20 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
         
         self.view.backgroundColor = Consts.grayView
         
-        self.bkg1.frame = CGRect(x: 0, y: 64, width: newWidth, height: 450 * Consts.ratio)
+        self.bkg1.frame = CGRect(x: 0, y: 64, width: newWidth, height: 500 * Consts.ratio)
         self.bkg1.backgroundColor = Consts.white
         self.bkg1.layer.shadowColor = Consts.black.CGColor
         self.bkg1.layer.shadowOffset = CGSize(width: 0, height: 0.5 * Consts.ratio)
         self.bkg1.layer.shadowOpacity = 0.1
         self.view.addSubview(self.bkg1)
         
-        self.staticLabel = Consts.setUpLabel("意见反馈", color: Consts.lightGray, font: Consts.ft16, x: 70 * Consts.ratio, y: 30 * Consts.ratio,centerX: nil)
+        self.staticLabel = Consts.setUpLabel("意见反馈", color: Consts.lightGray, font: Consts.ft17, x: 70 * Consts.ratio, y: 30 * Consts.ratio,centerX: nil)
         self.bkg1.addSubview(self.staticLabel)
         
         self.feedbackText.frame = CGRect(x: self.staticLabel.frame.minX, y: self.staticLabel.frame.maxY + 10 * Consts.ratio, width: newWidth - self.staticLabel.frame.minX * 2, height: 300 * Consts.ratio)
         self.feedbackText.layer.borderWidth = 0.5
-        self.feedbackText.textColor = Consts.lightGray
+        self.feedbackText.font = Consts.ft14
+        self.feedbackText.textColor = Consts.black
         self.bkg1.addSubview(self.feedbackText)
         
         self.placeholder.bounds = CGRect(x: 0, y: 0, width: self.feedbackText.frame.width, height: 0)
@@ -74,11 +75,10 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
         self.placeholder.sizeToFit()
         self.placeholder.textColor = Consts.lightGray
         self.placeholder.textAlignment = .Center
-        self.placeholder.center = self.feedbackText.center
+        self.placeholder.frame.origin = CGPoint(x: self.feedbackText.frame.minX + 20 * Consts.ratio, y: self.feedbackText.frame.minY + 20 * Consts.ratio)
         self.bkg1.addSubview(self.placeholder)
         
-        self.submitButton = Consts.setUpButton("提 交", frame: CGRect(x: self.staticLabel.frame.minX, y: self.bkg1.frame.maxY + 60 * Consts.ratio, width: self.feedbackText.frame.width, height: 80 * Consts.ratio),font: Consts.ft14, radius: 10 * Consts.ratio)
-        self.submitButton.frame = CGRect(x: self.staticLabel.frame.minX, y: self.bkg1.frame.maxY + 60 * Consts.ratio, width: self.feedbackText.frame.width, height: 80 * Consts.ratio)
+        self.submitButton = Consts.setUpButton("提 交", frame: CGRect(x: self.staticLabel.frame.minX, y: self.bkg1.frame.maxY + 60 * Consts.ratio, width: self.feedbackText.frame.width, height: 90 * Consts.ratio),font: Consts.ft20, radius: 10 * Consts.ratio)
         self.view.addSubview(self.submitButton)
     }
     
@@ -97,7 +97,7 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
     
     func buttonClicked(sender:UIButton){
         if(sender.titleLabel?.text == "提 交"){
-            Tool.showSuccessHUD("提交反馈")
+            Tool.showSuccessHUD("谢谢您的反馈!")
             self.goBack()
         }
     }
@@ -112,5 +112,9 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
         }
         
         return true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.feedbackText.resignFirstResponder()
     }
 }

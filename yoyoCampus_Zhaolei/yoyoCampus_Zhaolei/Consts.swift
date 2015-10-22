@@ -42,8 +42,14 @@ class Consts {
     ///16号系统字体
     static let ft16 = UIFont.systemFontOfSize(16)
     
+    ///17号系统字体
+    static let ft17 = UIFont.systemFontOfSize(17)
+    
     ///18号系统字体
     static let ft18 = UIFont.systemFontOfSize(18)
+    
+    ///20号系统字体
+    static let ft20 = UIFont.systemFontOfSize(20)
     
     ///24号系统字体
     static let ft24 = UIFont.systemFontOfSize(24)

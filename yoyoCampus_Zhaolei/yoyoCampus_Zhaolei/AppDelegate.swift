@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         //键盘基本设置
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().disableInViewControllerClass(PersonalInfoViewController)
+//        IQKeyboardManager.sharedManager().disableInViewControllerClass(PersonalInfomationViewController)
         
         //访问沙盒文件PersonInfo.plist
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as

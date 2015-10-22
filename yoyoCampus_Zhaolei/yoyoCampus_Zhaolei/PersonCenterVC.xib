@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonCenterVC" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
+            <connections>
+                <outlet property="collectBtn" destination="mYG-FE-z6d" id="zaR-Qu-mgj"/>
+                <outlet property="idleBtn" destination="S0a-Fw-gz3" id="VNM-SZ-W26"/>
+                <outlet property="nameBtn" destination="QAf-3W-3eo" id="w5x-ZV-s98"/>
+                <outlet property="photoBtn" destination="KiH-LO-9Ws" id="ndT-HM-uWa"/>
+                <outlet property="table" destination="FOa-cQ-9Mn" id="Pea-J3-tMi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9as-EP-H8S">
+                    <rect key="frame" x="0.0" y="64" width="320" height="171"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiH-LO-9Ws">
+                            <rect key="frame" x="120" y="15" width="80" height="81"/>
+                            <state key="normal" backgroundImage="shoppage_btn_head portrait"/>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="ubd-WK-qPH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAf-3W-3eo">
+                            <rect key="frame" x="66" y="103" width="188" height="28"/>
+                            <state key="normal" title="呵呵">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="2gx-CR-06X"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-aq-M3p">
+                            <rect key="frame" x="60" y="136" width="66" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="我的闲置">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="c7G-AB-6SG"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0a-Fw-gz3">
+                            <rect key="frame" x="31" y="136" width="26" height="30"/>
+                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="my center_button_idle things">
+                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="kRs-Bn-9pX"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSQ-2H-kaK">
+                            <rect key="frame" x="159" y="140" width="1" height="22"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-a3-hSn">
+                            <rect key="frame" x="226" y="136" width="65" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="我的收藏">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="AZS-Ke-o2o"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYG-FE-z6d">
+                            <rect key="frame" x="197" y="136" width="21" height="30"/>
+                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="my center_button_my collection">
+                                <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="z1R-pA-nE5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FOa-cQ-9Mn">
+                    <rect key="frame" x="0.0" y="248" width="320" height="253"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="xXv-V4-kkL"/>
+                        <outlet property="delegate" destination="-1" id="2Ql-8t-2IY"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="461" y="350"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="my center_button_idle things" width="18" height="18"/>
+        <image name="my center_button_my collection" width="21" height="18"/>
+        <image name="shoppage_btn_head portrait" width="80" height="81"/>
+    </resources>
+</document>
