@@ -101,8 +101,8 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 Tool.showSuccessHUD("当前已是最新版!")
                 break
             case 1://跳转至关于界面
-//                let vc = UserFeedbackViewController()
-//                self.navigationController?.pushViewController(vc, animated: true)
+                let vc = AboutVC()
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             default:
                 break

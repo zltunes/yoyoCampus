@@ -1,6 +1,5 @@
-
 //
-//  OrderCell.swift
+//  OrderCellWithBtn.swift
 //  yoyoCampus_Zhaolei
 //
 //  Created by 赵磊 on 15/10/22.
@@ -9,23 +8,26 @@
 
 import UIKit
 
-class OrderCell: UITableViewCell {
+class OrderCellWithBtn: UITableViewCell {
 
     @IBOutlet var label_shopName: UILabel!
     
-    @IBOutlet var label_orderStatus: UILabel!
+    @IBOutlet var label_orderstatus: UILabel!
     
     @IBOutlet var orderImg: UIImageView!
     
     @IBOutlet var label_productName: UILabel!
-    
+
     @IBOutlet var label_totalPrice: UILabel!
     
     @IBOutlet var label_totalCount: UILabel!
+    
+    @IBOutlet var statusBtn: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.statusBtn.layer.borderColor = Consts.tintGreen.CGColor
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

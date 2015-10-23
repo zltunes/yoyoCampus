@@ -58,12 +58,14 @@
 		35E7C1341BD8B54A00DB6141 /* cellWithLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C1321BD8B54A00DB6141 /* cellWithLabel.xib */; settings = {ASSET_TAGS = (); }; };
 		35E7C1381BD9127E00DB6141 /* OrdersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C1361BD9127E00DB6141 /* OrdersVC.swift */; settings = {ASSET_TAGS = (); }; };
 		35E7C1391BD9127E00DB6141 /* OrdersVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C1371BD9127E00DB6141 /* OrdersVC.xib */; settings = {ASSET_TAGS = (); }; };
-		35E7C13C1BD9129800DB6141 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C13A1BD9129800DB6141 /* OrderCell.swift */; settings = {ASSET_TAGS = (); }; };
-		35E7C13D1BD9129800DB6141 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C13B1BD9129800DB6141 /* OrderCell.xib */; settings = {ASSET_TAGS = (); }; };
 		35E7C1401BD9150000DB6141 /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C13E1BD9150000DB6141 /* OrderDetailVC.swift */; settings = {ASSET_TAGS = (); }; };
 		35E7C1411BD9150000DB6141 /* OrderDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C13F1BD9150000DB6141 /* OrderDetailVC.xib */; settings = {ASSET_TAGS = (); }; };
 		35E7C1441BD9155600DB6141 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C1421BD9155600DB6141 /* AboutVC.swift */; settings = {ASSET_TAGS = (); }; };
 		35E7C1451BD9155600DB6141 /* AboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C1431BD9155600DB6141 /* AboutVC.xib */; settings = {ASSET_TAGS = (); }; };
+		35E7C1481BD9201500DB6141 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C1461BD9201500DB6141 /* OrderCell.swift */; settings = {ASSET_TAGS = (); }; };
+		35E7C1491BD9201500DB6141 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C1471BD9201500DB6141 /* OrderCell.xib */; settings = {ASSET_TAGS = (); }; };
+		35E7C14C1BD9209300DB6141 /* OrderCellWithBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C14A1BD9209300DB6141 /* OrderCellWithBtn.swift */; settings = {ASSET_TAGS = (); }; };
+		35E7C14D1BD9209300DB6141 /* OrderCellWithBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C14B1BD9209300DB6141 /* OrderCellWithBtn.xib */; settings = {ASSET_TAGS = (); }; };
 		35FE54DE1BD21FF20007543D /* YoYoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE54DD1BD21FF20007543D /* YoYoAPI.swift */; settings = {ASSET_TAGS = (); }; };
 		35FE54E01BD226FD0007543D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE54DF1BD226FD0007543D /* Config.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -146,12 +148,14 @@
 		35E7C1321BD8B54A00DB6141 /* cellWithLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellWithLabel.xib; sourceTree = "<group>"; };
 		35E7C1361BD9127E00DB6141 /* OrdersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersVC.swift; sourceTree = "<group>"; };
 		35E7C1371BD9127E00DB6141 /* OrdersVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdersVC.xib; sourceTree = "<group>"; };
-		35E7C13A1BD9129800DB6141 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
-		35E7C13B1BD9129800DB6141 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		35E7C13E1BD9150000DB6141 /* OrderDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
 		35E7C13F1BD9150000DB6141 /* OrderDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailVC.xib; sourceTree = "<group>"; };
 		35E7C1421BD9155600DB6141 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		35E7C1431BD9155600DB6141 /* AboutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutVC.xib; sourceTree = "<group>"; };
+		35E7C1461BD9201500DB6141 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		35E7C1471BD9201500DB6141 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		35E7C14A1BD9209300DB6141 /* OrderCellWithBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCellWithBtn.swift; sourceTree = "<group>"; };
+		35E7C14B1BD9209300DB6141 /* OrderCellWithBtn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCellWithBtn.xib; sourceTree = "<group>"; };
 		35FE54D91BCFE25D0007543D /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		35FE54DD1BD21FF20007543D /* YoYoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoYoAPI.swift; sourceTree = "<group>"; };
 		35FE54DF1BD226FD0007543D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -237,10 +241,8 @@
 		3543B1051BD7C7C400B2BA60 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				35E7C1311BD8B54A00DB6141 /* cellWithLabel.swift */,
-				35E7C1321BD8B54A00DB6141 /* cellWithLabel.xib */,
-				35E7C13A1BD9129800DB6141 /* OrderCell.swift */,
-				35E7C13B1BD9129800DB6141 /* OrderCell.xib */,
+				35E7C14F1BD9273400DB6141 /* PersonCenterCell */,
+				35E7C14E1BD9209700DB6141 /* OrderCell */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -423,6 +425,26 @@
 			name = "我的订单";
 			sourceTree = "<group>";
 		};
+		35E7C14E1BD9209700DB6141 /* OrderCell */ = {
+			isa = PBXGroup;
+			children = (
+				35E7C1461BD9201500DB6141 /* OrderCell.swift */,
+				35E7C1471BD9201500DB6141 /* OrderCell.xib */,
+				35E7C14A1BD9209300DB6141 /* OrderCellWithBtn.swift */,
+				35E7C14B1BD9209300DB6141 /* OrderCellWithBtn.xib */,
+			);
+			name = OrderCell;
+			sourceTree = "<group>";
+		};
+		35E7C14F1BD9273400DB6141 /* PersonCenterCell */ = {
+			isa = PBXGroup;
+			children = (
+				35E7C1311BD8B54A00DB6141 /* cellWithLabel.swift */,
+				35E7C1321BD8B54A00DB6141 /* cellWithLabel.xib */,
+			);
+			name = PersonCenterCell;
+			sourceTree = "<group>";
+		};
 		7AE451773A6ACC7D1CD8BF03 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,8 +586,9 @@
 				359727221BB3EECC00B2E4C9 /* cellWithTextField.xib in Resources */,
 				353DFCC31BC54BF20039293B /* ShopGoodViewController.xib in Resources */,
 				35C200051BB96070006A4058 /* IdleGoodViewController.xib in Resources */,
-				35E7C13D1BD9129800DB6141 /* OrderCell.xib in Resources */,
+				35E7C14D1BD9209300DB6141 /* OrderCellWithBtn.xib in Resources */,
 				3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */,
+				35E7C1491BD9201500DB6141 /* OrderCell.xib in Resources */,
 				3577407F1BC4163F0005281B /* remarkCell.xib in Resources */,
 				35E7C1451BD9155600DB6141 /* AboutVC.xib in Resources */,
 				3597271D1BB3E88200B2E4C9 /* PersonalInfoViewController.xib in Resources */,
@@ -645,8 +668,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */,
-				35E7C13C1BD9129800DB6141 /* OrderCell.swift in Sources */,
 				35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */,
+				35E7C1481BD9201500DB6141 /* OrderCell.swift in Sources */,
 				3543B0FF1BD7B6D800B2BA60 /* CouponViewController.swift in Sources */,
 				3543B0F81BD7783B00B2BA60 /* MyUploadGoodsViewController.swift in Sources */,
 				35C200041BB96070006A4058 /* IdleGoodViewController.swift in Sources */,
@@ -677,6 +700,7 @@
 				35089E251BD3ED4500FCB857 /* CheckNetwork.m in Sources */,
 				35FE54E01BD226FD0007543D /* Config.swift in Sources */,
 				353DFCC21BC54BF20039293B /* ShopGoodViewController.swift in Sources */,
+				35E7C14C1BD9209300DB6141 /* OrderCellWithBtn.swift in Sources */,
 				35593FAF1BB1000700817020 /* CustomNavigationController.swift in Sources */,
 				35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */,
 			);
