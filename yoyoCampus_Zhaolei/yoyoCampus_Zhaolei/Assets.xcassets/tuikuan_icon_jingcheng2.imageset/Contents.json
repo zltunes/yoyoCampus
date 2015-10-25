@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "tuikuan_icon_jingcheng2.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "tuikuan_icon_jingcheng2@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "tuikuan_icon_jingcheng2@3x.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

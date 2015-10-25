@@ -58,10 +58,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         print("tel:\(AppDelegate.tel)")
         print("access_token:\(AppDelegate.access_token)")
         
+        
+//        设置友盟Appkey
+        UMSocialData.setAppKey("5625ea6667e58e2328001e3f")
+        
+//         设置微信AppId、appSecret，分享url
+//        URL必须为http链接，如果设置为nil则默认为友盟官网链接
+        UMSocialWechatHandler.setWXAppId("wxcd544705acc90854", appSecret: "4b855c5546bf62fa20ec07af7e5ffc2d", url: nil)
         return true
     }
 
-
+//      微信系统回调方法
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return UMSocialSnsService.handleOpenURL(url)
+    }
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return UMSocialSnsService.handleOpenURL(url)
+    }
+    
+    
+    
+    
+    
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

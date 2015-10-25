@@ -13,9 +13,6 @@ class OneLabelCell: UITableViewCell {
     
     @IBOutlet var label_status: UILabel!
     
-    @IBOutlet var accessoryMark: UIImageView!
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -14,6 +14,7 @@ class AboutVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.setUpNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +22,13 @@ class AboutVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func setUpNavigationBar(){
+        Consts.setUpNavigationBarWithBackButton(self, title: "关于我们", backTitle: "<")
+    }
+    
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     /*
     // MARK: - Navigation
 

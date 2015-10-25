@@ -22,6 +22,11 @@
 #import "PopMenu.h"
 #import "QiniuSDK.h"
 #import "HappyDNS.h"
+#import "RatingBar.h"
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "DXAlertView.h"
+#import "UMSocialDataService.h"
 
 #import "AFPickerView.h"
 

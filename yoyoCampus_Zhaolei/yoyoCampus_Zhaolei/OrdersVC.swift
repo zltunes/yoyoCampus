@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 public enum STATUS: String{
-    case unPaid,unUsed,unRemarked,remarked,unRefund,refund
+    case unPaid,unUsed,unRemarked,remarked,refund
 }
 
 class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDelegate{
@@ -133,10 +133,6 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                     case "remarked":
                         cell.label_orderStatus?.text = "已评价"
                         cell.label_orderStatus.textColor = Consts.lightGray
-                    break
-                    
-                    case "unRefund":
-                        cell.label_orderStatus?.text = "退款中"
                     break
                     
                     case "refund":

@@ -15,7 +15,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     
     var api = YoYoAPI()
     
-    var orderStatus:String = "unPaid"
+    var orderStatus:String = "unUsed"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
+        self.table.showsVerticalScrollIndicator = false
         
     }
     
@@ -114,19 +115,20 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if(orderStatus == "remarked"){
-            if(section == 3){
-                return 0
-            }else{
-                return 10 * Consts.ratio
-            }
-        }else{
-            if(section == 2){
-                return 0
-            }else{
-                return 10 * Consts.ratio
-            }
-        }
+//        if(orderStatus == "remarked"){
+//            if(section == 3){
+//                return 0
+//            }else{
+//                return 25 * Consts.ratio
+//            }
+//        }else{
+//            if(section == 2){
+//                return 0
+//            }else{
+//                return 25 * Consts.ratio
+//            }
+//        }
+        return 25 * Consts.ratio
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -208,7 +210,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             break
             
         case 2://moreDetail
-            return 530 * Consts.ratio
+            return 460 * Consts.ratio
             break
             
         case 3://status == "remarked"
@@ -234,7 +236,8 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                 cell.goodNameLabel?.text = "常州一日游 * 2"
                 let attributedText = NSAttributedString(string: "¥ 1200", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
                 cell.oldPriceLabel?.attributedText = attributedText
-                cell.presentPriceLabel?.text = "1000"
+                cell.presentPriceLabel?.text = "¥ 1000"
+                cell.presentPriceLabel.sizeToFit()
                 return cell
                 break
                 
@@ -253,15 +256,9 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                     cell.payPwdLabel?.text = "2019 3299 4537"
                     cell.payCodeView.image = UIImage.init(named: "Commodity editor_btn_picture")
                     return cell
-                }else if(orderStatus == "unRefund"){
-                    let cell = self.table.dequeueReusableCellWithIdentifier("OneLabelCell", forIndexPath: indexPath) as! OneLabelCell
-                    cell.label_status?.text = "退款中"
-                    cell.label_status.textColor = Consts.tintGreen
-                    return cell
                 }else{//已退款／已评价
                     let cell = self.table.dequeueReusableCellWithIdentifier("OneLabelCell", forIndexPath: indexPath) as! OneLabelCell
                     cell.label_status.textColor = Consts.lightGray
-                    cell.accessoryMark.hidden = true
                     if(orderStatus == "refund"){
                         cell.label_status?.text = "已退款"
                     }else{
@@ -350,9 +347,10 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         if(sender.titleLabel?.text == "付款"){
             print("付款")
         }else if(sender.titleLabel?.text == "申请退款"){
-            print("申请退款")
+            Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
         }else if(sender.titleLabel?.text == "评价"){
-            print("评价")
+            let vc = remarkVC()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

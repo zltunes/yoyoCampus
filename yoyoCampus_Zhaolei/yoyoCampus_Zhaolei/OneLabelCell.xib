@@ -14,24 +14,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiV-9f-vdX">
-                        <rect key="frame" x="205" y="11" width="68" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="236" y="11" width="68" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homepage_btn_open" translatesAutoresizingMaskIntoConstraints="NO" id="407-do-67r">
-                        <rect key="frame" x="290" y="14" width="10" height="15.5"/>
-                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="accessoryMark" destination="407-do-67r" id="1xN-Bs-Kw6"/>
                 <outlet property="label_status" destination="yiV-9f-vdX" id="bto-3f-6FF"/>
             </connections>
             <point key="canvasLocation" x="226" y="350"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="homepage_btn_open" width="6" height="11"/>
-    </resources>
 </document>

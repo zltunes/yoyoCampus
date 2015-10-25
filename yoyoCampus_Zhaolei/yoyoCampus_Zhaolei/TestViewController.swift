@@ -47,13 +47,6 @@ class TestViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    
-    
-    
-    
-    
-    
     /*
     // MARK: - Navigation
 

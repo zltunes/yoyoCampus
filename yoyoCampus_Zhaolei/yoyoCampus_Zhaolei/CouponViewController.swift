@@ -67,6 +67,22 @@ class CouponViewController: UIViewController,APIDelegate {
 
     @IBAction func btnClicked(sender: UIButton) {
 //        share:
+        let shareAlert = DXAlertView(title: "分享到", leftButtonImage: UIImage.init(named: "fenxiang_icon_pengyouquan"), leftButtonTitle: "朋友圈", midButtonImage: UIImage.init(named: "fenxiang_icon_weixin"), midButtonTitle: "微信好友", rightButtonImage: UIImage.init(named: "fenxiang_icon_kongjian"), rightButtonTitle: "QQ空间")
+        shareAlert.show()
+        shareAlert.leftBlock = {
+            print("朋友圈")
+            
+//        UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToWechatTimeline]
+//            ,content:"分享至朋友圈",image:nil,location:nil,urlResource:nil, presentedController:self,completion:nil)
+            UMSocialDataService.defaultDataService().
+            
+        }
+        shareAlert.midBlock = {
+            print("微信好友")
+        }
+        shareAlert.rightBlock = {
+            print("qq空间")
+        }
     }
 
     func didReceiveJsonResults(json: JSON, tag: String) {
