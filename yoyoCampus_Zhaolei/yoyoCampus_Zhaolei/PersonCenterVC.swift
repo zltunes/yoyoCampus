@@ -140,7 +140,8 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         if(indexPath.section == 0){
             switch(indexPath.row){
             case 0://我的订单
-                
+                let vc = OrdersVC()
+                self.navigationController?.pushViewController(vc, animated: true)
                 break
             case 1://优惠卡
                 let vc = CouponViewController()

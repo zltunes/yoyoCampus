@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
@@ -25,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     static var filePath:String = ""
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         //键盘基本设置

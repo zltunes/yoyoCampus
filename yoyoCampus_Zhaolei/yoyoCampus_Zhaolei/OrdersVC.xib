@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xx0-RA-Egp">
-                    <rect key="frame" x="0.0" y="64" width="320" height="440"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="136" sectionHeaderHeight="1" sectionFooterHeight="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xx0-RA-Egp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="509"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="PFO-iF-3sK"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jD4-xe-RWY">
-                        <rect key="frame" x="104" y="7" width="208" height="30"/>
+                        <rect key="frame" x="100" y="7" width="212" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                         <userDefinedRuntimeAttributes>
@@ -32,9 +32,7 @@
                 <constraints>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7nB-cY-CXL"/>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="L4r-cD-1pU"/>
-                    <constraint firstItem="jD4-xe-RWY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="96" id="nQw-np-y9m">
-                        <variation key="heightClass=regular-widthClass=compact" constant="92"/>
-                    </constraint>
+                    <constraint firstItem="jD4-xe-RWY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="92" id="nQw-np-y9m"/>
                     <constraint firstItem="jD4-xe-RWY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="qpa-m4-YGl"/>
                 </constraints>
             </tableViewCellContentView>

@@ -2,6 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>orders</key>
+	<array>
+		<dict>
+			<key>status</key>
+			<string>unPaid</string>
+		</dict>
+		<dict>
+			<key>status</key>
+			<string>unUsed</string>
+		</dict>
+		<dict>
+			<key>status</key>
+			<string>unRemarked</string>
+		</dict>
+		<dict>
+			<key>status</key>
+			<string>remarked</string>
+		</dict>
+		<dict>
+			<key>status</key>
+			<string>unRefund</string>
+		</dict>
+		<dict>
+			<key>status</key>
+			<string>refund</string>
+		</dict>
+	</array>
 	<key>pickerData</key>
 	<array>
 		<string>2006</string>

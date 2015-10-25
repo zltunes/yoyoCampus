@@ -224,7 +224,6 @@ class LoginViewController: UIViewController,APIDelegate{
                     let personalInfoVC = PersonalInfoViewController()
                     PersonalInfoViewController.backTitle = nil
                     self.navigationController?.pushViewController(personalInfoVC, animated: true)
-                    
                 }else if (json["code"] == 404){
                     Tool.showErrorHUD("该手机号未注册!")
                 }else if (json["code"] == 406){

@@ -1,29 +1,27 @@
 //
-//  OrderCellWithBtn.swift
+//  moreOrderInfoCell.swift
 //  yoyoCampus_Zhaolei
 //
-//  Created by 赵磊 on 15/10/22.
+//  Created by 赵磊 on 15/10/24.
 //  Copyright © 2015年 赵磊. All rights reserved.
 //
 
 import UIKit
 
-class OrderCellWithBtn: UITableViewCell {
+class moreOrderInfoCell: UITableViewCell {
 
-    @IBOutlet var label_shopName: UILabel!
+    @IBOutlet var label_orderNo: UILabel!
     
-    @IBOutlet var label_orderstatus: UILabel!
+    @IBOutlet var label_time: UILabel!
     
-    @IBOutlet var orderImg: UIImageView!
+    @IBOutlet var label_phone_num: UILabel!
     
-    @IBOutlet var label_productName: UILabel!
-
-    @IBOutlet var label_totalPrice: UILabel!
+    @IBOutlet var label_campus: UILabel!
     
-    @IBOutlet var label_totalCount: UILabel!
+    @IBOutlet var label_coupon: UILabel!
     
-    @IBOutlet var statusBtn: UIButton!
-
+    @IBOutlet var label_remarks: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
