@@ -142,7 +142,8 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             case 1://分情况
                 if(orderStatus == "unUsed"){
                     //payCode
-                    return 400 * Consts.ratio
+//                    return 512 * Consts.ratio
+                    return 1000 * Consts.ratio
                 }else{
                     //btn/label cell
                     return UITableViewCell().frame.height
@@ -188,7 +189,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             case 1://分情况
                 if(orderStatus == "unUsed"){
                     //payCode
-                    return 400 * Consts.ratio
+                    return 512 * Consts.ratio
                 }else{
                     //btn/label cell
                     return UITableViewCell().frame.height
@@ -254,7 +255,9 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                 }else if(orderStatus == "unUsed"){
                     let cell = self.table.dequeueReusableCellWithIdentifier("payCodeCell", forIndexPath: indexPath) as! payCodeCell
                     cell.payPwdLabel?.text = "2019 3299 4537"
-                    cell.payCodeView.image = UIImage.init(named: "Commodity editor_btn_picture")
+//                    根据接收到的字符串生成二维码：
+                    cell.payCodeView.image = QRCodeGenerator.qrImageForString(cell.payPwdLabel.text, imageSize: cell.payCodeView.bounds.size.width)
+                    
                     return cell
                 }else{//已退款／已评价
                     let cell = self.table.dequeueReusableCellWithIdentifier("OneLabelCell", forIndexPath: indexPath) as! OneLabelCell

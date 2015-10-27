@@ -25,8 +25,11 @@
 #import "RatingBar.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
 #import "DXAlertView.h"
 #import "UMSocialDataService.h"
+#import "ZBarSDK.h"
+#import "QRCodeGenerator.h"
 
 #import "AFPickerView.h"
 

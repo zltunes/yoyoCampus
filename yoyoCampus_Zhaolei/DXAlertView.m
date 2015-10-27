@@ -11,7 +11,7 @@
 
 
 #define kAlertWidth 245.0f
-#define kAlertHeight 160.0f
+#define kAlertHeight 145.0f
 
 @interface DXAlertView ()
 {
@@ -69,7 +69,7 @@
         self.layer.cornerRadius = 5.0;
         self.backgroundColor = [UIColor whiteColor];
         self.alertTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, kTitleYOffset, kAlertWidth, kTitleHeight)];
-        self.alertTitleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
+        self.alertTitleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
         self.alertTitleLabel.textColor = [UIColor colorWithRed:56.0/255.0 green:64.0/255.0 blue:71.0/255.0 alpha:1];
         [self addSubview:self.alertTitleLabel];
         
@@ -86,8 +86,8 @@
         CGRect rightBtnFrame;
 #define kSingleButtonWidth 160.0f
 #define kCoupleButtonWidth 107.0f
-#define kTrippleButtonWidth 53.0f
-#define kButtonHeight 53.0f
+#define kTrippleButtonWidth 40.0f
+#define kButtonHeight 40.0f
 #define kButtonBottomOffset 53.0f
 #define kLabelHeight 10.0f
 
@@ -106,19 +106,19 @@
         self.midLabel = [[UILabel alloc]init];
         self.rightLabel = [[UILabel alloc]init];
         
-        
-        
-        self.leftLabel.frame = CGRectMake((kAlertWidth/2 - kTrippleButtonWidth * 1.5)/2, kAlertHeight*0.75, kTrippleButtonWidth, kLabelHeight);
-        self.midLabel.frame = CGRectMake(kAlertWidth/2-kTrippleButtonWidth/2,kAlertHeight*0.75, kTrippleButtonWidth, kLabelHeight);
-        self.rightLabel.frame = CGRectMake((kAlertWidth+kTrippleButtonWidth)/2+(kAlertWidth/2 - kTrippleButtonWidth * 1.5)/2,kAlertHeight*0.75, kTrippleButtonWidth, kLabelHeight);
+        self.leftLabel.frame = CGRectMake((kAlertWidth/2 - kTrippleButtonWidth * 1.5)/2, kAlertHeight*0.75, kTrippleButtonWidth*2, kLabelHeight);
+        self.midLabel.frame = CGRectMake(kAlertWidth/2-kTrippleButtonWidth/2 - 3,kAlertHeight*0.75, kTrippleButtonWidth*2, kLabelHeight);
+        self.rightLabel.frame = CGRectMake((kAlertWidth+kTrippleButtonWidth)/2+(kAlertWidth/2 - kTrippleButtonWidth * 1.5)/2 - 3,kAlertHeight*0.75, kTrippleButtonWidth*2, kLabelHeight);
 
+        
+        
+        
         self.leftLabel.font = [UIFont boldSystemFontOfSize:13.0];
         self.midLabel.font = [UIFont boldSystemFontOfSize:13.0];
         self.rightLabel.font = [UIFont boldSystemFontOfSize:13.0];
         self.leftLabel.textColor = [UIColor grayColor];
         self.midLabel.textColor = [UIColor grayColor];
         self.rightLabel.textColor = [UIColor grayColor];
-        
         
         self.leftLabel.text = leftTitle;
         self.midLabel.text = midTitle;
@@ -133,6 +133,7 @@
         
         [self.leftBtn addTarget:self action:@selector(leftBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.rightBtn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.midBtn addTarget:self action:@selector(midBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         self.leftBtn.layer.masksToBounds = self.rightBtn.layer.masksToBounds = self.midBtn.layer.masksToBounds = YES;
         self.leftBtn.layer.cornerRadius = self.rightBtn.layer.cornerRadius = self.midBtn.layer.cornerRadius = 3.0;
 
@@ -159,7 +160,7 @@
 
 - (void)leftBtnClicked:(id)sender
 {
-    _leftLeave = YES;
+//    _leftLeave = YES;
     [self dismissAlert];
     if (self.leftBlock) {
         self.leftBlock();
@@ -168,7 +169,7 @@
 
 - (void)midBtnClicked:(id)sender
 {
-    _leftLeave = NO;
+//    _leftLeave = NO;
     [self dismissAlert];
     if (self.midBlock) {
         self.midBlock();
@@ -177,7 +178,7 @@
 
 - (void)rightBtnClicked:(id)sender
 {
-    _leftLeave = NO;
+//    _leftLeave = NO;
     [self dismissAlert];
     if (self.rightBlock) {
         self.rightBlock();

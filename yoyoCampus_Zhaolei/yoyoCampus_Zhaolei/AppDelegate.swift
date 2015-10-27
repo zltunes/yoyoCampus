@@ -64,7 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
 //         设置微信AppId、appSecret，分享url
 //        URL必须为http链接，如果设置为nil则默认为友盟官网链接
-        UMSocialWechatHandler.setWXAppId("wxcd544705acc90854", appSecret: "4b855c5546bf62fa20ec07af7e5ffc2d", url: nil)
+        UMSocialWechatHandler.setWXAppId("wxcd544705acc90854", appSecret: "4b855c5546bf62fa20ec07af7e5ffc2d", url: "http://baidu.com")
+        
+//        设置qZone appid
+        UMSocialQQHandler.setQQWithAppId("1104847133", appKey: "KgBQDT8eiZelAyIU", url: "http://baidu.com")
+        
+        
+//        对未安装客户端进行隐藏 
+        UMSocialConfig.hiddenNotInstallPlatforms([UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline])
+        
+        
         return true
     }
 

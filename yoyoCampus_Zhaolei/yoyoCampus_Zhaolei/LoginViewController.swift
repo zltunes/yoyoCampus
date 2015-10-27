@@ -261,12 +261,46 @@ class LoginViewController: UIViewController,APIDelegate{
     }
     
     func wechatFastLogin(sender:UIButton){
-        let bindVC = ConnectPhoneViewController()
-        self.navigationController?.pushViewController(bindVC, animated: true)
+        
+        let snsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToWechatSession)
+        
+        let socialControllerService = UMSocialControllerService.defaultControllerService()
+        snsPlatform.loginClickHandler(self,socialControllerService,true){
+            (UMSocialResponseEntity response) in
+            if (response.responseCode == UMSResponseCodeSuccess){
+                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToWechatSession]
+                print("微信登录->userName:\(snsAccount?.userName)\nuid->\(snsAccount?.usid)\ntoken->\(snsAccount?.accessToken)\nurl->\(snsAccount?.iconURL)")
+            }
+        }
+        
+//        授权完成后调用获取用户信息
+        UMSocialDataService.defaultDataService().requestSnsInformation(UMShareToWechatSession) { (response) -> Void in
+            print("snsinfomation->\(response.data)")
+        }
+        
+        
+//        let bindVC = ConnectPhoneViewController()
+//        self.ler(bindVC, animated: true)
     }
     
     func weiboFastLogin(sender:UIButton){
+        let snsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToSina)
         
+        let socialControllerService = UMSocialControllerService.defaultControllerService()
+        snsPlatform.loginClickHandler(self,socialControllerService,true){
+            (UMSocialResponseEntity response) in
+            if (response.responseCode == UMSResponseCodeSuccess){
+                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]
+                print("微博登录->userName:\(snsAccount?.userName)\nuid->\(snsAccount?.usid)\ntoken->\(snsAccount?.accessToken)\nurl->\(snsAccount?.iconURL)")
+            }
+        }
+        
+        //        授权完成后调用获取用户信息
+        UMSocialDataService.defaultDataService().requestSnsInformation(UMShareToSina) { (response) -> Void in
+            print("snsinfomation->\(response.data)")
+        }
+        
+
     }
     ///实现点击UIView内部关闭键盘
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

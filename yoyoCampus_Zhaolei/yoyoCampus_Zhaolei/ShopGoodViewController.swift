@@ -292,6 +292,8 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.showMenu()
             break
         case 6://去下单
+            let vc = ConfirmOrderVC()
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case 10://取消收藏
             self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)

@@ -183,7 +183,8 @@ typedef void (^UMSocialSnsPlatformClickHandler)(UIViewController *presentingCont
  @param completion 授权完成之后的回调对象，返回的response参数表示成功与否和拿到的授权信息
  
  */
-typedef void (^UMSocialSnsPlatformLoginHandler)(UIViewController *presentingController, UMSocialControllerService * socialControllerService, BOOL isPresentInController, UMSocialDataServiceCompletion completion);
+
+typedef void (^UMSocialSnsPlatformLoginHandler)(UIViewController *presentingController,UMSocialControllerService * socialControllerService, BOOL isPresentInController,UMSocialDataServiceCompletion completion);
 
 /**
  Sns平台类，用`platformName`作为标识，指定显示名称、显示的图片，点击之后的响应。

@@ -206,6 +206,7 @@ typedef void (^UMSocialDataServiceCompletion)(UMSocialResponseEntity * response)
  */
 -(void)requestSocialDataWithCompletion:(UMSocialDataServiceCompletion)completion;
 
+
 /**
  Deprecated APIs
  发送微博内容到多个微博平台
@@ -224,6 +225,7 @@ typedef void (^UMSocialDataServiceCompletion)(UMSocialResponseEntity * response)
                 location:(CLLocation *)location
              urlResource:(UMSocialUrlResource *)urlResource
               completion:(UMSocialDataServiceCompletion)completion;
+
 
 /**
     发送微博内容到多个微博平台
