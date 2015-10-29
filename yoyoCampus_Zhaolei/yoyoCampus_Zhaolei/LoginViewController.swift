@@ -49,7 +49,11 @@ class LoginViewController: UIViewController,APIDelegate{
     
     var loginURL:String = ""
     
+    var infoURL:String = ""
+    
     var params = ["":""]
+    
+    var plistDict = NSMutableDictionary()
     
     //测试btn，进入其他页面
     var gerenxianzhiBtn = UIButton()
@@ -70,7 +74,7 @@ class LoginViewController: UIViewController,APIDelegate{
     }
     
     func setUpNavigationBar(){
-        Consts.setUpNavigationBarWithBackButton(self, title: "登  录", backTitle:"")
+        Consts.setUpNavigationBarWithBackButton(self, title: "登  录", backTitle:"<")
         let right = UIBarButtonItem(title: "test", style: .Plain, target: self, action: "test")
         right.tintColor = Consts.white
         self.navigationItem.rightBarButtonItem = right
@@ -206,6 +210,11 @@ class LoginViewController: UIViewController,APIDelegate{
                 api.httpRequest("POST", url: loginURL, params: params, tag: "login")
             break
             
+            case "inof":
+                self.infoURL = "\(Consts.mainUrl)/v1.0/user/"
+                api.httpRequest("GET", url: infoURL, params: nil, tag: "info")
+            break
+            
             default:
             break
         }
@@ -215,21 +224,34 @@ class LoginViewController: UIViewController,APIDelegate{
         switch(tag){
             case "login":
                 if let token = json["access_token"].string{
-                    var plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)
-                    plistDict?.setValue(token, forKey: "access_token")
-                    plistDict?.setValue(self.phoneTextField.text, forKey: "tel")
-                    plistDict?.setValue(true, forKey: "isLogin")
-                    plistDict?.writeToFile(AppDelegate.filePath, atomically: false)
-//                    如果个人信息不完善，跳转到personinfoVC
-                    let personalInfoVC = PersonalInfoViewController()
-                    PersonalInfoViewController.backTitle = nil
-                    self.navigationController?.pushViewController(personalInfoVC, animated: true)
-                }else if (json["code"] == 404){
+                    plistDict.setValue(token, forKey: "access_token")
+                    plistDict.setValue(self.phoneTextField.text, forKey: "tel")
+                    plistDict.setValue(true, forKey: "isLogin")
+                    plistDict.writeToFile(AppDelegate.filePath, atomically: false)
+//                    检测个人信息是否完整
+                    setUpOnlineData("info")
+                    }else if (json["code"] == 404){
                     Tool.showErrorHUD("该手机号未注册!")
                 }else if (json["code"] == 406){
                     Tool.showErrorHUD("密码不对哦!")
                 }
             break
+            
+            case "info":
+                if(json["name"].string == ""){
+//                    未完善个人信息
+                    let personalInfoVC = PersonalInfoViewController()
+                    PersonalInfoViewController.backTitle = nil
+                    self.navigationController?.pushViewController(personalInfoVC, animated: true)
+                }else{
+                    plistDict["name"] = json["name"].string
+                    plistDict["photo"] = NSData(contentsOfURL: NSURL(fileURLWithPath: json["image"].string!))
+                    plistDict["enroll_year"] = json["enroll_year"].string
+                    plistDict["location"] = json["location"].string
+                    plistDict["weibo_bind"] = json["weibo_bind"].int
+                    plistDict["weixin_bind"] = json["weixin_bind"].int
+                    goBack()
+            }
             
         default:
             break
@@ -311,5 +333,9 @@ class LoginViewController: UIViewController,APIDelegate{
     func test(){
         let vc = TestViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

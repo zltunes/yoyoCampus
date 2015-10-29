@@ -23,19 +23,15 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="171"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiH-LO-9Ws">
-                            <rect key="frame" x="120" y="15" width="80" height="81"/>
+                            <rect key="frame" x="120" y="15" width="80" height="80"/>
                             <state key="normal" backgroundImage="shoppage_btn_head portrait"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="40"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="ubd-WK-qPH"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAf-3W-3eo">
-                            <rect key="frame" x="66" y="103" width="188" height="28"/>
-                            <state key="normal" title="呵呵">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="2gx-CR-06X"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-aq-M3p">
@@ -80,6 +76,15 @@
                             </state>
                             <connections>
                                 <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="z1R-pA-nE5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAf-3W-3eo">
+                            <rect key="frame" x="66" y="103" width="188" height="28"/>
+                            <state key="normal" title="呵呵">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="2gx-CR-06X"/>
                             </connections>
                         </button>
                     </subviews>

@@ -14,21 +14,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9b-S1-4il">
-                        <rect key="frame" x="284" y="7" width="28" height="28"/>
+                        <rect key="frame" x="283" y="11" width="20" height="20"/>
                         <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" image="dingdan_btn_plus.png">
+                        <state key="normal">
                             <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8H-B7-7Ex">
-                        <rect key="frame" x="224" y="7" width="28" height="28"/>
+                        <rect key="frame" x="220" y="11" width="20" height="20"/>
                         <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" image="dingdan_btn_minus.png">
+                        <state key="normal">
                             <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAh-iZ-KXP">
+                        <rect key="frame" x="20" y="11" width="182" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-yw-btm">
-                        <rect key="frame" x="255" y="11" width="26" height="21"/>
+                        <rect key="frame" x="241" y="11" width="38" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -37,13 +43,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="countLabel" destination="oAF-yw-btm" id="zIL-nq-KDo"/>
+                <outlet property="leftLabel" destination="hAh-iZ-KXP" id="pAw-kD-gdc"/>
                 <outlet property="minusBtn" destination="s8H-B7-7Ex" id="xbv-Y0-698"/>
                 <outlet property="plusBnt" destination="U9b-S1-4il" id="5eL-S0-LkY"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="dingdan_btn_minus.png" width="17" height="17"/>
-        <image name="dingdan_btn_plus.png" width="17" height="17"/>
-    </resources>
 </document>

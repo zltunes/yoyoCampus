@@ -14,6 +14,7 @@ class twoLabelCell: UITableViewCell {
     
     @IBOutlet var presentPriceLabel: UILabel!
     
+    @IBOutlet var leftLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

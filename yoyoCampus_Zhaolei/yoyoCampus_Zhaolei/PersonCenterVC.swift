@@ -21,6 +21,8 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     
     @IBOutlet var table: UITableView!
     
+    var plistDict = NSMutableDictionary()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,26 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
+        
+        plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
+//      用户未登录时
+        if(plistDict["isLogin"] as! Bool == false){
+            self.photoBtn.setBackgroundImage(UIImage.init(named: "photo_button_apply"), forState: .Normal)
+            self.nameBtn.setTitle("登录 / 注册", forState: .Normal)
+            self.nameBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
+            self.nameBtn.layer.borderColor = Consts.tintGreen.CGColor
+            self.nameBtn.layer.cornerRadius = 3
+            self.nameBtn.layer.borderWidth = 1
+            self.nameBtn.tag = 3
+            
+        }else{
+            self.photoBtn.setBackgroundImage(UIImage(data: plistDict["photo"] as! NSData), forState: .Normal)
+            self.nameBtn.setTitle(plistDict["name"] as! String, forState: .Normal)
+            self.nameBtn.layer.borderWidth = 0
+            self.nameBtn.setTitleColor(Consts.black, forState: .Normal)
+            self.nameBtn.tag = 0
+        }
+        self.photoBtn.layer.cornerRadius = self.photoBtn.frame.width/2
     }
     
     func setUpActions(){
@@ -59,14 +81,30 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     @IBAction func btnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://个人信息
-            let vc = PersonalInfomationViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            if(!AppDelegate.isLogin){
+                Tool.showErrorHUD("请先登录!")
+            }else{
+                let vc = PersonalInfomationViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             break
         case 1://闲置
-            
+            if(!AppDelegate.isLogin){
+                Tool.showErrorHUD("请先登录!")
+            }else{
+                
+            }
             break
         case 2://收藏
-            
+            if(!AppDelegate.isLogin){
+                Tool.showErrorHUD("请先登录!")
+            }else{
+                
+            }
+            break
+        case 3://提示去注册/登录
+            let vc = LoginViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
             
@@ -105,15 +143,15 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             switch(indexPath.row){
             case 0:
                 cell.imgView?.image = UIImage.init(named: "my center_button_idle things")
-                cell.label.text = "我的订单"
+                cell.label?.text = "我的订单"
                 break
             case 1:
                 cell.imgView?.image = UIImage.init(named: "my center_button_idle things")
-                cell.label.text = "我的万能优惠卡"
+                cell.label?.text = "我的万能优惠卡"
                 break
             case 2:
                 cell.imgView?.image = UIImage.init(named: "my center_button_idle things")
-                cell.label.text = "申请开店"
+                cell.label?.text = "申请开店"
                 break
             default:
                 break
@@ -122,11 +160,11 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             switch(indexPath.row){
             case 0:
                 cell.imgView?.image = UIImage(named: "my center_button_set")
-                cell.label.text = "设置"
+                cell.label?.text = "设置"
                 break
             case 1:
                 cell.imgView?.image = UIImage.init(named: "setting_icon_suggestion")
-                cell.label.text = "意见反馈"
+                cell.label?.text = "意见反馈"
                 break
             default:
                 break
@@ -140,15 +178,27 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         if(indexPath.section == 0){
             switch(indexPath.row){
             case 0://我的订单
-                let vc = OrdersVC()
-                self.navigationController?.pushViewController(vc, animated: true)
+                if(!AppDelegate.isLogin){
+                    Tool.showErrorHUD("请先登录!")
+                }else{
+                    let vc = OrdersVC()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 break
             case 1://优惠卡
-                let vc = CouponViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                if(!AppDelegate.isLogin){
+                    Tool.showErrorHUD("请先登录!")
+                }else{
+                    let vc = CouponViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 break
             case 2://申请开店
-            
+                if(!AppDelegate.isLogin){
+                    Tool.showErrorHUD("请先登录!")
+                }else{
+                    
+                }
                 break
             default:
                 break
@@ -156,12 +206,20 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         }else{
             switch(indexPath.row){
             case 0:
-                let vc = SettingViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                if(!AppDelegate.isLogin){
+                    Tool.showErrorHUD("请先登录!")
+                }else{
+                    let vc = SettingViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 break
             case 1:
-                let vc = UserFeedbackViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                if(!AppDelegate.isLogin){
+                    Tool.showErrorHUD("请先登录!")
+                }else{
+                    let vc = UserFeedbackViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
                 break
             default:
                 break

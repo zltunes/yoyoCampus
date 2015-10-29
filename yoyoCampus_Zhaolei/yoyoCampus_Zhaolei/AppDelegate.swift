@@ -46,8 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             var dict:NSMutableDictionary = ["access_token":""]
             dict.setObject(false, forKey: "isLogin")
             dict.setObject("", forKey: "tel")
+            dict.setObject("", forKey: "photo")
+            dict.setObject("", forKey: "name")
+            dict.setObject("", forKey: "enroll_year")
+            dict.setObject("", forKey: "location")
+            dict.setObject(0, forKey: "weibo_bind")
+            dict.setObject(0, forKey: "weixin_bind")
+            
             dict.writeToFile(AppDelegate.filePath, atomically:false)
-            print("写入plist")
         }else{
             AppDelegate.isLogin = plistDict?.valueForKey("isLogin") as! Bool
             AppDelegate.tel = plistDict?.valueForKey("tel") as! String

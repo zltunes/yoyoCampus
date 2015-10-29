@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDelegate {
     
     ///设置列表
     var settingTable = UITableView()
     
     ///退出登录
     var logOutButton = UIButton()
+    
+    var api = YoYoAPI()
+    
+    var logoutURL:String = ""
+    
+    var plistDict = NSMutableDictionary()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +31,6 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
 
     }
 
@@ -38,6 +44,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func setUpInitialLooking(){
+        plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
         let newWidth = self.view.frame.width
         let newHeight = self.view.frame.height - 64
         
@@ -67,12 +74,26 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.settingTable.registerClass(SettingCell.self, forCellReuseIdentifier: "settingCell")
         self.settingTable.delegate = self
         self.settingTable.dataSource = self
+        api.delegate = self
         
         self.logOutButton.addTarget(self, action: "buttonClicked:", forControlEvents: .TouchUpInside)
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        self.logoutURL = "\(Consts.mainUrl)/v1.0/auth/logout/"
+        switch(tag){
+            case "logout":
+                print("onlinedata")
+                api.httpRequest("DELETE", url: self.logoutURL, params: nil, tag: "logout")
+            break
+            
+            case "update":
+            
+            break
+            
+        default:
+            break
+        }
     }
     
     func goBack(){
@@ -80,11 +101,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func buttonClicked(sender: UIButton){
-        if(sender.titleLabel?.text == "退 出 登 录"){
-            let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)
-            plistDict?.setValue(false, forKey: "isLogin")
-            plistDict?.setValue("", forKey: "tel")
-        }
+        setUpOnlineData("logout")
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -150,5 +167,37 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return footer
     }
 
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        print("didreceive")
+        switch(tag){
+            case "logout":
+                print("logout")
+                plistDict.setObject(false, forKey: "isLogin")
+                plistDict.setObject("", forKey: "tel")
+                plistDict.setObject("", forKey: "access_token")
+                plistDict.setObject("", forKey: "photo")
+                plistDict.setObject("", forKey: "name")
+                plistDict.setObject("", forKey: "enroll_year")
+                plistDict.setObject("", forKey: "location")
+                plistDict.setObject(0, forKey: "weibo_bind")
+                plistDict.setObject(0, forKey: "weixin_bind")
+                plistDict.writeToFile(AppDelegate.filePath, atomically: true)
+            
+                AppDelegate.isLogin = false
+                AppDelegate.access_token = ""
+                AppDelegate.tel = ""
+            
+            print("logout:isLogin:\(AppDelegate.isLogin)")
+            
+            self.logOutButton.hidden = true
+            
+            case "update":
+            
+            break
+            
+        default:
+            break
+        }
+    }
 
 }

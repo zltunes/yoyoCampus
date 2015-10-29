@@ -46,7 +46,11 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     var imgData = NSData()
     
     ///用户所填写信息暂存
-    var infoData = ["name":"呵呵","location":"东南大学","enroll_year":"2014","image":"","phone_num":"15651907759"]
+//    var infoData = ["name":"呵呵","location":"东南大学","enroll_year":"2014","image":"","phone_num":"15651907759"]
+    
+    var param = ["":""]
+    
+    var plisDict = NSMutableDictionary()
     
     ///上传
     var uploadURL:String = ""
@@ -66,8 +70,6 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         self.setUpActions()
         self.setUpAlertView()
         self.setUpAlertViewWithName()
-        self.setUpOnlineData()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +82,9 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     }
     
     func setUpInitialLooking(){
+        
+        self.plisDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
+        
         let newWidth = self.view.frame.width
         let newHeight = self.view.frame.height
         
@@ -126,8 +131,27 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     }
     
     
-    func setUpOnlineData(){
+    func setUpOnlineData(tag:String){
         
+        switch(tag){
+            
+        case "token":
+            self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
+            //1:获取token
+            api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
+            break
+            
+        case "info":
+            self.userInfoUpdateURL = "\(Consts.mainUrl)/v1.0/user/"
+            //2:更新用户信息
+            api.httpRequest("PUT", url: self.userInfoUpdateURL, params: self.param, tag: "info")
+            break
+            
+        default:
+            break
+            
+        }
+
     }
     
     func goBack(){
@@ -140,6 +164,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                 if(indexPath.row == 0){
                     let cell = tableView.dequeueReusableCellWithIdentifier("PersonInfomationCell1", forIndexPath: indexPath)as! PersonInfomationCell1
                     cell.img.center.x = tableView.frame.width / 2
+                    cell.img.image = UIImage(data: self.plisDict["photo"] as! NSData)
                     cell.separatorInset = Consts.tableSeperatorEdge
                     cell.layoutMargins = Consts.tableSeperatorEdge
                     return cell
@@ -149,7 +174,8 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                     case 1:
                         cell.label1.text = "昵称"
                         cell.label1.sizeToFit()
-                        cell.label2.text = self.infoData["name"]
+//                        cell.label2.text = self.infoData["name"]
+                        cell.label2.text = self.plisDict["name"] as? String
                         cell.label2.sizeToFit()
                     default:
                         break
@@ -166,35 +192,24 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                 case 0:
                     cell.label1.text = "绑定手机"
                     cell.label1.sizeToFit()
-                    cell.label2.text = self.infoData["phone_num"]
+//                    cell.label2.text = self.infoData["phone_num"]
+                    cell.label2.text = self.plisDict["tel"] as? String
                     cell.label2.sizeToFit()
                 case 1:
                     cell.label1.text = "学校"
                     cell.label1.sizeToFit()
-                    cell.label2.text = self.infoData["location"]
+//                    cell.label2.text = self.infoData["location"]
+                    cell.label2.text = self.plisDict["location"] as? String
                     cell.label2.sizeToFit()
                 case 2:
                     cell.label1.text = "入学年份"
                     cell.label1.sizeToFit()
-                    cell.label2.text = self.infoData["enroll_year"]
+//                    cell.label2.text = self.infoData["enroll_year"]
+                    cell.label2.text = self.plisDict["enroll_year"] as? String
                     cell.label2.sizeToFit()
                 default:
                     break
                 }
-                cell.separatorInset = Consts.tableSeperatorEdge
-                cell.layoutMargins = Consts.tableSeperatorEdge
-                return cell
-            }else if(indexPath.section == 2){
-                let cell = tableView.dequeueReusableCellWithIdentifier("PersonInfomationCell3", forIndexPath: indexPath)as! PersonInfomationCell3
-                switch (indexPath.row){
-                case 0:
-                    cell.img.image = UIImage.init(named: "register_button_wechat")
-                case 1:
-                    cell.img.image = UIImage.init(named: "Personal information_icon_weibo")
-                default:
-                    break
-                }
-                cell.label.frame.origin.x = tableView.frame.width - cell.label.frame.width - 20 * Consts.ratio
                 cell.separatorInset = Consts.tableSeperatorEdge
                 cell.layoutMargins = Consts.tableSeperatorEdge
                 return cell
@@ -212,8 +227,6 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                 return 2
             }else if(section == 1){
                 return 3
-            }else if(section == 2){
-                return 2
             }else{
                 return 1
             }
@@ -249,7 +262,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -305,17 +318,6 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                     break
                 case 2://入学年份
                     self.alert.show()
-                    break
-                default:
-                    break
-                }
-            }else{//section2
-                switch(indexPath.row){
-                case 0://微信
-                    
-                    break
-                case 1://微博
-                    
                     break
                 default:
                     break
@@ -382,6 +384,11 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         
         //        将选好的img转化为nsdata型，图片为jpeg格式
         self.imgData = UIImageJPEGRepresentation(image, 1.0)!
+//        更新照片
+        self.plisDict["photo"] = self.imgData
+        self.plisDict.writeToFile(AppDelegate.filePath, atomically: true)
+        
+        setUpOnlineData("token")
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -457,7 +464,8 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         
         self.changeNameTextField = UITextField(frame: CGRect(x: 0, y: 100 * Consts.ratio, width: 500 * Consts.ratio, height: 100 * Consts.ratio))
         self.changeNameTextField.font = Consts.ft15
-        self.changeNameTextField.text = self.infoData["name"]
+//        self.changeNameTextField.text = self.infoData["name"]
+        self.changeNameTextField.text = self.plisDict["name"] as? String
         self.changeNameTextField.center.x = alertDetail.frame.width/2
         self.changeNameTextField.backgroundColor = Consts.white
         self.changeNameTextField.layer.borderWidth = 1.0
@@ -500,7 +508,14 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         if(sender.tag == 1){//picker取消
             self.alert.close()
         }else if (sender.tag == 2){//picker确定
-            self.infoData.updateValue(self.pickerCache, forKey: "enroll_year")
+//            self.infoData.updateValue(self.pickerCache, forKey: "enroll_year")
+            self.plisDict["enroll_year"] = self.pickerCache
+            self.plisDict.writeToFile(AppDelegate.filePath, atomically: true)
+            self.param = ["enroll_year":self.pickerCache]
+            
+//            更新enroll_year
+            setUpOnlineData("info")
+            
             self.personTable.reloadData()
             self.alert.close()
         }else if(sender.tag == 3){//编辑昵称取消
@@ -509,7 +524,14 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
             if(self.changeNameTextField.text == ""){
                 Tool.showErrorHUD("昵称不可为空!")
             }else{
-                self.infoData.updateValue(self.changeNameTextField.text!, forKey: "name")
+//                self.infoData.updateValue(self.changeNameTextField.text!, forKey: "name")
+                self.plisDict["name"] = self.changeNameTextField.text
+                self.plisDict.writeToFile(AppDelegate.filePath, atomically: true)
+                
+                self.param = ["name":self.changeNameTextField.text!]
+//                更新用户名
+                setUpOnlineData("info")
+                
                 self.personTable.reloadData()
                 self.alertWithName.close()
             }
@@ -517,7 +539,30 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
+        switch tag{
+        case "token":
+            qiniuToken = json["token"].string!
+            qiniuKey = json["key"].string!
+//            infoData["image"] = qiniuKey
+            self.param = ["image":qiniuKey]
+            
+            //            查看上传进度
+            //            let option = QNUploadOption(mime: nil, progressHandler: { (key, percent) -> Void in
+            //                print("key:\(key)\npercent\(percent)")
+            //                }, params: nil, checkCrc:true, cancellationSignal: nil)
+            
+            upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
+                //                图片上传完毕后才向后台更新用户数据
+                self.setUpOnlineData("info")
+                }, option: nil)
+            break
+            
+        case "info":
+            break
+            
+        default:
+            break
+        }
     }
     
     

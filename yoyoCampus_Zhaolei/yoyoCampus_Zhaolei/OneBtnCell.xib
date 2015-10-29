@@ -30,10 +30,17 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJ3-dW-AkI">
+                        <rect key="frame" x="20" y="13" width="211" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btn_operation" destination="zgD-AM-ahk" id="gwa-zj-RAV"/>
+                <outlet property="leftLabel" destination="gJ3-dW-AkI" id="yme-jJ-sEB"/>
             </connections>
             <point key="canvasLocation" x="226" y="350"/>
         </tableViewCell>

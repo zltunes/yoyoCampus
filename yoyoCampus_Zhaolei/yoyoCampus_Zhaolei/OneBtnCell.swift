@@ -11,6 +11,7 @@ import UIKit
 
 class OneBtnCell: UITableViewCell {
 
+    @IBOutlet var leftLabel: UILabel!
     
     @IBOutlet var btn_operation: UIButton!
 

@@ -25,6 +25,8 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     
     var useDiscountCard = true//使用优惠卡
     
+    var count = 1//商品数量
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,7 +100,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             case 0:
                 let cell = self.table.dequeueReusableCellWithIdentifier("twoLabelCell") as! twoLabelCell
                 cell.oldPriceLabel?.hidden = true
-                cell.textLabel?.text = "恐龙园两日游"
+                cell.leftLabel?.text = "恐龙园两日游"
                 cell.presentPriceLabel?.text = "¥ 600"
                 return cell
                 break
@@ -106,9 +108,13 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             case 1:
                 let cell = self.table.dequeueReusableCellWithIdentifier("cellWithTwoBtns") as!
                     cellWithTwoBtns
-                cell.textLabel?.text = "数量"
+                cell.leftLabel?.text = "数量"
+                cell.countLabel?.text = "\(count)"
+                cell.minusBtn.setBackgroundImage(UIImage.init(named: "dingdan_btn_minus.png"), forState: .Normal)
+                cell.minusBtn.enabled = true
                 cell.minusBtn.tag = 0//数量-
                 cell.minusBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
+                cell.plusBnt.setBackgroundImage(UIImage.init(named: "dingdan_btn_plus.png"), forState: .Normal)
                 cell.plusBnt.tag = 1//数量+
                 cell.plusBnt.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
                 return cell
@@ -119,7 +125,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
 //                    无卡
                 let cell = self.table.dequeueReusableCellWithIdentifier("OneBtnCell") as!
                     OneBtnCell
-                cell.textLabel?.text = "使用万能优惠卡"
+                cell.leftLabel?.text = "使用万能优惠卡"
                 cell.btn_operation.setTitle("获取", forState: .Normal)
                 cell.btn_operation.tag = 2//获取
                 return cell
@@ -127,7 +133,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
 //                    有卡
                 let cell = self.table.dequeueReusableCellWithIdentifier("cellWithTwoBtns") as!
                     cellWithTwoBtns
-                cell.textLabel?.text = "使用万能优惠卡"
+                cell.leftLabel?.text = "使用万能优惠卡"
                 cell.minusBtn.hidden = true
                 cell.countLabel.hidden = true
                     if(!useDiscountCard){
@@ -141,12 +147,13 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                 
             case 3:
                 let cell = self.table.dequeueReusableCellWithIdentifier("twoLabelCell", forIndexPath: indexPath) as! twoLabelCell
-                cell.textLabel?.text = "合计"
+                cell.leftLabel?.text = "合计"
                 if(!useDiscountCard){
                     cell.oldPriceLabel?.hidden = true
                     cell.presentPriceLabel?.text = "¥ 1200"
                 }else{
                     cell.presentPriceLabel?.text = "¥ 1000"
+                    cell.presentPriceLabel.textColor = UIColor.redColor()
                     let attributeText = NSAttributedString(string: "¥ 1200", attributes: [NSStrikethroughStyleAttributeName:1])
                     cell.oldPriceLabel?.hidden = false
                     cell.oldPriceLabel?.attributedText = attributeText
@@ -159,17 +166,17 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             }
             
         }else{//section1
+            let cell = self.table.dequeueReusableCellWithIdentifier("twoLabelCell", forIndexPath: indexPath) as! twoLabelCell
+            cell.oldPriceLabel.hidden = true
             if(indexPath.row == 0){
-                let cell = UITableViewCell(style: .Value2, reuseIdentifier: "phoneCell")
-                cell.textLabel?.text = "绑定手机"
-                cell.detailTextLabel?.text = "15651907759"
-                return cell
+                cell.leftLabel?.text = "绑定手机"
+                cell.presentPriceLabel?.text = "15651907759"
             }else{
-                let cell = UITableViewCell(style: .Value2, reuseIdentifier: "locationCell")
-                cell.textLabel?.text = "所在校区"
-                cell.detailTextLabel?.text = "东南大学九龙湖校区"
-                return cell
+                cell.leftLabel?.text = "所在校区"
+                cell.presentPriceLabel?.text = "东南大学九龙湖校区"
             }
+            
+            return cell
         }
         return UITableViewCell()
     }
@@ -190,9 +197,15 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
+
+    }
+    
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         if(self.remarkTextView.text == "填写您的要求，让商家更好地提供服务"){
+            print("hahaha")
             self.remarkTextView.text = ""
         }
+        return true
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -202,11 +215,17 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     @IBAction func btnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://数量-
-            
+            if(self.count == 1){
+                sender.enabled = false
+            }else{
+                self.count--
+                self.table.reloadData()
+            }
             break
             
         case 1://数量+
-            
+            self.count++
+            self.table.reloadData()
             break
             
         case 2://获取优惠卡
@@ -215,7 +234,8 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             break
             
         case 10://提交订单  
-            
+            let vc = OrderPayVC()
+            self.navigationController?.pushViewController(vc, animated: true)
             break
             
         default:

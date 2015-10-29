@@ -17,9 +17,13 @@ class cellWithTwoBtns: UITableViewCell {
     
     @IBOutlet var countLabel: UILabel!
     
+    @IBOutlet var leftLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        print("cellWithTwoBtns")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
