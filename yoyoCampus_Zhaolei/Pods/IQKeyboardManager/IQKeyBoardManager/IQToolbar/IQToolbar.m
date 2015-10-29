@@ -41,8 +41,9 @@
 {
     [super initialize];
     
+    //Tint Color
     [[self appearance] setTintColor:nil];
-    
+
 #ifdef NSFoundationVersionNumber_iOS_6_1
     if ([[self appearance] respondsToSelector:@selector(setBarTintColor:)])
     {
@@ -50,6 +51,19 @@
     }
 #endif
     
+    //Background image
+    [[self appearance] setBackgroundImage:nil forToolbarPosition:UIBarPositionAny           barMetrics:UIBarMetricsDefault];
+    [[self appearance] setBackgroundImage:nil forToolbarPosition:UIBarPositionBottom        barMetrics:UIBarMetricsDefault];
+    [[self appearance] setBackgroundImage:nil forToolbarPosition:UIBarPositionTop           barMetrics:UIBarMetricsDefault];
+    [[self appearance] setBackgroundImage:nil forToolbarPosition:UIBarPositionTopAttached   barMetrics:UIBarMetricsDefault];
+    
+    //Shadow image
+    [[self appearance] setShadowImage:nil forToolbarPosition:UIBarPositionAny];
+    [[self appearance] setShadowImage:nil forToolbarPosition:UIBarPositionBottom];
+    [[self appearance] setShadowImage:nil forToolbarPosition:UIBarPositionTop];
+    [[self appearance] setShadowImage:nil forToolbarPosition:UIBarPositionTopAttached];
+    
+    //Background color
     [[self appearance] setBackgroundColor:nil];
 }
 
@@ -57,8 +71,9 @@
 {
     [self sizeToFit];
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;// | UIViewAutoresizingFlexibleHeight;
+    self.translucent = YES;
     
-     if (IQ_IS_IOS7_OR_GREATER)
+    if (IQ_IS_IOS7_OR_GREATER)
     {
         [self setTintColor:[UIColor blackColor]];
     }

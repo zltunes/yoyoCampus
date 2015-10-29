@@ -69,7 +69,6 @@
 		32BE0FB08D9ECD2974197D862E320E36 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 0846ABC2D9188FD3F3E85FE9F4C04B8B /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32E40EB582F6AA61BA07582398FB39D1 /* POPBasicAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E26F6C0218E204B98211317BA844109 /* POPBasicAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		34BEE08ED8F8B9B3B939D4D732CFBEFE /* AFNetworking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A7EC30B6951B26186500E1C7580A3EF /* AFNetworking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35089E271BD3EF9000FCB857 /* QNConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = B45CF578A5B2B45181292B2BDAF662F8 /* QNConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36A4F7DF7BB926F3EB101A2CDD83BF8D /* SDImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 43CED23E13DA8139E5E5E5FF4438F70C /* SDImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		374C91D0AE9A301E5207A64512183C06 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FE83E0C9EB352A1B1E3691386A7B56 /* MenuButton.m */; };
 		37CFC18B5DF1320C54DD8A28C1EA5118 /* MJRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 181906824DDA99F0B16D4218105410E8 /* MJRefreshHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1912,7 +1911,6 @@
 				9210018EAAB7ACEFDC3753865749C600 /* QNHijackingDetectWrapper.h in Headers */,
 				1A205E073FC5A480A663F2D2F2C8DB56 /* QNHosts.h in Headers */,
 				9A70B54F903629FD29A080C8C3FF23D5 /* QNNetworkInfo.h in Headers */,
-				35089E271BD3EF9000FCB857 /* QNConfiguration.h in Headers */,
 				CF17D8CF998A5501900147E302981A0F /* QNRecord.h in Headers */,
 				06456D52F90E6D1A701FCA510B8B141A /* QNResolver.h in Headers */,
 				22E87EBB481577A32B0A039BD21FF532 /* QNResolverDelegate.h in Headers */,

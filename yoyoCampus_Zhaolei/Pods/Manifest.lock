@@ -1,31 +1,31 @@
 PODS:
   - ACEExpandableTextCell (1.0.3):
     - SZTextView
-  - AFNetworking (2.6.0):
-    - AFNetworking/NSURLConnection (= 2.6.0)
-    - AFNetworking/NSURLSession (= 2.6.0)
-    - AFNetworking/Reachability (= 2.6.0)
-    - AFNetworking/Security (= 2.6.0)
-    - AFNetworking/Serialization (= 2.6.0)
-    - AFNetworking/UIKit (= 2.6.0)
-  - AFNetworking/NSURLConnection (2.6.0):
+  - AFNetworking (2.6.1):
+    - AFNetworking/NSURLConnection (= 2.6.1)
+    - AFNetworking/NSURLSession (= 2.6.1)
+    - AFNetworking/Reachability (= 2.6.1)
+    - AFNetworking/Security (= 2.6.1)
+    - AFNetworking/Serialization (= 2.6.1)
+    - AFNetworking/UIKit (= 2.6.1)
+  - AFNetworking/NSURLConnection (2.6.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.0):
+  - AFNetworking/NSURLSession (2.6.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.0)
-  - AFNetworking/Security (2.6.0)
-  - AFNetworking/Serialization (2.6.0)
-  - AFNetworking/UIKit (2.6.0):
+  - AFNetworking/Reachability (2.6.1)
+  - AFNetworking/Security (2.6.1)
+  - AFNetworking/Serialization (2.6.1)
+  - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Alamofire (3.0.0)
+  - Alamofire (3.1.0)
   - CustomIOSAlertView (0.9.3)
   - HappyDNS (0.2.2)
-  - IQKeyboardManager (3.3.2)
+  - IQKeyboardManager (3.3.4)
   - MJRefresh (2.4.12)
   - pop (1.0.8)
   - PopMenu (2.4):
@@ -38,7 +38,7 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
-  - SwiftyJSON (2.3.0)
+  - SwiftyJSON (2.3.1)
   - SZTextView (1.2.1)
   - XHRealTimeBlur (1.7)
 
@@ -62,23 +62,23 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: 3b5d0d4e0c19173b1bf0dc823bde25ad870f70c0
+    :commit: 5f5d00dbdcd256600a250765d9f674964080ceee
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   ACEExpandableTextCell: 5fadb1461c7f48b8d97e1d5257eeff5c1ec93a0f
-  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  Alamofire: b61782387f81bcc538a0284cf2bb5d7995cd0a80
+  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  Alamofire: 415bd7f56197722978759078486689f7ef913dce
   CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   HappyDNS: caca4a8aee8fa10e9aa42761bbe05664ac58b4ab
-  IQKeyboardManager: d863eb0bca424d1f6dad6bdd1f856af52664add8
+  IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
   Qiniu: 1fb5191b3bc1edb65b2da3d905b8281e15bd1d5c
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
+  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   XHRealTimeBlur: 661fadd5691ba2d349758e8fd5fbdb499ac55f8c
 
