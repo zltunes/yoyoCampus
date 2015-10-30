@@ -11,7 +11,7 @@
 #import "XHRealTimeBlur.h"
 #import "POP.h"
 
-#define MenuButtonHeight 110
+#define MenuButtonHeight 220
 #define MenuButtonVerticalPadding 10
 #define MenuButtonHorizontalMargin 10
 #define MenuButtonAnimationTime 0.2

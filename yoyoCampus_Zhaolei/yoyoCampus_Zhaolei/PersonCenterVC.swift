@@ -36,7 +36,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
 //      由于perosninfomationviewcontroller中的修改对本页显示内容有影响，
 //       从A push到 B,再从B pop 到 A,A中viewDidLoad()不会再调用,而viewWillAppear()会重新调用
         self.setUpInitialLooking()
-        self.setUpActions()
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,7 +71,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             self.nameBtn.setTitleColor(Consts.black, forState: .Normal)
             self.nameBtn.tag = 0
         }
-        self.photoBtn.layer.cornerRadius = self.photoBtn.frame.width/2
+        
     }
     
     func setUpActions(){

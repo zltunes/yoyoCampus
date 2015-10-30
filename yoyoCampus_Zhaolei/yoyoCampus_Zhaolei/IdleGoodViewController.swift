@@ -44,6 +44,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     @IBOutlet var consultBtn_text: UIButton!//tag:5
     
+    //打电话发短信
+    var app = UIApplication.sharedApplication()
+    
+    //咨询电话
+    var consultPhoneNum:String = "15651907759"
+    
     //两种咨询方式
     var popMenu = PopMenu()
 
@@ -86,6 +92,15 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     ///创建评论URL
     var commentCreateURL:String = ""
     
+    ///创建评论所需参数
+    var param_commentCreate = ["":""]
+    
+    ///闲置点赞
+    var idleLikeURL:String = ""
+    
+    ///闲置取赞
+    var idleUnlikeURL:String = ""
+    
     ///要查看的闲置id
     internal var idle_id = "5631e43390c4904e06286103"
     
@@ -95,13 +110,14 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setUpNavigaitonBar()
         self.setUpInitialLooking()
         self.setUpActions()
         self.setUpGesture()
-    }
+        // Do any additional setup after loading the view.
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -143,7 +159,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.detailView.frame = CGRect(x:0,y:0, width:self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.detailView.backgroundColor = Consts.grayView
         self.detailView.editable = false
-        self.detailView.text = "正版、九五新、少量涂写，雅思1-9全套复习资料，大四毕业甩。"
         
         ///2⃣️remarkTableView
         self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
@@ -258,8 +273,21 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             case "commentView":
             self.commentsViewURL = "\(Consts.mainUrl)/v1.0/idle/\(idle_id)/comment/1"
             api.httpRequest("GET", url: self.commentsViewURL, params: nil, tag: "commentView")
-            break
+        break
         
+            case "commentCreate":
+            self.commentCreateURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/"
+            api.httpRequest("POST", url: self.commentCreateURL, params: self.param_commentCreate, tag: "commentCreate")
+        break
+            
+            case "idleLike":
+            self.idleLikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/like/"
+            api.httpRequest("POST", url: self.idleLikeURL, params: nil, tag: "idleLike")
+        break
+            
+            case "idleUnlike":
+            self.idleUnlikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/like/"
+            api.httpRequest("DELETE", url: self.idleUnlikeURL, params: nil, tag: "idleUnlike")
     default:
         break
         }
@@ -280,10 +308,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         switch(sender.tag){
         case 0://点赞
             self.praiseBtn.setImage(UIImage(named: "xiangqing_btn_dianzan_p"), forState: .Normal)
+            setUpOnlineData("idleLike")
             self.praiseBtn.tag = 10
             break
         case 10://取消点赞
             self.praiseBtn.setImage(UIImage(named: "xiangqing_btn_dianzan"), forState: .Normal)
+            setUpOnlineData("idleUnlike")
             self.praiseBtn.tag = 0
             break
         case 1://新东方
@@ -308,6 +338,9 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
         case 6://发表
             self.remarkTextView.resignFirstResponder()
+            self.param_commentCreate = ["content":self.remarkTextView.text]
+            setUpOnlineData("commentCreate")
+            self.remarkTextView.text = "请评论......"
             break
             
         default:
@@ -336,6 +369,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("remark", forIndexPath: indexPath) as! remarkCell
         cell.backgroundColor = Consts.grayView
         cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row,"image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
+        cell.layer.cornerRadius = cell.photo.frame.width/2
         cell.nameLabel.text = commentsJSON[indexPath.row,"name"].string!
         cell.timeLabel.text = commentsJSON[indexPath.row,"date"].string!
         if(cell.hasLike == false){
@@ -416,9 +450,9 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func showMenu(){
         //注意空数组的定义.MenuItem为元素类型
         var items = [MenuItem]()
-        var menuItem = MenuItem(title: "", iconName: "xiangqing_btn_message")//短信
+        var menuItem = MenuItem(title: "sms", iconName: "xiangqing_btn_message")//短信
         items.append(menuItem)
-        menuItem = MenuItem(title: "", iconName: "xiangqing_btn_call")//电话
+        menuItem = MenuItem(title: "tel", iconName: "xiangqing_btn_call")//电话
         items.append(menuItem)
         
         popMenu = PopMenu(frame: self.view.bounds, items: items)
@@ -430,53 +464,64 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         
         popMenu.didSelectedItemCompletion = { (selectedItem) in
             //点击事件
+            if(selectedItem.title == "sms"){
+                print("sms")
+                self.app.openURL(NSURL(string: "sms:\(self.consultPhoneNum)")!)
+            }else if(selectedItem.title == "tel"){
+                print("tel")
+                self.self.webViewCallPhone()
+            }
         };
     
         popMenu.showMenuAtView(self.view)
     }
     
-    
+    func  webViewCallPhone(){
+//        此种方法打完电话可以回到本应用
+        let callWebview = UIWebView()
+        let teleURL = NSURL(string: "tel:\(self.consultPhoneNum)")
+        callWebview.loadRequest(NSURLRequest(URL: teleURL!))
+//        将uiwebview添加到view
+        self.view.addSubview(callWebview)
+    }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
         switch(tag){
         case "idleView":
-            /*
-{
-"category": "生活用品",
-"user_image": "http://7xnm33.com1.z0.glb.clouddn.com/5632085b90c4904e06286118?imageView2/1/w/30/h/30/q/25",
-"user_id": "56306b3690c4906d47cb366d",
-"name": "phone",
-"view_number": 1,
-"image": "http://7xnm33.com1.z0.glb.clouddn.com/5631e43290c4904e06286102?imageView2/1/w/200/h/200/q/100",
-"like_number": 0,
-"last_update": "2015-10-29",
-"user_name": "zhaole",
-"price": "11",
-"description": "submmited by zhaolei"
-}*/
-            
-        self.bigImgView.sd_setImageWithURL(NSURL(string: json["image"].string!), placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
-        self.goodNameLabel.text = json["name"].string!
-        self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
-        self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
-        self.shopNameBtn.setTitle(json["user_name"].string!, forState: .Normal)
-        let price = json["price"].string!
-        self.presentPriceLabel.text = "¥ \(price)"
-        let viewnumber = json["view_number"].int!
-        self.previewCountLabel.text = "\(viewnumber)"
-        let likenum = json["like_number"].int!
-        self.praiseCountLabel.text = "\(likenum)"
-        self.timeLabel.text = json["last_update"].string!
-        self.detailView.text = json["description"].string!
-        break
+            self.bigImgView.sd_setImageWithURL(NSURL(string: json["image"].string!), placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
+                self.goodNameLabel.text = json["name"].string!
+            self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
+            self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
+            self.shopNameBtn.setTitle(json["user_name"].string!, forState: .Normal)
+            let price = json["price"].string!
+            self.presentPriceLabel.text = "¥ \(price)"
+            let viewnumber = json["view_number"].int!
+            self.previewCountLabel.text = "\(viewnumber) 人感兴趣"
+            let likenum = json["like_number"].int!
+            self.praiseCountLabel.text = "\(likenum) 人赞"
+            self.timeLabel.text = json["last_update"].string!
+            self.detailView.text = json["description"].string!
+            break
             
         case "commentView":
             self.commentsJSON = json["idle_comment"]
             self.remarkTableView.reloadData()
             break
             
-    default:
-        break
+        case "commentCreate":
+            self.setUpOnlineData("commentView")
+            break
+            
+        case "idleLike":
+            self.setUpOnlineData("idleView")
+            break
+        
+        case "idleUnlike":
+            self.setUpOnlineData("idleView")
+            break
+
+        default:
+            break
         }
     }
     

@@ -25,11 +25,6 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiH-LO-9Ws">
                             <rect key="frame" x="120" y="15" width="80" height="80"/>
                             <state key="normal" backgroundImage="shoppage_btn_head portrait"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="40"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="ubd-WK-qPH"/>
                             </connections>

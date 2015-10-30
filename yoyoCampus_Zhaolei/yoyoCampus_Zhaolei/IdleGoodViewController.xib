@@ -40,17 +40,17 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-pw-FyJ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-pw-FyJ">
                     <rect key="frame" x="240" y="311" width="72" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="xianzhi_icon_visitor" translatesAutoresizingMaskIntoConstraints="NO" id="yvM-0d-nAd">
-                    <rect key="frame" x="14" y="345" width="14" height="9"/>
+                    <rect key="frame" x="14" y="347" width="14" height="9"/>
                 </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="xianzhi_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="nNQ-cU-Q9d">
-                    <rect key="frame" x="113" y="345" width="9" height="10"/>
+                    <rect key="frame" x="113" y="344" width="15" height="13"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUx-UV-jrp">
                     <rect key="frame" x="240" y="340" width="72" height="21"/>
@@ -78,7 +78,7 @@
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-Tc-JNA">
                     <rect key="frame" x="8" y="313" width="20" height="20"/>
-                    <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="1Ws-5n-poD"/>
                     </connections>
@@ -186,7 +186,7 @@
                     <color key="backgroundColor" white="0.8823242188" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4x-mP-rDR">
-                    <rect key="frame" x="130" y="340" width="60" height="21"/>
+                    <rect key="frame" x="130" y="341" width="60" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -199,6 +199,9 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="hXS-db-x2m"/>
                     </connections>
                 </button>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="sousuo_icon_history" translatesAutoresizingMaskIntoConstraints="NO" id="a5f-o4-zeW">
+                    <rect key="frame" x="217" y="341" width="19" height="18"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="342" y="356"/>
@@ -206,6 +209,7 @@
     </objects>
     <resources>
         <image name="Commodity editor_btn_picture" width="97" height="72"/>
+        <image name="sousuo_icon_history" width="18" height="18"/>
         <image name="xiangqing_btn_dianzan" width="25" height="25"/>
         <image name="xiangqing_tab bar_collect_n" width="22" height="19"/>
         <image name="xiangqing_tab bar_message" width="21" height="18"/>

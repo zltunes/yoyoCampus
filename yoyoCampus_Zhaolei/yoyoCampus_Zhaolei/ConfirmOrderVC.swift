@@ -56,6 +56,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     
     func setUpActions(){
         self.api.delegate = self
+        self.remarkTextView.delegate = self
         
         let nib1 = UINib(nibName: "cellWithTwoBtns", bundle: nil)
         let nib2 = UINib(nibName: "twoLabelCell", bundle: nil)
@@ -196,16 +197,17 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
         }
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-
-    }
-    
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         if(self.remarkTextView.text == "填写您的要求，让商家更好地提供服务"){
-            print("hahaha")
             self.remarkTextView.text = ""
         }
         return true
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if(self.remarkTextView.text.isEmpty){
+            self.remarkTextView.text = "填写您的要求，让商家更好地提供服务"
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
