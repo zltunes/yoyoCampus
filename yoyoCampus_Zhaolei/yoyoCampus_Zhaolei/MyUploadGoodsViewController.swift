@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UITableViewDataSource,AFPickerViewDataSource,AFPickerViewDelegate,UITextFieldDelegate,ACEExpandableTableViewDelegate{
+class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UITableViewDataSource,AFPickerViewDataSource,AFPickerViewDelegate,UITextFieldDelegate,ACEExpandableTableViewDelegate,APIDelegate{
     
     ///tags:
     //101:商品名称textField
@@ -39,6 +40,16 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     ///滚动选择
     var picker = AFPickerView()
+    
+    var api = YoYoAPI()
+    
+    
+    ///上传
+    var uploadURL:String = ""
+    
+    var uploadGoodsInfoURL:String = ""
+    
+    ///闲置创建
     
     ///滚动数据
     var pickerData : NSMutableArray = ["生活用品","数码电子","课本","xxx","yyy","1","2","3","4","5"]
@@ -77,6 +88,19 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     ///图片上传标记
     var imgUploaded = false
 
+//    api param
+    var param = ["":""]
+    
+    var imgData = NSData()
+//  name,{image},category,price,{description}
+    
+    ///七牛云上传所需token和key，从服务器获取
+    var qiniuToken:String = ""
+    var qiniuKey:String = ""
+    
+    ///七牛云manager
+    var upManager = QNUploadManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,7 +109,6 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
         self.setUpGestures()
 
     }
@@ -110,7 +133,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         self.view.addSubview(self.staticLabel1)
         
         self.uploadButton.frame = CGRect(x: 258 * Consts.ratio, y: 130 * Consts.ratio + self.staticLabel1.frame.maxY, width: 206 * Consts.ratio, height: 206 * Consts.ratio)
-        self.uploadButton.setImage(Consts.imageFromColor(UIColor.yellowColor(), size: self.uploadButton.frame.size), forState: .Normal)
+        self.uploadButton.setBackgroundImage(UIImage.init(named: "photo_button_apply"), forState: .Normal)
         self.view.addSubview(self.uploadButton)
         
         self.infoTable.frame = CGRect(x: 62 * Consts.ratio, y: self.staticLabel1.frame.maxY + 52 * Consts.ratio, width: (720 - 62 * 2) * Consts.ratio, height: 550 * Consts.ratio)
@@ -233,7 +256,6 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             repeat{
                 checked = true
                 goodsLabel4 = Consts.setUpAttributedLabel(str as String,lineSpace: Consts.lineSpace, color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel3.frame.maxX, y: goodsLabel3.frame.minY, width: alertDetail.frame.width - 38 * Consts.ratio - goodsLabel3.frame.maxX)
-                print(goodsLabel4.frame.height)
                 if(goodsLabel4.frame.height > 250 * Consts.ratio){
                     str = str.substringToIndex(str.length - 4) + "..."
                     checked = false
@@ -271,6 +293,8 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     }
     
     func setUpActions(){
+        api.delegate = self
+        
         self.uploadButton.addTarget(self, action: "uploadImage", forControlEvents: .TouchUpInside)
         self.nextButton.addTarget(self, action: "nextClicked", forControlEvents: .TouchUpInside)
         
@@ -287,7 +311,22 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         
     }
     
-    func setUpOnlineData(){
+    func setUpOnlineData(tag:String){
+        switch(tag){
+            case "token":
+            self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
+            api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
+            break
+        
+            case "info":
+            self.uploadGoodsInfoURL = "\(Consts.mainUrl)/v1.0/idle/"
+            api.httpRequest("POST", url: self.uploadGoodsInfoURL, params: self.param, tag: "info")
+            break
+            
+        default:
+            break
+        }
+        
         
     }
     
@@ -317,18 +356,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         }else if (sender.titleLabel?.text == "返回修改"){
             self.alert2.close()
         }else if (sender.titleLabel?.text == "确认提交"){
-            Tool.showSuccessHUD("提交成功!")
-            self.alert2.close()
-            self.staticLabel1.hidden = true
-            self.successImg.hidden = false
-            self.successLabel1.hidden = false
-            self.successLabel2.hidden = false
-            self.toGoodsButton.hidden = false
-            self.toMainPageButton.hidden = false
-            self.infoTable.hidden = true
-            self.nextButton.hidden = true
-            Consts.setUpNavigationBarWithBackButton(self, title: "发布成功", backTitle: nil)
-            self.currentState = 3
+            setUpOnlineData("token")
         }else if (sender.titleLabel?.text == "查 看 商 品 详 情"){
             print("前往商品详情")
         }else if (sender.titleLabel?.text == "返 回 主 页"){
@@ -362,6 +390,11 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             }else if((self.infoData.objectForKey("other")as! NSString).length < 10){
                 Tool.showErrorHUD("请输入至少十个字的介绍!")
             }else{
+                param["name"] = self.infoData["name"] as! String
+                param["price"] = self.infoData["price"] as! String
+                param["category"] = self.infoData["category"] as! String
+                param["description"] = self.infoData["other"] as! String
+                
                 self.showAlert(self.nextButton)
             }
         }
@@ -378,7 +411,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         }else if(buttonIndex == 2){
             self.goImage()
         }else if(buttonIndex == 0){
-            print("取消选择")
+
         }
     }
     
@@ -419,16 +452,15 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     ///选择好照片后choose后执行的方法
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        print("choose--------->>")
-        
-        print(editingInfo)
         
         self.uploadButton.frame = CGRect(x: 140 * Consts.ratio, y: self.staticLabel1.frame.maxY + 50 * Consts.ratio, width: 440 * Consts.ratio, height: 440 * Consts.ratio)
         self.uploadButton.setImage(image, forState: .Normal)
         self.staticLabel2.frame.origin.y = self.uploadButton.frame.maxY + 50 * Consts.ratio
         self.nextButton.frame.origin.y = self.staticLabel2.frame.maxY + 86 * Consts.ratio
         self.imgUploaded = true
-
+        
+        self.imgData = UIImageJPEGRepresentation(image, 1.0)!
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -437,8 +469,6 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController){
-        
-        print("cancel--------->>")
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -452,21 +482,18 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 cell = self.setUpTableViewCell(tableView, indexPath: indexPath, cell: cell)as! UploadGoodsCell1
                 cell.separatorInset = Consts.tableSeperatorEdge
                 cell.layoutMargins = Consts.tableSeperatorEdge
-//                print("cell1 at \(indexPath.row) \n, its frame : \n \(cell.frame) in getCell \n")
                 return cell
             }else if(indexPath.row == 3){
                 var cell = tableView.dequeueReusableCellWithIdentifier("UploadGoodsCell2", forIndexPath: indexPath)as! UploadGoodsCell2
                 cell = self.setUpTableViewCell(tableView, indexPath: indexPath, cell: cell)as! UploadGoodsCell2
                 cell.separatorInset = Consts.tableSeperatorEdge
                 cell.layoutMargins = Consts.tableSeperatorEdge
-//                print("cell2 at \(indexPath.row) \n, its frame : \n \(cell.frame) in getCell \n")
                 return cell
             }else if(indexPath.row == 2){
                 var cell = tableView.dequeueReusableCellWithIdentifier("UploadGoodsCell3", forIndexPath: indexPath)as! UploadGoodsCell3
                 cell = self.setUpTableViewCell(tableView, indexPath: indexPath, cell: cell)as! UploadGoodsCell3
                 cell.separatorInset = Consts.tableSeperatorEdge
                 cell.layoutMargins = Consts.tableSeperatorEdge
-//                print("cell3 at \(indexPath.row) \n, its frame : \n \(cell.frame) in getCell \n")
                 return cell
             }else{
                 return UITableViewCell()
@@ -527,30 +554,6 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 cell.expandableTableView = self.infoTable
                 let frame = cell.frame
                 cell.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: self.textHeight)
-                
-//                cell.icon.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 32 * Consts.ratio, height: 32 * Consts.ratio)
-//                cell.icon.contentMode = .ScaleAspectFit
-//                cell.icon.image = Consts.imageFromColor(Consts.tintGreen, size: cell.icon.frame.size)
-//                cell.addSubview(cell.icon)
-//
-//                cell.input.bounds = CGRect(x: 0, y: 0, width: tableView.frame.width - cell.icon.frame.maxX - 22 * Consts.ratio, height: 262 * Consts.ratio)
-//                cell.input.frame.origin.x = cell.icon.frame.maxX + 22 * Consts.ratio
-//                cell.input.frame.origin.y = cell.icon.frame.origin.y
-//                cell.input.font = Consts.ft13
-//                cell.input.textColor = Consts.lightGray
-//                cell.addSubview(cell.input)
-//                
-//                self.placeholder = Consts.setUpAttributedLabel("详情描述(请在这里输入不少于10个字)", lineSpace: Consts.lineSpace, color: Consts.lightGray, font: Consts.ft13, x: cell.input.frame.origin.x, y: cell.input.frame.origin.y, width: cell.input.frame.width)
-//                self.infoTable.addSubview(self.placeholder)
-//                
-//                cell.textView.placeholder = "详情描述(请在这里输入不少于10个字)"
-//                cell.textView.bounds = CGRect(x: 0, y: 0, width: tableView.frame.width - cell.icon.frame.maxX - 22 * Consts.ratio, height: 262 * Consts.ratio)
-//                cell.textView.frame.origin.x = cell.icon.frame.maxX + 13 * Consts.ratio
-//                cell.textView.frame.origin.y = cell.icon.frame.origin.y - 12 * Consts.ratio
-//                cell.textView.font = Consts.ft13
-//                cell.textView.textColor = Consts.lightGray
-//                cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: cell.frame.width, height: cell.textView.frame.maxY + 24 * Consts.ratio)
-                
                 return cell
             }else if(cell.isKindOfClass(UploadGoodsCell3)){
                 let cell = cell as! UploadGoodsCell3
@@ -588,12 +591,12 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             if(indexPath.row < 3){
                 var cell = UploadGoodsCell1()
                 cell = self.setUpTableViewCell(tableView, indexPath: indexPath, cell: cell)as! UploadGoodsCell1
-//                print("cell1 at \(indexPath.row) \n, its frame : \n \(cell.frame) in getHeight \n")
+
                 return cell.frame.height
             }else if (indexPath.row == 3){
                 var cell = UploadGoodsCell2()
                 cell = self.setUpTableViewCell(tableView, indexPath: indexPath, cell: cell)as! UploadGoodsCell2
-//                print("cell2 at \(indexPath.row) \n, its frame : \n \(cell.frame) in getHeight \n")
+
                 return cell.frame.height
             }else{
                 return 200
@@ -701,15 +704,40 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             scrollView.endEditing(true)
         }
     }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        switch(tag){
+        case "token":
+            qiniuToken = json["token"].string!
+            qiniuKey = json["key"].string!
+            param["image"] = qiniuKey
+            upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
+                //                图片上传完毕后才向后台更新用户数据
+                self.setUpOnlineData("info")
+                }, option: nil)
+            break
+        case "info":
+            let id = json["idle_id"].string!
+            print("个人闲置发布成功!idle_id:\(id)")
+            Tool.showSuccessHUD("提交成功!")
+            self.alert2.close()
+            self.staticLabel1.hidden = true
+            self.successImg.hidden = false
+            self.successLabel1.hidden = false
+            self.successLabel2.hidden = false
+            self.toGoodsButton.hidden = false
+            self.toMainPageButton.hidden = false
+            self.infoTable.hidden = true
+            self.nextButton.hidden = true
+            Consts.setUpNavigationBarWithBackButton(self, title: "发布成功", backTitle: nil)
+            self.currentState = 3
+            break
+        default:
+            break
+            
+        }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+
 
 }

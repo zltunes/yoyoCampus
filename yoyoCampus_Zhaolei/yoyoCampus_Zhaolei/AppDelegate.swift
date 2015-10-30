@@ -38,9 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("PersonInfo.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("zhaolei.plist")
         
         let  plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
+        
         if plistDict == nil{
 //            为.plist创建字典
             var dict:NSMutableDictionary = ["access_token":""]

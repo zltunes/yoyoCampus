@@ -32,6 +32,12 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         self.setUpActions()
     }
 
+    override func viewWillAppear(animated: Bool) {
+//      由于perosninfomationviewcontroller中的修改对本页显示内容有影响，
+//       从A push到 B,再从B pop 到 A,A中viewDidLoad()不会再调用,而viewWillAppear()会重新调用
+        self.setUpInitialLooking()
+        self.setUpActions()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,9 +50,12 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         
-        plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
+        self.plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
+        
+//        发现plistDict仍只有三个元素
+        
 //      用户未登录时
-        if(plistDict["isLogin"] as! Bool == false){
+        if(self.plistDict["isLogin"] as! Bool == false){
             self.photoBtn.setBackgroundImage(UIImage.init(named: "photo_button_apply"), forState: .Normal)
             self.nameBtn.setTitle("登录 / 注册", forState: .Normal)
             self.nameBtn.setTitleColor(Consts.tintGreen, forState: .Normal)
@@ -56,7 +65,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             self.nameBtn.tag = 3
             
         }else{
-            self.photoBtn.setBackgroundImage(UIImage(data: plistDict["photo"] as! NSData), forState: .Normal)
+            self.photoBtn.setBackgroundImage(UIImage.init(data: plistDict["photo"] as! NSData), forState: .Normal)
             self.nameBtn.setTitle(plistDict["name"] as! String, forState: .Normal)
             self.nameBtn.layer.borderWidth = 0
             self.nameBtn.setTitleColor(Consts.black, forState: .Normal)

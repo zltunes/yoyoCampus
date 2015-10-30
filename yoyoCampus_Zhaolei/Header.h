@@ -30,6 +30,7 @@
 #import "UMSocialDataService.h"
 #import "ZBarSDK.h"
 #import "QRCodeGenerator.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "AFPickerView.h"
 

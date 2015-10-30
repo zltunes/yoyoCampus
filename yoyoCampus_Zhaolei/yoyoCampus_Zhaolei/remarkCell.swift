@@ -16,13 +16,15 @@ class remarkCell: UITableViewCell {
     
     @IBOutlet var timeLabel: UILabel!
     
-    @IBOutlet var likeImgView: UIImageView!
+    @IBOutlet var likeBtn: UIButton!
     
     @IBOutlet var likeCountLabel: UILabel!
     
     @IBOutlet var remarkLabel: UILabel!
     
+    internal var like_count = 0
     
+    internal var hasLike = false
     
     override func awakeFromNib() {
         super.awakeFromNib()

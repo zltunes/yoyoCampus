@@ -60,6 +60,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     
     var api = YoYoAPI()
     
+    var lastVC = PersonCenterVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     func setUpInitialLooking(){
         
         self.plisDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
+
         
         let newWidth = self.view.frame.width
         let newHeight = self.view.frame.height
@@ -164,7 +166,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                 if(indexPath.row == 0){
                     let cell = tableView.dequeueReusableCellWithIdentifier("PersonInfomationCell1", forIndexPath: indexPath)as! PersonInfomationCell1
                     cell.img.center.x = tableView.frame.width / 2
-                    cell.img.image = UIImage(data: self.plisDict["photo"] as! NSData)
+                    cell.img.image = UIImage.init(data: plisDict["photo"] as! NSData)
                     cell.separatorInset = Consts.tableSeperatorEdge
                     cell.layoutMargins = Consts.tableSeperatorEdge
                     return cell
@@ -375,8 +377,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     }
     ///选好照片后
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-//        self.uploadBtn.setImage(image,forState: .Normal)
+    
         let indexpath = NSIndexPath(forRow: 0, inSection: 0)
         let cell =  self.personTable.cellForRowAtIndexPath(indexpath) as! PersonInfomationCell1
         cell.img.image = image
@@ -384,9 +385,6 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         
         //        将选好的img转化为nsdata型，图片为jpeg格式
         self.imgData = UIImageJPEGRepresentation(image, 1.0)!
-//        更新照片
-        self.plisDict["photo"] = self.imgData
-        self.plisDict.writeToFile(AppDelegate.filePath, atomically: true)
         
         setUpOnlineData("token")
         
@@ -543,16 +541,12 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         case "token":
             qiniuToken = json["token"].string!
             qiniuKey = json["key"].string!
-//            infoData["image"] = qiniuKey
             self.param = ["image":qiniuKey]
             
-            //            查看上传进度
-            //            let option = QNUploadOption(mime: nil, progressHandler: { (key, percent) -> Void in
-            //                print("key:\(key)\npercent\(percent)")
-            //                }, params: nil, checkCrc:true, cancellationSignal: nil)
-            
             upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
-                //                图片上传完毕后才向后台更新用户数据
+                //                图片上传完毕后才向后台更新用户数据,同时更新plistDict
+                self.plisDict["photo"] = self.imgData
+                self.plisDict.writeToFile(AppDelegate.filePath, atomically: true)
                 self.setUpOnlineData("info")
                 }, option: nil)
             break

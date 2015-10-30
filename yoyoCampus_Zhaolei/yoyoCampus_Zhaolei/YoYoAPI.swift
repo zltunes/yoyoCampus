@@ -50,7 +50,9 @@ class YoYoAPI: NSObject {
                     Alamofire.request(.GET,url,parameters:params,headers:httpHeader)
                         .responseJSON{  response in
                             if response.result.error == nil{
-                                self.delegate?.didReceiveJsonResults(JSON(response.result.value!), tag:tag)
+                            
+                            self.delegate?.didReceiveJsonResults(JSON(response.result.value!), tag:tag)
+
                             }else{
                                 //                        输出失败信息
                                 print("get请求失败!\nurl ——> \(url)\nerror ——> \(response.result.error)")

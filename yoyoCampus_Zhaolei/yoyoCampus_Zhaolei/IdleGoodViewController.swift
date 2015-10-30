@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
+class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,APIDelegate{
 
     @IBOutlet var bigImgView: UIImageView!
     
@@ -74,6 +75,22 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     //为remarkTableView添加单击手势－－点击时关闭键盘
     var tapGesture = UITapGestureRecognizer()
     
+    var api = YoYoAPI()
+    
+    ///闲置查看URL
+    var idleViewURL:String = ""
+    
+    ///评论查看URL
+    var commentsViewURL:String = ""
+    
+    ///创建评论URL
+    var commentCreateURL:String = ""
+    
+    ///要查看的闲置id
+    internal var idle_id = "5631e43390c4904e06286103"
+    
+    ///存放评论
+    var commentsJSON:JSON = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +99,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.setUpNavigaitonBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
         self.setUpGesture()
     }
 
@@ -97,10 +113,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     func setUpNavigaitonBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "闲置", backTitle: "<")
-
-        let shareBtnItem = UIBarButtonItem(image: UIImage(named: "xiangqing_status bar_share"), style: UIBarButtonItemStyle.Plain, target: self, action: "Share")
-        shareBtnItem.tintColor = Consts.white
-        self.navigationItem.rightBarButtonItem = shareBtnItem
     }
     
     func setUpInitialLooking(){
@@ -108,18 +120,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let newWidth = self.view.frame.width
         
         self.view.backgroundColor = Consts.grayView
-        
-        self.goodNameLabel.text = "考研全科班陪你进复试"
-        
-        self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
-        
-        self.presentPriceLabel.text = "¥ 4330"
-        
-        self.previewCountLabel.text = "65人感兴趣"
-        
-        self.praiseCountLabel.text = "15人赞"
-        
-        self.timeLabel.text = "2015-03-09"
         
         //右侧底部——评论框
         self.rightBottomView.frame = self.bottomView.frame
@@ -175,8 +175,10 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         //关闭控制器按钮的点击响应
         self.pageCtl.enabled = false
         self.horizontalScroll.addSubview(self.pageCtl)
-        //保证控制器总在最前
-//        self.view.bringSubviewToFront(self.pageCtl)
+
+        
+         setUpOnlineData("idleView")
+         setUpOnlineData("commentView")
     }
     
     /*********************************************/
@@ -231,6 +233,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     }
 
     func setUpActions(){
+        api.delegate = self
         //为scrollView设置代理
         self.horizontalScroll.delegate = self
         self.pageCtl.addObserver(self, forKeyPath: "currentPage", options: .New, context: nil)
@@ -245,8 +248,21 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.remarkTextView.delegate = self
     }
     
-    func setUpOnlineData(){
+    func setUpOnlineData(tag:String){
+        switch(tag){
+            case "idleView":
+            self.idleViewURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)"
+            api.httpRequest("GET", url: self.idleViewURL, params: nil, tag: "idleView")
+        break
+            
+            case "commentView":
+            self.commentsViewURL = "\(Consts.mainUrl)/v1.0/idle/\(idle_id)/comment/1"
+            api.httpRequest("GET", url: self.commentsViewURL, params: nil, tag: "commentView")
+            break
         
+    default:
+        break
+        }
     }
     
     func goBack(){
@@ -293,28 +309,60 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         case 6://发表
             self.remarkTextView.resignFirstResponder()
             break
+            
         default:
             break
         }
+    }
+//    评论点赞
+    func remark_likeBtnClicked(sender:UIButton){
+        let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
+        cell.hasLike = true
+        cell.like_count++
+        self.remarkTableView.reloadData()
+    }
+//     评论取消点赞
+    func remark_unlikeBtnClicked(sender:UIButton){
+        let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
+        cell.hasLike = false
+        cell.like_count--
+        self.remarkTableView.reloadData()
     }
 
     //remarkTableView代理方法
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("remark", forIndexPath: indexPath) as! remarkCell
         cell.backgroundColor = Consts.grayView
-        cell.nameLabel.text = "宇宙无敌小可爱"
-        cell.timeLabel.text = "2016-01-19"
-        cell.likeCountLabel.text = "15"
+        cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row,"image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
+        cell.nameLabel.text = commentsJSON[indexPath.row,"name"].string!
+        cell.timeLabel.text = commentsJSON[indexPath.row,"date"].string!
+        if(cell.hasLike == false){
+            cell.likeBtn.setBackgroundImage(UIImage.init(named: "unlike"), forState: .Normal)
+            cell.likeBtn.removeTarget(self, action: "remark_unlikeBtnClicked", forControlEvents: .TouchUpInside)
+            cell.likeBtn.addTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
+        }else{
+            cell.likeBtn.setBackgroundImage(UIImage.init(named: "xianzhi_icon_like"), forState: .Normal)
+            cell.likeBtn.removeTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
+            cell.likeBtn.addTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
+        }
+        cell.likeCountLabel.text = "\(cell.like_count)"
+        cell.likeBtn.tag = indexPath.row
         //保证remarkLabel可以多行显示
         cell.remarkLabel.lineBreakMode = .ByWordWrapping
         cell.remarkLabel.numberOfLines = 0
         cell.remarkLabel.sizeToFit()
-        cell.remarkLabel.text = "很不错的地方，班级游大家一起去的。玩得很开心，商家提供班车，很方便!"
+        cell.remarkLabel.text = commentsJSON[indexPath.row,"content"].string!
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return commentsJSON.count
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -386,5 +434,51 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
         popMenu.showMenuAtView(self.view)
     }
+    
+    
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        switch(tag){
+        case "idleView":
+            /*
+{
+"category": "生活用品",
+"user_image": "http://7xnm33.com1.z0.glb.clouddn.com/5632085b90c4904e06286118?imageView2/1/w/30/h/30/q/25",
+"user_id": "56306b3690c4906d47cb366d",
+"name": "phone",
+"view_number": 1,
+"image": "http://7xnm33.com1.z0.glb.clouddn.com/5631e43290c4904e06286102?imageView2/1/w/200/h/200/q/100",
+"like_number": 0,
+"last_update": "2015-10-29",
+"user_name": "zhaole",
+"price": "11",
+"description": "submmited by zhaolei"
+}*/
+            
+        self.bigImgView.sd_setImageWithURL(NSURL(string: json["image"].string!), placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
+        self.goodNameLabel.text = json["name"].string!
+        self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
+        self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
+        self.shopNameBtn.setTitle(json["user_name"].string!, forState: .Normal)
+        let price = json["price"].string!
+        self.presentPriceLabel.text = "¥ \(price)"
+        let viewnumber = json["view_number"].int!
+        self.previewCountLabel.text = "\(viewnumber)"
+        let likenum = json["like_number"].int!
+        self.praiseCountLabel.text = "\(likenum)"
+        self.timeLabel.text = json["last_update"].string!
+        self.detailView.text = json["description"].string!
+        break
+            
+        case "commentView":
+            self.commentsJSON = json["idle_comment"]
+            self.remarkTableView.reloadData()
+            break
+            
+    default:
+        break
+        }
+    }
+    
 
 }

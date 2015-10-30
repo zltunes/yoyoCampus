@@ -83,6 +83,8 @@ class LoginViewController: UIViewController,APIDelegate{
     func setUpInitialLooking(){
         let newWidth = self.view.frame.width
         
+        self.plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
+        
         self.view.backgroundColor = Consts.grayView
         
         //头像
@@ -199,7 +201,7 @@ class LoginViewController: UIViewController,APIDelegate{
         self.registerBtn.addTarget(self, action: "register:", forControlEvents: .TouchUpInside)
         self.wechatBtn.addTarget(self, action: "wechatFastLogin:", forControlEvents: .TouchUpInside)
         self.weiboBtn.addTarget(self, action: "weiboFastLogin:", forControlEvents: .TouchUpInside)
-        api.delegate = self
+        self.api.delegate = self
     }
     
     func setUpOnlineData(tag:String){
@@ -210,8 +212,10 @@ class LoginViewController: UIViewController,APIDelegate{
                 api.httpRequest("POST", url: loginURL, params: params, tag: "login")
             break
             
-            case "inof":
+            case "info":
                 self.infoURL = "\(Consts.mainUrl)/v1.0/user/"
+                self.api = YoYoAPI()
+                self.api.delegate = self
                 api.httpRequest("GET", url: infoURL, params: nil, tag: "info")
             break
             
@@ -228,6 +232,8 @@ class LoginViewController: UIViewController,APIDelegate{
                     plistDict.setValue(self.phoneTextField.text, forKey: "tel")
                     plistDict.setValue(true, forKey: "isLogin")
                     plistDict.writeToFile(AppDelegate.filePath, atomically: false)
+                    AppDelegate.isLogin = true
+                    AppDelegate.access_token = token
 //                    检测个人信息是否完整
                     setUpOnlineData("info")
                     }else if (json["code"] == 404){
@@ -238,20 +244,23 @@ class LoginViewController: UIViewController,APIDelegate{
             break
             
             case "info":
-                if(json["name"].string == ""){
+                if(json["name"].string == nil){
 //                    未完善个人信息
                     let personalInfoVC = PersonalInfoViewController()
                     PersonalInfoViewController.backTitle = nil
                     self.navigationController?.pushViewController(personalInfoVC, animated: true)
                 }else{
-                    plistDict["name"] = json["name"].string
-                    plistDict["photo"] = NSData(contentsOfURL: NSURL(fileURLWithPath: json["image"].string!))
-                    plistDict["enroll_year"] = json["enroll_year"].string
-                    plistDict["location"] = json["location"].string
-                    plistDict["weibo_bind"] = json["weibo_bind"].int
-                    plistDict["weixin_bind"] = json["weixin_bind"].int
-                    goBack()
+                    plistDict["name"] = json["name"].string!
+                    plistDict["photo"] = NSData(contentsOfURL: NSURL(string: json["image"].string!)!)
+                    plistDict["enroll_year"] = json["enroll_year"].string!
+                    plistDict["location"] = json["location"].string!
+                    plistDict["weibo_bind"] = json["weibo_bind"].int!
+                    plistDict["weixin_bind"] = json["weixin_bind"].int!
+                    plistDict.writeToFile(AppDelegate.filePath, atomically: false)
+                    let vc = PersonCenterVC()
+                    self.navigationController?.pushViewController(vc, animated: true)
             }
+            break
             
         default:
             break
@@ -301,8 +310,6 @@ class LoginViewController: UIViewController,APIDelegate{
         }
         
         
-//        let bindVC = ConnectPhoneViewController()
-//        self.ler(bindVC, animated: true)
     }
     
     func weiboFastLogin(sender:UIButton){

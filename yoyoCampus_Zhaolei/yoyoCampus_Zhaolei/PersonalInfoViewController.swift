@@ -386,14 +386,10 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             qiniuToken = json["token"].string!
             qiniuKey = json["key"].string!
             infoData["image"] = qiniuKey
-            
-//            查看上传进度
-//            let option = QNUploadOption(mime: nil, progressHandler: { (key, percent) -> Void in
-//                print("key:\(key)\npercent\(percent)")
-//                }, params: nil, checkCrc:true, cancellationSignal: nil)
-
+    
             upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
 //                图片上传完毕后才向后台更新用户数据
+                    print(self.qiniuKey)
                     self.setUpOnlineData("info")
                 }, option: nil)
             break
@@ -401,7 +397,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         case "info":
 //            用户信息更新完毕后，记录到本地
             let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)
-            plistDict?.setValue(self.imgData, forKey: "photo")
+            plistDict?.setValue(UIImage(data: self.imgData), forKey: "photo")
             plistDict?.setValue(self.infoData["name"], forKey: "name")
             plistDict?.setValue(self.infoData["enroll_year"], forKey: "enroll_year")
             plistDict?.setValue(self.infoData["location"], forKey: "location")
@@ -417,14 +413,5 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             break
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

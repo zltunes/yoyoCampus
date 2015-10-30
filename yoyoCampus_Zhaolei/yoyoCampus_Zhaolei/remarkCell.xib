@@ -13,9 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="348" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register_icon_just a sign" translatesAutoresizingMaskIntoConstraints="NO" id="zbY-18-HbH">
-                        <rect key="frame" x="9" y="8" width="39" height="39"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGV-KL-ff4">
                         <rect key="frame" x="66" y="8" width="145" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -28,9 +25,6 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xianzhi_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="68T-iR-Dtu">
-                        <rect key="frame" x="262" y="13" width="16" height="14"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HH2-Tr-sYW">
                         <rect key="frame" x="286" y="9" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -43,11 +37,19 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whn-2N-gMm">
+                        <rect key="frame" x="259" y="11" width="16" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register_icon_just a sign" translatesAutoresizingMaskIntoConstraints="NO" id="zbY-18-HbH">
+                        <rect key="frame" x="8" y="8" width="39" height="39"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="likeBtn" destination="whn-2N-gMm" id="6FK-bX-Cci"/>
                 <outlet property="likeCountLabel" destination="HH2-Tr-sYW" id="vUC-wC-teN"/>
-                <outlet property="likeImgView" destination="68T-iR-Dtu" id="2ZC-Ew-s6c"/>
                 <outlet property="nameLabel" destination="PGV-KL-ff4" id="UKf-FE-P7Y"/>
                 <outlet property="photo" destination="zbY-18-HbH" id="q4e-vK-uP4"/>
                 <outlet property="remarkLabel" destination="BtN-xL-EH9" id="AY7-q0-250"/>
@@ -58,6 +60,5 @@
     </objects>
     <resources>
         <image name="register_icon_just a sign" width="120" height="120"/>
-        <image name="xianzhi_icon_like" width="9" height="10"/>
     </resources>
 </document>
