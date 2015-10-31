@@ -113,6 +113,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     ///取消收藏
     var collectCancelURL:String = ""
     
+    var is_collected:Int = 0
+    
     ///要查看的闲置id
     internal var idle_id = "5631e43390c4904e06286103"
     
@@ -353,15 +355,9 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             self.horizontalScroll.contentOffset = CGPoint(x:self.horizontalScroll.frame.width, y: 0)
             break
         case 4://收藏
-            self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
             setUpOnlineData("collect")
-            self.collectBtn_img.tag = 11
-            self.collectBtn_text.tag = 11
         case 11://取消收藏
-            self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
             setUpOnlineData("collectCancel")
-            self.collectBtn_text.tag = 4
-            self.collectBtn_img.tag = 4
             break
         case 5://咨询
             self.showMenu()
@@ -383,7 +379,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
         self.commentLikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
         setUpOnlineData("commentLike")
-//        self.remarkTableView.reloadData()
     }
 //     评论取消点赞
     func remark_unlikeBtnClicked(sender:UIButton){
@@ -391,7 +386,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
         self.commentUnlikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
         setUpOnlineData("commentUnlike")
-//        self.remarkTableView.reloadData()
     }
 
     //remarkTableView代理方法
@@ -541,6 +535,16 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
                 self.praiseBtn.setBackgroundImage(UIImage.init(named: "xiangqing_btn_dianzan"), forState: .Normal)
                 self.praiseBtn.tag = 0//未点赞
             }
+            self.is_collected = json["is_collected"].int!
+            if(self.is_collected == 1){
+                self.collectBtn_img.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+                self.collectBtn_img.tag = 11
+                self.collectBtn_text.tag = 11
+            }else{
+                self.collectBtn_img.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+                self.collectBtn_img.tag = 4
+                self.collectBtn_text.tag = 4
+            }
             break
             
         case "commentView":
@@ -569,9 +573,15 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
             
         case "collect":
+            self.collectBtn_img.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+            self.collectBtn_img.tag = 11
+            self.collectBtn_text.tag = 11
             break
             
         case "collectCancel":
+            self.collectBtn_img.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+            self.collectBtn_img.tag = 4
+            self.collectBtn_text.tag = 4
             break
 
         default:

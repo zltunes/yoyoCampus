@@ -60,6 +60,9 @@ class LoginViewController: UIViewController,APIDelegate{
     
     var shangpinxiangqingBtn = UIButton()
     
+//    微信登录url
+    var wechatLoginURL:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -219,6 +222,17 @@ class LoginViewController: UIViewController,APIDelegate{
                 api.httpRequest("GET", url: infoURL, params: nil, tag: "info")
             break
             
+            case "wechatLogin":
+                self.wechatLoginURL = "\(Consts.mainUrl)/v1.0/auth/weixin/login/"
+                let param = ["open_id":AppDelegate.wechat_openid,"access_token":AppDelegate.wechat_accessToken]
+                api.httpRequest("POST", url: self.wechatLoginURL, params: param, tag: "wechatLogin")
+            break
+            
+            case "wechatInfo":
+                self.infoURL = "\(Consts.mainUrl)/v1.0/user/"
+                self.api = YoYoAPI()
+                self.api.delegate = self
+                api.httpRequest("GET", url: infoURL, params: nil, tag: "wechatInfo")
             default:
             break
         }
@@ -262,6 +276,44 @@ class LoginViewController: UIViewController,APIDelegate{
             }
             break
             
+            case "wechatLogin":
+                if let token = json["access_token"].string{
+                    plistDict.setValue(token, forKey: "access_token")
+                    plistDict.writeToFile(AppDelegate.filePath, atomically: false)
+                    AppDelegate.isLogin = true
+                    AppDelegate.access_token = token
+                    //                    检测个人信息是否完整
+                    setUpOnlineData("wechatInfo")
+                }
+            break
+            
+            case "wechatInfo":
+                if(json["weixin_bind"].int! == 0){
+//                    还未绑定手机，需选择绑定
+                    let vc = bindVC()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else{
+//                    已绑定手机，检查个人信息是否完善
+                    if(json["name"].string == nil){
+                        //                    未完善个人信息
+                        let personalInfoVC = PersonalInfoViewController()
+                        PersonalInfoViewController.backTitle = nil
+                        self.navigationController?.pushViewController(personalInfoVC, animated: true)
+                    }else{
+                        plistDict["name"] = json["name"].string!
+                        plistDict["photo"] = NSData(contentsOfURL: NSURL(string: json["image"].string!)!)
+                        plistDict["enroll_year"] = json["enroll_year"].string!
+                        plistDict["location"] = json["location"].string!
+                        plistDict["weibo_bind"] = json["weibo_bind"].int!
+                        plistDict["weixin_bind"] = json["weixin_bind"].int!
+                        plistDict.writeToFile(AppDelegate.filePath, atomically: false)
+                        let vc = PersonCenterVC()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+
+            }
+            break
+            
         default:
             break
         }
@@ -300,13 +352,15 @@ class LoginViewController: UIViewController,APIDelegate{
             (UMSocialResponseEntity response) in
             if (response.responseCode == UMSResponseCodeSuccess){
                 let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToWechatSession]
-                print("微信登录->userName:\(snsAccount?.userName)\nuid->\(snsAccount?.usid)\ntoken->\(snsAccount?.accessToken)\nurl->\(snsAccount?.iconURL)")
+                print("微信登录->userName:\(snsAccount!.userName!)\nuid->\(snsAccount!.usid!)\ntoken->\(snsAccount!.accessToken!)\nurl->\(snsAccount!.iconURL!)")
+                AppDelegate.wechat_openid = snsAccount!.usid!
+                AppDelegate.wechat_accessToken = snsAccount!.accessToken!
             }
         }
         
 //        授权完成后调用获取用户信息
         UMSocialDataService.defaultDataService().requestSnsInformation(UMShareToWechatSession) { (response) -> Void in
-            print("snsinfomation->\(response.data)")
+            print("SNS infomation->\(response.data)")
         }
         
         

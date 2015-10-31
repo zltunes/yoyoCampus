@@ -110,11 +110,13 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         self.setUpNavigaitonBar()
         self.setUpActions()
         self.setUpInitialLooking()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -135,8 +137,6 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func setUpInitialLooking(){
-        
-        setUpOnlineData("goodsView")
         
         let newWidth = self.view.frame.width
         
@@ -190,7 +190,8 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.pageCtl.currentPageIndicatorTintColor = UIColor.clearColor()
         self.pageCtl.enabled = false
         
-        
+        setUpOnlineData("goodsView")
+        setUpOnlineData("commentsView")
     }
     
     func setUpActions(){
@@ -215,6 +216,29 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             case "goodsView":
                 self.goodsViewURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)"
                 api.httpRequest("GET", url: self.goodsViewURL, params: nil, tag: "goodsView")
+            break
+            
+            case "commentsView":
+                self.commentsViewURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)/comment/1"
+                api.httpRequest("GET", url: self.commentsViewURL, params: nil, tag: "commentsView")
+            break
+            
+            case "commentLike":
+                api.httpRequest("POST", url: self.commentLikeURL, params: nil, tag: "commentLike")
+            break
+            
+            case "commentUnlike":
+                api.httpRequest("DELETE", url: self.commentUnlikeURL, params: nil, tag: "commentUnlike")
+            break
+            
+            case "collect":
+                self.collectURL = "\(Consts.mainUrl)/v1.0/goods/collection/\(self.goods_ID)"
+                api.httpRequest("POST", url: self.collectURL, params: nil, tag: "collect")
+            break
+            
+            case "collectCancel":
+                self.collectCancelURL = "\(Consts.mainUrl)/v1.0/goods/collection/\(self.goods_ID)"
+                api.httpRequest("DELETE", url: self.collectCancelURL, params: nil, tag: "collectCancel")
             break
             
         default:
@@ -275,31 +299,66 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         if(tableView == self.detailView){
             let cell = self.detailView.dequeueReusableCellWithIdentifier("shopDetailCell") as!
                 shopDetailCell
-            cell.tagLabel.text = "报名须知"
+            cell.tagLabel.text = detailInfoJSON[indexPath.row,"title"].string!
+            cell.tagLabel.font = UIFont.boldSystemFontOfSize(15)
+            cell.tagLabel.textColor = Consts.white
+            cell.tagLabel.layer.masksToBounds = true
             //detailLabel允许多行显示
             cell.detailLabel.lineBreakMode = .ByCharWrapping
             cell.detailLabel.numberOfLines = 0
             cell.detailLabel.sizeToFit()
-            cell.detailLabel.text = "报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知报名须知。"
+            cell.detailLabel.text = detailInfoJSON[indexPath.row,"content"].string!
             return cell
         }else{
             let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("shopRemarkCell") as! shopRemarkCell
-            cell.nameLabel.text = "宇宙无敌小可爱"
-            cell.timeLabel.text = "2016-01-19"
+            cell.commentID = commentsJSON[indexPath.row,"id"].string!
+            cell.nameLabel.text = commentsJSON[indexPath.row,"name"].string!
+            cell.timeLabel.text = commentsJSON[indexPath.row,"date"].string!
+            cell.starsCount = commentsJSON[indexPath.row,"score"].int!
+            cell.setStars(cell.starsCount)
             cell.remarkLabel.lineBreakMode = .ByCharWrapping
             cell.remarkLabel.numberOfLines = 0
             cell.remarkLabel.sizeToFit()
-            cell.remarkLabel.text = "很不错的地方很不错的地方很不错的地方很不错的地方很不错的地方很不错的地方很不错的地方。"
-            cell.likeCountLabel.text = "(15)"
+            cell.remarkLabel.text = commentsJSON[indexPath.row,"content"].string!
+            cell.likeCount = commentsJSON[indexPath.row,"useful_number"].int!
+            cell.likeCountLabel.text = "(\(cell.likeCount))"
+            cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row,"image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
+            cell.hasLike = commentsJSON[indexPath.row,"useful_clicked"].bool!
+            if(cell.hasLike){
+                cell.likeBtn.setBackgroundImage(UIImage.init(named: "xianzhi_icon_like"), forState: .Normal)
+                cell.likeBtn.removeTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
+                cell.likeBtn.addTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
+                
+            }else{
+                cell.likeBtn.setBackgroundImage(UIImage.init(named: "unlike"), forState: .Normal)
+                cell.likeBtn.removeTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
+                cell.likeBtn.addTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
+            }
+            cell.likeBtn.tag = indexPath.row
             return cell
         }
     }
     
+    //    评论点赞
+    func remark_likeBtnClicked(sender:UIButton){
+        let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! shopRemarkCell
+        self.commentLikeURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)/comment/\(cell.commentID)/useful/"
+        setUpOnlineData("commentLike")
+    }
+    //     评论取消点赞
+    func remark_unlikeBtnClicked(sender:UIButton){
+        let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! shopRemarkCell
+        self.commentUnlikeURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)/comment/\(cell.commentID)/useful/"
+        setUpOnlineData("commentUnlike")
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView == self.detailView){
-            return 2
+            return detailInfoJSON.count
         }else{
-            return 3
+            return commentsJSON.count
         }
         
     }
@@ -330,9 +389,10 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case 3://店铺
             break
         case 4://收藏
-            self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
-            self.collectBtn.tag = 10//变为“已收藏”状态
-            self.collectBtn_text.tag = 10
+//            self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+//            self.collectBtn.tag = 10//变为“已收藏”状态
+//            self.collectBtn_text.tag = 10
+            setUpOnlineData("collect")
             break
         case 5://咨询
             self.showMenu()
@@ -342,9 +402,10 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case 10://取消收藏
-            self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
-            self.collectBtn.tag = 4//变为“未收藏”状态
-            self.collectBtn_text.tag = 4
+//            self.collectBtn.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+//            self.collectBtn.tag = 4//变为“未收藏”状态
+//            self.collectBtn_text.tag = 4
+            setUpOnlineData("collectCancel")
             break
         default:
             break
@@ -398,8 +459,18 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             case "goodsView":
                 self.image = json["image"].URL!
                 self.shop_image = json["shop_image"].URL!
+                self.is_collected = json["is_collected"].int!
+                if(self.is_collected == 1){
+                    self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+                    self.collectBtn.tag = 10
+                    self.collectBtn_text.tag = 10
+                }else{
+                    self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+                    self.collectBtn.tag = 4
+                    self.collectBtn_text.tag = 4
+                }
                 self.photoImgView.sd_setImageWithURL(self.image, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
-                self.roundBtn.sd_setImageWithURL(self.shop_image, forState: .Normal)
+                self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: self.image)!), forState: .Normal)
                 
                 self.goodNameLabel.text = json["name"].string!
                 self.shopNameBtn.setTitle(json["shop_name"].string!, forState: .Normal)
@@ -411,13 +482,41 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 self.price = json["price"].int!
                 self.presentPriceLabel.text = "¥ \(self.price)"
                 
-                self.view_number = json["view_number"].injit!
+                self.view_number = json["view_number"].int!
                 self.interestCountLabel.text = "\(self.view_number) 人感兴趣"
                 self.sales_numeber = json["sales_number"].int!
                 self.soldCountLabel.text = "\(self.sales_numeber) 人已购买"
                 
                 self.timeLabel.text = json["last_update"].string!
                 
+                self.detailInfoJSON = json["description"]
+                self.detailView.reloadData()
+                
+            break
+            
+            case "commentsView":
+                self.commentsJSON = json["goods_comment"]
+                self.remarkTableView.reloadData()
+            break
+            
+            case "commentLike":
+                setUpOnlineData("commentsView")
+            break
+            
+            case "commentUnlike":
+                setUpOnlineData("commentsView")
+            break
+            
+            case "collect":
+                self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+                self.collectBtn.tag = 10
+                self.collectBtn_text.tag = 10
+            break
+            
+            case "collectCancel":
+                self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+                self.collectBtn.tag = 4
+                self.collectBtn_text.tag = 4
             break
             
         default:

@@ -46,9 +46,16 @@ class RegisterViewController: UIViewController,APIDelegate{
     
     var registerURL:String = ""
     
+    var registerURL_wechat:String = ""
+    
     var verifyCodeULR:String = ""
     
     var params:[String:AnyObject]? = ["":""]
+    
+//    注册有两种来源：普通注册／微信绑定注册,故设一标志位
+    //0: 普通注册
+    //1: 微信绑定注册
+    internal var registerType:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,6 +183,12 @@ class RegisterViewController: UIViewController,APIDelegate{
                 api.httpRequest("POST", url: verifyCodeULR, params: params, tag: "verify")
             break
             
+            case "wechat_register":
+                self.registerURL_wechat = "\(Consts.mainUrl)/v1.0/auth/weixin/register/"
+                self.params = ["phone_num":self.phoneTextField.text!,"code":self.verifyCodeTextField.text!,"password":self.pwdTextField.text!,"open_id":AppDelegate.wechat_openid,"access_token":AppDelegate.wechat_accessToken]
+                api.httpRequest("POST", url: self.registerURL_wechat, params: self.params, tag: "wechat_register")
+            break
+            
         default:
             break
         }
@@ -211,6 +224,11 @@ class RegisterViewController: UIViewController,APIDelegate{
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
+        
+        switch(tag)
+        
+        
+        
         if(tag == "register"){
         print("注册反馈:\(json)")
         //返回参数:user_id,access_token
@@ -221,6 +239,11 @@ class RegisterViewController: UIViewController,APIDelegate{
                     plistDict.setObject(self.phoneTextField.text!, forKey:"tel")
                     plistDict.setObject(true, forKey: "isLogin")
                     plistDict.writeToFile(AppDelegate.filePath, atomically: true)
+                
+                    AppDelegate.isLogin = true
+                    AppDelegate.access_token = token
+                    AppDelegate.tel = self.phoneTextField.text!
+                
                     Tool.showSuccessHUD("注册成功!")
                     let vc = PersonalInfoViewController()
                     PersonalInfoViewController.backTitle = nil
@@ -231,7 +254,12 @@ class RegisterViewController: UIViewController,APIDelegate{
         }else if json["code"].int == 404{//验证码错误
             Tool.showErrorHUD("验证码不对哦!")
         }
-    }
+        }
+        
+        
+        else if(tag == "wechat_register"){
+            
+        }
     }
     
     ///实现点击UIView内部关闭键盘

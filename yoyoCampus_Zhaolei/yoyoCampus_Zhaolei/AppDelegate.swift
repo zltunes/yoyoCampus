@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     
-    
     ///用户登录状态
     static var isLogin:Bool = false
     ///用户手机号
@@ -24,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     static var access_token:String = ""
     ///沙盒，存储isLogin\tel\access_token
     static var filePath:String = ""
+    
+    static var wechat_openid:String = ""
+    
+    static var wechat_accessToken:String = ""
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2DB5DF49D013FE6DE339BC07 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99CCF8C203C632F43C58926 /* Pods.framework */; };
 		35089E251BD3ED4500FCB857 /* CheckNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 35089E241BD3ED4500FCB857 /* CheckNetwork.m */; settings = {ASSET_TAGS = (); }; };
+		35229B701BE4FA8D0087531B /* bindVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35229B6E1BE4FA8D0087531B /* bindVC.swift */; settings = {ASSET_TAGS = (); }; };
+		35229B711BE4FA8D0087531B /* bindVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35229B6F1BE4FA8D0087531B /* bindVC.xib */; settings = {ASSET_TAGS = (); }; };
 		352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */; settings = {ASSET_TAGS = (); }; };
 		352D69BF1BC68EBA009A9A91 /* shopDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */; settings = {ASSET_TAGS = (); }; };
 		353DF3361BDBACA200272C00 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353DF3341BDBACA200272C00 /* TestViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -161,6 +163,8 @@
 /* Begin PBXFileReference section */
 		35089E231BD3ED4500FCB857 /* CheckNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckNetwork.h; sourceTree = "<group>"; };
 		35089E241BD3ED4500FCB857 /* CheckNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckNetwork.m; sourceTree = "<group>"; };
+		35229B6E1BE4FA8D0087531B /* bindVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindVC.swift; sourceTree = "<group>"; };
+		35229B6F1BE4FA8D0087531B /* bindVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = bindVC.xib; sourceTree = "<group>"; };
 		352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopDetailCell.swift; sourceTree = "<group>"; };
 		352D69BD1BC68EBA009A9A91 /* shopDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = shopDetailCell.xib; sourceTree = "<group>"; };
 		353DF3341BDBACA200272C00 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -709,6 +713,8 @@
 				3543B0FB1BD7B17D00B2BA60 /* ConnectPhoneViewController.swift */,
 				3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */,
 				3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */,
+				35229B6E1BE4FA8D0087531B /* bindVC.swift */,
+				35229B6F1BE4FA8D0087531B /* bindVC.xib */,
 			);
 			name = "登录注册";
 			sourceTree = "<group>";
@@ -1132,6 +1138,7 @@
 				353DFCC81BC54D3A0039293B /* shopRemarkCell.xib in Resources */,
 				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
 				3594CC291BDD085C00037B33 /* UMShareEditViewControlleriPad.xib in Resources */,
+				35229B711BE4FA8D0087531B /* bindVC.xib in Resources */,
 				3594CC281BDD085C00037B33 /* UMShareEditViewController.xib in Resources */,
 				3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */,
 				35C772D81BDF174A0054D08E /* ConfirmOrderVC.xib in Resources */,
@@ -1263,6 +1270,7 @@
 				35C772C01BDF0A3F0054D08E /* QRCodeGenerator.m in Sources */,
 				359727211BB3EECC00B2E4C9 /* cellWithTextField.swift in Sources */,
 				352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */,
+				35229B701BE4FA8D0087531B /* bindVC.swift in Sources */,
 				35E7C1381BD9127E00DB6141 /* OrdersVC.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
 				35E7C1441BD9155600DB6141 /* AboutVC.swift in Sources */,
