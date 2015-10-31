@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate{
+class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,APIDelegate{
 
     @IBOutlet var photoImgView: UIImageView!
     
@@ -60,21 +61,68 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     ///评论视图
     var remarkTableView = UITableView()
     
-    //页控制器
-//    var pageCtl = UIPageControl()
+    var app = UIApplication.sharedApplication()
     
+    var api = YoYoAPI()
+    
+    internal var goods_ID = "5634643890c49054c483f8eb"
+    
+    var shop_ID = ""
+    
+//  商品详情界面需要显示的数据
+    
+    var view_number = 0
+    
+    var sales_numeber = 0
+    
+    var original_price = 0
+    
+    var price = 0
+    
+    var detailInfoJSON:JSON = []
+    
+    var commentsJSON:JSON = []
+    
+    var time = ""
+    
+    var shop_image = NSURL()
+    
+    var image = NSURL()
+    
+    var phone_num = ""//商家电话
+    
+    var is_collected = 0
+    
+//  需要访问的URL
+    var goodsViewURL:String = ""//商品查看
+    
+    var commentsViewURL:String = ""//评论查看
+    
+    var commentsCreateURL:String = ""//添加评论
+    
+    var commentLikeURL:String = ""//商品评论赞
+    
+    var commentUnlikeURL:String = ""//评论取赞
+    
+    var collectURL:String = ""//收藏
+    
+    var collectCancelURL:String = ""//取消收藏
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpNavigaitonBar()
-        self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
+        self.setUpInitialLooking()
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(animated: Bool) {
+        if(self.pageCtl.tag == 1){
         self.pageCtl.removeObserver(self, forKeyPath: "currentPage", context: nil)
+        self.pageCtl.tag = 0
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,35 +132,20 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func setUpNavigaitonBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "详情", backTitle: "<")
-        
-        let shareBtnItem = UIBarButtonItem(image: UIImage(named: "xiangqing_status bar_share"), style: UIBarButtonItemStyle.Plain, target: self, action: "Share")
-        shareBtnItem.tintColor = Consts.white
-        self.navigationItem.rightBarButtonItem = shareBtnItem
     }
     
     func setUpInitialLooking(){
+        
+        setUpOnlineData("goodsView")
+        
         let newWidth = self.view.frame.width
         
         self.view.backgroundColor = Consts.grayView
         
         self.toBuyBtn.titleLabel?.font = UIFont.boldSystemFontOfSize(20.0)
         
-        self.goodNameLabel.text = "恒通驾校报名"
-        
         self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
-        
-        self.shopNameBtn.titleLabel?.text = "恒通"
-        
-        let attributedText = NSAttributedString(string: "¥ 5330", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
-        self.originPriceLabel.attributedText = attributedText
-        
-        self.presentPriceLabel.text = "¥ 4330"
-        
-        self.interestCountLabel.text = "10 人感兴趣"
-        
-        self.soldCountLabel.text = "15 人已购买"
-        
-        self.timeLabel.text = "2015-09-02"
+    
         
         //设置指示器 scrollIndicator && inScrollIndicator
         /*
@@ -156,9 +189,12 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.pageCtl.pageIndicatorTintColor = UIColor.clearColor()
         self.pageCtl.currentPageIndicatorTintColor = UIColor.clearColor()
         self.pageCtl.enabled = false
+        
+        
     }
     
     func setUpActions(){
+        self.api.delegate = self
         self.scrollIndicator.delegate = self
         self.horizontalScroll.delegate = self
         
@@ -171,10 +207,20 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         //注意离开本页面的时候要removeObserver,此处使用KVO编程，为pageCtl(数据模型－－被监听对象)添加监听器（self--视图组件）,监听器要重写observerKeyForKeyPath方法
         self.pageCtl.addObserver(self, forKeyPath: "currentPage", options: .New, context: nil)
+        self.pageCtl.tag = 1
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        switch(tag){
+            case "goodsView":
+                self.goodsViewURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)"
+                api.httpRequest("GET", url: self.goodsViewURL, params: nil, tag: "goodsView")
+            break
+            
+        default:
+            break
+            
+        }
     }
     
     //滑动后按钮颜色变化
@@ -317,9 +363,9 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func showMenu(){
         //注意空数组的定义.MenuItem为元素类型
         var items = [MenuItem]()
-        var menuItem = MenuItem(title: "", iconName: "xiangqing_btn_message")//短信
+        var menuItem = MenuItem(title: "sms", iconName: "xiangqing_btn_message")//短信
         items.append(menuItem)
-        menuItem = MenuItem(title: "", iconName: "xiangqing_btn_call")//电话
+        menuItem = MenuItem(title: "tel", iconName: "xiangqing_btn_call")//电话
         items.append(menuItem)
         
         popMenu = PopMenu(frame: self.view.bounds, items: items)
@@ -331,9 +377,52 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         popMenu.didSelectedItemCompletion = { (selectedItem) in
             //点击事件
+            if(selectedItem.title == "sms"){
+                self.app.openURL(NSURL(string: "sms:\(self.phone_num)")!)
+            }else{
+                self.self.webViewCallPhone()
+            }
         };
         
         popMenu.showMenuAtView(self.view)
+    }
+    
+    func webViewCallPhone(){
+        let webview = UIWebView()
+        webview.loadRequest(NSURLRequest(URL: NSURL(string: "tel:\(self.phone_num)")!))
+        self.view.addSubview(webview)
+    }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        switch(tag){
+            case "goodsView":
+                self.image = json["image"].URL!
+                self.shop_image = json["shop_image"].URL!
+                self.photoImgView.sd_setImageWithURL(self.image, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
+                self.roundBtn.sd_setImageWithURL(self.shop_image, forState: .Normal)
+                
+                self.goodNameLabel.text = json["name"].string!
+                self.shopNameBtn.setTitle(json["shop_name"].string!, forState: .Normal)
+                self.original_price = json["original_price"].int!
+                
+                let attributedText = NSAttributedString(string: "¥ \(self.original_price)", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
+                self.originPriceLabel.attributedText = attributedText
+            
+                self.price = json["price"].int!
+                self.presentPriceLabel.text = "¥ \(self.price)"
+                
+                self.view_number = json["view_number"].injit!
+                self.interestCountLabel.text = "\(self.view_number) 人感兴趣"
+                self.sales_numeber = json["sales_number"].int!
+                self.soldCountLabel.text = "\(self.sales_numeber) 人已购买"
+                
+                self.timeLabel.text = json["last_update"].string!
+                
+            break
+            
+        default:
+                break
+        }
     }
 
 }

@@ -26,6 +26,8 @@ class remarkCell: UITableViewCell {
     
     internal var hasLike = false
     
+    internal var commentID = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

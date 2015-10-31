@@ -101,6 +101,18 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     ///闲置取赞
     var idleUnlikeURL:String = ""
     
+    ///评论点赞
+    var commentLikeURL:String = ""
+    
+    ///评论取赞
+    var commentUnlikeURL:String = ""
+    
+    ///收藏
+    var collectURL:String = ""
+    
+    ///取消收藏
+    var collectCancelURL:String = ""
+    
     ///要查看的闲置id
     internal var idle_id = "5631e43390c4904e06286103"
     
@@ -288,6 +300,24 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             case "idleUnlike":
             self.idleUnlikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/like/"
             api.httpRequest("DELETE", url: self.idleUnlikeURL, params: nil, tag: "idleUnlike")
+        break
+            
+            case "commentLike":
+            api.httpRequest("POST", url: self.commentLikeURL, params: nil, tag: "commentLike")
+        break
+            
+            case "commentUnlike":
+            api.httpRequest("DELETE", url: self.commentUnlikeURL, params: nil, tag: "commentUnlike")
+        break
+            
+            case "collect":
+            self.collectURL = "\(Consts.mainUrl)/v1.0/idle/collection/\(self.idle_id)"
+            api.httpRequest("POST", url: self.collectURL, params: nil, tag: "collect")
+        break
+            
+            case "collectCancel":
+            self.collectCancelURL = "\(Consts.mainUrl)/v1.0/idle/collection/\(self.idle_id)"
+            api.httpRequest("DELETE", url: self.collectCancelURL, params: nil, tag: "collectCancel")
     default:
         break
         }
@@ -307,12 +337,10 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     @IBAction func BtnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://点赞
-            self.praiseBtn.setImage(UIImage(named: "xiangqing_btn_dianzan_p"), forState: .Normal)
             setUpOnlineData("idleLike")
             self.praiseBtn.tag = 10
             break
         case 10://取消点赞
-            self.praiseBtn.setImage(UIImage(named: "xiangqing_btn_dianzan"), forState: .Normal)
             setUpOnlineData("idleUnlike")
             self.praiseBtn.tag = 0
             break
@@ -326,10 +354,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
         case 4://收藏
             self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+            setUpOnlineData("collect")
             self.collectBtn_img.tag = 11
             self.collectBtn_text.tag = 11
         case 11://取消收藏
             self.collectBtn_img.setImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+            setUpOnlineData("collectCancel")
             self.collectBtn_text.tag = 4
             self.collectBtn_img.tag = 4
             break
@@ -351,17 +381,17 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func remark_likeBtnClicked(sender:UIButton){
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
-        cell.hasLike = true
-        cell.like_count++
-        self.remarkTableView.reloadData()
+        self.commentLikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
+        setUpOnlineData("commentLike")
+//        self.remarkTableView.reloadData()
     }
 //     评论取消点赞
     func remark_unlikeBtnClicked(sender:UIButton){
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
-        cell.hasLike = false
-        cell.like_count--
-        self.remarkTableView.reloadData()
+        self.commentUnlikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
+        setUpOnlineData("commentUnlike")
+//        self.remarkTableView.reloadData()
     }
 
     //remarkTableView代理方法
@@ -372,6 +402,9 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         cell.layer.cornerRadius = cell.photo.frame.width/2
         cell.nameLabel.text = commentsJSON[indexPath.row,"name"].string!
         cell.timeLabel.text = commentsJSON[indexPath.row,"date"].string!
+        cell.commentID = commentsJSON[indexPath.row,"id"].string!
+        cell.hasLike = commentsJSON[indexPath.row,"useful_clicked"].bool!
+        cell.like_count = commentsJSON[indexPath.row,"useful_number"].int!
         if(cell.hasLike == false){
             cell.likeBtn.setBackgroundImage(UIImage.init(named: "unlike"), forState: .Normal)
             cell.likeBtn.removeTarget(self, action: "remark_unlikeBtnClicked", forControlEvents: .TouchUpInside)
@@ -501,6 +534,13 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             self.praiseCountLabel.text = "\(likenum) 人赞"
             self.timeLabel.text = json["last_update"].string!
             self.detailView.text = json["description"].string!
+            if(json["like_clicked"].bool!){
+                self.praiseBtn.setBackgroundImage(UIImage.init(named: "xiangqing_btn_dianzan_p"), forState: .Normal)
+                self.praiseBtn.tag = 10//已点赞
+            }else{
+                self.praiseBtn.setBackgroundImage(UIImage.init(named: "xiangqing_btn_dianzan"), forState: .Normal)
+                self.praiseBtn.tag = 0//未点赞
+            }
             break
             
         case "commentView":
@@ -518,6 +558,20 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         
         case "idleUnlike":
             self.setUpOnlineData("idleView")
+            break
+            
+        case "commentLike":
+            setUpOnlineData("commentView")
+            break
+            
+        case "commentUnlike":
+            setUpOnlineData("commentView")
+            break
+            
+        case "collect":
+            break
+            
+        case "collectCancel":
             break
 
         default:

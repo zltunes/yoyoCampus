@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftyJSON
 
-class UserFeedbackViewController: UIViewController,UITextViewDelegate {
+class UserFeedbackViewController: UIViewController,UITextViewDelegate,APIDelegate{
 
     var bkg1 = UIView()
     
@@ -17,10 +18,14 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
     ///反馈内容
     var feedbackText = UITextView()
     
-//    var placeholder = UILabel()
-    
     ///提交
     var submitButton = UIButton()
+    
+    var api = YoYoAPI()
+    
+    var feedBackURL:String = ""
+    
+    var param = ["":""]
     
     
     override func viewDidLoad() {
@@ -31,7 +36,6 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
 
     }
 
@@ -68,28 +72,26 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
         self.feedbackText.textColor = Consts.darkGray
         self.bkg1.addSubview(self.feedbackText)
         
-//        self.placeholder.bounds = CGRect(x: 0, y: 0, width: self.feedbackText.frame.width, height: 0)
-//        self.placeholder.numberOfLines = 0
-//        self.placeholder.lineBreakMode = .ByWordWrapping
-//        self.placeholder.attributedText = Consts.getAttributedString("请输入您遇到的问题或对我们的意见或建议")
-//        self.placeholder.font = Consts.ft12
-//        self.placeholder.sizeToFit()
-//        self.placeholder.textColor = Consts.lightGray
-//        self.placeholder.textAlignment = .Center
-//        self.placeholder.frame.origin = CGPoint(x: self.feedbackText.frame.minX + 20 * Consts.ratio, y: self.feedbackText.frame.minY + 20 * Consts.ratio)
-//        self.bkg1.addSubview(self.placeholder)
-        
         self.submitButton = Consts.setUpButton("提 交", frame: CGRect(x: self.staticLabel.frame.minX, y: self.bkg1.frame.maxY + 60 * Consts.ratio, width: self.feedbackText.frame.width, height: 90 * Consts.ratio),font: Consts.ft20, radius: 10 * Consts.ratio)
         self.view.addSubview(self.submitButton)
     }
     
     func setUpActions(){
+        api.delegate = self
         self.feedbackText.delegate = self
         self.submitButton.addTarget(self, action: "buttonClicked:", forControlEvents: .TouchUpInside)
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        switch(tag){
+            case "feedBack":
+                self.feedBackURL = "\(Consts.mainUrl)/v1.0/suggestion/"
+                api.httpRequest("POST", url: self.feedBackURL, params: nil, tag: "feedBack")
+            break
+            
+        default:
+            break
+        }
     }
     
     func goBack(){
@@ -98,8 +100,14 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
     
     func buttonClicked(sender:UIButton){
         if(sender.titleLabel?.text == "提 交"){
-            Tool.showSuccessHUD("谢谢您的反馈!")
-            self.goBack()
+            if((self.feedbackText.text == "请输入您遇到的问题或对我们的意见或建议")||(self.feedbackText.text.isEmpty)){
+                Tool.showErrorHUD("请输入您的反馈!")
+            }else{
+                self.param = ["content":self.feedbackText.text]
+                setUpOnlineData("feedBack")
+                Tool.showSuccessHUD("谢谢您的反馈!")
+                self.goBack()
+            }
         }
     }
     
@@ -116,19 +124,11 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate {
             self.feedbackText.text = "请输入您遇到的问题或对我们的意见或建议"
         }
     }
-    /*
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if (!(text == "")){
-            self.placeholder.hidden = true
-        }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
         
-        if ((text == "") && (range.location == 0) && (range.length == 1)){
-            self.placeholder.hidden = false
-        }
-        
-        return true
     }
-    */
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.feedbackText.resignFirstResponder()
     }

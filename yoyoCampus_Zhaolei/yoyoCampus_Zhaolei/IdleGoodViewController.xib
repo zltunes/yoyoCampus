@@ -145,7 +145,6 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcP-Am-feG">
                     <rect key="frame" x="279" y="241" width="25" height="25"/>
-                    <state key="normal" backgroundImage="xiangqing_btn_dianzan"/>
                     <connections>
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="Be4-NX-XfI"/>
                     </connections>
@@ -210,7 +209,6 @@
     <resources>
         <image name="Commodity editor_btn_picture" width="97" height="72"/>
         <image name="sousuo_icon_history" width="18" height="18"/>
-        <image name="xiangqing_btn_dianzan" width="25" height="25"/>
         <image name="xiangqing_tab bar_collect_n" width="22" height="19"/>
         <image name="xiangqing_tab bar_message" width="21" height="18"/>
         <image name="xianzhi_icon_like" width="9" height="10"/>
