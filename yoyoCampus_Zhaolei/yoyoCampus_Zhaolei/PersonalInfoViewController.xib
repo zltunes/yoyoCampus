@@ -17,12 +17,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbL-mC-zNV">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbL-mC-zNV">
                     <rect key="frame" x="29" y="476" width="261" height="42"/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="42" id="niv-h4-l3J"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <state key="normal" title="下一步">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,55 +33,29 @@
                         <action selector="nextBtnClicked:" destination="-1" eventType="touchUpInside" id="Ty7-xI-Ru4"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3G-wq-QhG">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m3G-wq-QhG">
                     <rect key="frame" x="160" y="284" width="0.0" height="0.0"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="THl-DC-eqx">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="THl-DC-eqx">
                     <rect key="frame" x="0.0" y="240" width="320" height="142"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="142" id="xtg-eD-bgp"/>
-                    </constraints>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWv-WK-1ej">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWv-WK-1ej">
                     <rect key="frame" x="0.0" y="64" width="320" height="131"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AT-ai-6AZ">
-                            <rect key="frame" x="115" y="20" width="90" height="90"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="90" id="30e-oh-aML"/>
-                                <constraint firstAttribute="height" constant="90" id="yFW-P2-iTp"/>
-                            </constraints>
-                            <state key="normal" title="Button" image="Merchant_btn_picture"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AT-ai-6AZ">
+                            <rect key="frame" x="112" y="16" width="100" height="100"/>
+                            <state key="normal" title="Button" image="photo_button_apply"/>
                             <connections>
                                 <action selector="uploadImage:" destination="-1" eventType="touchUpInside" id="TcW-Nv-rY1"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="9AT-ai-6AZ" firstAttribute="centerX" secondItem="YWv-WK-1ej" secondAttribute="centerX" id="S2T-Ym-ARv"/>
-                        <constraint firstItem="9AT-ai-6AZ" firstAttribute="centerY" secondItem="YWv-WK-1ej" secondAttribute="centerY" id="Yfg-NJ-ktt"/>
-                        <constraint firstItem="9AT-ai-6AZ" firstAttribute="top" secondItem="YWv-WK-1ej" secondAttribute="top" constant="20" id="ZXU-Ym-Cqa"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="THl-DC-eqx" firstAttribute="top" secondItem="YWv-WK-1ej" secondAttribute="bottom" constant="45" id="Jgm-Vj-o1M"/>
-                <constraint firstItem="YWv-WK-1ej" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="N25-7C-CIK"/>
-                <constraint firstItem="lbL-mC-zNV" firstAttribute="top" secondItem="THl-DC-eqx" secondAttribute="bottom" constant="94" id="SwU-6w-K1s"/>
-                <constraint firstItem="YWv-WK-1ej" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="dOJ-67-fia"/>
-                <constraint firstItem="m3G-wq-QhG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="160" id="gSp-TU-oE6"/>
-                <constraint firstItem="YWv-WK-1ej" firstAttribute="trailing" secondItem="THl-DC-eqx" secondAttribute="trailing" id="htB-SQ-Klt"/>
-                <constraint firstItem="m3G-wq-QhG" firstAttribute="centerX" secondItem="THl-DC-eqx" secondAttribute="centerX" id="lHd-zT-4zP"/>
-                <constraint firstItem="lbL-mC-zNV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="29" id="mnx-XJ-yJP"/>
-                <constraint firstItem="m3G-wq-QhG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="284" id="msc-KM-Ckt"/>
-                <constraint firstItem="m3G-wq-QhG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="o0p-3i-iGX"/>
-                <constraint firstItem="lbL-mC-zNV" firstAttribute="centerX" secondItem="m3G-wq-QhG" secondAttribute="centerX" id="qhT-RJ-JMa"/>
-                <constraint firstItem="YWv-WK-1ej" firstAttribute="leading" secondItem="THl-DC-eqx" secondAttribute="leading" id="whS-2G-Ai8"/>
-            </constraints>
             <point key="canvasLocation" x="415" y="114"/>
         </view>
         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="srarch_icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="f5h-8B-0iK">
@@ -96,7 +67,7 @@
         </imageView>
     </objects>
     <resources>
-        <image name="Merchant_btn_picture" width="79" height="79"/>
+        <image name="photo_button_apply" width="79" height="79"/>
         <image name="srarch_icon_search" width="100" height="100"/>
     </resources>
 </document>

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class LoginViewController: UIViewController,APIDelegate{
     
@@ -221,13 +222,29 @@ class LoginViewController: UIViewController,APIDelegate{
                 self.api.delegate = self
                 api.httpRequest("GET", url: infoURL, params: nil, tag: "info")
             break
-            
+            /*
+            case "wechatLogin":
+
+                api.httpRequest("POST", url: self.wechatLoginURL, params: param, tag: "wechatLogin")
+            break
+            */
             case "wechatLogin":
                 self.wechatLoginURL = "\(Consts.mainUrl)/v1.0/auth/weixin/login/"
                 let param = ["open_id":AppDelegate.wechat_openid,"access_token":AppDelegate.wechat_accessToken]
-                api.httpRequest("POST", url: self.wechatLoginURL, params: param, tag: "wechatLogin")
+                
+                Alamofire.request(.POST,self.wechatLoginURL,parameters:param,encoding: .JSON)
+                    .responseJSON{  response in
+                        if response.result.error == nil{
+                            self.didReceiveJsonResults(JSON(response.result.value!), tag:tag)
+                        }else{
+                            //                        输出失败信息
+                            print("post请求失败!\nurl ——> \(self.wechatLoginURL)\nerror ——> \(response.result.error)")
+                            let vc = bindVC()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                }
             break
-            
+
             case "wechatInfo":
                 self.infoURL = "\(Consts.mainUrl)/v1.0/user/"
                 self.api = YoYoAPI()
@@ -355,6 +372,11 @@ class LoginViewController: UIViewController,APIDelegate{
                 print("微信登录->userName:\(snsAccount!.userName!)\nuid->\(snsAccount!.usid!)\ntoken->\(snsAccount!.accessToken!)\nurl->\(snsAccount!.iconURL!)")
                 AppDelegate.wechat_openid = snsAccount!.usid!
                 AppDelegate.wechat_accessToken = snsAccount!.accessToken!
+                AppDelegate.wechat_name = snsAccount!.userName!
+                AppDelegate.wechat_photoURL = NSURL(string: snsAccount!.iconURL!)!
+                
+                self.setUpOnlineData("wechatLogin")
+
             }
         }
         

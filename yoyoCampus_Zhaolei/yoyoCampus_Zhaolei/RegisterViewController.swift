@@ -186,6 +186,7 @@ class RegisterViewController: UIViewController,APIDelegate{
             case "wechat_register":
                 self.registerURL_wechat = "\(Consts.mainUrl)/v1.0/auth/weixin/register/"
                 self.params = ["phone_num":self.phoneTextField.text!,"code":self.verifyCodeTextField.text!,"password":self.pwdTextField.text!,"open_id":AppDelegate.wechat_openid,"access_token":AppDelegate.wechat_accessToken]
+                print("微信注册参数：\(self.params)")
                 api.httpRequest("POST", url: self.registerURL_wechat, params: self.params, tag: "wechat_register")
             break
             
@@ -217,47 +218,70 @@ class RegisterViewController: UIViewController,APIDelegate{
              Tool.showErrorHUD("密码至少6位!")
         }else if pwd != pwdAgain{
             Tool.showErrorHUD("两次输入的密码不一致!")
-        }else{
+        }else if(self.registerType == 0){
             self.setUpOnlineData("register")
+        }else if(self.registerType == 1){
+            self.setUpOnlineData("wechat_register")
         }
         
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
         
-        switch(tag)
-        
-        
-        
-        if(tag == "register"){
-        print("注册反馈:\(json)")
-        //返回参数:user_id,access_token
-        if let token = json["access_token"].string{
-//            注册成功-->完善个人信息-->登录到首页
-            if let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath){
-                    plistDict.setObject(token, forKey: "access_token")
-                    plistDict.setObject(self.phoneTextField.text!, forKey:"tel")
-                    plistDict.setObject(true, forKey: "isLogin")
-                    plistDict.writeToFile(AppDelegate.filePath, atomically: true)
-                
-                    AppDelegate.isLogin = true
-                    AppDelegate.access_token = token
-                    AppDelegate.tel = self.phoneTextField.text!
-                
-                    Tool.showSuccessHUD("注册成功!")
-                    let vc = PersonalInfoViewController()
-                    PersonalInfoViewController.backTitle = nil
-                    self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }else if json["code"].int == 406{//重复注册
-            Tool.showErrorHUD("该号码已经注册过了哦!")
-        }else if json["code"].int == 404{//验证码错误
-            Tool.showErrorHUD("验证码不对哦!")
-        }
-        }
-        
-        
-        else if(tag == "wechat_register"){
+        switch(tag){
+            case "register":
+                print("正常注册反馈:\(json)")
+                if let token = json["access_token"].string{
+                    //            注册成功-->完善个人信息-->登录到首页
+                    if let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath){
+                        plistDict.setObject(token, forKey: "access_token")
+                        plistDict.setObject(self.phoneTextField.text!, forKey:"tel")
+                        plistDict.setObject(true, forKey: "isLogin")
+                        plistDict.writeToFile(AppDelegate.filePath, atomically: true)
+                        
+                        AppDelegate.isLogin = true
+                        AppDelegate.access_token = token
+                        AppDelegate.tel = self.phoneTextField.text!
+                        
+                        Tool.showSuccessHUD("注册成功!")
+                        let vc = PersonalInfoViewController()
+                        PersonalInfoViewController.backTitle = nil
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }else if json["code"].int == 406{//重复注册
+                    Tool.showErrorHUD("该号码已经注册过了哦!")
+                }else if json["code"].int == 404{//验证码错误
+                    Tool.showErrorHUD("验证码不对哦!")
+                }
+            break
+            
+            case "wechat_register":
+                print("微信绑定注册反馈:\(json)")
+                if let token = json["access_token"].string{
+                    if let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath){
+                        plistDict.setObject(token, forKey: "access_token")
+                        plistDict.setObject(self.phoneTextField.text!, forKey:"tel")
+                        plistDict.setObject(true, forKey: "isLogin")
+                        plistDict.writeToFile(AppDelegate.filePath, atomically: true)
+                        
+                        AppDelegate.isLogin = true
+                        AppDelegate.access_token = token
+                        AppDelegate.tel = self.phoneTextField.text!
+                        
+                        Tool.showSuccessHUD("注册并绑定微信成功!")
+                        let vc = PersonalInfoViewController()
+                        PersonalInfoViewController.backTitle = nil
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }else if json["code"].int == 406{//重复注册
+                    Tool.showErrorHUD("该号码已经注册过了哦!")
+                }else if json["code"].int == 404{//验证码错误
+                    Tool.showErrorHUD("验证码不对哦!")
+                }
+            break
+            
+        default:
+            break
             
         }
     }
@@ -303,14 +327,5 @@ class RegisterViewController: UIViewController,APIDelegate{
             Tool.showErrorHUD("请输入正确的手机号!")
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 class bindVC: UIViewController,APIDelegate {
-
+    
     internal var wechatOpenid = ""
     
     internal var wechatAccessToken = ""
@@ -22,6 +22,9 @@ class bindVC: UIViewController,APIDelegate {
     var wechatBindURL:String = ""
     
     @IBOutlet var photo: UIImageView!
+    
+    @IBOutlet var wechat_nameLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,9 @@ class bindVC: UIViewController,APIDelegate {
     
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
+        
+        self.photo.sd_setImageWithURL(AppDelegate.wechat_photoURL, placeholderImage: UIImage.init(named: "bear_icon_register"))
+        self.wechat_nameLabel.text = AppDelegate.wechat_name
         
     }
     
@@ -92,7 +98,7 @@ class bindVC: UIViewController,APIDelegate {
 //            注册
             let vc = RegisterViewController()
             vc.registerType = 1
-            
+            self.navigationController?.pushViewController(vc, animated: true)
         }else{
 //            关联
             setUpOnlineData("wechatBind")
