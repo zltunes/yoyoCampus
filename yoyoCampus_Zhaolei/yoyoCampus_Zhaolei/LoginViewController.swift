@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyJSON
-import Alamofire
 
 class LoginViewController: UIViewController,APIDelegate{
     
@@ -222,34 +221,13 @@ class LoginViewController: UIViewController,APIDelegate{
                 self.api.delegate = self
                 api.httpRequest("GET", url: infoURL, params: nil, tag: "info")
             break
-            /*
-            case "wechatLogin":
 
-                api.httpRequest("POST", url: self.wechatLoginURL, params: param, tag: "wechatLogin")
-            break
-            */
             case "wechatLogin":
                 self.wechatLoginURL = "\(Consts.mainUrl)/v1.0/auth/weixin/login/"
                 let param = ["open_id":AppDelegate.wechat_openid,"access_token":AppDelegate.wechat_accessToken]
-                
-                Alamofire.request(.POST,self.wechatLoginURL,parameters:param,encoding: .JSON)
-                    .responseJSON{  response in
-                        if response.result.error == nil{
-                            self.didReceiveJsonResults(JSON(response.result.value!), tag:tag)
-                        }else{
-                            //                        输出失败信息
-                            print("post请求失败!\nurl ——> \(self.wechatLoginURL)\nerror ——> \(response.result.error)")
-                            let vc = bindVC()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                }
+                api.httpRequest("POST", url: self.wechatLoginURL, params: param, tag: "wechatLogin")
             break
 
-            case "wechatInfo":
-                self.infoURL = "\(Consts.mainUrl)/v1.0/user/"
-                self.api = YoYoAPI()
-                self.api.delegate = self
-                api.httpRequest("GET", url: infoURL, params: nil, tag: "wechatInfo")
             default:
             break
         }
@@ -282,6 +260,7 @@ class LoginViewController: UIViewController,APIDelegate{
                     self.navigationController?.pushViewController(personalInfoVC, animated: true)
                 }else{
                     plistDict["name"] = json["name"].string!
+//                    plistDict["phone_num"] = json["phone_num"].string!
                     plistDict["photo"] = NSData(contentsOfURL: NSURL(string: json["image"].string!)!)
                     plistDict["enroll_year"] = json["enroll_year"].string!
                     plistDict["location"] = json["location"].string!
@@ -294,41 +273,19 @@ class LoginViewController: UIViewController,APIDelegate{
             break
             
             case "wechatLogin":
+                print("wechatLogin:\(json)")
                 if let token = json["access_token"].string{
                     plistDict.setValue(token, forKey: "access_token")
+                    plistDict.setValue(true, forKey: "isLogin")
                     plistDict.writeToFile(AppDelegate.filePath, atomically: false)
                     AppDelegate.isLogin = true
                     AppDelegate.access_token = token
-                    //                    检测个人信息是否完整
-                    setUpOnlineData("wechatInfo")
-                }
-            break
-            
-            case "wechatInfo":
-                if(json["weixin_bind"].int! == 0){
+                    setUpOnlineData("info")
+                }else if(json["code"] == 404){
 //                    还未绑定手机，需选择绑定
                     let vc = bindVC()
                     self.navigationController?.pushViewController(vc, animated: true)
-                }else{
-//                    已绑定手机，检查个人信息是否完善
-                    if(json["name"].string == nil){
-                        //                    未完善个人信息
-                        let personalInfoVC = PersonalInfoViewController()
-                        PersonalInfoViewController.backTitle = nil
-                        self.navigationController?.pushViewController(personalInfoVC, animated: true)
-                    }else{
-                        plistDict["name"] = json["name"].string!
-                        plistDict["photo"] = NSData(contentsOfURL: NSURL(string: json["image"].string!)!)
-                        plistDict["enroll_year"] = json["enroll_year"].string!
-                        plistDict["location"] = json["location"].string!
-                        plistDict["weibo_bind"] = json["weibo_bind"].int!
-                        plistDict["weixin_bind"] = json["weixin_bind"].int!
-                        plistDict.writeToFile(AppDelegate.filePath, atomically: false)
-                        let vc = PersonCenterVC()
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-
-            }
+                }
             break
             
         default:

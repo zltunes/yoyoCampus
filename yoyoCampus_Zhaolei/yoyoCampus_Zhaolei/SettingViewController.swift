@@ -168,7 +168,6 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
 
     func didReceiveJsonResults(json: JSON, tag: String) {
-        print("didreceive")
         switch(tag){
             case "logout":
                 print("logout")

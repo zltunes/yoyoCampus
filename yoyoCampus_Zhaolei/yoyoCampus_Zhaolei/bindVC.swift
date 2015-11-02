@@ -9,13 +9,11 @@
 import UIKit
 import SwiftyJSON
 
-class bindVC: UIViewController,APIDelegate {
+class bindVC: UIViewController {
     
     internal var wechatOpenid = ""
     
     internal var wechatAccessToken = ""
-    
-    var api = YoYoAPI()
     
     var wechatRegisterURL:String = ""
     
@@ -29,7 +27,6 @@ class bindVC: UIViewController,APIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpNavigationBar()
-        self.setUpActions()
         self.setUpInitialLooking()
 
         // Do any additional setup after loading the view.
@@ -52,45 +49,8 @@ class bindVC: UIViewController,APIDelegate {
         
     }
     
-    func setUpActions(){
-        self.api.delegate = self
-        
-    }
-    
-    func setUpOnlineData(tag:String){
-        switch(tag){
-            case "wechatRegister":
-                self.wechatRegisterURL = "\(Consts.mainUrl)/v1.0/auth/weixin/register/"
-                
-            break
-            
-            case "wechatBind":
-                self.wechatBindURL = "\(Consts.mainUrl)/v1.0/auth/weixin/bind/"
-            break
-            
-        default:
-            break
-        }
-        
-    }
-    
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    func didReceiveJsonResults(json: JSON, tag: String) {
-        switch(tag){
-            case "wechatRegister":
-                
-            break
-            
-            case "wechatBind":
-            
-            break
-            
-        default:
-            break
-        }
     }
     
     @IBAction func btnClicked(sender: UIButton) {
@@ -101,7 +61,8 @@ class bindVC: UIViewController,APIDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
 //            关联
-            setUpOnlineData("wechatBind")
+            let vc = bindToPhoneVC()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

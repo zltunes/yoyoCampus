@@ -116,10 +116,13 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     var is_collected:Int = 0
     
     ///要查看的闲置id
-    internal var idle_id = "5631e43390c4904e06286103"
+    internal var idle_id = "5636187490c49063a04cab90"
     
     ///存放评论
     var commentsJSON:JSON = []
+    
+    ///下拉刷新所需page
+    var commentPage:Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,8 +159,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
 
         self.remarkTextView.layer.borderColor = Consts.lightGray.CGColor
         /*****************设置指示器*****************/
-        self.scrollIndicator.frame = CGRect(x: 0, y: self.detailBtn.frame.maxY+1, width:newWidth , height: 2.8)
-        self.inScrollIndicator.frame = CGRect(x: self.detailBtn.frame.width/2.5, y: 0, width: self.detailBtn.frame.width/3, height: 2.8)
+        self.scrollIndicator.frame = CGRect(x: 0, y: self.detailBtn.frame.maxY+1, width:newWidth , height: 1.8)
+        self.inScrollIndicator.frame = CGRect(x: self.detailBtn.frame.width/2.5, y: 0, width: self.detailBtn.frame.width/3, height: 1.8)
         self.inScrollIndicator.backgroundColor = Consts.tintGreen
         self.scrollIndicator.addSubview(self.inScrollIndicator)
         self.scrollIndicator.backgroundColor = Consts.grayView
@@ -178,6 +181,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.remarkTableView.showsVerticalScrollIndicator = false
         self.remarkTableView.backgroundColor = Consts.grayView
+        
+        ///下拉刷新：添加头部控件方法  
+        self.remarkTableView.header = MJRefreshHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        
+        ///上拉加载
+        self.remarkTableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
         //设置水平滑动.frame已在xib定义
         self.horizontalScroll.addSubview(self.detailView)
@@ -210,6 +219,18 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
          setUpOnlineData("commentView")
     }
     
+    //下拉刷新回调
+    func headerRefreshing(){
+        print("headerRefreshing:page=\(self.commentPage)")
+        self.commentPage = 1
+        setUpOnlineData("commentView")
+    }
+    
+    func footerRefreshing(){
+        self.commentPage++
+        print("footerRefreshing:page=\(self.commentPage)")
+        setUpOnlineData("commentView")
+    }
     /*********************************************/
     //监听和处理翻页后的变化
     /*********************************************/
@@ -285,7 +306,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         break
             
             case "commentView":
-            self.commentsViewURL = "\(Consts.mainUrl)/v1.0/idle/\(idle_id)/comment/1"
+            self.commentsViewURL = "\(Consts.mainUrl)/v1.0/idle/\(idle_id)/comment/\(self.commentPage)"
             api.httpRequest("GET", url: self.commentsViewURL, params: nil, tag: "commentView")
         break
         
@@ -520,7 +541,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
             self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
             self.shopNameBtn.setTitle(json["user_name"].string!, forState: .Normal)
-            let price = json["price"].string!
+            let price = json["price"].int!
             self.presentPriceLabel.text = "¥ \(price)"
             let viewnumber = json["view_number"].int!
             self.previewCountLabel.text = "\(viewnumber) 人感兴趣"
@@ -528,7 +549,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             self.praiseCountLabel.text = "\(likenum) 人赞"
             self.timeLabel.text = json["last_update"].string!
             self.detailView.text = json["description"].string!
-            if(json["like_clicked"].bool!){
+            if(json["like_clicked"] == 1){
                 self.praiseBtn.setBackgroundImage(UIImage.init(named: "xiangqing_btn_dianzan_p"), forState: .Normal)
                 self.praiseBtn.tag = 10//已点赞
             }else{
@@ -550,6 +571,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         case "commentView":
             self.commentsJSON = json["idle_comment"]
             self.remarkTableView.reloadData()
+            self.remarkTableView.header.endRefreshing()
+            self.remarkTableView.footer.endRefreshing()
             break
             
         case "commentCreate":

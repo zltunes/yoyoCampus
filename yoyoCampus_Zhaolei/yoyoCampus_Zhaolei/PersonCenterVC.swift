@@ -52,10 +52,9 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         
         self.plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
         
-//        发现plistDict仍只有三个元素
         
 //      用户未登录时
-        if(self.plistDict["isLogin"] as! Bool == false){
+        if(AppDelegate.isLogin == false){
             self.photoBtn.setBackgroundImage(UIImage.init(named: "photo_button_apply"), forState: .Normal)
             self.nameBtn.setTitle("登录 / 注册", forState: .Normal)
             self.nameBtn.setTitleColor(Consts.tintGreen, forState: .Normal)

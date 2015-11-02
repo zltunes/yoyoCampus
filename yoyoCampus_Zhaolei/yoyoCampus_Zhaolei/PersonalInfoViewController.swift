@@ -389,7 +389,6 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     
             upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
 //                图片上传完毕后才向后台更新用户数据
-                    print(self.qiniuKey)
                     self.setUpOnlineData("info")
                 }, option: nil)
             break
@@ -397,7 +396,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         case "info":
 //            用户信息更新完毕后，记录到本地
             let plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)
-            plistDict?.setValue(UIImage(data: self.imgData), forKey: "photo")
+            plistDict?.setValue(self.imgData, forKey: "photo")
             plistDict?.setValue(self.infoData["name"], forKey: "name")
             plistDict?.setValue(self.infoData["enroll_year"], forKey: "enroll_year")
             plistDict?.setValue(self.infoData["location"], forKey: "location")

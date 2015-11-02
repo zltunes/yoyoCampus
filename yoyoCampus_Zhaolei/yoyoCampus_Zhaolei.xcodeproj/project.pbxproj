@@ -74,6 +74,7 @@
 		3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */; };
 		3598B7AA1BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7A91BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift */; };
 		3598B7B51BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */; };
+		35A751971BE6380900555254 /* bindToPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A751951BE6380900555254 /* bindToPhoneVC.swift */; settings = {ASSET_TAGS = (); }; };
 		35B3EB2D1BDDCA6C0015A894 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B3EB2C1BDDCA6C0015A894 /* Security.framework */; };
 		35B3EB2F1BDDCA7C0015A894 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B3EB2E1BDDCA7C0015A894 /* libiconv.tbd */; };
 		35B3EB311BDDCA860015A894 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B3EB301BDDCA860015A894 /* CoreGraphics.framework */; };
@@ -256,6 +257,7 @@
 		3598B7B01BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yoyoCampus_ZhaoleiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yoyoCampus_ZhaoleiUITests.swift; sourceTree = "<group>"; };
 		3598B7B61BB02FE800AD6BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35A751951BE6380900555254 /* bindToPhoneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindToPhoneVC.swift; sourceTree = "<group>"; };
 		35B3EB2C1BDDCA6C0015A894 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		35B3EB2E1BDDCA7C0015A894 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		35B3EB301BDDCA860015A894 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -702,9 +704,20 @@
 			path = yoyoCampus_ZhaoleiUITests;
 			sourceTree = "<group>";
 		};
+		35A751991BE6381400555254 /* 微信绑定 */ = {
+			isa = PBXGroup;
+			children = (
+				35229B6E1BE4FA8D0087531B /* bindVC.swift */,
+				35229B6F1BE4FA8D0087531B /* bindVC.xib */,
+				35A751951BE6380900555254 /* bindToPhoneVC.swift */,
+			);
+			name = "微信绑定";
+			sourceTree = "<group>";
+		};
 		35C2FF8C1BB81D87006A4058 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				35A751991BE6381400555254 /* 微信绑定 */,
 				3597271E1BB3EE8D00B2E4C9 /* cell */,
 				35593FC61BB1366C00817020 /* LoginViewController.swift */,
 				35593FC81BB1367A00817020 /* RegisterViewController.swift */,
@@ -713,8 +726,6 @@
 				3543B0FB1BD7B17D00B2BA60 /* ConnectPhoneViewController.swift */,
 				3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */,
 				3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */,
-				35229B6E1BE4FA8D0087531B /* bindVC.swift */,
-				35229B6F1BE4FA8D0087531B /* bindVC.xib */,
 			);
 			name = "登录注册";
 			sourceTree = "<group>";
@@ -1295,6 +1306,7 @@
 				35DE76171BDB744600BAA880 /* moreOrderInfoCell.swift in Sources */,
 				35C772DB1BDF17640054D08E /* OrderPayVC.swift in Sources */,
 				35593FAF1BB1000700817020 /* CustomNavigationController.swift in Sources */,
+				35A751971BE6380900555254 /* bindToPhoneVC.swift in Sources */,
 				35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */,
 				35C772E91BDF1F600054D08E /* twoLabelCell.swift in Sources */,
 			);
