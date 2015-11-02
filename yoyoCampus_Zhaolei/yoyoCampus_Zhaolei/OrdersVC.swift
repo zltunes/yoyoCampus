@@ -19,6 +19,12 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     
     var api = YoYoAPI()
     
+    var ordersViewURL:String = ""
+    
+    var ordersPage:Int = 1
+    
+    var ordersJSON:[JSON] = []
+    
     ///存放订单
     var ordersArray:NSMutableArray = []
 
@@ -29,7 +35,6 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         self.setUpNavigationBar()
         self.setUpActions()
         self.setUpInitialLooking()
-        self.setUpOnlineData()
     }
 
     func setUpNavigationBar(){
@@ -39,12 +44,25 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         
+        self.table.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        
+        self.table.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
+        
 //        模拟orders
         let filepath = NSBundle.mainBundle().pathForResource("data", ofType: "plist")
         let plistDic = NSMutableDictionary(contentsOfFile: filepath!)
         self.ordersArray = plistDic?.objectForKey("orders") as! NSMutableArray
-        
-        print("initialLooing:\(ordersArray.count)")
+
+    }
+    
+    func headerRefreshing(){
+        ordersPage = 1
+        setUpOnlineData("ordersView")
+    }
+    
+    func footerRefreshing(){
+        ordersPage++
+        setUpOnlineData("ordersView")
     }
     
     func setUpActions(){
@@ -56,8 +74,16 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         self.table.registerNib(nib_orderCellWithBtn, forCellReuseIdentifier: "OrderCellWithBtn")
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        switch(tag){
+        case "ordersView":
+            self.ordersViewURL = "\(Consts.mainUrl)/v1.0/user/orders/?page=\(ordersPage)"
+            api.httpRequest("GET", url: ordersViewURL, params: nil, tag: "ordersView")
+            break
+            
+        default:
+            break
+        }
     }
 
     func goBack(){
@@ -155,7 +181,22 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     
 
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
+        switch(tag){
+        case "ordersView":
+            if(json["orders"].count == 0 && ordersPage > 1){
+//                刷新无更多数据
+                ordersPage--
+                table.footer.endRefreshingWithNoMoreData()
+            }else if(json["orders"].count > 0 && ordersPage > 1){
+                ordersJSON+=json["orders"].array!
+            }else if(ordersPage == 1){
+                
+            }
+            break
+            
+        default:
+            break
+        }
     }
     
     override func didReceiveMemoryWarning() {

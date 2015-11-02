@@ -10,7 +10,13 @@ import UIKit
 import SwiftyJSON
 
 class OrderPayVC: UIViewController,APIDelegate {
-
+    
+    internal var order_ID:String = ""
+    internal var orderName:String = ""
+    internal var oldPrice:Int = 0
+    internal var topayPrice:Int = 0
+    internal var discount:Int = 0
+    
     @IBOutlet var label_orderName: UILabel!
     
     @IBOutlet var label_totalPrice: UILabel!
@@ -29,17 +35,15 @@ class OrderPayVC: UIViewController,APIDelegate {
     
     var api = YoYoAPI()
     
+    var orderPayURL:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setUpNavigationBar()
-        
+         self.setUpActions()
         self.setUpInitialLooking()
-        
-        self.setUpActions()
-        
-        self.setUpOnlineData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,10 +59,10 @@ class OrderPayVC: UIViewController,APIDelegate {
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         
-        self.label_orderName?.text = "恐龙园两日游"
-        self.label_totalPrice?.text = "¥ 1200"
-        self.label_toPay?.text = "¥ 1000"
-        self.label_discount?.text = "¥ 200"
+        self.label_orderName?.text = orderName
+        self.label_totalPrice?.text = "¥ \(oldPrice)"
+        self.label_toPay?.text = "¥ \(topayPrice)"
+        self.label_discount?.text = "¥ \(discount)"
         
         self.btn_wechat.setBackgroundImage(UIImage.init(named: "dingdan_btn_select"), forState: .Normal)
         self.btn_aliPay.setBackgroundImage(UIImage.init(named: "dingdan_btn_get"), forState: .Normal)
@@ -69,8 +73,17 @@ class OrderPayVC: UIViewController,APIDelegate {
         
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        if(tag == "pay"){
+            orderPayURL = "\(Consts.mainUrl)/v1.0/user/order/pay/\(order_ID)/"
+            var param = ["":""]
+            if(selectPayWay == 0){
+                param = ["channel":"alipay"]
+            }else{
+                param = ["channel":"wx"]
+            }
+            api.httpRequest("POST", url: self.orderPayURL, params: param, tag: "pay")
+        }
     }
     
     func goBack(){
@@ -95,6 +108,7 @@ class OrderPayVC: UIViewController,APIDelegate {
             self.selectPayWay = 1
             break
         case 2:
+//            setUpOnlineData("pay")
             if(self.selectPayWay == 0){
                 Tool.showSuccessHUD("支付宝!")
             }else{

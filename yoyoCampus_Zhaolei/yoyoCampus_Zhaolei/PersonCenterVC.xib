@@ -66,7 +66,7 @@
                         <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYG-FE-z6d">
                             <rect key="frame" x="197" y="136" width="21" height="30"/>
                             <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="my center_button_my collection">
+                            <state key="normal" image="center__myshoucang_xxhdpi">
                                 <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -99,8 +99,8 @@
         </view>
     </objects>
     <resources>
+        <image name="center__myshoucang_xxhdpi" width="20" height="18"/>
         <image name="my center_button_idle things" width="18" height="18"/>
-        <image name="my center_button_my collection" width="21" height="18"/>
         <image name="shoppage_btn_head portrait" width="80" height="81"/>
     </resources>
 </document>

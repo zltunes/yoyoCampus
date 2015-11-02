@@ -150,15 +150,15 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         if(indexPath.section == 0){
             switch(indexPath.row){
             case 0:
-                cell.imgView?.image = UIImage.init(named: "my center_button_idle things")
+                cell.imgView?.image = UIImage.init(named: "center_dingdan_xxhdpi")
                 cell.label?.text = "我的订单"
                 break
             case 1:
-                cell.imgView?.image = UIImage.init(named: "my center_button_idle things")
+                cell.imgView?.image = UIImage.init(named: "center__youhuika_xxhdpi")
                 cell.label?.text = "我的万能优惠卡"
                 break
             case 2:
-                cell.imgView?.image = UIImage.init(named: "my center_button_idle things")
+                cell.imgView?.image = UIImage.init(named: "center__shenqing_xxhdpi")
                 cell.label?.text = "申请开店"
                 break
             default:

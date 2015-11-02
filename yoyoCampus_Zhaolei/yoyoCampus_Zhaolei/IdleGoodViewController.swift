@@ -48,7 +48,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     var app = UIApplication.sharedApplication()
     
     //咨询电话
-    var consultPhoneNum:String = "15651907759"
+    var consultPhoneNum:String = ""
     
     //两种咨询方式
     var popMenu = PopMenu()
@@ -221,7 +221,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     //下拉刷新回调
     func headerRefreshing(){
-        print("headerRefreshing:page=\(self.commentPage)")
         self.commentPage = 1
         setUpOnlineData("commentView")
     }
@@ -516,10 +515,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         popMenu.didSelectedItemCompletion = { (selectedItem) in
             //点击事件
             if(selectedItem.title == "sms"){
-                print("sms")
                 self.app.openURL(NSURL(string: "sms:\(self.consultPhoneNum)")!)
             }else if(selectedItem.title == "tel"){
-                print("tel")
                 self.self.webViewCallPhone()
             }
         };
@@ -569,6 +566,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
                 self.collectBtn_img.tag = 4
                 self.collectBtn_text.tag = 4
             }
+            self.consultPhoneNum = json["phone_num"].string!
             break
             
         case "commentView":

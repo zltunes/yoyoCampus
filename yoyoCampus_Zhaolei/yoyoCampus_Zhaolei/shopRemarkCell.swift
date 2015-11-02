@@ -34,7 +34,7 @@ class shopRemarkCell: UITableViewCell {
     
     internal var starsCount:Int = 0
     
-    internal var hasLike:Bool = false
+    internal var hasLike:Int = 0
     
     internal var likeCount:Int = 0
     

@@ -12,32 +12,36 @@ import SwiftyJSON
 
 class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableViewDelegate,UITableViewDataSource{
 
+    ///需从ShopGoodViewController获取的数据:
+    internal var goodName:String = ""//商品名称
+    internal var quantity:Int = 1//商品数量
+    internal var oldPrice:Int = 0//原价(单价)
+    internal var discount:Int = 0//优惠卡金额
+    internal var goodID:String = ""
+    
     @IBOutlet var table: UITableView!
     
     @IBOutlet var remarkTextView: UITextView!
     
     @IBOutlet var submmitBtn: UIButton!//tag:10
     
-    
     var api = YoYoAPI()
     
-    var hasDiscountCard = true//有无优惠卡
+    var hasDiscountCard = false//有无优惠卡
     
-    var useDiscountCard = true//使用优惠卡
+    var useDiscountCard = false//使用优惠卡
     
-    var count = 1//商品数量
+    var orderCreateURL:String = ""
     
+    var remark:String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setUpNavigationBar()
-        
-        self.setUpInitialLooking()
-        
         self.setUpActions()
-        
-        self.setUpOnlineData()
+        self.setUpInitialLooking()
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,8 +71,12 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
         
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        if(tag == "orderCreate"){
+            self.orderCreateURL = "\(Consts.mainUrl)/v1.0/user/order/"
+            let param = ["good_id":self.goodID,"quantity":self.quantity,"remark":self.remark]
+            api.httpRequest("POST", url: self.orderCreateURL, params: param as? [String : AnyObject], tag: "orderCreate")
+        }
     }
     
     func goBack(){
@@ -76,7 +84,20 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
+        if(tag == "orderCreate"){
+            let vc = OrderPayVC()
+            vc.order_ID = json["order_id"].string!
+            vc.orderName = self.goodName
+            vc.oldPrice = self.oldPrice * self.quantity
+            if(useDiscountCard){
+                vc.topayPrice = self.oldPrice * self.quantity - self.discount
+                vc.discount = self.discount
+            }else{
+                vc.topayPrice = self.oldPrice * self.quantity - self.discount
+            }
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -101,8 +122,8 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             case 0:
                 let cell = self.table.dequeueReusableCellWithIdentifier("twoLabelCell") as! twoLabelCell
                 cell.oldPriceLabel?.hidden = true
-                cell.leftLabel?.text = "恐龙园两日游"
-                cell.presentPriceLabel?.text = "¥ 600"
+                cell.leftLabel?.text = self.goodName
+                cell.presentPriceLabel?.text = "¥ \(self.oldPrice)"
                 return cell
                 break
                 
@@ -110,7 +131,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                 let cell = self.table.dequeueReusableCellWithIdentifier("cellWithTwoBtns") as!
                     cellWithTwoBtns
                 cell.leftLabel?.text = "数量"
-                cell.countLabel?.text = "\(count)"
+                cell.countLabel?.text = "\(quantity)"
                 cell.minusBtn.setBackgroundImage(UIImage.init(named: "dingdan_btn_minus.png"), forState: .Normal)
                 cell.minusBtn.enabled = true
                 cell.minusBtn.tag = 0//数量-
@@ -128,6 +149,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                     OneBtnCell
                 cell.leftLabel?.text = "使用万能优惠卡"
                 cell.btn_operation.setTitle("获取", forState: .Normal)
+                cell.btn_operation.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
                 cell.btn_operation.tag = 2//获取
                 return cell
                 }else{
@@ -151,11 +173,11 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                 cell.leftLabel?.text = "合计"
                 if(!useDiscountCard){
                     cell.oldPriceLabel?.hidden = true
-                    cell.presentPriceLabel?.text = "¥ 1200"
+                    cell.presentPriceLabel?.text = "¥ \(self.oldPrice * self.quantity)"
                 }else{
-                    cell.presentPriceLabel?.text = "¥ 1000"
+                    cell.presentPriceLabel?.text = "¥ \(self.oldPrice * self.quantity - self.discount)"
                     cell.presentPriceLabel.textColor = UIColor.redColor()
-                    let attributeText = NSAttributedString(string: "¥ 1200", attributes: [NSStrikethroughStyleAttributeName:1])
+                    let attributeText = NSAttributedString(string: "¥ \(oldPrice)", attributes: [NSStrikethroughStyleAttributeName:1])
                     cell.oldPriceLabel?.hidden = false
                     cell.oldPriceLabel?.attributedText = attributeText
                 }
@@ -186,12 +208,14 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
         if(indexPath.section == 0 && indexPath.row == 2){
             self.table.deselectRowAtIndexPath(indexPath, animated: true)
             //优惠卡一栏
-            if(!self.useDiscountCard){
-                self.useDiscountCard = true
-            }else{
-                self.useDiscountCard = false
+            if(self.hasDiscountCard){
+                if(!self.useDiscountCard){
+                    self.useDiscountCard = true
+                }else{
+                    self.useDiscountCard = false
+                }
+                self.table.reloadData()
             }
-            self.table.reloadData()
         }else{
             self.table.deselectRowAtIndexPath(indexPath, animated: false)
         }
@@ -207,6 +231,8 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     func textViewDidEndEditing(textView: UITextView) {
         if(self.remarkTextView.text.isEmpty){
             self.remarkTextView.text = "填写您的要求，让商家更好地提供服务"
+        }else{
+            self.remark = self.remarkTextView.text!
         }
     }
     
@@ -217,16 +243,16 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     @IBAction func btnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://数量-
-            if(self.count == 1){
+            if(self.quantity == 1){
                 sender.enabled = false
             }else{
-                self.count--
+                self.quantity--
                 self.table.reloadData()
             }
             break
             
         case 1://数量+
-            self.count++
+            self.quantity++
             self.table.reloadData()
             break
             
@@ -236,8 +262,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             break
             
         case 10://提交订单  
-            let vc = OrderPayVC()
-            self.navigationController?.pushViewController(vc, animated: true)
+            setUpOnlineData("orderCreate")
             break
             
         default:
