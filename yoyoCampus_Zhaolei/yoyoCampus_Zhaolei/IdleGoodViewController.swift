@@ -119,7 +119,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     internal var idle_id = "5636187490c49063a04cab90"
     
     ///存放评论
-    var commentsJSON:JSON = []
+    var commentsJSON:[JSON] = []
     
     ///下拉刷新所需page
     var commentPage:Int = 1
@@ -183,7 +183,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.remarkTableView.backgroundColor = Consts.grayView
         
         ///下拉刷新：添加头部控件方法  
-        self.remarkTableView.header = MJRefreshHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        self.remarkTableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
         
         ///上拉加载
         self.remarkTableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
@@ -228,7 +228,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     func footerRefreshing(){
         self.commentPage++
-        print("footerRefreshing:page=\(self.commentPage)")
         setUpOnlineData("commentView")
     }
     /*********************************************/
@@ -399,6 +398,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
         self.commentLikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
+        commentsJSON[sender.tag]["useful_clicked"] = true
+        commentsJSON[sender.tag]["useful_number"].int!++
         setUpOnlineData("commentLike")
     }
 //     评论取消点赞
@@ -406,6 +407,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
         self.commentUnlikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
+        commentsJSON[sender.tag]["useful_clicked"] = false
+        commentsJSON[sender.tag]["useful_number"].int!--
         setUpOnlineData("commentUnlike")
     }
 
@@ -413,13 +416,13 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("remark", forIndexPath: indexPath) as! remarkCell
         cell.backgroundColor = Consts.grayView
-        cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row,"image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
+        cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row]["image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
         cell.layer.cornerRadius = cell.photo.frame.width/2
-        cell.nameLabel.text = commentsJSON[indexPath.row,"name"].string!
-        cell.timeLabel.text = commentsJSON[indexPath.row,"date"].string!
-        cell.commentID = commentsJSON[indexPath.row,"id"].string!
-        cell.hasLike = commentsJSON[indexPath.row,"useful_clicked"].bool!
-        cell.like_count = commentsJSON[indexPath.row,"useful_number"].int!
+        cell.nameLabel.text = commentsJSON[indexPath.row]["name"].string!
+        cell.timeLabel.text = commentsJSON[indexPath.row]["date"].string!
+        cell.commentID = commentsJSON[indexPath.row]["id"].string!
+        cell.hasLike = commentsJSON[indexPath.row]["useful_clicked"].bool!
+        cell.like_count = commentsJSON[indexPath.row]["useful_number"].int!
         if(cell.hasLike == false){
             cell.likeBtn.setBackgroundImage(UIImage.init(named: "unlike"), forState: .Normal)
             cell.likeBtn.removeTarget(self, action: "remark_unlikeBtnClicked", forControlEvents: .TouchUpInside)
@@ -435,7 +438,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         cell.remarkLabel.lineBreakMode = .ByWordWrapping
         cell.remarkLabel.numberOfLines = 0
         cell.remarkLabel.sizeToFit()
-        cell.remarkLabel.text = commentsJSON[indexPath.row,"content"].string!
+        cell.remarkLabel.text = commentsJSON[indexPath.row]["content"].string!
         return cell
     }
     
@@ -569,7 +572,14 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
             
         case "commentView":
-            self.commentsJSON = json["idle_comment"]
+            if(json["idle_comment"].count == 0 && self.commentPage > 1){
+                self.remarkTableView.footer.endRefreshingWithNoMoreData()
+                self.commentPage--
+            }else if(json["idle_comment"].count > 0 && self.commentPage > 1){
+                self.commentsJSON = self.commentsJSON + json["idle_comment"].array!
+            }else if(self.commentPage == 1){
+                self.commentsJSON = json["idle_comment"].array!
+            }
             self.remarkTableView.reloadData()
             self.remarkTableView.header.endRefreshing()
             self.remarkTableView.footer.endRefreshing()
@@ -581,6 +591,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             
         case "idleLike":
             self.setUpOnlineData("idleView")
+            
             break
         
         case "idleUnlike":
@@ -588,11 +599,11 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
             
         case "commentLike":
-            setUpOnlineData("commentView")
+            self.remarkTableView.reloadData()
             break
             
         case "commentUnlike":
-            setUpOnlineData("commentView")
+            self.remarkTableView.reloadData()
             break
             
         case "collect":
