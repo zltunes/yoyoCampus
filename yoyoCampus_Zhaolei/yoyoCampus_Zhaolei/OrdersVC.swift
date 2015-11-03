@@ -13,9 +13,19 @@ public enum STATUS: String{
     case unPaid,unUsed,unRemarked,remarked,refund
 }
 
+/*
+unPaid:     1
+unUsed:     2
+unRemarked: 3
+remarked:   4
+refund:     0
+
+*/
+
 class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDelegate{
 
     @IBOutlet var table: UITableView!
+    @IBOutlet var emptyLabel: UILabel!
     
     var api = YoYoAPI()
     
@@ -25,8 +35,6 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     
     var ordersJSON:[JSON] = []
     
-    ///存放订单
-    var ordersArray:NSMutableArray = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +56,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         
         self.table.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
-//        模拟orders
-        let filepath = NSBundle.mainBundle().pathForResource("data", ofType: "plist")
-        let plistDic = NSMutableDictionary(contentsOfFile: filepath!)
-        self.ordersArray = plistDic?.objectForKey("orders") as! NSMutableArray
+        setUpOnlineData("ordersView")
 
     }
     
@@ -91,15 +96,15 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return ordersJSON.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat   {
-        if(section == 5){
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if(section == 0){
             return 0
         }else{
             return 20 * Consts.ratio
@@ -107,9 +112,8 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let dict = ordersArray[indexPath.section] as! NSMutableDictionary
-        let status = dict["status"] as! String
-        if(status == "unPaid" || status == "unUsed" || status == "unRemarked"){
+        let status = ordersJSON[indexPath.section]["status"].int!
+        if(status == 1 || status == 2 || status == 3){
             return 310 * Consts.ratio
         }else {
             return 250 * Consts.ratio
@@ -118,28 +122,30 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let dic = ordersArray[indexPath.section] as! NSMutableDictionary
-        let status = dic["status"] as! String
-            if(status == "unPaid" || status == "unUsed" || status == "unRemarked"){
+        let orderJSON = ordersJSON[indexPath.section]
+        let status = orderJSON["status"].int!
+            if(status == 1 || status == 2 || status == 3){
                 let cell = self.table.dequeueReusableCellWithIdentifier("OrderCellWithBtn", forIndexPath: indexPath) as! OrderCellWithBtn
-                cell.label_shopName?.text = "东大旅游吧"
-                cell.label_productName?.text = "常州一日游"
-                cell.label_totalPrice?.text = "1200"
-                cell.label_totalCount?.text = "2"
+                cell.label_shopName?.text = orderJSON["shop","name"].string!
+                cell.label_productName?.text = orderJSON["good","name"].string!
+                let price = orderJSON["total_price"].int!
+                cell.label_totalPrice?.text = "\(price)"
+                let quantity = orderJSON["quantity"].int!
+                cell.label_totalCount?.text = "\(quantity)"
                 cell.orderImg.image = UIImage.init(named: "Commodity editor_btn_picture")
                 
                 switch(status){
-                    case "unPaid":
+                    case 1:
                         cell.label_orderstatus?.text = "未付款"
                         cell.statusBtn.setTitle("付款", forState: .Normal)
                     break
                     
-                    case "unUsed":
+                    case 2:
                         cell.label_orderstatus?.text = "未消费"
                         cell.statusBtn.setTitle("退款", forState: .Normal)
                     break
                     
-                    case "unRemarked":
+                    case 3:
                         cell.label_orderstatus?.text = "未评价"
                         cell.statusBtn.setTitle("评价", forState: .Normal)
                     break
@@ -150,18 +156,20 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 return cell
             }else{
                 let cell = self.table.dequeueReusableCellWithIdentifier("OrderCell", forIndexPath: indexPath) as! OrderCell
-                cell.label_shopName?.text = "东大旅游吧"
-                cell.label_productName?.text = "常州一日游"
-                cell.label_totalPrice?.text = "1200"
-                cell.label_totalCount?.text = "2"
+                cell.label_shopName?.text = orderJSON["shop","name"].string!
+                cell.label_productName?.text = orderJSON["good","name"].string!
+                let price = orderJSON["total_price"].int!
+                cell.label_totalPrice?.text = "\(price)"
+                let quantity = orderJSON["quantity"].int!
+                cell.label_totalCount?.text = "\(quantity)"
                 cell.orderImg.image = UIImage.init(named: "Commodity editor_btn_picture")
                 switch(status){
-                    case "remarked":
+                    case 4:
                         cell.label_orderStatus?.text = "已评价"
                         cell.label_orderStatus.textColor = Consts.lightGray
                     break
                     
-                    case "refund":
+                    case 0:
                         cell.label_orderStatus?.text = "已退款"
                         cell.label_orderStatus.textColor = Consts.lightGray
                     
@@ -176,6 +184,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.table.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = OrderDetailVC()
+        vc.order_ID = ordersJSON[indexPath.section]["_id"].string!
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -184,14 +193,22 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         switch(tag){
         case "ordersView":
             if(json["orders"].count == 0 && ordersPage > 1){
+                emptyLabel.hidden = true
 //                刷新无更多数据
                 ordersPage--
                 table.footer.endRefreshingWithNoMoreData()
             }else if(json["orders"].count > 0 && ordersPage > 1){
+                emptyLabel.hidden = true
                 ordersJSON+=json["orders"].array!
-            }else if(ordersPage == 1){
-                
+            }else if(json["orders"].count == 0 && ordersPage == 1){
+                emptyLabel.hidden = false
+            }else if(json["orders"].count > 0 && ordersPage == 1){
+                emptyLabel.hidden = true
+                ordersJSON = json["orders"].array!
             }
+            table.reloadData()
+            table.header.endRefreshing()
+            table.footer.endRefreshing()
             break
             
         default:
@@ -204,15 +221,5 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

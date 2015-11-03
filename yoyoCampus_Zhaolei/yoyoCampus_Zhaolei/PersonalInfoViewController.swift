@@ -400,8 +400,8 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             plistDict?.setValue(self.infoData["name"], forKey: "name")
             plistDict?.setValue(self.infoData["enroll_year"], forKey: "enroll_year")
             plistDict?.setValue(self.infoData["location"], forKey: "location")
+            AppDelegate.location = self.infoData["location"]!
             plistDict?.writeToFile(AppDelegate.filePath, atomically: true)
-            
 //            转到首页
             let vc = PersonCenterVC()
             self.navigationController?.pushViewController(vc, animated: true)

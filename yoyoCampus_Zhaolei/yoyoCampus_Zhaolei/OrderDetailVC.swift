@@ -13,21 +13,26 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
 
     @IBOutlet var table: UITableView!
     
+    internal var order_ID:String = ""
+    
     var api = YoYoAPI()
     
-    var orderStatus:String = "unUsed"
+    var orderDetailViewURL:String = ""
+    
+    var orderStatus:Int = 0
+    
+    var orderDetailJSON:JSON = []
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
+        
         self.setUpNavigationBar()
         
         self.setUpActions()
         
         self.setUpInitialLooking()
         
-        self.setUpOnlineData()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +47,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         self.table.showsVerticalScrollIndicator = false
-        
+        setUpOnlineData("orderDetailView")
     }
     
     func setUpActions(){
@@ -65,11 +70,20 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         self.table.registerNib(nib6, forCellReuseIdentifier: "payCodeCell")
         self.table.registerNib(nib7, forCellReuseIdentifier: "myRemarkCell")
         
-        print("register完毕!")
     }
     
-    func setUpOnlineData(){
+    func setUpOnlineData(tag:String){
         
+        switch(tag){
+            case "orderDetailView":
+                orderDetailViewURL = "\(Consts.mainUrl)/v1.0/user/order/\(order_ID)/"
+                api.httpRequest("GET", url: orderDetailViewURL, params: nil, tag: "orderDetailView")
+            break
+            
+        default:
+            break
+            
+        }
     }
     
     func goBack(){
@@ -78,7 +92,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     
     ///有关tableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if(orderStatus == "remarked"){
+        if(orderStatus == 4){
             return 4
         }else{
             return 3
@@ -89,7 +103,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         switch(section){
         
         case 0://详情
-            if(orderStatus == "unUsed"){
+            if(orderStatus == 2){
                return 3
             }else {
                 return 2
@@ -130,54 +144,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
 //        }
         return 25 * Consts.ratio
     }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch(indexPath.section){
-        case 0:
-            switch(indexPath.row){
-            case 0://orderDetailInfoCell
-                return 174 * Consts.ratio
-                break
-        
-            case 1://分情况
-                if(orderStatus == "unUsed"){
-                    //payCode
-//                    return 512 * Consts.ratio
-                    return 1000 * Consts.ratio
-                }else{
-                    //btn/label cell
-                    return UITableViewCell().frame.height
-                }
-                break
-        
-            case 2://只有orderStatue == "unUsed"会有
-                return UITableViewCell().frame.height
-                break
-                
-            default:
-                return UITableViewCell().frame.height
-                break
-            }
-            break
-            
-        case 1://shopName
-            return UITableViewCell().frame.height
-            break
-            
-        case 2://moreDetail
-            return 530 * Consts.ratio
-            break
-            
-        case 3://status == "remarked"
-            return 360 * Consts.ratio
-            break
-            
-        default:
-            return UITableViewCell().frame.height
-            break
-        }
-    }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch(indexPath.section){
         case 0:
@@ -187,7 +154,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                 break
                 
             case 1://分情况
-                if(orderStatus == "unUsed"){
+                if(orderStatus == 2){
                     //payCode
                     return 512 * Consts.ratio
                 }else{
@@ -226,7 +193,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+        if(!orderDetailJSON.isEmpty){
         switch(indexPath.section){
 //            section 0:
         case 0:
@@ -234,35 +201,40 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             case 0://orderDetailInfoCell
                 
                 let cell = self.table.dequeueReusableCellWithIdentifier("orderDetailInfoCell", forIndexPath: indexPath) as! orderDetailInfoCell
-                cell.goodNameLabel?.text = "常州一日游 * 2"
-                let attributedText = NSAttributedString(string: "¥ 1200", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
+                
+                let orderName = orderDetailJSON["good","name"].string!
+                let price = orderDetailJSON["good","price"].int!//未使用优惠卡
+                let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
+                cell.goodNameLabel?.text = "\(orderName) * 2"
+                let attributedText = NSAttributedString(string: "¥ \(price)", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
                 cell.oldPriceLabel?.attributedText = attributedText
-                cell.presentPriceLabel?.text = "¥ 1000"
+                cell.presentPriceLabel?.text = "¥ \(price - discount)"
                 cell.presentPriceLabel.sizeToFit()
                 return cell
                 break
                 
             case 1://分情况
-                if(orderStatus == "unPaid" || orderStatus == "unRemarked"){
+                if(orderStatus == 1 || orderStatus == 3){
                 let cell = self.table.dequeueReusableCellWithIdentifier("OneBtnCell", forIndexPath: indexPath) as! OneBtnCell
-                    if(orderStatus == "unPaid"){
+                    if(orderStatus == 1){
                         cell.btn_operation.setTitle("付款", forState: .Normal)
                     }else{
                         cell.btn_operation.setTitle("评价", forState: .Normal)
                     }
                     cell.btn_operation.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
                     return cell
-                }else if(orderStatus == "unUsed"){
+                }else if(orderStatus == 2){
                     let cell = self.table.dequeueReusableCellWithIdentifier("payCodeCell", forIndexPath: indexPath) as! payCodeCell
-                    cell.payPwdLabel?.text = "2019 3299 4537"
+                    let code = orderDetailJSON["code"].string!
+                    cell.payPwdLabel?.text = "\(code)"
 //                    根据接收到的字符串生成二维码：
-                    cell.payCodeView.image = QRCodeGenerator.qrImageForString(cell.payPwdLabel.text, imageSize: cell.payCodeView.bounds.size.width)
+                    cell.payCodeView.image = QRCodeGenerator.qrImageForString(code, imageSize: cell.payCodeView.bounds.size.width)
                     
                     return cell
                 }else{//已退款／已评价
                     let cell = self.table.dequeueReusableCellWithIdentifier("OneLabelCell", forIndexPath: indexPath) as! OneLabelCell
                     cell.label_status.textColor = Consts.lightGray
-                    if(orderStatus == "refund"){
+                    if(orderStatus == 0){
                         cell.label_status?.text = "已退款"
                     }else{
                         cell.label_status?.text = "已评价"
@@ -287,17 +259,18 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
 //            section 1:
         case 1:
             let cell = self.table.dequeueReusableCellWithIdentifier("shopNameCell", forIndexPath: indexPath) as! shopNameCell
-            cell.shopNameLabel?.text = "东大旅游吧"
+            cell.shopNameLabel?.text = orderDetailJSON["shop","name"].string!
             return cell
             break
 //            section 2:
         case 2:
             let cell = self.table.dequeueReusableCellWithIdentifier("moreOrderInfoCell", forIndexPath: indexPath) as! moreOrderInfoCell
-            cell.label_orderNo?.text = "201556678990086"
-            cell.label_time?.text = "2015-03-09  12:25"
+            cell.label_orderNo?.text = orderDetailJSON["_id"].string!
+            cell.label_time?.text = orderDetailJSON["time"].string!
             cell.label_phone_num?.text = "15651907759"
             cell.label_campus?.text = "东大九龙湖校区"
-            cell.label_coupon?.text = "¥ 200"
+            let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
+            cell.label_coupon?.text = "¥ \(discount)"
             cell.label_remarks?.text = "界面写得真好看!!"
             return cell
             break
@@ -322,7 +295,9 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             return UITableViewCell()
         break
         }
-
+        }else{
+            return UITableViewCell()
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -331,13 +306,16 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         
         case 0:
             if(indexPath.row == 0){//商品详情
-                print("进入商品详情")
+                let vc = ShopGoodViewController()
+                let goods_id = orderDetailJSON["good","_id"].string!
+                vc.goods_ID = goods_id
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             break
         
         case 1:
             //店铺详情
-            print("进入店铺详情")
+            Tool.showSuccessHUD("进入店铺!")
             break
             
         default:
@@ -348,7 +326,16 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
 
     func btnClicked(sender:UIButton){
         if(sender.titleLabel?.text == "付款"){
-            print("付款")
+            let vc = OrderPayVC()
+            
+            vc.order_ID = orderDetailJSON["_id"].string!
+            vc.orderName = orderDetailJSON["good","name"].string!
+            let price = orderDetailJSON["good","price"].int!//未使用优惠卡
+            let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
+            vc.oldPrice = price
+            vc.topayPrice = price - discount
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if(sender.titleLabel?.text == "申请退款"){
             Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
         }else if(sender.titleLabel?.text == "评价"){
@@ -358,7 +345,16 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
+        switch(tag){
+            case "orderDetailView":
+                orderDetailJSON = json
+                self.orderStatus = json["status"].int!
+                self.table.reloadData()
+            break
+            
+        default:
+            break
+        }
     }
 
 }

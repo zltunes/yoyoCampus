@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     static var isLogin:Bool = false
     ///用户手机号
     static var tel:String = ""
+    ///用户所在校区
+    static var location:String = ""
     ///access_token
     static var access_token:String = ""
     ///沙盒，存储isLogin\tel\access_token
@@ -66,11 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             AppDelegate.isLogin = plistDict?.valueForKey("isLogin") as! Bool
             AppDelegate.tel = plistDict?.valueForKey("tel") as! String
             AppDelegate.access_token = plistDict?.valueForKey("access_token") as! String
+            AppDelegate.location = plistDict?.valueForKey("location") as! String
         }
         
         print("isLogin:\(AppDelegate.isLogin)")
         print("tel:\(AppDelegate.tel)")
         print("access_token:\(AppDelegate.access_token)")
+        print("location:\(AppDelegate.location)")
         
         
 //        设置友盟Appkey

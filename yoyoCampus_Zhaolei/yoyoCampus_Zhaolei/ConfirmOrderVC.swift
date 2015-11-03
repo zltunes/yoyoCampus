@@ -93,7 +93,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                 vc.topayPrice = self.oldPrice * self.quantity - self.discount
                 vc.discount = self.discount
             }else{
-                vc.topayPrice = self.oldPrice * self.quantity - self.discount
+                vc.topayPrice = self.oldPrice * self.quantity
             }
             
             self.navigationController?.pushViewController(vc, animated: true)
@@ -193,7 +193,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
             cell.oldPriceLabel.hidden = true
             if(indexPath.row == 0){
                 cell.leftLabel?.text = "绑定手机"
-                cell.presentPriceLabel?.text = "15651907759"
+                cell.presentPriceLabel?.text = AppDelegate.tel
             }else{
                 cell.leftLabel?.text = "所在校区"
                 cell.presentPriceLabel?.text = "东南大学九龙湖校区"
