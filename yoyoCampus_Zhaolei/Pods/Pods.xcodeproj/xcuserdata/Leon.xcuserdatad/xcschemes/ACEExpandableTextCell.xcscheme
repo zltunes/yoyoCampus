@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'ADECDA56DEA5AE4E8A22AC75'
+               BlueprintIdentifier = 'A2E40D2173C560236B6E68B0'
                BlueprintName = 'ACEExpandableTextCell'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'ACEExpandableTextCell.framework'>

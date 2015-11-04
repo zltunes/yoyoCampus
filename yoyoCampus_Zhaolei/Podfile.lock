@@ -27,6 +27,11 @@ PODS:
   - HappyDNS (0.2.2)
   - IQKeyboardManager (3.3.4)
   - MJRefresh (2.4.12)
+  - Pingpp/Alipay (2.1.4):
+    - Pingpp/Core
+  - Pingpp/Core (2.1.4)
+  - Pingpp/Wx (2.1.4):
+    - Pingpp/Core
   - pop (1.0.8)
   - PopMenu (2.4):
     - pop
@@ -49,6 +54,8 @@ DEPENDENCIES:
   - CustomIOSAlertView
   - IQKeyboardManager
   - MJRefresh
+  - Pingpp/Alipay (~> 2.1.0)
+  - Pingpp/Wx (~> 2.1.0)
   - pop (~> 1.0)
   - PopMenu
   - Qiniu
@@ -73,6 +80,7 @@ SPEC CHECKSUMS:
   HappyDNS: caca4a8aee8fa10e9aa42761bbe05664ac58b4ab
   IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
+  Pingpp: 08415163eb1791bc07d7d939f1648d2e36a30eda
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
   Qiniu: 1fb5191b3bc1edb65b2da3d905b8281e15bd1d5c

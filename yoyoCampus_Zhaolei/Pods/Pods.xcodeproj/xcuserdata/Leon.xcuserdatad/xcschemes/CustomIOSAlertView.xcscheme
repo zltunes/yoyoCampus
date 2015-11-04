@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6F1E85302526E19D0822E836'
+               BlueprintIdentifier = '579CD69B9FD04C93DAB1471A'
                BlueprintName = 'CustomIOSAlertView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'CustomIOSAlertView.framework'>

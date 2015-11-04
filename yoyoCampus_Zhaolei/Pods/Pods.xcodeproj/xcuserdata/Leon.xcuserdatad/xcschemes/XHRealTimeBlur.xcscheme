@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E9EE1E53B69F367303247CA1'
+               BlueprintIdentifier = 'B7A7AFE1309F15412F73FDBD'
                BlueprintName = 'XHRealTimeBlur'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'XHRealTimeBlur.framework'>

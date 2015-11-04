@@ -91,7 +91,19 @@ class OrderPayVC: UIViewController,APIDelegate {
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
+        if(tag == "pay"){
+            print(json)
+            
+            Pingpp.createPayment(json["charge_object"].string!, appURLScheme: "wxcd544705acc90854"){ (result, error) -> Void in
+                print(result)
+                if error != nil {
+                    print(error.code.rawValue)
+                    print(error.getMsg())
+                }
+            }
+            
+            
+        }
     }
     
     
@@ -108,12 +120,7 @@ class OrderPayVC: UIViewController,APIDelegate {
             self.selectPayWay = 1
             break
         case 2:
-//            setUpOnlineData("pay")
-            if(self.selectPayWay == 0){
-                Tool.showSuccessHUD("支付宝!")
-            }else{
-                Tool.showSuccessHUD("微信!")
-            }
+            setUpOnlineData("pay")
         default:
             break
         }

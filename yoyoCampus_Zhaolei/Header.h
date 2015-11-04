@@ -31,6 +31,7 @@
 #import "ZBarSDK.h"
 #import "QRCodeGenerator.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Pingpp.h"
 
 #import "AFPickerView.h"
 

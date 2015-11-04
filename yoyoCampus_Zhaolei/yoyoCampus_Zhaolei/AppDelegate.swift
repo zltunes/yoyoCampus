@@ -99,7 +99,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         return UMSocialSnsService.handleOpenURL(url)
     }
+    
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+//        渠道为微信、支付宝且安装了支付宝钱包或者测试模式时：
+        
+        Pingpp.handleOpenURL(url) { (result, error) -> Void in
+            print(result)
+            if(result == "success"){
+                Tool.showSuccessHUD("支付已成功！您可前往我的订单中查看！")
+            }else if (result == "cancel"){
+                Tool.showErrorHUD("用户取消交易！")
+            }else{
+                Tool.showErrorHUD("支付失败，请重试！")
+            }
+        }
+        
         return UMSocialSnsService.handleOpenURL(url)
     }
 
