@@ -29,6 +29,9 @@ class CouponViewController: UIViewController,APIDelegate{
     
     @IBOutlet var shareBtn: UIButton!
     
+    var getDiscountCardURL:String = ""
+    
+    var api = YoYoAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +40,6 @@ class CouponViewController: UIViewController,APIDelegate{
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()
-        self.setUpOnlineData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,11 +58,14 @@ class CouponViewController: UIViewController,APIDelegate{
     }
     
     func setUpActions(){
-        
+        api.delegate = self
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        if(tag == "discount"){
+            self.getDiscountCardURL = "\(Consts.mainUrl)/v1.0/card/share/"
+            api.httpRequest("POST", url: getDiscountCardURL, params: nil, tag: "discount")
+        }
     }
     
     func goBack(){
@@ -77,11 +82,11 @@ class CouponViewController: UIViewController,APIDelegate{
             UMSocialData.defaultData().extConfig.wechatTimelineData.url = "http://www.baidu.com"
             
             //            设置title
-            //            设置微信朋友圈title（不知道干什么的）
+            //            设置微信朋友圈title
             UMSocialData.defaultData().extConfig.wechatTimelineData.title = "一张优惠卡在手，校园生活服务尽享优惠!"
             UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToWechatTimeline], content: "一张优惠卡在手，校园生活服务尽享优惠", image: UIImage.init(named: "register_icon_just a sign"), location: nil, urlResource: nil, presentedController: self, completion: { (response) -> Void in
                 if(response.responseCode == UMSResponseCodeSuccess){
-                    print("朋友圈分享成功!")
+                    self.setUpOnlineData("discount")
                 }
             })
 
@@ -95,7 +100,7 @@ class CouponViewController: UIViewController,APIDelegate{
             UMSocialData.defaultData().extConfig.wechatSessionData.title = "悠悠校园，万能优惠卡来啦～"
             UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToWechatSession], content: "一张优惠卡在手，校园生活服务尽享优惠", image: UIImage.init(named: "register_icon_just a sign"), location: nil, urlResource: nil, presentedController: self, completion: { (response) -> Void in
                 if(response.responseCode == UMSResponseCodeSuccess){
-                    print("微信好友分享成功!")
+                    self.setUpOnlineData("discount")
                 }
             })
 
@@ -107,7 +112,7 @@ class CouponViewController: UIViewController,APIDelegate{
             UMSocialData.defaultData().extConfig.qzoneData.title = "悠悠校园，万能优惠卡来啦～"
                 UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToQzone], content: "一张优惠卡在手，校园生活服务尽享优惠", image: UIImage.init(named: "register_icon_just a sign"), location: nil, urlResource: nil, presentedController: self, completion: { (response) -> Void in
                     if(response.responseCode == UMSResponseCodeSuccess){
-                        print("QQ空间分享成功!")
+                        self.setUpOnlineData("discount")
                     }
                 })
 
@@ -115,7 +120,6 @@ class CouponViewController: UIViewController,APIDelegate{
     }
 
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
     }
     
 }

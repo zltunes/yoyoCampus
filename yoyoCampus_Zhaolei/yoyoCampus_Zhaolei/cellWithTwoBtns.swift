@@ -23,7 +23,6 @@ class cellWithTwoBtns: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print("cellWithTwoBtns")
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

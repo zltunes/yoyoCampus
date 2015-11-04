@@ -18,10 +18,15 @@ class moreOrderInfoCell: UITableViewCell {
     
     @IBOutlet var label_campus: UILabel!
     
-    @IBOutlet var label_coupon: UILabel!
+    @IBOutlet var label_count: UILabel!
+
+    @IBOutlet var label_totalPrice: UILabel!
     
-    @IBOutlet var label_remarks: UILabel!
+    @IBOutlet var label_discount: UILabel!
+
+    @IBOutlet var label_remark: UILabel!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

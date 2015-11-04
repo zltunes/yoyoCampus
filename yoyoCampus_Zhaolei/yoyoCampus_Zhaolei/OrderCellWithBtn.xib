@@ -17,13 +17,13 @@
                         <rect key="frame" x="8" y="28" width="304" height="1"/>
                         <color key="backgroundColor" red="0.84822837752525249" green="0.84822837752525249" blue="0.84822837752525249" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="东大旅游吧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lll-Ue-rH5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lll-Ue-rH5">
                         <rect key="frame" x="15" y="5" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                         <color key="textColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未付款" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIY-To-8El">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mIY-To-8El">
                         <rect key="frame" x="190" y="5" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,7 +67,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2W-4n-g9t">
-                        <rect key="frame" x="231" y="102" width="69" height="25.5"/>
+                        <rect key="frame" x="231" y="104" width="69" height="25.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal">
                             <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,6 +89,7 @@
             <connections>
                 <outlet property="label_orderstatus" destination="mIY-To-8El" id="eN8-q2-OKg"/>
                 <outlet property="label_productName" destination="P9P-fP-S2C" id="2YT-J6-BvU"/>
+                <outlet property="label_shopName" destination="lll-Ue-rH5" id="u3B-nf-wOg"/>
                 <outlet property="label_totalCount" destination="nrV-7f-lfs" id="F7W-zw-AUv"/>
                 <outlet property="label_totalPrice" destination="tto-tX-f8j" id="Xda-bo-uwX"/>
                 <outlet property="orderImg" destination="X8w-7i-JnL" id="3X4-Ve-hVb"/>

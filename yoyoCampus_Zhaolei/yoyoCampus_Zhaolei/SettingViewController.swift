@@ -185,8 +185,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 AppDelegate.isLogin = false
                 AppDelegate.access_token = ""
                 AppDelegate.tel = ""
-            
-            print("logout:isLogin:\(AppDelegate.isLogin)")
+                AppDelegate.location = ""
             
             self.logOutButton.hidden = true
             

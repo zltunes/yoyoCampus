@@ -122,6 +122,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if(ordersJSON.count != 0){
         let orderJSON = ordersJSON[indexPath.section]
         let status = orderJSON["status"].int!
             if(status == 1 || status == 2 || status == 3){
@@ -132,7 +133,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 cell.label_totalPrice?.text = "\(price)"
                 let quantity = orderJSON["quantity"].int!
                 cell.label_totalCount?.text = "\(quantity)"
-                cell.orderImg.image = UIImage.init(named: "Commodity editor_btn_picture")
+                cell.orderImg.sd_setImageWithURL(orderJSON["good","image"].URL!, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
                 
                 switch(status){
                     case 1:
@@ -178,7 +179,9 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 }
                 return cell
                 }
-        return UITableViewCell()
+        }else{
+            return UITableViewCell()
+        }
         }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -127,24 +127,15 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             break
         }
     }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        if(orderStatus == "remarked"){
-//            if(section == 3){
-//                return 0
-//            }else{
-//                return 25 * Consts.ratio
-//            }
-//        }else{
-//            if(section == 2){
-//                return 0
-//            }else{
-//                return 25 * Consts.ratio
-//            }
-//        }
-        return 25 * Consts.ratio
-    }
 
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if(section == 0){
+            return 0
+        }else{
+            return 25 * Consts.ratio
+        }
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch(indexPath.section){
         case 0:
@@ -178,7 +169,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             break
             
         case 2://moreDetail
-            return 460 * Consts.ratio
+            return 580 * Consts.ratio
             break
             
         case 3://status == "remarked"
@@ -201,14 +192,14 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             case 0://orderDetailInfoCell
                 
                 let cell = self.table.dequeueReusableCellWithIdentifier("orderDetailInfoCell", forIndexPath: indexPath) as! orderDetailInfoCell
-                
+                cell.photoImg.sd_setImageWithURL(orderDetailJSON["good","image"].URL!, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
                 let orderName = orderDetailJSON["good","name"].string!
-                let price = orderDetailJSON["good","price"].int!//未使用优惠卡
-                let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
-                cell.goodNameLabel?.text = "\(orderName) * 2"
-                let attributedText = NSAttributedString(string: "¥ \(price)", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
+                let originPrice = orderDetailJSON["good","original_price"].int!
+                let price = orderDetailJSON["good","price"].int!
+                cell.goodNameLabel?.text = "\(orderName)"
+                let attributedText = NSAttributedString(string: "¥ \(originPrice)", attributes: [NSStrikethroughStyleAttributeName: 1])
                 cell.oldPriceLabel?.attributedText = attributedText
-                cell.presentPriceLabel?.text = "¥ \(price - discount)"
+                cell.presentPriceLabel?.text = "¥ \(price)"
                 cell.presentPriceLabel.sizeToFit()
                 return cell
                 break
@@ -267,11 +258,19 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             let cell = self.table.dequeueReusableCellWithIdentifier("moreOrderInfoCell", forIndexPath: indexPath) as! moreOrderInfoCell
             cell.label_orderNo?.text = orderDetailJSON["_id"].string!
             cell.label_time?.text = orderDetailJSON["time"].string!
-            cell.label_phone_num?.text = "15651907759"
-            cell.label_campus?.text = "东大九龙湖校区"
+            cell.label_phone_num?.text = orderDetailJSON["buyer","phone_num"].string!
+            cell.label_campus?.text = orderDetailJSON["buyer","location"].string!
+            cell.label_remark?.text = orderDetailJSON["remark"].string!
             let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
-            cell.label_coupon?.text = "¥ \(discount)"
-            cell.label_remarks?.text = "界面写得真好看!!"
+            let quantity = orderDetailJSON["quantity"].int!
+            let totalPrice = orderDetailJSON["total_price"].int!
+            cell.label_count?.text = "\(quantity)"
+            if(orderDetailJSON["use_card"].bool!){
+                 cell.label_discount?.text = "¥ \(quantity * discount)"
+            }else{
+                cell.label_discount?.text = "¥ 0"
+            }
+            cell.label_totalPrice?.text = "¥ \(totalPrice)"
             return cell
             break
 //            section 3:
