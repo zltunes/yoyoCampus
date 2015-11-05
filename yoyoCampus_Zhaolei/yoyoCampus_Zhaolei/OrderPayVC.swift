@@ -8,14 +8,11 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class OrderPayVC: UIViewController,APIDelegate {
     
     internal var order_ID:String = ""
-    internal var orderName:String = ""
-    internal var oldPrice:Int = 0
-    internal var topayPrice:Int = 0
-    internal var discount:Int = 0
     
     @IBOutlet var label_orderName: UILabel!
     
@@ -36,6 +33,12 @@ class OrderPayVC: UIViewController,APIDelegate {
     var api = YoYoAPI()
     
     var orderPayURL:String = ""
+    
+    var detailURL:String = ""
+    
+    var chargeData:NSData = NSData()
+    
+    var chargeString:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +62,7 @@ class OrderPayVC: UIViewController,APIDelegate {
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         
-        self.label_orderName?.text = orderName
-        self.label_totalPrice?.text = "¥ \(oldPrice)"
-        self.label_toPay?.text = "¥ \(topayPrice)"
-        self.label_discount?.text = "¥ \(discount)"
+        setUpOnlineData("detail")
         
         self.btn_wechat.setBackgroundImage(UIImage.init(named: "dingdan_btn_select"), forState: .Normal)
         self.btn_aliPay.setBackgroundImage(UIImage.init(named: "dingdan_btn_get"), forState: .Normal)
@@ -74,15 +74,46 @@ class OrderPayVC: UIViewController,APIDelegate {
     }
     
     func setUpOnlineData(tag:String){
-        if(tag == "pay"){
-            orderPayURL = "\(Consts.mainUrl)/v1.0/user/order/pay/\(order_ID)/"
-            var param = ["":""]
-            if(selectPayWay == 0){
-                param = ["channel":"alipay"]
-            }else{
-                param = ["channel":"wx"]
-            }
-            api.httpRequest("POST", url: self.orderPayURL, params: param, tag: "pay")
+        switch(tag){
+            case "detail":
+                detailURL = "\(Consts.mainUrl)/v1.0/user/order/\(order_ID)/"
+                api.httpRequest("GET", url: detailURL, params: nil, tag: "detail")
+            break
+            
+            case "pay":
+                orderPayURL = "\(Consts.mainUrl)/v1.0/user/order/pay/\(order_ID)/"
+                var param = ["":""]
+                if(selectPayWay == 0){
+                    param = ["channel":"alipay"]
+                }else{
+                    param = ["channel":"wx"]
+                }
+                
+                Alamofire.request(.POST,orderPayURL,parameters:param,headers:["access_token":AppDelegate.access_token],encoding: .JSON)
+                    .responseJSON{  response in
+                        if response.result.error == nil{
+                            self.chargeData = try! NSJSONSerialization.dataWithJSONObject(response.result.value!, options: NSJSONWritingOptions())
+                            self.chargeString = NSString(data: self.chargeData, encoding: NSUTF8StringEncoding)! as String
+                            Pingpp.createPayment(self.chargeString, appURLScheme: "wxcd544705acc90854"){ (result, error) -> Void in
+                                print("result:\(result)")
+                                let vc = OrderDetailVC()
+                                vc.order_ID = self.order_ID
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                if error != nil {
+                                    print("error:\(error.code.rawValue)")
+                                    print("error:\(error.getMsg())")
+                                }
+                            }
+                        }else{
+                            //                        输出失败信息
+                            print("post请求失败!\(response.result.error)")
+                        }
+                }
+
+            break
+            
+        default:
+            break
         }
     }
     
@@ -91,21 +122,21 @@ class OrderPayVC: UIViewController,APIDelegate {
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        if(tag == "pay"){
-            print(json)
+        switch(tag){
+        case "detail":
+            label_orderName.text = json["good","name"].string!
+            let totalPrice = Float(json["total_price"].int!)/100.00
+            let price = Float(json["good","price"].int!)/100.00
+            let quantity = json["quantity"].int!
+            label_totalPrice.text = "¥ \(price * Float(quantity))"
+            label_toPay.text = "¥ \(totalPrice)"
+            label_discount.text = "¥ \(price * Float(quantity) - totalPrice)"
+            break
             
-            Pingpp.createPayment(json["charge_object"].string!, appURLScheme: "wxcd544705acc90854"){ (result, error) -> Void in
-                print(result)
-                if error != nil {
-                    print(error.code.rawValue)
-                    print(error.getMsg())
-                }
-            }
-            
-            
+        default:
+            break
         }
     }
-    
     
     @IBAction func btnClicked(sender: UIButton) {
         switch(sender.tag){

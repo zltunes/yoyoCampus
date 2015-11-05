@@ -13,15 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lAi-UV-zEo">
-                        <rect key="frame" x="11" y="8" width="24" height="24"/>
-                        <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="12"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homepage_btn_open" translatesAutoresizingMaskIntoConstraints="NO" id="3jA-e9-GAk">
                         <rect key="frame" x="290" y="14" width="10" height="15.5"/>
                     </imageView>
@@ -31,9 +22,13 @@
                         <color key="textColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eh4-B3-GkQ">
+                        <rect key="frame" x="10" y="7" width="28" height="28"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="shopImage" destination="eh4-B3-GkQ" id="iFF-AI-oQ6"/>
                 <outlet property="shopNameLabel" destination="S6a-LR-a0c" id="oCZ-j9-hGI"/>
             </connections>
             <point key="canvasLocation" x="382" y="364"/>

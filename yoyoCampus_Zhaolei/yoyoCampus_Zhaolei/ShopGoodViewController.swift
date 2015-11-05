@@ -66,7 +66,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     var api = YoYoAPI()
     
-    internal var goods_ID = "563709a290c49063a04cabe8"
+    internal var goods_ID = "563a11f690c4907a0449c2a5"
     
     var shop_ID = ""
     
@@ -76,11 +76,11 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     var sales_numeber = 0
     
-    var original_price = 0
+    var original_price:Float = 0.00
     
-    var price = 0
+    var present_price:Float = 0.00
     
-    var discount = 0//优惠卡
+    var discount:Float = 0.00//优惠卡
     
     var detailInfoJSON:JSON = []
     
@@ -421,7 +421,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             }else{
                 let vc = ConfirmOrderVC()
                 vc.goodName = self.goodNameLabel.text!
-                vc.oldPrice = self.price
+                vc.oldPrice = self.present_price
                 vc.quantity = 1
                 vc.discount = self.discount
                 vc.goodID = self.goods_ID
@@ -500,13 +500,18 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 
                 self.goodNameLabel.text = json["name"].string!
                 self.shopNameBtn.setTitle(json["shop_name"].string!, forState: .Normal)
-                self.original_price = json["original_price"].int!
+                let original_price_cent = json["original_price"].int!
+                self.original_price = Float(original_price_cent)/100.00
                 
                 let attributedText = NSAttributedString(string: "¥ \(self.original_price)", attributes: [NSStrikethroughStyleAttributeName: 1])//0表示不显示删除线，1表示显示删除线
                 self.originPriceLabel.attributedText = attributedText
             
-                self.price = json["price"].int!
-                self.presentPriceLabel.text = "¥ \(self.price)"
+                let price_cent = json["price"].int!
+                self.present_price = Float(price_cent)/100.00
+                self.presentPriceLabel.text = "¥ \(self.present_price)"
+                
+                let discount_cent = json["discount"].int!
+                self.discount = Float(discount_cent)/100.00
                 
                 self.view_number = json["view_number"].int!
                 self.interestCountLabel.text = "\(self.view_number) 人感兴趣"
@@ -518,7 +523,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 self.detailInfoJSON = json["description"]
                 
                 self.phone_num = json["phone_num"].string!
-                self.discount = json["discount"].int!
+
                 self.detailView.reloadData()
                 
             break

@@ -38,13 +38,19 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         self.setUpInitialLooking()
         
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.hidesBottomBarWhenPushed = false
+        super.viewDidDisappear(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func setUpNavigationBar(){
-        Consts.setUpNavigationBarWithBackButton(self, title: "个人中心", backTitle: "<")
+        Consts.setUpNavigationBarWithBackButton(self, title: "个人中心", backTitle: "")
     }
     
     func setUpInitialLooking(){
@@ -93,6 +99,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                 Tool.showErrorHUD("请先登录!")
             }else{
                 let vc = PersonalInfomationViewController()
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             break
@@ -112,6 +119,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             break
         case 3://提示去注册/登录
             let vc = LoginViewController()
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
@@ -190,6 +198,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                     Tool.showErrorHUD("请先登录!")
                 }else{
                     let vc = OrdersVC()
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 break
@@ -198,6 +207,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                     Tool.showErrorHUD("请先登录!")
                 }else{
                     let vc = CouponViewController()
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 break
@@ -218,6 +228,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                     Tool.showErrorHUD("请先登录!")
                 }else{
                     let vc = SettingViewController()
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 break
@@ -226,6 +237,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                     Tool.showErrorHUD("请先登录!")
                 }else{
                     let vc = UserFeedbackViewController()
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 break

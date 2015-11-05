@@ -12,9 +12,13 @@ class shopNameCell: UITableViewCell {
 
     @IBOutlet var shopNameLabel: UILabel!
     
+    @IBOutlet var shopImage: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        shopImage.layer.cornerRadius = shopImage.frame.width/2
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -15,8 +15,8 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
     ///需从ShopGoodViewController获取的数据:
     internal var goodName:String = ""//商品名称
     internal var quantity:Int = 1//商品数量
-    internal var oldPrice:Int = 0//原价(单价)
-    internal var discount:Int = 0//优惠卡金额
+    internal var oldPrice:Float = 0.00//原价(单价)
+    internal var discount:Float = 0.00//优惠卡金额
     internal var goodID:String = ""
     
     @IBOutlet var table: UITableView!
@@ -107,15 +107,6 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                 print("order_id:\(orderID)")
                 let vc = OrderPayVC()
                 vc.order_ID = json["order_id"].string!
-                vc.orderName = self.goodName
-                vc.oldPrice = self.oldPrice * self.quantity
-                if(hasDiscountCard){
-                    vc.topayPrice = (self.oldPrice - self.discount)*quantity
-                    vc.discount = self.discount
-                }else{
-                    vc.topayPrice = self.oldPrice * self.quantity
-                }
-                
                 self.navigationController?.pushViewController(vc, animated: true)
             break
             
@@ -203,11 +194,11 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
                 cell.leftLabel?.text = "合计"
                 if(!hasDiscountCard){
                     cell.oldPriceLabel?.hidden = true
-                    cell.presentPriceLabel?.text = "¥ \(oldPrice * quantity)"
+                    cell.presentPriceLabel?.text = "¥ \(oldPrice * Float(quantity))"
                 }else{
-                    cell.presentPriceLabel?.text = "¥ \((oldPrice - discount) * quantity)"
+                    cell.presentPriceLabel?.text = "¥ \((oldPrice - discount) * Float(quantity))"
                     cell.presentPriceLabel.textColor = UIColor.redColor()
-                    let attributeText = NSAttributedString(string: "¥ \(oldPrice * quantity)", attributes: [NSStrikethroughStyleAttributeName:1])
+                    let attributeText = NSAttributedString(string: "¥ \(oldPrice * Float(quantity))", attributes: [NSStrikethroughStyleAttributeName:1])
                     cell.oldPriceLabel?.hidden = false
                     cell.oldPriceLabel?.attributedText = attributeText
                 }

@@ -95,7 +95,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         let wtf = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.view.addSubview(wtf)
         
-        self.personTable.frame = CGRect(x: 0, y: 64, width: newWidth, height: newHeight)
+        self.personTable.frame = CGRect(x: 0, y: 0, width: newWidth, height: newHeight)
         self.personTable.backgroundColor = Consts.grayView
         self.personTable.layoutMargins = UIEdgeInsetsZero
         self.personTable.separatorInset = UIEdgeInsetsZero

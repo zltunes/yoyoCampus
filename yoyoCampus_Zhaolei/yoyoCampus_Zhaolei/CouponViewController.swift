@@ -99,12 +99,13 @@ class CouponViewController: UIViewController,APIDelegate{
             UMSocialData.defaultData().extConfig.wechatSessionData.url = "http://www.baidu.com"
             UMSocialData.defaultData().extConfig.wechatSessionData.title = "悠悠校园，万能优惠卡来啦～"
             UMSocialDataService.defaultDataService().postSNSWithTypes([UMShareToWechatSession], content: "一张优惠卡在手，校园生活服务尽享优惠", image: UIImage.init(named: "register_icon_just a sign"), location: nil, urlResource: nil, presentedController: self, completion: { (response) -> Void in
+                print("回来啦！\(response.responseCode)")
                 if(response.responseCode == UMSResponseCodeSuccess){
                     self.setUpOnlineData("discount")
                 }
             })
-
         }
+        
         shareAlert.rightBlock = {
             //            设置点击分享内容跳转链接
             //            注意设置的链接必须为http链接

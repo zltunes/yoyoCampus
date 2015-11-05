@@ -25,6 +25,8 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
     var ratingLabel = UILabel()
     
     var api = YoYoAPI()
+    
+    internal var order_id:String = ""
         
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -194,12 +194,13 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                 let cell = self.table.dequeueReusableCellWithIdentifier("orderDetailInfoCell", forIndexPath: indexPath) as! orderDetailInfoCell
                 cell.photoImg.sd_setImageWithURL(orderDetailJSON["good","image"].URL!, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
                 let orderName = orderDetailJSON["good","name"].string!
-                let originPrice = orderDetailJSON["good","original_price"].int!
-                let price = orderDetailJSON["good","price"].int!
+                let originPrice = Float(orderDetailJSON["good","original_price"].int!)/100.00
+                let price = Float(orderDetailJSON["good","price"].int!)/100.00
                 cell.goodNameLabel?.text = "\(orderName)"
                 let attributedText = NSAttributedString(string: "¥ \(originPrice)", attributes: [NSStrikethroughStyleAttributeName: 1])
                 cell.oldPriceLabel?.attributedText = attributedText
                 cell.presentPriceLabel?.text = "¥ \(price)"
+                cell.presentPriceLabel.textColor = UIColor.redColor()
                 cell.presentPriceLabel.sizeToFit()
                 return cell
                 break
@@ -250,6 +251,8 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
 //            section 1:
         case 1:
             let cell = self.table.dequeueReusableCellWithIdentifier("shopNameCell", forIndexPath: indexPath) as! shopNameCell
+            cell.shopImage.layer.cornerRadius = cell.shopImage.frame.width/2
+            cell.shopImage.sd_setImageWithURL(orderDetailJSON["shop","shop_image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
             cell.shopNameLabel?.text = orderDetailJSON["shop","name"].string!
             return cell
             break
@@ -261,12 +264,12 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             cell.label_phone_num?.text = orderDetailJSON["buyer","phone_num"].string!
             cell.label_campus?.text = orderDetailJSON["buyer","location"].string!
             cell.label_remark?.text = orderDetailJSON["remark"].string!
-            let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
+            let discount = Float(orderDetailJSON["good","discount"].int!)/100.00//优惠卡金额
             let quantity = orderDetailJSON["quantity"].int!
-            let totalPrice = orderDetailJSON["total_price"].int!
+            let totalPrice = Float(orderDetailJSON["total_price"].int!)/100.00
             cell.label_count?.text = "\(quantity)"
             if(orderDetailJSON["use_card"].bool!){
-                 cell.label_discount?.text = "¥ \(quantity * discount)"
+                 cell.label_discount?.text = "¥ \(Float(quantity) * discount)"
             }else{
                 cell.label_discount?.text = "¥ 0"
             }
@@ -326,14 +329,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     func btnClicked(sender:UIButton){
         if(sender.titleLabel?.text == "付款"){
             let vc = OrderPayVC()
-            
             vc.order_ID = orderDetailJSON["_id"].string!
-            vc.orderName = orderDetailJSON["good","name"].string!
-            let price = orderDetailJSON["good","price"].int!//未使用优惠卡
-            let discount = orderDetailJSON["good","discount"].int!//优惠卡金额
-            vc.oldPrice = price
-            vc.topayPrice = price - discount
-            
             self.navigationController?.pushViewController(vc, animated: true)
         }else if(sender.titleLabel?.text == "申请退款"){
             Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")

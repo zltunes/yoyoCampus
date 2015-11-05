@@ -33,7 +33,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     static var wechat_name:String = ""
     
     static var wechat_photoURL:NSURL = NSURL()
-
+    
+//    最底层：tabbarController
+    var tabBarController = UITabBarController()
+    
+//    三个tab各自的navigationController
+    var navigationController_home = CustomNavigationController()
+    var navigationController_shop = CustomNavigationController()
+    var navigationController_my = CustomNavigationController()
+    
+//    三个rootViewController
+    var homeVC = UIViewController()
+    var shopVC = UIViewController()
+    var myVC = PersonCenterVC()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Override point for customization after application launch.
@@ -91,6 +104,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 //        对未安装客户端进行隐藏 
         UMSocialConfig.hiddenNotInstallPlatforms([UMShareToQzone,UMShareToWechatSession,UMShareToWechatTimeline])
         
+        self.homeVC.view.backgroundColor = UIColor.redColor()
+        self.homeVC.tabBarItem.image = UIImage.init(named: "my center_btn_shop_n_xxhdpi")
+        self.homeVC.tabBarItem.selectedImage = UIImage.init(named: "my center_btn_shop_p_xxhdpi")
+        self.homeVC.title = "主页"
+        
+        self.shopVC.view.backgroundColor = UIColor.yellowColor()
+        self.shopVC.tabBarItem.image = UIImage.init(named: "homepage_btn_shop_n_xxhdpi")
+        self.shopVC.tabBarItem.selectedImage = UIImage.init(named: "homepage_btn_shop_p_xxhdpi")
+        self.shopVC.title = "商家"
+        
+        self.myVC.tabBarItem.image = UIImage.init(named: "my center_btn_me_n_xxhdpi")
+        self.myVC.tabBarItem.selectedImage = UIImage.init(named: "my center_btn_me_p_xxhdpi")
+        self.myVC.title = "个人"
+        
+        self.navigationController_home = CustomNavigationController(rootViewController: homeVC)
+        self.navigationController_shop = CustomNavigationController(rootViewController: shopVC)
+        self.navigationController_my = CustomNavigationController(rootViewController: myVC)
+
+        self.tabBarController.viewControllers = [navigationController_home,navigationController_shop,navigationController_my]
+        self.tabBarController.tabBar.tintColor = Consts.tintGreen
+        self.window?.rootViewController = self.tabBarController
         
         return true
     }
@@ -107,7 +141,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         Pingpp.handleOpenURL(url) { (result, error) -> Void in
             print(result)
             if(result == "success"){
-                Tool.showSuccessHUD("支付已成功！您可前往我的订单中查看！")
+                Tool.showSuccessHUD("支付成功！前往我的订单查看！")
+                
             }else if (result == "cancel"){
                 Tool.showErrorHUD("用户取消交易！")
             }else{

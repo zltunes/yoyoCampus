@@ -44,7 +44,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         self.setUpActions()
         self.setUpInitialLooking()
     }
-
+    
     func setUpNavigationBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "我的订单", backTitle: "<")
     }
@@ -129,7 +129,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 let cell = self.table.dequeueReusableCellWithIdentifier("OrderCellWithBtn", forIndexPath: indexPath) as! OrderCellWithBtn
                 cell.label_shopName?.text = orderJSON["shop","name"].string!
                 cell.label_productName?.text = orderJSON["good","name"].string!
-                let price = orderJSON["total_price"].int!
+                let price = Float(orderJSON["total_price"].int!)/100.00
                 cell.label_totalPrice?.text = "\(price)"
                 let quantity = orderJSON["quantity"].int!
                 cell.label_totalCount?.text = "\(quantity)"
@@ -154,6 +154,8 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 default:
                     break
                 }
+                cell.statusBtn.tag = indexPath.section
+                cell.statusBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
                 return cell
             }else{
                 let cell = self.table.dequeueReusableCellWithIdentifier("OrderCell", forIndexPath: indexPath) as! OrderCell
@@ -188,6 +190,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         self.table.deselectRowAtIndexPath(indexPath, animated: true)
         let vc = OrderDetailVC()
         vc.order_ID = ordersJSON[indexPath.section]["_id"].string!
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -212,6 +215,29 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
             table.reloadData()
             table.header.endRefreshing()
             table.footer.endRefreshing()
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func btnClicked(sender:UIButton){
+        switch(sender.titleLabel!.text!){
+            case "付款":
+                let vc = OrderPayVC()
+                vc.order_ID = ordersJSON[sender.tag]["_id"].string!
+                self.navigationController?.pushViewController(vc, animated: true)
+            break
+            
+            case "退款":
+                
+            break
+            
+            case "评价":
+                let vc = remarkVC()
+                vc.order_id = ordersJSON[sender.tag]["_id"].string!
+                self.navigationController?.pushViewController(vc, animated: true)
             break
             
         default:

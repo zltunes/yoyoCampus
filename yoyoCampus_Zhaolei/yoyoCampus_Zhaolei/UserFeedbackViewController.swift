@@ -55,7 +55,7 @@ class UserFeedbackViewController: UIViewController,UITextViewDelegate,APIDelegat
         
         self.view.backgroundColor = Consts.grayView
         
-        self.bkg1.frame = CGRect(x: 0, y: 64, width: newWidth, height: 500 * Consts.ratio)
+        self.bkg1.frame = CGRect(x: 0, y: 0, width: newWidth, height: 500 * Consts.ratio)
         self.bkg1.backgroundColor = Consts.white
         self.bkg1.layer.shadowColor = Consts.black.CGColor
         self.bkg1.layer.shadowOffset = CGSize(width: 0, height: 0.5 * Consts.ratio)

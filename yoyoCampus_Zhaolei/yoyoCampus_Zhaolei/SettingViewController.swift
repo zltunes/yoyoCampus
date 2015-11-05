@@ -53,7 +53,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let wtf = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.view.addSubview(wtf)
         
-        self.settingTable.frame = CGRect(x: 0, y: 64 + 20 * Consts.ratio, width: newWidth, height: 250 * Consts.ratio)
+        self.settingTable.frame = CGRect(x: 0, y: 20 * Consts.ratio, width: newWidth, height: 250 * Consts.ratio)
         self.settingTable.backgroundColor = Consts.grayView
         self.settingTable.scrollEnabled = false
         self.view.addSubview(self.settingTable)
@@ -119,6 +119,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 break
             case 1://跳转至关于界面
                 let vc = AboutVC()
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
                 break
             default:
