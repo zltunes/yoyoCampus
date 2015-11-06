@@ -73,7 +73,7 @@ class FindPwdViewController: UIViewController,APIDelegate {
         self.view.backgroundColor = Consts.grayView
         
         //头像
-        self.img.frame = CGRect(x: 260 * Consts.ratio, y: 200 * Consts.ratio, width: 200 * Consts.ratio, height: 200 * Consts.ratio)
+        self.img.frame = CGRect(x: 260 * Consts.ratio, y: 80 * Consts.ratio, width: 200 * Consts.ratio, height: 200 * Consts.ratio)
         self.img.contentMode = .ScaleAspectFit
         self.img.layer.cornerRadius = self.img.frame.width / 2   //圆角半径＝width/2，形成原型
         self.img.layer.masksToBounds = true
@@ -82,28 +82,28 @@ class FindPwdViewController: UIViewController,APIDelegate {
         self.view.addSubview(self.img)
         
         //手机号背景
-        self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 480 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 360 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.phoneView.layer.cornerRadius = 7
         self.phoneView.layer.masksToBounds = true
         self.phoneView.backgroundColor = Consts.white
         self.view.addSubview(self.phoneView)
         
         //验证码背景
-        self.verifyCodeView.frame = CGRect(x: 37 * Consts.ratio, y: 590 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.verifyCodeView.frame = CGRect(x: 37 * Consts.ratio, y: 470 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.verifyCodeView.layer.cornerRadius = 7
         self.verifyCodeView.layer.masksToBounds = true
         self.verifyCodeView.backgroundColor = Consts.white
         self.view.addSubview(self.verifyCodeView)
         
         //密码框背景
-        self.pwdView.frame = CGRect(x: 37 * Consts.ratio, y: 700 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.pwdView.frame = CGRect(x: 37 * Consts.ratio, y: 580 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.pwdView.layer.cornerRadius = 7
         self.pwdView.layer.masksToBounds = true
         self.pwdView.backgroundColor = Consts.white
         self.view.addSubview(self.pwdView)
         
         //再次输入密码背景
-        self.pwdAgainView.frame = CGRect(x: 37 * Consts.ratio, y: 810 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.pwdAgainView.frame = CGRect(x: 37 * Consts.ratio, y: 690 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.pwdAgainView.layer.cornerRadius = 7
         self.pwdAgainView.layer.masksToBounds = true
         self.pwdAgainView.backgroundColor = Consts.white
@@ -157,7 +157,7 @@ class FindPwdViewController: UIViewController,APIDelegate {
         self.pwdAgainView.addSubview(self.pwdAgainTextField)
         
         //注册
-        self.registerBtn = Consts.setUpButton("完  成", frame: CGRect(x: 70 * Consts.ratio, y: newHeight * 0.8, width: newWidth - 140 * Consts.ratio, height: 86 * Consts.ratio), font: Consts.ft24, radius: 7)
+        self.registerBtn = Consts.setUpButton("完  成", frame: CGRect(x: 70 * Consts.ratio, y: newHeight * 0.7, width: newWidth - 140 * Consts.ratio, height: 86 * Consts.ratio), font: Consts.ft24, radius: 7)
         self.view.addSubview(self.registerBtn)
     }
     

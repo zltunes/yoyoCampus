@@ -100,7 +100,7 @@ class LoginViewController: UIViewController,APIDelegate{
         self.view.addSubview(self.img)
         
         //手机号背景
-        self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 380 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 360 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.phoneView.layer.cornerRadius = 7
         self.phoneView.layer.masksToBounds = true
         self.phoneView.backgroundColor = Consts.white
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController,APIDelegate{
         self.phoneView.addSubview(self.phoneTextField)
         
         //密码框背景
-        self.pwdView.frame = CGRect(x: 37 * Consts.ratio, y: 500 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.pwdView.frame = CGRect(x: 37 * Consts.ratio, y: 480 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.pwdView.layer.cornerRadius = 7
         self.pwdView.layer.masksToBounds = true
         self.pwdView.backgroundColor = Consts.white
@@ -141,13 +141,13 @@ class LoginViewController: UIViewController,APIDelegate{
         self.pwdView.addSubview(self.pwdTextField)
         
         //登录按钮
-        self.loginBtn = Consts.setUpButton("登  录", frame: CGRect(x: 52 * Consts.ratio, y: 650 * Consts.ratio, width: 600 * Consts.ratio, height: 94 * Consts.ratio), font: Consts.ft24, radius: 7)
+        self.loginBtn = Consts.setUpButton("登  录", frame: CGRect(x: 52 * Consts.ratio, y: 630 * Consts.ratio, width: 600 * Consts.ratio, height: 94 * Consts.ratio), font: Consts.ft24, radius: 7)
         self.loginBtn.center.x = self.view.center.x
         self.view.addSubview(self.loginBtn)
         
         //忘记按钮
         self.fogetPwdBtn = UIButton(type: .System)
-        self.fogetPwdBtn.frame = CGRect(x: 0, y: 780 * Consts.ratio, width: 150 * Consts.ratio, height: 45 * Consts.ratio)
+        self.fogetPwdBtn.frame = CGRect(x: 0, y: 760 * Consts.ratio, width: 150 * Consts.ratio, height: 45 * Consts.ratio)
         self.fogetPwdBtn.center.x = self.view.center.x/2
         self.fogetPwdBtn.setTitle("忘记密码", forState: .Normal)
         self.fogetPwdBtn.tintColor = Consts.lightGray
@@ -156,7 +156,7 @@ class LoginViewController: UIViewController,APIDelegate{
         
         //马上注册
         self.registerBtn = UIButton(type: .System)
-        self.registerBtn.frame = CGRect(x: 0, y: 780 * Consts.ratio, width: 150 * Consts.ratio, height: 45 * Consts.ratio)
+        self.registerBtn.frame = CGRect(x: 0, y: 760 * Consts.ratio, width: 150 * Consts.ratio, height: 45 * Consts.ratio)
         self.registerBtn.center.x = self.view.center.x * 1.5
         self.registerBtn.setTitle("马上注册", forState: .Normal)
         self.registerBtn.tintColor = Consts.lightGray
@@ -164,37 +164,37 @@ class LoginViewController: UIViewController,APIDelegate{
         self.view.addSubview(self.registerBtn)
         
         //leftLine
-        self.leftLine.frame = CGRect(x: 65 * Consts.ratio, y: 900 * Consts.ratio, width: newWidth/3-10 * Consts.ratio, height: 0.5)
+        self.leftLine.frame = CGRect(x: 65 * Consts.ratio, y: 890 * Consts.ratio, width: newWidth/3-10 * Consts.ratio, height: 0.5)
         self.leftLine.backgroundColor = Consts.lightGray
         self.view.addSubview(self.leftLine)
         
         //快速登录
-        self.fastLoginLabel = Consts.setUpLabel("快速登录", color: Consts.lightGray, font: Consts.ft13, x: 70 + newWidth/4, y: 880 * Consts.ratio, centerX: self.view.center.x)
+        self.fastLoginLabel = Consts.setUpLabel("快速登录", color: Consts.lightGray, font: Consts.ft13, x: 70 + newWidth/4, y: 870 * Consts.ratio, centerX: self.view.center.x)
         self.view.addSubview(self.fastLoginLabel)
         
         //rightLine
-        self.rightLine.frame = CGRect(x: 425 * Consts.ratio, y: 900 * Consts.ratio, width: newWidth/3-10 * Consts.ratio, height: 0.5)
+        self.rightLine.frame = CGRect(x: 425 * Consts.ratio, y: 890 * Consts.ratio, width: newWidth/3-10 * Consts.ratio, height: 0.5)
         self.rightLine.backgroundColor = Consts.lightGray
         self.view.addSubview(self.rightLine)
         
         //微信图像
-        self.wechatBtn.frame = CGRect(x: 0, y: 1000 * Consts.ratio, width: 85 * Consts.ratio, height: 85 * Consts.ratio)
+        self.wechatBtn.frame = CGRect(x: 0, y: 950 * Consts.ratio, width: 85 * Consts.ratio, height: 85 * Consts.ratio)
         self.wechatBtn.center.x = self.view.center.x/2
         self.wechatBtn.setBackgroundImage(UIImage(named: "Personal information_icon_weixin"), forState: .Normal)
         self.view.addSubview(self.wechatBtn)
         
         //微信label
-        self.wechatLabel = Consts.setUpLabel("微信登录", color: Consts.lightGray, font: Consts.ft12, x: 0, y: 1200 * Consts.ratio, centerX: self.view.center.x/2)
+        self.wechatLabel = Consts.setUpLabel("微信登录", color: Consts.lightGray, font: Consts.ft12, x: 0, y: 1060 * Consts.ratio, centerX: self.view.center.x/2)
         self.view.addSubview(self.wechatLabel)
         
         //微博图像 
-        self.weiboBtn.frame = CGRect(x: 0, y: 1000 * Consts.ratio, width: 95 * Consts.ratio, height: 95 * Consts.ratio)
+        self.weiboBtn.frame = CGRect(x: 0, y: 950 * Consts.ratio, width: 85 * Consts.ratio, height: 85 * Consts.ratio)
         self.weiboBtn.center.x = self.view.center.x * 1.5
         self.weiboBtn.setBackgroundImage(UIImage(named: "Personal information_icon_weibo"), forState: .Normal)
         self.view.addSubview(self.weiboBtn)
         
         //微博label
-        self.weiboLabel = Consts.setUpLabel("微博登录", color: Consts.lightGray, font: Consts.ft12, x: 0, y: 1200 * Consts.ratio, centerX: self.view.center.x * 1.5)
+        self.weiboLabel = Consts.setUpLabel("微博登录", color: Consts.lightGray, font: Consts.ft12, x: 0, y: 1060 * Consts.ratio, centerX: self.view.center.x * 1.5)
         self.view.addSubview(self.weiboLabel)
         
     }
@@ -258,6 +258,7 @@ class LoginViewController: UIViewController,APIDelegate{
 //                    未完善个人信息
                     let personalInfoVC = PersonalInfoViewController()
                     PersonalInfoViewController.backTitle = nil
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(personalInfoVC, animated: true)
                 }else{
                     plistDict["name"] = json["name"].string!
@@ -269,6 +270,7 @@ class LoginViewController: UIViewController,APIDelegate{
                     plistDict["weixin_bind"] = json["weixin_bind"].int!
                     plistDict.writeToFile(AppDelegate.filePath, atomically: false)
                     let vc = PersonCenterVC()
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
             }
             break
@@ -285,6 +287,7 @@ class LoginViewController: UIViewController,APIDelegate{
                 }else if(json["code"] == 404){
 //                    还未绑定手机，需选择绑定
                     let vc = bindVC()
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             break
@@ -310,11 +313,13 @@ class LoginViewController: UIViewController,APIDelegate{
     
     func foget(sender:UIButton){
         let findPwdVC = FindPwdViewController()
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(findPwdVC, animated: true)
     }
     
     func register(sender:UIButton){
         let registerVC = RegisterViewController()
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(registerVC, animated: true)
     }
     
@@ -373,6 +378,7 @@ class LoginViewController: UIViewController,APIDelegate{
 //    测试进入其他界面
     func test(){
         let vc = TestViewController()
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

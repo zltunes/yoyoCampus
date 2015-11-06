@@ -37,7 +37,6 @@
 		35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FC61BB1366C00817020 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FC91BB1367A00817020 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FC81BB1367A00817020 /* RegisterViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCA1BB1368D00817020 /* FindPwdViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35593FCC1BB1369B00817020 /* FastLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3577407E1BC4163F0005281B /* remarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3577407C1BC4163F0005281B /* remarkCell.swift */; settings = {ASSET_TAGS = (); }; };
 		3577407F1BC4163F0005281B /* remarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3577407D1BC4163F0005281B /* remarkCell.xib */; settings = {ASSET_TAGS = (); }; };
 		359383151BB4EDD300AA0E15 /* cellWithBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359383131BB4EDD300AA0E15 /* cellWithBtn.swift */; settings = {ASSET_TAGS = (); }; };
@@ -195,7 +194,6 @@
 		35593FC61BB1366C00817020 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		35593FC81BB1367A00817020 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		35593FCA1BB1368D00817020 /* FindPwdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPwdViewController.swift; sourceTree = "<group>"; };
-		35593FCC1BB1369B00817020 /* FastLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastLoginViewController.swift; sourceTree = "<group>"; };
 		3577407C1BC4163F0005281B /* remarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remarkCell.swift; sourceTree = "<group>"; };
 		3577407D1BC4163F0005281B /* remarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remarkCell.xib; sourceTree = "<group>"; };
 		359383131BB4EDD300AA0E15 /* cellWithBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cellWithBtn.swift; sourceTree = "<group>"; };
@@ -722,7 +720,6 @@
 				35593FC61BB1366C00817020 /* LoginViewController.swift */,
 				35593FC81BB1367A00817020 /* RegisterViewController.swift */,
 				35593FCA1BB1368D00817020 /* FindPwdViewController.swift */,
-				35593FCC1BB1369B00817020 /* FastLoginViewController.swift */,
 				3543B0FB1BD7B17D00B2BA60 /* ConnectPhoneViewController.swift */,
 				3597271A1BB3E88200B2E4C9 /* PersonalInfoViewController.swift */,
 				3597271B1BB3E88200B2E4C9 /* PersonalInfoViewController.xib */,
@@ -1307,7 +1304,6 @@
 				35C772DB1BDF17640054D08E /* OrderPayVC.swift in Sources */,
 				35593FAF1BB1000700817020 /* CustomNavigationController.swift in Sources */,
 				35A751971BE6380900555254 /* bindToPhoneVC.swift in Sources */,
-				35593FCD1BB1369B00817020 /* FastLoginViewController.swift in Sources */,
 				35C772E91BDF1F600054D08E /* twoLabelCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
