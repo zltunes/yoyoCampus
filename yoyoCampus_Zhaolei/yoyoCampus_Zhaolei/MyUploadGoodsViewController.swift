@@ -77,7 +77,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     var currentState = 1
     
     ///用户选择分类暂存
-    var infoData : NSMutableDictionary = ["category":"商品分类","other":"","name":"","price":""]
+    var infoData : NSMutableDictionary = ["category":"商品分类","other":"","name":"","price":0]
     
     ///当前textview行高
     var textHeight : CGFloat = 80 * Consts.ratio
@@ -89,7 +89,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     var imgUploaded = false
 
 //    api param
-    var param = ["":""]
+    var param:[String:AnyObject] = ["":""]
     
     var imgData = NSData()
 //  name,{image},category,price,{description}
@@ -244,7 +244,9 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             let goodsLabel1 = Consts.setUpLabel("商品名称:" + (self.infoData.objectForKey("name")as! String), color: Consts.tintGreen, font: Consts.ft18, x: 38 * Consts.ratio, y: alertLabel.frame.maxY + 40 * Consts.ratio, centerX: nil)
             alertDetail.addSubview(goodsLabel1)
             
-            let goodsLabel2 = Consts.setUpLabel("商品价格:" + (self.infoData.objectForKey("price")as! String), color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel1.frame.minX, y: goodsLabel1.frame.maxY + 46 * Consts.ratio, centerX: nil)
+            let price = self.infoData.objectForKey("price")
+            let price_str = "商品价格"+"\(price as! Int)"
+            let goodsLabel2 = Consts.setUpLabel(price_str, color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel1.frame.minX, y: goodsLabel1.frame.maxY + 46 * Consts.ratio, centerX: nil)
             alertDetail.addSubview(goodsLabel2)
             
             let goodsLabel3 = Consts.setUpLabel("信息描述:", color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel1.frame.minX, y: goodsLabel2.frame.maxY + 46 * Consts.ratio, centerX: nil)
@@ -383,7 +385,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         }else if(self.currentState == 2){
             if(self.infoData.objectForKey("name")as! String == ""){
                 Tool.showErrorHUD("商品名称不能为空!")
-            }else if(self.infoData.objectForKey("price")as! String == ""){
+            }else if(self.infoData.objectForKey("price")as! Int == 0){
                 Tool.showErrorHUD("商品价格不能为空!")
             }else if(self.infoData.objectForKey("category")as! String == "商品分类"){
                 Tool.showErrorHUD("请选择商品分类!")
@@ -391,7 +393,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 Tool.showErrorHUD("请输入至少十个字的介绍!")
             }else{
                 param["name"] = self.infoData["name"] as! String
-                param["price"] = self.infoData["price"] as! String
+                param["price"] = (self.infoData["price"] as! Int)*100
                 param["category"] = self.infoData["category"] as! String
                 param["description"] = self.infoData["other"] as! String
                 
@@ -534,7 +536,10 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                     cell.input.tag = 101
                 case 1:
                     cell.input.placeholder = "商品价格"
-                    cell.input.text = self.infoData.objectForKey("price")as? String
+                    let priceStr = self.infoData.objectForKey("price") as! Int
+                    if(priceStr != 0){
+                        cell.input.text = "\(priceStr)"
+                    }
                     cell.input.tag = 102
 //                case 2:
 //                    cell.input.placeholder = "商品分类"
@@ -641,7 +646,8 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         if(sender.tag == 101){
             self.infoData.setValue(sender.text, forKey: "name")
         }else if(sender.tag == 102){
-            self.infoData.setValue(sender.text, forKey: "price")
+            let str:String = sender.text!
+            self.infoData.setValue(Int(str), forKey: "price")
         }
     }
     
