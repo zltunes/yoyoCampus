@@ -44,6 +44,7 @@ class TestViewController: UIViewController {
         default:
             break
         }
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

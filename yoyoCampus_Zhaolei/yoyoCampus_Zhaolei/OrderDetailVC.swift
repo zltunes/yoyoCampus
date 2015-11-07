@@ -19,6 +19,8 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     
     var orderDetailViewURL:String = ""
     
+    var refundURL:String = ""
+    
     var orderStatus:Int = 0
     
     var orderDetailJSON:JSON = []
@@ -47,6 +49,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         self.table.showsVerticalScrollIndicator = false
+        self.table.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
         setUpOnlineData("orderDetailView")
     }
     
@@ -71,13 +74,20 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         self.table.registerNib(nib7, forCellReuseIdentifier: "myRemarkCell")
         
     }
-    
+    func headerRefreshing(){
+        setUpOnlineData("orderDetailView")
+    }
     func setUpOnlineData(tag:String){
         
         switch(tag){
             case "orderDetailView":
                 orderDetailViewURL = "\(Consts.mainUrl)/v1.0/user/order/\(order_ID)/"
                 api.httpRequest("GET", url: orderDetailViewURL, params: nil, tag: "orderDetailView")
+            break
+            
+            case "refund":
+                refundURL = "\(Consts.mainUrl)/v1.0/order/\(order_ID)/"
+                api.httpRequest("DELETE", url: refundURL, params: nil, tag: "refund")
             break
             
         default:
@@ -228,7 +238,9 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                     cell.label_status.textColor = Consts.lightGray
                     if(orderStatus == 0){
                         cell.label_status?.text = "已退款"
-                    }else{
+                    }else if(orderStatus == -1){
+                        cell.label_status?.text = "退款中"
+                    }else if(orderStatus == 4){
                         cell.label_status?.text = "已评价"
                     }
                     return cell
@@ -332,9 +344,10 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             vc.order_ID = orderDetailJSON["_id"].string!
             self.navigationController?.pushViewController(vc, animated: true)
         }else if(sender.titleLabel?.text == "申请退款"){
-            Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
+            setUpOnlineData("refund")
         }else if(sender.titleLabel?.text == "评价"){
             let vc = remarkVC()
+            vc.order_id = orderDetailJSON["_id"].string!
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -345,6 +358,12 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                 orderDetailJSON = json
                 self.orderStatus = json["status"].int!
                 self.table.reloadData()
+                self.table.header.endRefreshing()
+            break
+            
+            case "refund":
+                Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
+                
             break
             
         default:

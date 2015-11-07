@@ -47,18 +47,6 @@
                     <rect key="frame" x="79" y="332" width="163" height="30"/>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-HT-YoK">
-                    <rect key="frame" x="79" y="382" width="163" height="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yv-iY-JZA">
-                    <rect key="frame" x="79" y="436" width="163" height="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnu-AR-KE7">
-                    <rect key="frame" x="79" y="493" width="163" height="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwS-to-4Np">
                     <rect key="frame" x="79" y="190" width="163" height="30"/>
                     <state key="normal" title="个人中心"/>

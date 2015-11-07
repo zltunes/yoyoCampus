@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CouponViewController" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
@@ -22,16 +23,32 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wlq-GK-sys">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-fq-gAK">
+                    <rect key="frame" x="28" y="364" width="264" height="42"/>
+                    <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <state key="normal" title="分 享">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="s8g-T1-95h"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wlq-GK-sys">
                     <rect key="frame" x="28" y="44" width="264" height="267"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="未拥有" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2S-96-PN4">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="未拥有" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2S-96-PN4">
                             <rect key="frame" x="214" y="8" width="42" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="悠悠万能优惠卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCd-bL-Sgl">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="悠悠万能优惠卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCd-bL-Sgl">
                             <rect key="frame" x="61" y="35" width="142" height="32"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,52 +66,65 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="分享即可拥有万能优惠卡一个月使用权。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0K-1N-SrJ">
-                            <rect key="frame" x="51" y="155" width="181" height="43"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="359-Im-TfI">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="359-Im-TfI">
                             <rect key="frame" x="8" y="250" width="9" height="9"/>
                             <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="9" id="fzw-5S-CQe"/>
+                                <constraint firstAttribute="width" constant="9" id="jCX-Xw-6wN"/>
+                            </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="一卡在手,校园我有～" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3n-Q8-2Z8">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="一卡在手,校园我有～" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3n-Q8-2Z8">
                             <rect key="frame" x="64" y="88" width="136" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="尊享各类优惠" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDc-nn-RM7">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="尊享各类优惠" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDc-nn-RM7">
                             <rect key="frame" x="64" y="109" width="136" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DDG-aA-SUM">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DDG-aA-SUM">
                             <rect key="frame" x="247" y="250" width="9" height="9"/>
                             <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="9" id="0lu-ak-akw"/>
+                                <constraint firstAttribute="width" constant="9" id="JK4-Dn-NhM"/>
+                            </constraints>
                         </view>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="分享即可拥有万能优惠卡一个月使用权。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0K-1N-SrJ">
+                            <rect key="frame" x="51" y="155" width="181" height="43"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="f2S-96-PN4" firstAttribute="top" secondItem="Wlq-GK-sys" secondAttribute="top" constant="8" id="G2m-4p-Tqs"/>
+                        <constraint firstItem="359-Im-TfI" firstAttribute="leading" secondItem="Wlq-GK-sys" secondAttribute="leading" constant="8" id="HFL-GS-slc"/>
+                        <constraint firstAttribute="bottom" secondItem="359-Im-TfI" secondAttribute="bottom" constant="8" id="PTF-1n-WlL"/>
+                        <constraint firstItem="NDc-nn-RM7" firstAttribute="centerX" secondItem="Wlq-GK-sys" secondAttribute="centerX" id="Qsb-Uu-Vn2"/>
+                        <constraint firstAttribute="trailing" secondItem="DDG-aA-SUM" secondAttribute="trailing" constant="8" id="Qyi-bi-lVN"/>
+                        <constraint firstAttribute="bottom" secondItem="l0K-1N-SrJ" secondAttribute="bottom" constant="69" id="UQU-4K-Y8u"/>
+                        <constraint firstItem="R3n-Q8-2Z8" firstAttribute="centerX" secondItem="Wlq-GK-sys" secondAttribute="centerX" id="Vsr-Uw-dNy"/>
+                        <constraint firstAttribute="bottom" secondItem="DDG-aA-SUM" secondAttribute="bottom" constant="8" id="WBJ-eZ-Kym"/>
+                        <constraint firstItem="l0K-1N-SrJ" firstAttribute="centerX" secondItem="Wlq-GK-sys" secondAttribute="centerX" id="b1u-xl-DEK"/>
+                        <constraint firstItem="gCd-bL-Sgl" firstAttribute="centerX" secondItem="Wlq-GK-sys" secondAttribute="centerX" id="crC-BE-clH"/>
+                        <constraint firstAttribute="trailing" secondItem="f2S-96-PN4" secondAttribute="trailing" constant="8" id="ezy-Xd-34a"/>
+                    </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-fq-gAK">
-                    <rect key="frame" x="28" y="364" width="264" height="42"/>
-                    <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                    <state key="normal" title="分 享">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="7"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="s8g-T1-95h"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="PS3-fq-gAK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1dY-u7-TF8"/>
+                <constraint firstItem="PS3-fq-gAK" firstAttribute="width" secondItem="Wlq-GK-sys" secondAttribute="width" id="NGK-iZ-T9o"/>
+                <constraint firstItem="Wlq-GK-sys" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="NyR-mX-dsl"/>
+                <constraint firstItem="PS3-fq-gAK" firstAttribute="top" secondItem="Wlq-GK-sys" secondAttribute="bottom" constant="53" id="VqM-5R-vor"/>
+                <constraint firstItem="Wlq-GK-sys" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rJa-S3-3FL"/>
+                <constraint firstItem="Wlq-GK-sys" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="33:71" id="xSE-eg-Loe"/>
+            </constraints>
             <point key="canvasLocation" x="257" y="350"/>
         </view>
     </objects>

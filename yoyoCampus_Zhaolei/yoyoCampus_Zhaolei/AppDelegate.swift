@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("personalInfomation.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("cnaisdn.plist")
         
         let  plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         

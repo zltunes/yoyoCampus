@@ -51,6 +51,10 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     
     func setUpNavigationBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "个人中心", backTitle: "")
+        
+        let right = UIBarButtonItem(title: "test", style: .Plain, target: self, action: "test")
+        right.tintColor = Consts.white
+        self.navigationItem.rightBarButtonItem = right
     }
     
     func setUpInitialLooking(){
@@ -245,6 +249,12 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                 break
             }
         }
+    }
+    
+    func test(){
+        let vc = TestViewController()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {

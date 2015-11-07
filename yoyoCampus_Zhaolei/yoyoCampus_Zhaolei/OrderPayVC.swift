@@ -98,6 +98,7 @@ class OrderPayVC: UIViewController,APIDelegate {
                                 print("result:\(result)")
                                 let vc = OrderDetailVC()
                                 vc.order_ID = self.order_ID
+                                self.hidesBottomBarWhenPushed = true
                                 self.navigationController?.pushViewController(vc, animated: true)
                                 if error != nil {
                                     print("error:\(error.code.rawValue)")

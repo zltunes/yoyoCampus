@@ -129,7 +129,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         
         self.view.backgroundColor = Consts.grayView
         
-        self.staticLabel1 = Consts.setUpLabel("第一步:上传照片", color: Consts.darkGray, font: Consts.ft16, x: 42 * Consts.ratio, y: 34 * Consts.ratio + 64,centerX: nil)
+        self.staticLabel1 = Consts.setUpLabel("第一步:上传照片", color: Consts.darkGray, font: Consts.ft16, x: 42 * Consts.ratio, y: 34 * Consts.ratio,centerX: nil)
         self.view.addSubview(self.staticLabel1)
         
         self.uploadButton.frame = CGRect(x: 258 * Consts.ratio, y: 130 * Consts.ratio + self.staticLabel1.frame.maxY, width: 206 * Consts.ratio, height: 206 * Consts.ratio)

@@ -18,8 +18,8 @@ unPaid:     1
 unUsed:     2
 unRemarked: 3
 remarked:   4
-refund:     0
-
+cancel:     0
+refunding:     -1
 */
 
 class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDelegate{
@@ -30,6 +30,8 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     var api = YoYoAPI()
     
     var ordersViewURL:String = ""
+    
+    var refundURL:String = ""
     
     var ordersPage:Int = 1
     
@@ -84,6 +86,10 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         case "ordersView":
             self.ordersViewURL = "\(Consts.mainUrl)/v1.0/user/orders/?page=\(ordersPage)"
             api.httpRequest("GET", url: ordersViewURL, params: nil, tag: "ordersView")
+            break
+            
+        case "refund":
+            api.httpRequest("DELETE", url: self.refundURL, params: nil, tag: "refund")
             break
             
         default:
@@ -167,6 +173,10 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 cell.label_totalCount?.text = "\(quantity)"
                 cell.orderImg.image = UIImage.init(named: "Commodity editor_btn_picture")
                 switch(status){
+                    case -1:
+                        cell.label_orderStatus?.text = "退款中"
+                        cell.label_orderStatus.textColor = Consts.lightGray
+                    
                     case 4:
                         cell.label_orderStatus?.text = "已评价"
                         cell.label_orderStatus.textColor = Consts.lightGray
@@ -217,6 +227,9 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
             table.footer.endRefreshing()
             break
             
+        case "refund":
+            self.table.reloadData()
+            
         default:
             break
         }
@@ -231,7 +244,9 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
             break
             
             case "退款":
-                
+                let order_ID = ordersJSON[sender.tag]["_id"].string!
+                self.refundURL = "\(Consts.mainUrl)/v1.0/order/\(order_ID)/"
+                setUpOnlineData("refund")
             break
             
             case "评价":
