@@ -45,6 +45,7 @@ PODS:
   - SDWebImage/Core (3.7.3)
   - SwiftyJSON (2.3.1)
   - SZTextView (1.2.1)
+  - UITableView+FDTemplateLayoutCell (1.4.beta)
   - XHRealTimeBlur (1.7)
 
 DEPENDENCIES:
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - Reachability
   - SDWebImage
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
 
 EXTERNAL SOURCES:
   SwiftyJSON:
@@ -88,6 +90,7 @@ SPEC CHECKSUMS:
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
+  UITableView+FDTemplateLayoutCell: 9d20bf0518f3c01e42ae614243b97f1161063d27
   XHRealTimeBlur: 661fadd5691ba2d349758e8fd5fbdb499ac55f8c
 
 COCOAPODS: 0.39.0

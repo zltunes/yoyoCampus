@@ -54,24 +54,36 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     var popMenu = PopMenu()
 
     ///指示器视图
-    var scrollIndicator = UIScrollView()
+//    var scrollIndicator = UIScrollView()
+    
+    @IBOutlet var scrollIndicator: UIScrollView!
     
     ///指示器内的指示色块
-    var inScrollIndicator = UIView()
+
+    @IBOutlet var inScrollIndicator: UIView!
+
+
+    ///评论视图
+//    var remarkTableView = UITableView()
+    
+
+    @IBOutlet var remarkTableView: UITableView!
     
     ///详情视图
-    var detailView = UITextView()
-    
-    ///评论视图
-    var remarkTableView = UITableView()
 
+    @IBOutlet var detailView: UITextView!
+    
+    @IBOutlet var remarkTextView: UITextView!
+
+    
     //左侧底部
     @IBOutlet var bottomView: UIView!
     //右侧底部
 
     @IBOutlet var rightBottomView: UIView!
     
-    @IBOutlet var remarkTextView: UITextView!
+
+
     
     @IBOutlet var repostRemarkBtn: UIButton!//tag:6
     
@@ -116,7 +128,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     var is_collected:Int = 0
     
     ///要查看的闲置id
-    internal var idle_id = "5636187490c49063a04cab90"
+    internal var idle_id = "563f036c90c490786ec029f0"
     
     ///存放评论
     var commentsJSON:[JSON] = []
@@ -128,8 +140,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         super.viewDidLoad()
 
         self.setUpNavigaitonBar()
-        self.setUpInitialLooking()
         self.setUpActions()
+        self.setUpInitialLooking()
         self.setUpGesture()
         // Do any additional setup after loading the view.
 
@@ -158,29 +170,29 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.rightBottomView.frame = self.bottomView.frame
 
         self.remarkTextView.layer.borderColor = Consts.lightGray.CGColor
+        
         /*****************设置指示器*****************/
-        self.scrollIndicator.frame = CGRect(x: 0, y: self.detailBtn.frame.maxY+1, width:newWidth , height: 1.8)
-        self.inScrollIndicator.frame = CGRect(x: self.detailBtn.frame.width/2.5, y: 0, width: self.detailBtn.frame.width/3, height: 1.8)
-        self.inScrollIndicator.backgroundColor = Consts.tintGreen
-        self.scrollIndicator.addSubview(self.inScrollIndicator)
+//        self.inScrollIndicator.frame = CGRect(x:self.detailBtn.frame.minX, y: 0, width: self.detailBtn.frame.width, height: self.scrollIndicator.frame.height)
+//        self.inScrollIndicator.backgroundColor = Consts.tintGreen
+//        self.scrollIndicator.addSubview(self.inScrollIndicator)
         self.scrollIndicator.backgroundColor = Consts.grayView
-        self.view.addSubview(self.scrollIndicator)
         
         //contentSize
-        self.scrollIndicator.contentSize = CGSize(width: newWidth, height: 0)
+//        self.scrollIndicator.contentSize = CGSize(width:self.inScrollIndicator.frame.width , height: 0)
         self.scrollIndicator.contentOffset = CGPoint(x: 0, y: 0)
         self.scrollIndicator.pagingEnabled = true
         
         //设置要显示的两个view
         ///1⃣️detailView
-        self.detailView.frame = CGRect(x:0,y:0, width:self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
+//        self.detailView.frame = CGRect(x:0,y:0, width:self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.detailView.backgroundColor = Consts.grayView
         self.detailView.editable = false
         
         ///2⃣️remarkTableView
-        self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
+//        self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.remarkTableView.showsVerticalScrollIndicator = false
         self.remarkTableView.backgroundColor = Consts.grayView
+//        self.remarkTableView.fd_debugLogEnabled = true
         
         ///下拉刷新：添加头部控件方法  
         self.remarkTableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
@@ -189,12 +201,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         self.remarkTableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
         //设置水平滑动.frame已在xib定义
-        self.horizontalScroll.addSubview(self.detailView)
-        self.horizontalScroll.addSubview(self.remarkTableView)
+//        self.horizontalScroll.addSubview(self.detailView)
+//        self.horizontalScroll.addSubview(self.remarkTableView)
         
          /*****************设置ScrollView滑动范围*****************/
         //设置水平滑动范围
-        self.horizontalScroll.contentSize = CGSize(width: self.horizontalScroll.frame.width * 2, height:0)//只允许水平滑动，禁止垂直滑动
+//        self.horizontalScroll.contentSize = CGSize(width: self.horizontalScroll.frame.width * 2, height:0)//只允许水平滑动，禁止垂直滑动
         //设置初始偏移量
         self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
         //关闭自带指示器
@@ -265,7 +277,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if(scrollView == self.horizontalScroll){
             let offset : CGPoint = scrollView.contentOffset
-            self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2, y: offset.y)
+            self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2 , y: offset.y)
             //计算当前在第几页
             //用UIScrollView水平滚动的距离－页面宽度/2,除以页面宽度的结果＋1，即可得到当前为第几页
             let tmpPage = Int(floor((offset.x - self.view.frame.width/2)/self.view.frame.width)+1)
@@ -283,17 +295,17 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func setUpActions(){
         api.delegate = self
         //为scrollView设置代理
-        self.horizontalScroll.delegate = self
+//        self.horizontalScroll.delegate = self
         self.pageCtl.addObserver(self, forKeyPath: "currentPage", options: .New, context: nil)
         
         //为remarkTableview设置代理等
-        self.remarkTableView.delegate = self
-        self.remarkTableView.dataSource = self
+//        self.remarkTableView.delegate = self
+//        self.remarkTableView.dataSource = self
         let remarkCellNib = UINib.init(nibName: "remarkCell", bundle: nil)
         self.remarkTableView.registerNib(remarkCellNib, forCellReuseIdentifier: "remark")
         
         //为textview设置代理
-        self.remarkTextView.delegate = self
+//        self.remarkTextView.delegate = self
     }
     
     func setUpOnlineData(tag:String){
@@ -383,8 +395,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
         case 6://发表
             self.remarkTextView.resignFirstResponder()
-            self.param_commentCreate = ["content":self.remarkTextView.text]
-            setUpOnlineData("commentCreate")
+            if(self.remarkTextView.text.isEmpty || self.remarkTextView.text == "请评论......"){
+                
+            }else{
+                self.param_commentCreate = ["content":self.remarkTextView.text]
+                setUpOnlineData("commentCreate")
+            }
             self.remarkTextView.text = "请评论......"
             break
             
@@ -414,6 +430,25 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     //remarkTableView代理方法
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("remark", forIndexPath: indexPath) as! remarkCell
+        setupCell(cell, atIndexPath: indexPath)
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return commentsJSON.count
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.remarkTableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    func setupCell(cell:remarkCell, atIndexPath indexPath:NSIndexPath){
+        
+//        print(commentsJSON)
         cell.backgroundColor = Consts.grayView
         cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row]["image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
         cell.layer.cornerRadius = cell.photo.frame.width/2
@@ -438,23 +473,14 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         cell.remarkLabel.numberOfLines = 0
         cell.remarkLabel.sizeToFit()
         cell.remarkLabel.text = commentsJSON[indexPath.row]["content"].string!
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commentsJSON.count
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.remarkTableView.deselectRowAtIndexPath(indexPath, animated: false)
+
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.remarkTableView.frame.height*0.75
+//        return self.remarkTableView.frame.height*0.5
+        return tableView.fd_heightForCellWithIdentifier("remark", configuration: { (cell) -> Void in
+            self.setupCell(cell as! remarkCell, atIndexPath: indexPath)
+        })
     }
     
     ///实现点击UIView内部关闭键盘
@@ -541,7 +567,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
             self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
             self.shopNameBtn.setTitle(json["user_name"].string!, forState: .Normal)
-            let price = json["price"].int!
+            let price = Float(json["price"].int!)/100.00
             self.presentPriceLabel.text = "¥ \(price)"
             let viewnumber = json["view_number"].int!
             self.previewCountLabel.text = "\(viewnumber) 人感兴趣"

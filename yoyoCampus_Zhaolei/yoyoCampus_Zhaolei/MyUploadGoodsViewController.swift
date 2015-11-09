@@ -43,6 +43,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     var api = YoYoAPI()
     
+    var idleID:String = ""
     
     ///上传
     var uploadURL:String = ""
@@ -153,7 +154,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         self.nextButton.tag = 104
         self.view.addSubview(self.nextButton)
         
-        self.successImg.frame = CGRect(x: 0, y: 64 + 80 * Consts.ratio, width: 222 * Consts.ratio, height: 201 * Consts.ratio)
+        self.successImg.frame = CGRect(x: 0, y: 64 + 80 * Consts.ratio, width: 300 * Consts.ratio, height: 300 * Consts.ratio)
         self.successImg.center.x = newWidth / 2
         self.successImg.contentMode = .ScaleAspectFit
         self.successImg.image = Consts.imageFromColor(Consts.tintGreen, size: self.successImg.frame.size)
@@ -241,15 +242,15 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             alertLabel.textAlignment = .Center
             alertDetail.addSubview(alertLabel)
             
-            let goodsLabel1 = Consts.setUpLabel("商品名称:" + (self.infoData.objectForKey("name")as! String), color: Consts.tintGreen, font: Consts.ft18, x: 38 * Consts.ratio, y: alertLabel.frame.maxY + 40 * Consts.ratio, centerX: nil)
+            let goodsLabel1 = Consts.setUpLabel("商品名称: " + (self.infoData.objectForKey("name")as! String), color: Consts.tintGreen, font: Consts.ft18, x: 38 * Consts.ratio, y: alertLabel.frame.maxY + 40 * Consts.ratio, centerX: nil)
             alertDetail.addSubview(goodsLabel1)
             
             let price = self.infoData.objectForKey("price")
-            let price_str = "商品价格"+"\(price as! Int)"
+            let price_str = "商品价格: "+"\(price as! Int)"
             let goodsLabel2 = Consts.setUpLabel(price_str, color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel1.frame.minX, y: goodsLabel1.frame.maxY + 46 * Consts.ratio, centerX: nil)
             alertDetail.addSubview(goodsLabel2)
             
-            let goodsLabel3 = Consts.setUpLabel("信息描述:", color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel1.frame.minX, y: goodsLabel2.frame.maxY + 46 * Consts.ratio, centerX: nil)
+            let goodsLabel3 = Consts.setUpLabel("信息描述: ", color: Consts.tintGreen, font: Consts.ft18, x: goodsLabel1.frame.minX, y: goodsLabel2.frame.maxY + 46 * Consts.ratio, centerX: nil)
             alertDetail.addSubview(goodsLabel3)
 
             var str = self.infoData.objectForKey("other")as! NSString
@@ -360,9 +361,13 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         }else if (sender.titleLabel?.text == "确认提交"){
             setUpOnlineData("token")
         }else if (sender.titleLabel?.text == "查 看 商 品 详 情"){
-            print("前往商品详情")
+            let vc = IdleGoodViewController()
+            vc.idle_id = self.idleID
+//            self.presentViewController(vc, animated: true, completion: { () -> Void in
+//                vc.setUpNavigaitonBar()
+//            })
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if (sender.titleLabel?.text == "返 回 主 页"){
-            print("前往主页")
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
     }
@@ -514,9 +519,9 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
 //                cell.icon.contentMode = .ScaleAspectFit
                 switch (indexPath.row){
                 case 0:
-                    cell.icon.image = Consts.imageFromColor(Consts.tintGreen, size: cell.icon.frame.size)
+                    cell.icon.image = UIImage.init(named: "add product_icon_name")
                 case 1:
-                    cell.icon.image = Consts.imageFromColor(Consts.tintGreen, size: cell.icon.frame.size)
+                    cell.icon.image = UIImage.init(named: "add product_icon_price")
 //                case 2:
 //                    cell.icon.image = Consts.imageFromColor(Consts.tintGreen, size: cell.icon.frame.size)
                 default:
@@ -554,7 +559,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 
             }else if(cell.isKindOfClass(UploadGoodsCell2.self)){
                 let cell = cell as! UploadGoodsCell2
-                
+                cell.icon.image = UIImage.init(named: "add product_icon_depict")
                 cell.textView.text = self.infoData.objectForKey("other")as? String
                 cell.expandableTableView = self.infoTable
                 let frame = cell.frame
@@ -562,6 +567,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 return cell
             }else if(cell.isKindOfClass(UploadGoodsCell3)){
                 let cell = cell as! UploadGoodsCell3
+                cell.icon.image = UIImage.init(named: "add product_icon_classify")
                 cell.btn.setTitle(self.infoData.objectForKey("category")as? String, forState: .Normal)
                 if(cell.btn.titleLabel?.text == "商品分类"){
                     cell.btn.setTitleColor(Consts.holderGray, forState: .Normal)
@@ -723,11 +729,12 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 }, option: nil)
             break
         case "info":
-            let id = json["idle_id"].string!
-            print("个人闲置发布成功!idle_id:\(id)")
+            self.idleID = json["idle_id"].string!
+            print("个人闲置发布成功!idle_id:\(self.idleID)")
             Tool.showSuccessHUD("提交成功!")
             self.alert2.close()
             self.staticLabel1.hidden = true
+            self.successImg.image = UIImage(data: self.imgData)
             self.successImg.hidden = false
             self.successLabel1.hidden = false
             self.successLabel2.hidden = false

@@ -32,6 +32,9 @@
 #import "QRCodeGenerator.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Pingpp.h"
+#import "UITableView+FDIndexPathHeightCache.h"
+#import "UITableView+FDTemplateLayoutCell.h"
+#import "UITableView+FDTemplateLayoutCellDebug.h"
 
 #import "AFPickerView.h"
 
