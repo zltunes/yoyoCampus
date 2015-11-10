@@ -13,28 +13,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="319" height="110.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="register_icon_just a sign" translatesAutoresizingMaskIntoConstraints="NO" id="QEo-Ga-Uox">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="register_icon_just a sign" translatesAutoresizingMaskIntoConstraints="NO" id="QEo-Ga-Uox">
                         <rect key="frame" x="8" y="9" width="39" height="39"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="39" id="F9r-RO-Qeh"/>
+                            <constraint firstAttribute="width" constant="39" id="Fmn-tG-pcr"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEH-uY-Zzo">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEH-uY-Zzo">
                         <rect key="frame" x="65" y="9" width="145" height="19"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="ucZ-eJ-A2B"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-4r-26V">
-                        <rect key="frame" x="65" y="27" width="145" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-4r-26V">
+                        <rect key="frame" x="65" y="28" width="246" height="18"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="7qy-BY-egk"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2t-uh-9fE">
-                        <rect key="frame" x="269" y="87" width="42" height="21"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,35 +49,68 @@
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="A64-02-MMe">
-                        <rect key="frame" x="245" y="11" width="14" height="14"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sMt-sN-goI">
+                        <rect key="frame" x="234" y="13" width="67" height="11"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="80n-fG-2rd">
+                                <rect key="frame" x="0.0" y="0.0" width="11" height="11"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-Xa-lDM">
+                                <rect key="frame" x="14" y="0.0" width="11" height="11"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="A64-02-MMe">
+                                <rect key="frame" x="28" y="0.0" width="11" height="11"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="GOx-3z-5Vj">
+                                <rect key="frame" x="42" y="0.0" width="11" height="11"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="Wr7-oz-SVy">
+                                <rect key="frame" x="56" y="0.0" width="11" height="11"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
                         <animations/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="GOx-3z-5Vj">
-                        <rect key="frame" x="263" y="11" width="14" height="14"/>
-                        <animations/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="Wr7-oz-SVy">
-                        <rect key="frame" x="281" y="11" width="14" height="14"/>
-                        <animations/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="80n-fG-2rd">
-                        <rect key="frame" x="209" y="11" width="14" height="14"/>
-                        <animations/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="xiangqing_icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-Xa-lDM">
-                        <rect key="frame" x="227" y="11" width="14" height="14"/>
-                        <animations/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcT-JX-X6q">
-                        <rect key="frame" x="65" y="38" width="238" height="51.5"/>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcT-JX-X6q">
+                        <rect key="frame" x="65" y="36" width="246" height="51.5"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2t-uh-9fE">
+                        <rect key="frame" x="269" y="87" width="42" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1wT-Ih-3K1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
+                <constraints>
+                    <constraint firstItem="hEH-uY-Zzo" firstAttribute="leading" secondItem="QEo-Ga-Uox" secondAttribute="trailing" constant="18" id="0CB-Oq-HeD"/>
+                    <constraint firstItem="QcT-JX-X6q" firstAttribute="leading" secondItem="hEH-uY-Zzo" secondAttribute="leading" id="0Tw-th-fMF"/>
+                    <constraint firstItem="QcT-JX-X6q" firstAttribute="trailing" secondItem="ZLf-4r-26V" secondAttribute="trailing" id="8Xa-c8-lPI"/>
+                    <constraint firstItem="QEo-Ga-Uox" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="GTY-ip-XQg"/>
+                    <constraint firstItem="ZLf-4r-26V" firstAttribute="leading" secondItem="hEH-uY-Zzo" secondAttribute="leading" id="HBZ-MS-Yag"/>
+                    <constraint firstAttribute="bottom" secondItem="A2t-uh-9fE" secondAttribute="bottom" constant="2.5" id="Hiu-XU-3fz"/>
+                    <constraint firstItem="QEo-Ga-Uox" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="R7K-3G-EbO"/>
+                    <constraint firstItem="A2t-uh-9fE" firstAttribute="trailing" secondItem="QcT-JX-X6q" secondAttribute="trailing" id="TFf-ys-yRr"/>
+                    <constraint firstItem="sMt-sN-goI" firstAttribute="centerY" secondItem="hEH-uY-Zzo" secondAttribute="centerY" id="V8X-3d-Ouo"/>
+                    <constraint firstItem="hEH-uY-Zzo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="Wy8-pj-SN9"/>
+                    <constraint firstAttribute="trailing" secondItem="A2t-uh-9fE" secondAttribute="trailing" constant="8" id="gAS-QR-3Nc"/>
+                    <constraint firstItem="A2t-uh-9fE" firstAttribute="top" secondItem="QcT-JX-X6q" secondAttribute="bottom" id="ic5-uO-h0t"/>
+                    <constraint firstItem="ZLf-4r-26V" firstAttribute="top" secondItem="hEH-uY-Zzo" secondAttribute="bottom" id="p9N-vi-OvK"/>
+                    <constraint firstItem="QcT-JX-X6q" firstAttribute="top" secondItem="ZLf-4r-26V" secondAttribute="bottom" id="rK0-oj-QMt"/>
+                    <constraint firstAttribute="trailing" secondItem="sMt-sN-goI" secondAttribute="trailing" constant="18" id="zbu-gT-BR6"/>
+                </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
@@ -90,7 +126,7 @@
                 <outlet property="star5" destination="Wr7-oz-SVy" id="U7a-3v-hiv"/>
                 <outlet property="timeLabel" destination="ZLf-4r-26V" id="PfP-i1-YZf"/>
             </connections>
-            <point key="canvasLocation" x="78.5" y="356.5"/>
+            <point key="canvasLocation" x="87.5" y="239.5"/>
         </tableViewCell>
     </objects>
     <resources>

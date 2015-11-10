@@ -307,10 +307,10 @@
                     <rect key="frame" x="8" y="315" width="304" height="2"/>
                     <subviews>
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhV-E8-2B8">
-                            <rect key="frame" x="0.0" y="0.0" width="304" height="2"/>
+                            <rect key="frame" x="0.0" y="2" width="304" height="0.0"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kqU-VZ-bdP">
-                                    <rect key="frame" x="0.0" y="0.0" width="152" height="2"/>
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqU-VZ-bdP">
+                                    <rect key="frame" x="0.0" y="-2" width="152" height="2"/>
                                     <animations/>
                                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>

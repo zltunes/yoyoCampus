@@ -51,16 +51,20 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var popMenu = PopMenu()
     
     ///指示器视图
-    var scrollIndicator = UIScrollView()
+
+    @IBOutlet var scrollIndicator: UIScrollView!
     
     ///指示器内的指示色块
-    var inScrollIndicator = UIView()
+
+    @IBOutlet var inScrollIndicator: UIView!
     
     ///详情视图
-    var detailView = UITableView()
+
+    @IBOutlet var detailView: UITableView!
     
     ///评论视图
-    var remarkTableView = UITableView()
+    @IBOutlet var remarkTableView: UITableView!
+
     
     var app = UIApplication.sharedApplication()
     
@@ -156,34 +160,23 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         1⃣️1⃣️1⃣️1⃣️1⃣️：frame.width==contentSize.width不是相当于不能滑动吗?
         *************************************************************
         */
-        self.scrollIndicator.frame = CGRect(x: 0, y: self.detailBtn.frame.maxY+1, width: newWidth, height: 2.3)
+
         self.scrollIndicator.backgroundColor = Consts.grayView
-        self.scrollIndicator.contentSize = CGSize(width: newWidth, height: 0)//height=0表明禁止垂直滑动
         self.scrollIndicator.contentOffset = CGPoint(x: 0, y: 0)
         self.scrollIndicator.pagingEnabled = true
         
-        self.inScrollIndicator.frame = CGRect(x: self.detailBtn.frame.width/2.5, y: 0, width: self.detailBtn.frame.width/3, height: 2.3)
-        self.inScrollIndicator.backgroundColor = Consts.tintGreen
-        
-        self.scrollIndicator.addSubview(self.inScrollIndicator)
-        self.view.addSubview(self.scrollIndicator)
-        
         //设置要显示的两个view
         //1------detailView
-        self.detailView.frame = CGRect(x:0,y:0, width:self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.detailView.backgroundColor = Consts.grayView
         self.detailView.showsVerticalScrollIndicator = false
         
         //2------remarkView
-        self.remarkTableView.frame = CGRect(x:self.horizontalScroll.frame.width, y: 0, width: self.horizontalScroll.frame.width, height: self.horizontalScroll.frame.height)
         self.remarkTableView.backgroundColor = Consts.grayView
         self.remarkTableView.showsVerticalScrollIndicator = false
         
         self.remarkTableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
         self.remarkTableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
-        self.horizontalScroll.addSubview(self.detailView)
-        self.horizontalScroll.addSubview(self.remarkTableView)
         
         //设置horizontalScrollView
         self.horizontalScroll.contentSize = CGSize(width: self.horizontalScroll.frame.width * 2, height: 0)//禁止垂直滑动
@@ -215,11 +208,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.scrollIndicator.delegate = self
         self.horizontalScroll.delegate = self
         
-        self.detailView.delegate = self
-        self.detailView.dataSource = self
         self.detailView.registerNib(UINib.init(nibName: "shopDetailCell", bundle: nil), forCellReuseIdentifier: "shopDetailCell")
-        self.remarkTableView.delegate = self
-        self.remarkTableView.dataSource = self
         self.remarkTableView.registerNib(UINib.init(nibName: "shopRemarkCell", bundle: nil), forCellReuseIdentifier: "shopRemarkCell")
         
         //注意离开本页面的时候要removeObserver,此处使用KVO编程，为pageCtl(数据模型－－被监听对象)添加监听器（self--视图组件）,监听器要重写observerKeyForKeyPath方法
@@ -315,45 +304,55 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         if(tableView == self.detailView){
             let cell = self.detailView.dequeueReusableCellWithIdentifier("shopDetailCell") as!
                 shopDetailCell
-            cell.tagLabel.text = detailInfoJSON[indexPath.row,"title"].string!
-            cell.tagLabel.font = UIFont.boldSystemFontOfSize(15)
-            cell.tagLabel.textColor = Consts.white
-            cell.tagLabel.layer.masksToBounds = true
-            //detailLabel允许多行显示
-            cell.detailLabel.lineBreakMode = .ByCharWrapping
-            cell.detailLabel.numberOfLines = 0
-            cell.detailLabel.sizeToFit()
-            cell.detailLabel.text = detailInfoJSON[indexPath.row,"content"].string!
+            self.setUpDetailCell(cell, atIndexPath: indexPath)
             return cell
         }else{
             let cell = self.remarkTableView.dequeueReusableCellWithIdentifier("shopRemarkCell") as! shopRemarkCell
-            cell.commentID = commentsJSON[indexPath.row]["id"].string!
-            cell.nameLabel.text = commentsJSON[indexPath.row]["name"].string!
-            cell.timeLabel.text = commentsJSON[indexPath.row]["date"].string!
-            cell.starsCount = commentsJSON[indexPath.row]["score"].int!
-            cell.setStars(cell.starsCount)
-            cell.remarkLabel.lineBreakMode = .ByCharWrapping
-            cell.remarkLabel.numberOfLines = 0
-            cell.remarkLabel.sizeToFit()
-            cell.remarkLabel.text = commentsJSON[indexPath.row]["content"].string!
-            cell.likeCount = commentsJSON[indexPath.row]["useful_number"].int!
-            cell.likeCountLabel.text = "(\(cell.likeCount))"
-            cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row]["image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
-            cell.hasLike = commentsJSON[indexPath.row]["useful_clicked"].int!
-            if(cell.hasLike == 1){
-                cell.likeBtn.setBackgroundImage(UIImage.init(named: "xianzhi_icon_like"), forState: .Normal)
-                cell.likeBtn.removeTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
-                cell.likeBtn.addTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
-                
-            }else{
-                cell.likeBtn.setBackgroundImage(UIImage.init(named: "unlike"), forState: .Normal)
-                cell.likeBtn.removeTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
-                cell.likeBtn.addTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
-            }
-            cell.likeBtn.tag = indexPath.row
+            self.setUpRemarkCell(cell, atIndexPath: indexPath)
             return cell
         }
     }
+    
+    func setUpDetailCell(cell:shopDetailCell,atIndexPath indexPath:NSIndexPath){
+        cell.tagLabel.text = detailInfoJSON[indexPath.row,"title"].string!
+        cell.tagLabel.font = UIFont.boldSystemFontOfSize(15)
+        cell.tagLabel.textColor = Consts.white
+        cell.tagLabel.layer.masksToBounds = true
+        //detailLabel允许多行显示
+        cell.detailLabel.lineBreakMode = .ByCharWrapping
+        cell.detailLabel.numberOfLines = 0
+        cell.detailLabel.sizeToFit()
+        cell.detailLabel.text = detailInfoJSON[indexPath.row,"content"].string!
+    }
+    
+    func setUpRemarkCell(cell:shopRemarkCell,atIndexPath indexPath:NSIndexPath){
+        cell.commentID = commentsJSON[indexPath.row]["id"].string!
+        cell.nameLabel.text = commentsJSON[indexPath.row]["name"].string!
+        cell.timeLabel.text = commentsJSON[indexPath.row]["date"].string!
+        cell.starsCount = commentsJSON[indexPath.row]["score"].int!
+        cell.setStars(cell.starsCount)
+        cell.remarkLabel.lineBreakMode = .ByCharWrapping
+        cell.remarkLabel.numberOfLines = 0
+        cell.remarkLabel.sizeToFit()
+        cell.remarkLabel.text = commentsJSON[indexPath.row]["content"].string!
+        cell.likeCount = commentsJSON[indexPath.row]["useful_number"].int!
+        cell.likeCountLabel.text = "(\(cell.likeCount))"
+        cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row]["image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
+        cell.hasLike = commentsJSON[indexPath.row]["useful_clicked"].int!
+        if(cell.hasLike == 1){
+            cell.likeBtn.setBackgroundImage(UIImage.init(named: "xianzhi_icon_like"), forState: .Normal)
+            cell.likeBtn.removeTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
+            cell.likeBtn.addTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
+            
+        }else{
+            cell.likeBtn.setBackgroundImage(UIImage.init(named: "unlike"), forState: .Normal)
+            cell.likeBtn.removeTarget(self, action: "remark_unlikeBtnClicked:", forControlEvents: .TouchUpInside)
+            cell.likeBtn.addTarget(self, action: "remark_likeBtnClicked:", forControlEvents: .TouchUpInside)
+        }
+        cell.likeBtn.tag = indexPath.row
+    }
+    
+    
     
     //    评论点赞
     func remark_likeBtnClicked(sender:UIButton){
@@ -393,8 +392,15 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        return cell.frame.height
+        if(tableView == self.detailView){
+            return tableView.fd_heightForCellWithIdentifier("shopDetailCell", cacheByIndexPath: indexPath, configuration: { (cell) -> Void in
+                self.setUpDetailCell(cell as! shopDetailCell, atIndexPath: indexPath)
+            })
+        }else{
+            return tableView.fd_heightForCellWithIdentifier("shopRemarkCell", cacheByIndexPath: indexPath, configuration: { (cell) -> Void in
+                self.setUpRemarkCell(cell as! shopRemarkCell, atIndexPath: indexPath)
+            })
+        }
     }
     
     @IBAction func btnClicked(sender: UIButton) {
