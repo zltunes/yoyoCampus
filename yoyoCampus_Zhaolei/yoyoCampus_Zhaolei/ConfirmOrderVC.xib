@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmOrderVC" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
@@ -17,18 +18,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTz-XF-rg6">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTz-XF-rg6">
                     <rect key="frame" x="0.0" y="265" width="320" height="139"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX7-Bc-djs">
-                            <rect key="frame" x="20" y="2" width="56" height="27"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AX7-Bc-djs">
+                            <rect key="frame" x="20" y="2" width="280" height="27"/>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="gcW-gD-Vti"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EJm-Fc-Cqu">
-                            <rect key="frame" x="21" y="27" width="279" height="104"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EJm-Fc-Cqu">
+                            <rect key="frame" x="20" y="27" width="280" height="104"/>
                             <animations/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -48,11 +52,36 @@
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="EJm-Fc-Cqu" secondAttribute="bottom" constant="12" id="0Yk-7X-fAL"/>
+                        <constraint firstItem="AX7-Bc-djs" firstAttribute="top" secondItem="GTz-XF-rg6" secondAttribute="top" constant="2" id="3fk-Zw-q9F"/>
+                        <constraint firstItem="AX7-Bc-djs" firstAttribute="leading" secondItem="GTz-XF-rg6" secondAttribute="leading" constant="20" id="IyD-Rr-LJn"/>
+                        <constraint firstItem="EJm-Fc-Cqu" firstAttribute="trailing" secondItem="AX7-Bc-djs" secondAttribute="trailing" id="KF7-Sg-j23"/>
+                        <constraint firstItem="EJm-Fc-Cqu" firstAttribute="top" secondItem="AX7-Bc-djs" secondAttribute="bottom" id="Vbt-20-6Su"/>
+                        <constraint firstAttribute="width" secondItem="GTz-XF-rg6" secondAttribute="height" multiplier="320:139" id="aKA-hb-ZmI"/>
+                        <constraint firstItem="EJm-Fc-Cqu" firstAttribute="leading" secondItem="AX7-Bc-djs" secondAttribute="leading" id="cOF-c4-7FD"/>
+                        <constraint firstAttribute="trailing" secondItem="AX7-Bc-djs" secondAttribute="trailing" constant="20" id="kQa-LX-zfW"/>
+                    </constraints>
                 </view>
-                <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDY-C7-u4q">
-                    <rect key="frame" x="24" y="431" width="272" height="36"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ULW-hm-lXy">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="257"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="257" id="Rpq-aQ-eOz"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Rnt-N8-UWl"/>
+                        <outlet property="delegate" destination="-1" id="uEO-z0-Me0"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDY-C7-u4q">
+                    <rect key="frame" x="35" y="431" width="250" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="QDY-C7-u4q" secondAttribute="height" multiplier="125:18" id="R3h-Eb-PYH"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <state key="normal" title="提 交 订 单">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,18 +95,20 @@
                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="Vz7-bQ-rZ1"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ULW-hm-lXy">
-                    <rect key="frame" x="0.0" y="-1" width="320" height="257"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="Rnt-N8-UWl"/>
-                        <outlet property="delegate" destination="-1" id="uEO-z0-Me0"/>
-                    </connections>
-                </tableView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GTz-XF-rg6" firstAttribute="top" secondItem="ULW-hm-lXy" secondAttribute="bottom" constant="8" id="2O4-1X-WMH"/>
+                <constraint firstItem="QDY-C7-u4q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3vG-fx-kBS"/>
+                <constraint firstItem="QDY-C7-u4q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="9xP-Mx-riX"/>
+                <constraint firstItem="ULW-hm-lXy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Iua-LZ-MZh"/>
+                <constraint firstItem="GTz-XF-rg6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mvy-xC-vas"/>
+                <constraint firstItem="ULW-hm-lXy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vmb-7B-pzA"/>
+                <constraint firstAttribute="trailing" secondItem="GTz-XF-rg6" secondAttribute="trailing" id="nJK-gP-f1d"/>
+                <constraint firstAttribute="trailing" secondItem="ULW-hm-lXy" secondAttribute="trailing" id="sJK-8v-crP"/>
+                <constraint firstItem="QDY-C7-u4q" firstAttribute="top" secondItem="GTz-XF-rg6" secondAttribute="bottom" constant="27" id="zOj-pM-hg5"/>
+            </constraints>
             <point key="canvasLocation" x="330" y="350"/>
         </view>
     </objects>

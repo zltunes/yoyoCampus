@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,34 +13,65 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9b-S1-4il">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9b-S1-4il">
                         <rect key="frame" x="283" y="11" width="20" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="6h2-EZ-x87"/>
+                            <constraint firstAttribute="width" constant="20" id="Z9c-XC-dVK"/>
+                        </constraints>
                         <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal">
                             <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8H-B7-7Ex">
-                        <rect key="frame" x="220" y="11" width="20" height="20"/>
-                        <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal">
-                            <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAh-iZ-KXP">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAh-iZ-KXP">
                         <rect key="frame" x="20" y="11" width="182" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="182" id="ez1-zo-Ent"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-yw-btm">
-                        <rect key="frame" x="241" y="11" width="38" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-yw-btm">
+                        <rect key="frame" x="242" y="11" width="33" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="33" id="cpF-VZ-Jdd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8H-B7-7Ex">
+                        <rect key="frame" x="214" y="11" width="20" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="V9y-12-6Wj"/>
+                            <constraint firstAttribute="height" constant="20" id="tZP-gB-Px3"/>
+                        </constraints>
+                        <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="s8H-B7-7Ex" firstAttribute="centerY" secondItem="hAh-iZ-KXP" secondAttribute="centerY" id="1bs-VL-MaN"/>
+                    <constraint firstAttribute="bottom" secondItem="hAh-iZ-KXP" secondAttribute="bottom" constant="11.5" id="3fr-z4-Ruq"/>
+                    <constraint firstItem="U9b-S1-4il" firstAttribute="leading" secondItem="oAF-yw-btm" secondAttribute="trailing" constant="8" id="7XE-Oa-0x6"/>
+                    <constraint firstAttribute="trailing" secondItem="U9b-S1-4il" secondAttribute="trailing" constant="17" id="9xX-ZE-hLV"/>
+                    <constraint firstItem="oAF-yw-btm" firstAttribute="leading" secondItem="s8H-B7-7Ex" secondAttribute="trailing" constant="8" id="CJt-Gm-saX"/>
+                    <constraint firstItem="oAF-yw-btm" firstAttribute="centerY" secondItem="hAh-iZ-KXP" secondAttribute="centerY" id="NLH-y6-44c"/>
+                    <constraint firstItem="hAh-iZ-KXP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="br9-zG-NjM"/>
+                    <constraint firstItem="U9b-S1-4il" firstAttribute="centerY" secondItem="hAh-iZ-KXP" secondAttribute="centerY" id="uw7-1w-occ"/>
+                    <constraint firstItem="hAh-iZ-KXP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="zBJ-5u-E7L"/>
+                </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="countLabel" destination="oAF-yw-btm" id="zIL-nq-KDo"/>
                 <outlet property="leftLabel" destination="hAh-iZ-KXP" id="pAw-kD-gdc"/>

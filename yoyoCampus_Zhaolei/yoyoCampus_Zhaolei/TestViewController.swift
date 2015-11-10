@@ -41,6 +41,10 @@ class TestViewController: UIViewController {
                 vc = PersonCenterVC()
             break
             
+            case "评价商品":
+                vc = remarkVC()
+            break
+            
         default:
             break
         }

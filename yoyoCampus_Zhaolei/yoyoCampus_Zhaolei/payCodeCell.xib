@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,23 +14,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="253.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="付款码：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yer-FA-hGQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="付款码：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yer-FA-hGQ">
                         <rect key="frame" x="13" y="16" width="76" height="29"/>
+                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aS-Fn-uM9">
-                        <rect key="frame" x="85" y="16" width="201" height="29"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aS-Fn-uM9">
+                        <rect key="frame" x="59" y="16" width="201" height="29"/>
+                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAt-1o-DVh">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAt-1o-DVh">
                         <rect key="frame" x="60" y="36" width="200" height="200.5"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="BAt-1o-DVh" secondAttribute="height" multiplier="1:1" id="eQO-7l-N6z"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="BAt-1o-DVh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0Ai-RD-7aI"/>
+                    <constraint firstItem="BAt-1o-DVh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="36" id="MgS-gh-fmX"/>
+                    <constraint firstAttribute="bottom" secondItem="BAt-1o-DVh" secondAttribute="bottom" constant="8" id="PCU-EG-KOv"/>
+                    <constraint firstItem="2aS-Fn-uM9" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="XYR-Ek-WxK"/>
+                    <constraint firstItem="2aS-Fn-uM9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="gR2-vQ-3AF"/>
+                    <constraint firstItem="Yer-FA-hGQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ioH-Ih-rFt"/>
+                    <constraint firstItem="Yer-FA-hGQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="sIE-Sz-1w8"/>
+                </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="payCodeView" destination="BAt-1o-DVh" id="Z7c-cu-KFc"/>
                 <outlet property="payPwdLabel" destination="2aS-Fn-uM9" id="Cuu-fZ-84q"/>

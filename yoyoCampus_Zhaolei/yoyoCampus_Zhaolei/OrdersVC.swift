@@ -120,9 +120,13 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let status = ordersJSON[indexPath.section]["status"].int!
         if(status == 1 || status == 2 || status == 3){
-            return 310 * Consts.ratio
+            return tableView.fd_heightForCellWithIdentifier("OrderCellWithBtn", cacheByIndexPath: indexPath, configuration: { (cell) -> Void in
+                    self.setUpCellWithBtn(cell as! OrderCellWithBtn, atIndexPath: indexPath)
+            })
         }else {
-            return 250 * Consts.ratio
+            return tableView.fd_heightForCellWithIdentifier("OrderCell", cacheByIndexPath: indexPath, configuration: { (cell) -> Void in
+                    self.setUpCell(cell as! OrderCell, atIndexPath: indexPath)
+            })
         }
     }
 
@@ -133,68 +137,82 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
         let status = orderJSON["status"].int!
             if(status == 1 || status == 2 || status == 3){
                 let cell = self.table.dequeueReusableCellWithIdentifier("OrderCellWithBtn", forIndexPath: indexPath) as! OrderCellWithBtn
-                cell.label_shopName?.text = orderJSON["shop","name"].string!
-                cell.label_productName?.text = orderJSON["good","name"].string!
-                let price = Float(orderJSON["total_price"].int!)/100.00
-                cell.label_totalPrice?.text = "\(price)"
-                let quantity = orderJSON["quantity"].int!
-                cell.label_totalCount?.text = "\(quantity)"
-                cell.orderImg.sd_setImageWithURL(orderJSON["good","image"].URL!, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
-                
-                switch(status){
-                    case 1:
-                        cell.label_orderstatus?.text = "未付款"
-                        cell.statusBtn.setTitle("付款", forState: .Normal)
-                    break
-                    
-                    case 2:
-                        cell.label_orderstatus?.text = "未消费"
-                        cell.statusBtn.setTitle("退款", forState: .Normal)
-                    break
-                    
-                    case 3:
-                        cell.label_orderstatus?.text = "未评价"
-                        cell.statusBtn.setTitle("评价", forState: .Normal)
-                    break
-                    
-                default:
-                    break
-                }
-                cell.statusBtn.tag = indexPath.section
-                cell.statusBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
+                setUpCellWithBtn(cell, atIndexPath: indexPath)
                 return cell
             }else{
                 let cell = self.table.dequeueReusableCellWithIdentifier("OrderCell", forIndexPath: indexPath) as! OrderCell
-                cell.label_shopName?.text = orderJSON["shop","name"].string!
-                cell.label_productName?.text = orderJSON["good","name"].string!
-                let price = orderJSON["total_price"].int!
-                cell.label_totalPrice?.text = "\(price)"
-                let quantity = orderJSON["quantity"].int!
-                cell.label_totalCount?.text = "\(quantity)"
-                cell.orderImg.image = UIImage.init(named: "Commodity editor_btn_picture")
-                switch(status){
-                    case -1:
-                        cell.label_orderStatus?.text = "退款中"
-                        cell.label_orderStatus.textColor = Consts.lightGray
-                    
-                    case 4:
-                        cell.label_orderStatus?.text = "已评价"
-                        cell.label_orderStatus.textColor = Consts.lightGray
-                    break
-                    
-                    case 0:
-                        cell.label_orderStatus?.text = "已退款"
-                        cell.label_orderStatus.textColor = Consts.lightGray
-                    
-                default:
-                    break
-                }
+                setUpCell(cell, atIndexPath: indexPath)
                 return cell
                 }
         }else{
             return UITableViewCell()
         }
         }
+    
+    func setUpCellWithBtn(cell:OrderCellWithBtn,atIndexPath indexPath:NSIndexPath){
+        let orderJSON = ordersJSON[indexPath.section]
+        let status = orderJSON["status"].int!
+        cell.label_shopName?.text = orderJSON["shop","name"].string!
+        cell.label_productName?.text = orderJSON["good","name"].string!
+        let price = Float(orderJSON["total_price"].int!)/100.00
+        cell.label_totalPrice?.text = "\(price)"
+        let quantity = orderJSON["quantity"].int!
+        cell.label_totalCount?.text = "\(quantity)"
+        cell.orderImg.sd_setImageWithURL(orderJSON["good","image"].URL!, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
+        
+        switch(status){
+        case 1:
+            cell.label_orderstatus?.text = "未付款"
+            cell.statusBtn.setTitle("付款", forState: .Normal)
+            break
+            
+        case 2:
+            cell.label_orderstatus?.text = "未消费"
+            cell.statusBtn.setTitle("退款", forState: .Normal)
+            break
+            
+        case 3:
+            cell.label_orderstatus?.text = "未评价"
+            cell.statusBtn.setTitle("评价", forState: .Normal)
+            break
+            
+        default:
+            break
+        }
+        cell.statusBtn.tag = indexPath.section
+        cell.statusBtn.addTarget(self, action: "btnClicked:", forControlEvents: .TouchUpInside)
+
+    }
+    
+    func setUpCell(cell:OrderCell,atIndexPath indexPath:NSIndexPath){
+        let orderJSON = ordersJSON[indexPath.section]
+        let status = orderJSON["status"].int!
+        cell.label_shopName?.text = orderJSON["shop","name"].string!
+        cell.label_productName?.text = orderJSON["good","name"].string!
+        cell.orderImg.sd_setImageWithURL(orderJSON["good","image"].URL!, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
+        let price = Float(orderJSON["total_price"].int!)/100.00
+        cell.label_totalPrice?.text = "\(price)"
+        let quantity = orderJSON["quantity"].int!
+        cell.label_totalCount?.text = "\(quantity)"
+        switch(status){
+        case -1:
+            cell.label_orderStatus?.text = "退款中"
+            cell.label_orderStatus.textColor = Consts.lightGray
+            
+        case 4:
+            cell.label_orderStatus?.text = "已评价"
+            cell.label_orderStatus.textColor = Consts.lightGray
+            break
+            
+        case 0:
+            cell.label_orderStatus?.text = "已退款"
+            cell.label_orderStatus.textColor = Consts.lightGray
+            
+        default:
+            break
+        }
+
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.table.deselectRowAtIndexPath(indexPath, animated: true)
@@ -228,7 +246,9 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
             break
             
         case "refund":
-            self.table.reloadData()
+            Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
+            self.table.header.beginRefreshing()
+            break
             
         default:
             break
@@ -240,18 +260,21 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
             case "付款":
                 let vc = OrderPayVC()
                 vc.order_ID = ordersJSON[sender.tag]["_id"].string!
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             break
             
             case "退款":
                 let order_ID = ordersJSON[sender.tag]["_id"].string!
-                self.refundURL = "\(Consts.mainUrl)/v1.0/order/\(order_ID)/"
+                self.refundURL = "\(Consts.mainUrl)/v1.0/user/order/\(order_ID)/"
                 setUpOnlineData("refund")
             break
             
             case "评价":
                 let vc = remarkVC()
                 vc.order_id = ordersJSON[sender.tag]["_id"].string!
+                vc.goods_id = ordersJSON[sender.tag]["good","_id"].string!
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             break
             

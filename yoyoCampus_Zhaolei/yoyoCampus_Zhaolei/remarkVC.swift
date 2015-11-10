@@ -13,6 +13,7 @@ import SwiftyJSON
 
 class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegate {
 
+    @IBOutlet var remarkLabel: UILabel!
     
     @IBOutlet var remarkTextView: UITextView!
     
@@ -27,6 +28,10 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
     var api = YoYoAPI()
     
     internal var order_id:String = ""
+    
+    internal var goods_id:String = ""
+    
+    var remarkURL:String = ""
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,6 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
         
         self.setUpActions()
         
-        self.setUpOnlineData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,17 +57,22 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         
-        self.ratingBar.frame = CGRect(x: self.view.frame.width/3.3, y: 120, width: 164, height: 18)
-        self.view.addSubview(self.ratingBar)
         
+        self.ratingBar.frame = CGRect(x: self.view.frame.width/3, y: self.remarkLabel.frame.maxY + 50 * Consts.ratio, width: self.view.frame.width/3, height: 100 * Consts.ratio)
+
+        self.ratingBar.center.x = self.view.center.x
+        
+        self.view.addSubview(self.ratingBar)
+
+
         //是否显示指示器
         self.ratingBar.isIndicator = false
         self.ratingBar.setImageDeselected("ratingbar_unselected", halfSelected: nil, fullSelected: "ratingbar_selected", andDelegate: self)
         
 //        显示结果label
-        self.ratingLabel.frame = CGRect(x: 260, y: 120, width: 150, height: 20)
+        self.ratingLabel.frame = CGRect(x: self.ratingBar.frame.maxX + 20 * Consts.ratio, y: self.remarkLabel.frame.maxY + 20 * Consts.ratio, width: 150 * Consts.ratio, height: 100 * Consts.ratio)
         self.ratingLabel.textColor = UIColor.orangeColor()
-        self.ratingLabel.font = Consts.ft13
+        self.ratingLabel.font = Consts.ft15
         self.view.addSubview(self.ratingLabel)
         
         self.remarkTextView.text = "亲，商品如何，服务是否周到"
@@ -76,8 +85,12 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
         
     }
     
-    func setUpOnlineData(){
-        
+    func setUpOnlineData(tag:String){
+        if(tag == "remark"){
+            self.remarkURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_id)/comment/"
+            let param = ["order_id":order_id,"content":self.remarkTextView.text,"score":rating]
+            api.httpRequest("POST", url: remarkURL, params: param as! [String : AnyObject], tag: "remark")
+        }
     }
     
     func goBack(){
@@ -85,7 +98,10 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        
+        if(tag == "remark"){
+            let commentID = json["goods_comment_id"].string!
+            print("goods_comment_id\(commentID)")
+        }
     }
     
     //触摸背景关键盘
@@ -94,7 +110,11 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
     }
     
     @IBAction func btnClicked(sender: UIButton) {
-//        提交评价
+        if(self.remarkTextView.text.isEmpty || self.remarkTextView.text == "亲，商品如何，服务是否周到"){
+            Tool.showErrorHUD("评价不可为空!")
+        }else{
+            setUpOnlineData("remark")
+        }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

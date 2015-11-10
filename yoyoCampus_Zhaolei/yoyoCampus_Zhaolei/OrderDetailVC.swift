@@ -86,7 +86,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             break
             
             case "refund":
-                refundURL = "\(Consts.mainUrl)/v1.0/order/\(order_ID)/"
+                refundURL = "\(Consts.mainUrl)/v1.0/user/order/\(order_ID)/"
                 api.httpRequest("DELETE", url: refundURL, params: nil, tag: "refund")
             break
             
@@ -179,11 +179,15 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             break
             
         case 2://moreDetail
-            return 580 * Consts.ratio
+            return tableView.fd_heightForCellWithIdentifier("moreOrderInfoCell", cacheByIndexPath: indexPath, configuration: { (cell) -> Void in
+                self.setUpMoreOrderInfoCell(cell as! moreOrderInfoCell, atIndexPath: indexPath)
+            })
             break
             
         case 3://status == "remarked"
-            return 360 * Consts.ratio
+            return tableView.fd_heightForCellWithIdentifier("myRemarkCell", cacheByIndexPath: indexPath, configuration: { (cell) -> Void in
+                self.setUpmyRemarkCell(cell as! myRemarkCell, atIndexPath: indexPath)
+            })
             break
             
         default:
@@ -271,37 +275,14 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
 //            section 2:
         case 2:
             let cell = self.table.dequeueReusableCellWithIdentifier("moreOrderInfoCell", forIndexPath: indexPath) as! moreOrderInfoCell
-            cell.label_orderNo?.text = orderDetailJSON["_id"].string!
-            cell.label_time?.text = orderDetailJSON["time"].string!
-            cell.label_phone_num?.text = orderDetailJSON["buyer","phone_num"].string!
-            cell.label_campus?.text = orderDetailJSON["buyer","location"].string!
-            cell.label_remark?.text = orderDetailJSON["remark"].string!
-            let discount = Float(orderDetailJSON["good","discount"].int!)/100.00//优惠卡金额
-            let quantity = orderDetailJSON["quantity"].int!
-            let totalPrice = Float(orderDetailJSON["total_price"].int!)/100.00
-            cell.label_count?.text = "\(quantity)"
-            if(orderDetailJSON["use_card"].bool!){
-                 cell.label_discount?.text = "¥ \(Float(quantity) * discount)"
-            }else{
-                cell.label_discount?.text = "¥ 0"
-            }
-            cell.label_totalPrice?.text = "¥ \(totalPrice)"
+            self.setUpMoreOrderInfoCell(cell, atIndexPath: indexPath)
             return cell
             break
 //            section 3:
 //            orderstatus == "remarked"时有
         case 3:
             let cell = self.table.dequeueReusableCellWithIdentifier("myRemarkCell", forIndexPath: indexPath) as! myRemarkCell
-            cell.label_name?.text = "宇宙无敌小可爱"
-            cell.label_remarkTime?.text = "2016-01-19"
-            
-            cell.label_remark.lineBreakMode = .ByCharWrapping
-            cell.label_remark.numberOfLines = 0
-            cell.label_remark.sizeToFit()
-            cell.label_remark?.text = "很不错的地方，班级游一块儿去的吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧。"
-            
-            cell.label_likeCount?.text = "( 15 )"
-            cell.setStars(5)//星数
+            setUpmyRemarkCell(cell, atIndexPath: indexPath)
             return cell
             break
             
@@ -312,6 +293,40 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         }else{
             return UITableViewCell()
         }
+    }
+    
+    func setUpMoreOrderInfoCell(cell:moreOrderInfoCell,atIndexPath indexPath:NSIndexPath){
+        if(!orderDetailJSON.isEmpty){
+        cell.label_orderNo?.text = orderDetailJSON["_id"].string!
+        cell.label_time?.text = orderDetailJSON["time"].string!
+        cell.label_phone_num?.text = orderDetailJSON["buyer","phone_num"].string!
+        cell.label_campus?.text = orderDetailJSON["buyer","location"].string!
+        cell.label_remark?.text = orderDetailJSON["remark"].string!
+        let discount = Float(orderDetailJSON["good","discount"].int!)/100.00//优惠卡金额
+        let quantity = orderDetailJSON["quantity"].int!
+        let totalPrice = Float(orderDetailJSON["total_price"].int!)/100.00
+        cell.label_count?.text = "\(quantity)"
+        if(orderDetailJSON["use_card"].bool!){
+            cell.label_discount?.text = "¥ \(Float(quantity) * discount)"
+        }else{
+            cell.label_discount?.text = "¥ 0"
+        }
+        cell.label_totalPrice?.text = "¥ \(totalPrice)"
+            
+        }
+    }
+    
+    func setUpmyRemarkCell(cell:myRemarkCell,atIndexPath indexPath:NSIndexPath){
+        cell.label_name?.text = "宇宙无敌小可爱"
+        cell.label_remarkTime?.text = "2016-01-19"
+        
+        cell.label_remark.lineBreakMode = .ByCharWrapping
+        cell.label_remark.numberOfLines = 0
+        cell.label_remark.sizeToFit()
+        cell.label_remark?.text = "很不错的地方，班级游一块儿去的吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧。"
+        
+        cell.label_likeCount?.text = "( 15 )"
+        cell.setStars(5)//星数
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -363,7 +378,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
             
             case "refund":
                 Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
-                
+                setUpOnlineData("orderDetailView")
             break
             
         default:

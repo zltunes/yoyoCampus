@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2DB5DF49D013FE6DE339BC07 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99CCF8C203C632F43C58926 /* Pods.framework */; };
 		35089E251BD3ED4500FCB857 /* CheckNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 35089E241BD3ED4500FCB857 /* CheckNetwork.m */; };
+		3514EBC31BF1EC7D00EA06BB /* moreOrderInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3514EBC21BF1EC7D00EA06BB /* moreOrderInfoCell.xib */; };
 		35229B701BE4FA8D0087531B /* bindVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35229B6E1BE4FA8D0087531B /* bindVC.swift */; };
 		35229B711BE4FA8D0087531B /* bindVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35229B6F1BE4FA8D0087531B /* bindVC.xib */; };
 		352D69BE1BC68EBA009A9A91 /* shopDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */; };
@@ -126,7 +127,6 @@
 		35DE76121BDB731F00BAA880 /* OneLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DE76101BDB731F00BAA880 /* OneLabelCell.swift */; };
 		35DE76131BDB731F00BAA880 /* OneLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DE76111BDB731F00BAA880 /* OneLabelCell.xib */; };
 		35DE76171BDB744600BAA880 /* moreOrderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DE76151BDB744600BAA880 /* moreOrderInfoCell.swift */; };
-		35DE76181BDB744600BAA880 /* moreOrderInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35DE76161BDB744600BAA880 /* moreOrderInfoCell.xib */; };
 		35E7C12F1BD8B51400DB6141 /* PersonCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C12D1BD8B51400DB6141 /* PersonCenterVC.swift */; };
 		35E7C1301BD8B51400DB6141 /* PersonCenterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C12E1BD8B51400DB6141 /* PersonCenterVC.xib */; };
 		35E7C1331BD8B54A00DB6141 /* cellWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C1311BD8B54A00DB6141 /* cellWithLabel.swift */; };
@@ -163,6 +163,7 @@
 /* Begin PBXFileReference section */
 		35089E231BD3ED4500FCB857 /* CheckNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckNetwork.h; sourceTree = "<group>"; };
 		35089E241BD3ED4500FCB857 /* CheckNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckNetwork.m; sourceTree = "<group>"; };
+		3514EBC21BF1EC7D00EA06BB /* moreOrderInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moreOrderInfoCell.xib; sourceTree = "<group>"; };
 		35229B6E1BE4FA8D0087531B /* bindVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindVC.swift; sourceTree = "<group>"; };
 		35229B6F1BE4FA8D0087531B /* bindVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = bindVC.xib; sourceTree = "<group>"; };
 		352D69BC1BC68EBA009A9A91 /* shopDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shopDetailCell.swift; sourceTree = "<group>"; };
@@ -336,7 +337,6 @@
 		35DE76101BDB731F00BAA880 /* OneLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLabelCell.swift; sourceTree = "<group>"; };
 		35DE76111BDB731F00BAA880 /* OneLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneLabelCell.xib; sourceTree = "<group>"; };
 		35DE76151BDB744600BAA880 /* moreOrderInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = moreOrderInfoCell.swift; sourceTree = "<group>"; };
-		35DE76161BDB744600BAA880 /* moreOrderInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moreOrderInfoCell.xib; sourceTree = "<group>"; };
 		35E7C12D1BD8B51400DB6141 /* PersonCenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCenterVC.swift; sourceTree = "<group>"; };
 		35E7C12E1BD8B51400DB6141 /* PersonCenterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterVC.xib; sourceTree = "<group>"; };
 		35E7C1311BD8B54A00DB6141 /* cellWithLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cellWithLabel.swift; sourceTree = "<group>"; };
@@ -924,7 +924,7 @@
 				35DE75D91BDB61EC00BAA880 /* orderDetailInfoCell.swift */,
 				35DE75DA1BDB61EC00BAA880 /* orderDetailInfoCell.xib */,
 				35DE76151BDB744600BAA880 /* moreOrderInfoCell.swift */,
-				35DE76161BDB744600BAA880 /* moreOrderInfoCell.xib */,
+				3514EBC21BF1EC7D00EA06BB /* moreOrderInfoCell.xib */,
 			);
 			name = allHave;
 			sourceTree = "<group>";
@@ -1133,7 +1133,6 @@
 				3543B1001BD7B6D800B2BA60 /* CouponViewController.xib in Resources */,
 				35C772EA1BDF1F600054D08E /* twoLabelCell.xib in Resources */,
 				3594CBFF1BDCA83D00037B33 /* remarkVC.xib in Resources */,
-				35DE76181BDB744600BAA880 /* moreOrderInfoCell.xib in Resources */,
 				35DE75F41BDB657D00BAA880 /* OneBtnCell.xib in Resources */,
 				3594CC2C1BDD085C00037B33 /* UMSShareListController.xib in Resources */,
 				35C772AC1BDF0A380054D08E /* zbar-samples.png in Resources */,
@@ -1163,6 +1162,7 @@
 				3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */,
 				35DE76001BDB66CF00BAA880 /* payCodeCell.xib in Resources */,
 				3594CC231BDD085C00037B33 /* UMSocialLocalizable.strings in Resources */,
+				3514EBC31BF1EC7D00EA06BB /* moreOrderInfoCell.xib in Resources */,
 				35E7C1491BD9201500DB6141 /* OrderCell.xib in Resources */,
 				3577407F1BC4163F0005281B /* remarkCell.xib in Resources */,
 				3594CC2D1BDD085C00037B33 /* UMSocialSDKResourcesNew.bundle in Resources */,

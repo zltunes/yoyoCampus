@@ -41,7 +41,10 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q96-kj-bpt">
                     <rect key="frame" x="79" y="243" width="163" height="30"/>
                     <animations/>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="评价商品"/>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="TFb-2y-0sv"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wB-Ke-Gvr">
                     <rect key="frame" x="79" y="288" width="163" height="30"/>
