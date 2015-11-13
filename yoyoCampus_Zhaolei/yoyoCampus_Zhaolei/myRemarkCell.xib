@@ -38,15 +38,19 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIn-mv-45u">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIn-mv-45u">
                         <rect key="frame" x="269" y="108" width="42" height="21"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="51M-SZ-T03"/>
+                            <constraint firstAttribute="width" constant="42" id="Rwx-4R-wnL"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeY-5G-L7Q">
-                        <rect key="frame" x="241" y="107" width="23" height="23"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeY-5G-L7Q">
+                        <rect key="frame" x="246" y="107" width="23" height="23"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="23" id="22T-Ct-S27"/>
@@ -111,6 +115,7 @@
                 <constraints>
                     <constraint firstItem="dmt-Et-rw5" firstAttribute="top" secondItem="KAW-lh-IB0" secondAttribute="bottom" constant="6" id="04u-ey-wsX"/>
                     <constraint firstItem="14X-VE-Wgf" firstAttribute="top" secondItem="Hd5-om-7x2" secondAttribute="top" id="4Hd-yd-clS"/>
+                    <constraint firstItem="uIn-mv-45u" firstAttribute="top" secondItem="xUU-VX-6Xq" secondAttribute="bottom" constant="8" id="4W0-Mi-yRe"/>
                     <constraint firstItem="14X-VE-Wgf" firstAttribute="leading" secondItem="ZIX-KK-w6x" secondAttribute="trailing" constant="2" id="555-kv-xNg"/>
                     <constraint firstItem="ZIX-KK-w6x" firstAttribute="bottom" secondItem="Hd5-om-7x2" secondAttribute="bottom" id="64Y-hh-lAi"/>
                     <constraint firstItem="SWt-qY-1ae" firstAttribute="top" secondItem="Hd5-om-7x2" secondAttribute="top" id="6Qz-FB-DXa"/>
@@ -140,7 +145,7 @@
                     <constraint firstItem="RsT-P3-4bf" firstAttribute="height" secondItem="Hd5-om-7x2" secondAttribute="height" id="cGs-th-0W7"/>
                     <constraint firstItem="RsT-P3-4bf" firstAttribute="width" secondItem="Hd5-om-7x2" secondAttribute="width" id="dy0-Wh-Trn"/>
                     <constraint firstItem="dmt-Et-rw5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="eyt-z1-2fU"/>
-                    <constraint firstItem="uIn-mv-45u" firstAttribute="leading" secondItem="AeY-5G-L7Q" secondAttribute="trailing" constant="5" id="fly-7v-bzM"/>
+                    <constraint firstItem="uIn-mv-45u" firstAttribute="leading" secondItem="AeY-5G-L7Q" secondAttribute="trailing" id="fly-7v-bzM"/>
                     <constraint firstItem="SWt-qY-1ae" firstAttribute="width" secondItem="Hd5-om-7x2" secondAttribute="width" id="iYY-qL-a6g"/>
                     <constraint firstItem="14X-VE-Wgf" firstAttribute="bottom" secondItem="Hd5-om-7x2" secondAttribute="bottom" id="kDc-PX-tzD"/>
                     <constraint firstItem="xUU-VX-6Xq" firstAttribute="leading" secondItem="Qw6-Bz-53b" secondAttribute="leading" id="mXF-qC-rzq"/>

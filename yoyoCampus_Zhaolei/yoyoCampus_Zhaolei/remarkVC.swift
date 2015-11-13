@@ -89,6 +89,8 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
         if(tag == "remark"){
             self.remarkURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_id)/comment/"
             let param = ["order_id":order_id,"content":self.remarkTextView.text,"score":rating]
+            print("param:\(param)")
+            print("url:\(remarkURL)")
             api.httpRequest("POST", url: remarkURL, params: param as! [String : AnyObject], tag: "remark")
         }
     }
@@ -99,6 +101,7 @@ class remarkVC: UIViewController,APIDelegate,UITextViewDelegate,RatingBarDelegat
     
     func didReceiveJsonResults(json: JSON, tag: String) {
         if(tag == "remark"){
+            print(json)
             let commentID = json["goods_comment_id"].string!
             print("goods_comment_id\(commentID)")
         }

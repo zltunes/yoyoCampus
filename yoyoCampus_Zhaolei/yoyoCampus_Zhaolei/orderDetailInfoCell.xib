@@ -36,17 +36,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xww-a2-kXQ">
-                        <rect key="frame" x="159" y="46" width="150" height="21"/>
+                        <rect key="frame" x="170" y="46" width="139" height="21"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="150" id="G11-qZ-SpX"/>
+                            <constraint firstAttribute="width" constant="139" id="G11-qZ-SpX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwO-YN-CEd">
-                        <rect key="frame" x="102" y="46" width="55" height="21"/>
+                        <rect key="frame" x="102" y="46" width="68" height="21"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,7 +68,7 @@
                     <constraint firstItem="qVD-Yf-hz4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="oUP-dA-1Am"/>
                     <constraint firstItem="qVD-Yf-hz4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="pIs-rs-UBK"/>
                     <constraint firstItem="xww-a2-kXQ" firstAttribute="bottom" secondItem="qVD-Yf-hz4" secondAttribute="bottom" id="vHv-BH-5Zg"/>
-                    <constraint firstItem="xww-a2-kXQ" firstAttribute="leading" secondItem="UwO-YN-CEd" secondAttribute="trailing" constant="2" id="wff-KQ-jgU"/>
+                    <constraint firstItem="xww-a2-kXQ" firstAttribute="leading" secondItem="UwO-YN-CEd" secondAttribute="trailing" id="wff-KQ-jgU"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
