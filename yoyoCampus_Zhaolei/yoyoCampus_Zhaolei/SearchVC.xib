@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVC" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
+            <connections>
+                <outlet property="hiddenImg" destination="AUa-2j-Xgk" id="NEd-XN-dEE"/>
+                <outlet property="hiddenLabel" destination="KVY-ic-EC7" id="3A6-vI-aHv"/>
+                <outlet property="table" destination="zEM-ih-kQe" id="sge-Xf-xfB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zEM-ih-kQe">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9bK-HJ-K16"/>
+                        <outlet property="delegate" destination="-1" id="LQJ-hf-0hq"/>
+                    </connections>
+                </tableView>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear_icon_register" translatesAutoresizingMaskIntoConstraints="NO" id="AUa-2j-Xgk">
+                    <rect key="frame" x="100" y="146" width="120" height="120"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="F3U-9m-ogG"/>
+                        <constraint firstAttribute="height" constant="120" id="hvm-fi-Ge1"/>
+                    </constraints>
+                </imageView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没有找到相关商品、店铺" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVY-ic-EC7">
+                    <rect key="frame" x="8" y="273" width="304" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="j7d-El-uYh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="zEM-ih-kQe" secondAttribute="trailing" id="4oy-ed-feM"/>
+                <constraint firstItem="KVY-ic-EC7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="BJs-wy-M7W"/>
+                <constraint firstItem="zEM-ih-kQe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DM4-Zi-sBq"/>
+                <constraint firstItem="KVY-ic-EC7" firstAttribute="top" secondItem="AUa-2j-Xgk" secondAttribute="bottom" constant="7" id="OWt-S0-r8B"/>
+                <constraint firstItem="AUa-2j-Xgk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YFr-sd-Qf0"/>
+                <constraint firstAttribute="trailing" secondItem="KVY-ic-EC7" secondAttribute="trailing" constant="8" id="erX-Ah-8uu"/>
+                <constraint firstItem="AUa-2j-Xgk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="146" id="f2F-6T-Nca"/>
+                <constraint firstItem="zEM-ih-kQe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jY7-nr-ysu"/>
+            </constraints>
+            <point key="canvasLocation" x="345" y="366"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bear_icon_register" width="120" height="120"/>
+    </resources>
+</document>

@@ -144,6 +144,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func setUpInitialLooking(){
+        Tool.showProgressHUD("")
         
         let newWidth = self.view.frame.width
         
@@ -189,8 +190,17 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.pageCtl.currentPageIndicatorTintColor = UIColor.clearColor()
         self.pageCtl.enabled = false
         
+        self.setExtraCellLineHidden(self.detailView)
+        self.setExtraCellLineHidden(self.remarkTableView)
+        
         setUpOnlineData("goodsView")
         setUpOnlineData("commentsView")
+    }
+    
+    func setExtraCellLineHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
     }
     
     func headerRefreshing(){
@@ -546,6 +556,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 self.remarkTableView.header.endRefreshing()
                 self.remarkTableView.footer.endRefreshing()
                 self.remarkTableView.reloadData()
+                Tool.dismissHUD()
             break
             
             case "commentLike":

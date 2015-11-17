@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "register_button_password.png"
+      "filename" : "register_button_password.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "register_button_password@2x.png"
+      "filename" : "register_button_password@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

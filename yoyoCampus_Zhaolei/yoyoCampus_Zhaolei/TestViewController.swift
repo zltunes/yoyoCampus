@@ -45,6 +45,10 @@ class TestViewController: UIViewController {
                 vc = remarkVC()
             break
             
+            case "搜索":
+                vc = SearchVC()
+            break
+            
         default:
             break
         }

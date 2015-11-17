@@ -161,6 +161,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     }
     
     func setUpInitialLooking(){
+//        Tool.showProgressHUD("加载中")
         
         let newWidth = self.view.frame.width
         

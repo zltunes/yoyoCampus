@@ -10,6 +10,11 @@ import UIKit
 import AVFoundation
 
 class Consts {
+    
+//appID(自动更新版本需要)
+    
+    static let appID:String = "376771144"
+    
     ///屏幕比例
     static let ratio : CGFloat = UIScreen.mainScreen().bounds.width / 720
     

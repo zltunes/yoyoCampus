@@ -49,7 +49,10 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wB-Ke-Gvr">
                     <rect key="frame" x="79" y="288" width="163" height="30"/>
                     <animations/>
-                    <state key="normal" title="Button"/>
+                    <state key="normal" title="搜索"/>
+                    <connections>
+                        <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="BMh-0S-kL1"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oii-xn-GMD">
                     <rect key="frame" x="79" y="332" width="163" height="30"/>
