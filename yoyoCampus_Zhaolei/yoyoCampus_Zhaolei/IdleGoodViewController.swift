@@ -160,6 +160,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         Consts.setUpNavigationBarWithBackButton(self, title: "闲置", backTitle: "<")
     }
     
+    func setExtraCellLineHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
+    }
+    
     func setUpInitialLooking(){
 //        Tool.showProgressHUD("加载中")
         
@@ -226,10 +232,13 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
         //关闭控制器按钮的点击响应
         self.pageCtl.enabled = false
         self.horizontalScroll.addSubview(self.pageCtl)
-
         
-         setUpOnlineData("idleView")
-         setUpOnlineData("commentView")
+        self.setExtraCellLineHidden(self.remarkTableView)
+        
+        Tool.showProgressHUD("")
+        
+        setUpOnlineData("idleView")
+        setUpOnlineData("commentView")
     }
     
     //下拉刷新回调
@@ -606,8 +615,10 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
                 self.commentsJSON = json["idle_comment"].array!
             }
             self.remarkTableView.reloadData()
+            Tool.dismissHUD()
             self.remarkTableView.header.endRefreshing()
             self.remarkTableView.footer.endRefreshing()
+            
             break
             
         case "commentCreate":
