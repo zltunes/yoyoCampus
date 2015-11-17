@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import MJRefresh
 
 class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,APIDelegate{
 

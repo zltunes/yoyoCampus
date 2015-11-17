@@ -111,6 +111,8 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             if(!AppDelegate.isLogin){
                 Tool.showErrorHUD("请先登录!")
             }else{
+                let myIdleVC = MyIdleVC()
+                self.navigationController?.pushViewController(myIdleVC, animated: true)
                 
             }
             break
@@ -118,7 +120,8 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             if(!AppDelegate.isLogin){
                 Tool.showErrorHUD("请先登录!")
             }else{
-                
+                let myCollection = MyFavoriteVC()
+                self.navigationController?.pushViewController(myCollection, animated: true)
             }
             break
         case 3://提示去注册/登录
