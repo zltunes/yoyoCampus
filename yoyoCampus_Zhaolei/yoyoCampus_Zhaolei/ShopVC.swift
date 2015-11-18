@@ -36,6 +36,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     }
     
     override func viewDidLoad() {
+        self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
         super.viewDidLoad()
         self.getShopCategory()
 
@@ -131,7 +132,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         
         for(var num = 0 ; num < self.viewCount ; num++){
             let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
-            btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            btn.setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
             btn.titleLabel?.font = UIFont.systemFontOfSize(16)
             self.scrollBtnView.addSubview(btn)
             btn.setTitle((self.shopCategory[num].objectForKey("name")!) as! String, forState: UIControlState.Normal)
@@ -197,6 +198,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             for(var n = 0 ; n < self.viewCount ; n++){
                 if(tableView == tableViewArray[n] as! NSObject){
                     let viewCell = ShopCell()
+                    viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n].objectAtIndex(indexPath.row))
                     return viewCell
                 }
@@ -243,7 +245,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     func btnColorChange(which : Int ){
         for(var num = 0 ; num < self.viewCount ; num++){
             if(num != which){
-                self.btnArray[num].setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                self.btnArray[num].setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
             }
             else{
                 self.btnArray[num].setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
