@@ -47,6 +47,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     }
     
     override func viewDidLoad() {
+        self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
         super.viewDidLoad()
         self.httpGetGroup()
 
@@ -172,7 +173,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             
             for(var num = 0 ; num < self.viewCount ; num++){
                 let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
-                btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+                btn.setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
                 btn.titleLabel?.font = UIFont.systemFontOfSize(16)
                 self.scrollBtnView.addSubview(btn)
                 //还不知道有分组的店铺里面是什么样的
@@ -230,6 +231,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         if(self.isSingleView == true){
             let viewCell = ViewCell()
             viewCell.setData(self.resultData[indexPath.row])
+            viewCell.selectionStyle = UITableViewCellSelectionStyle.None
             viewCell.isIdleCell = false
             return viewCell
         }
@@ -238,6 +240,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                 if(tableView == self.tableViewArray[num] as! NSObject){
                     let viewCell = ViewCell()
                     viewCell.setData(self.resultData[num].objectAtIndex(indexPath.row))
+                    viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.isIdleCell = false
                     return viewCell
                 }
@@ -383,7 +386,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     func btnColorChange(which : Int ){
         for(var num = 0 ; num < Int(self.viewCount) ; num++){
             if(num != which){
-                self.btnArray[num].setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                self.btnArray[num].setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
             }
             else{
                 self.btnArray[num].setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
