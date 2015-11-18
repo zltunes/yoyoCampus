@@ -50,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
     var navigationController_my = CustomNavigationController()
     
 //    三个rootViewController
-    var homeVC = UIViewController()
-    var shopVC = UIViewController()
+    var homeVC = RootVC()
+    var shopVC = ShopVC()
     var myVC = PersonCenterVC()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

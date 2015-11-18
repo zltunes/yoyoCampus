@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import MJRefresh
 
 public enum STATUS: String{
     case unPaid,unUsed,unRemarked,remarked,refund
