@@ -1437,11 +1437,8 @@
 				3590FDF41BF9DEAE00261CBB /* SearchMoreCell.xib in Resources */,
 				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
 				3594CC291BDD085C00037B33 /* UMShareEditViewControlleriPad.xib in Resources */,
-<<<<<<< HEAD
 				3590FDEC1BF9DE7C00261CBB /* SearchGoodsCell.xib in Resources */,
-=======
 				AD3F81711BF7A8A200852AF1 /* order_21.png in Resources */,
->>>>>>> e94458edabe183f00e28ecdbe6891bf500fe1332
 				35229B711BE4FA8D0087531B /* bindVC.xib in Resources */,
 				3594CC281BDD085C00037B33 /* UMShareEditViewController.xib in Resources */,
 				3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */,
@@ -1855,11 +1852,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "zhaolei.yoyoCampus-Zhaolei";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-<<<<<<< HEAD
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
-=======
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
->>>>>>> e94458edabe183f00e28ecdbe6891bf500fe1332
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1927,11 +1920,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "zhaolei.yoyoCampus-Zhaolei";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-<<<<<<< HEAD
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
-=======
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
->>>>>>> e94458edabe183f00e28ecdbe6891bf500fe1332
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
