@@ -38,12 +38,20 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
         super.viewDidLoad()
+        
+        Consts.setUpNavigationBarWithBackButton(self, title: "商家", backTitle: "<")
+        
         self.getShopCategory()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        self.hidesBottomBarWhenPushed = false
+        super.viewWillDisappear(animated)
     }
     
     func getShopCategory(){
@@ -170,9 +178,16 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         //搜索按钮
         let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
         btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navBtnView.addSubview(btnSearch)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
 
+    }
+    
+    func search(){
+        let vc = SearchVC()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

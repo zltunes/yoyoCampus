@@ -19,17 +19,6 @@ let httpHeader = ["access_token": "d2bfd4c2-8460-11e5-82bd-00163e021195"]
 
 class RootVC: UIViewController,UIScrollViewDelegate{
 
-//
-//    var scrollRootView = UIScrollView()
-//    var scrollBannerView = UIScrollView()
-//    var bannerView = UIImageView()
-//    
-//    var btnSale = UIButton()
-//    var btnCamp = UIButton()
-//    var btnCar = UIButton()
-//    var btnClothes = UIButton()
-//    var btnStudy = UIButton()
-//    var btnShop = UIButton()
       var idleCategory = NSMutableArray()
       var categoryRoot = NSMutableArray()
 
@@ -37,17 +26,21 @@ class RootVC: UIViewController,UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.searchBtn.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        Consts.setUpNavigationBarWithBackButton(self, title: "东南大学九龙湖校区", backTitle: "")
         
+        
+        self.searchBtn.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        self.searchBtn.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
         
         self.view.backgroundColor = UIColor .whiteColor()
-        self.title = "东南大学九龙湖校区"
+        
+        
         
         //获取类目
         
         //总界面是一个scrollRootView
-        let scrollRootView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        let scrollRootView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight - 64))
         scrollRootView.backgroundColor = UIColor(red: 234/255, green: 236/255, blue: 234/255, alpha: 1)
         scrollRootView.delegate = self
         scrollRootView.directionalLockEnabled = true
@@ -55,6 +48,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         scrollRootView.showsHorizontalScrollIndicator = false
         scrollRootView.contentSize = CGSizeMake(windowWidth, windowHeight*1.8)
         scrollRootView.scrollEnabled = true
+        scrollRootView.showsVerticalScrollIndicator = false
         self.view.addSubview(scrollRootView)
 	    //banner的scrollView
         let scrollBannerView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight*0.25))
@@ -67,6 +61,8 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         //翻页效果加进去会比较好，控制左右拖动的随意性
         scrollBannerView.pagingEnabled = true
         scrollRootView.addSubview(scrollBannerView)
+        
+        
         
         let bannerView1 = UIImageView(frame: CGRectMake(windowWidth, 0, windowWidth, scrollBannerView.frame.size.height))
         bannerView1.image = UIImage(named: "banner1.png")
@@ -208,6 +204,17 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        self.hidesBottomBarWhenPushed = false
+        super.viewWillDisappear(animated)
+    }
+    
+    func search(){
+        let vc = SearchVC()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
