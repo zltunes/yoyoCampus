@@ -1,4 +1,4 @@
-_Store
+.DS_Store
 DerivedData
 .*.sw?
 *.cso
@@ -8,4 +8,3 @@ tmp
 *.xcworkspace
 xcuserdata
 console.log
-.DS_Store

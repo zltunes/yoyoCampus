@@ -42,6 +42,8 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     var oldBtnTag:Int = 0
     var newBtnTag:Int = 0
     
+//    
+    
     override func viewWillAppear(animated: Bool) {
 
     }
