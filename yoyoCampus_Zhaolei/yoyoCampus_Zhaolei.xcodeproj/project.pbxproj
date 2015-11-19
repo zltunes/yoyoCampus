@@ -898,9 +898,17 @@
 			isa = PBXGroup;
 			children = (
 				3577407B1BC40F6A0005281B /* 个人闲置 */,
-				353DFCBF1BC549930039293B /* 店铺商品 */,
 			);
 			name = "进入详情";
+			sourceTree = "<group>";
+		};
+		35C5C41E1BFDB0DC0095FC71 /* 商家主页 */ = {
+			isa = PBXGroup;
+			children = (
+				ADEBBD431BF8411E00C7E8EA /* ShopVC.swift */,
+				ADEBBD451BF8CCA100C7E8EA /* ShopCell.swift */,
+			);
+			name = "商家主页";
 			sourceTree = "<group>";
 		};
 		35C772891BDF09DA0054D08E /* 二维码 */ = {
@@ -1199,10 +1207,10 @@
 		AD3F80B71BF7A54900852AF1 /* 商家 */ = {
 			isa = PBXGroup;
 			children = (
+				35C5C41E1BFDB0DC0095FC71 /* 商家主页 */,
+				353DFCBF1BC549930039293B /* 店铺商品 */,
 				AD9002441BF9B7A20019219A /* 商家详情 */,
 				AD90023D1BF974630019219A /* 商家商品 */,
-				ADEBBD431BF8411E00C7E8EA /* ShopVC.swift */,
-				ADEBBD451BF8CCA100C7E8EA /* ShopCell.swift */,
 			);
 			name = "商家";
 			sourceTree = "<group>";
@@ -1362,7 +1370,7 @@
 				TargetAttributes = {
 					3598B7901BB02FE700AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = AHBF9E2V27;
+						DevelopmentTeam = TV6QKK88A3;
 					};
 					3598B7A41BB02FE800AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
@@ -1446,10 +1454,7 @@
 				3590FDF41BF9DEAE00261CBB /* SearchMoreCell.xib in Resources */,
 				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
 				3594CC291BDD085C00037B33 /* UMShareEditViewControlleriPad.xib in Resources */,
-
 				3590FDEC1BF9DE7C00261CBB /* SearchGoodsCell.xib in Resources */,
-				AD3F81711BF7A8A200852AF1 /* order_21.png in Resources */,
-
 				35229B711BE4FA8D0087531B /* bindVC.xib in Resources */,
 				ADCF87971BFC676D003958E0 /* study_1.png in Resources */,
 				3594CC281BDD085C00037B33 /* UMShareEditViewController.xib in Resources */,
@@ -1477,12 +1482,9 @@
 				35E7C14D1BD9209300DB6141 /* OrderCellWithBtn.xib in Resources */,
 				3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */,
 				35DE76001BDB66CF00BAA880 /* payCodeCell.xib in Resources */,
-
 				3590FDF01BF9DE8E00261CBB /* SearchShopCell.xib in Resources */,
 				3590FDE61BF9DDF800261CBB /* SearchVC.xib in Resources */,
-
 				ADCF87981BFC676D003958E0 /* study_2.png in Resources */,
-
 				3594CC231BDD085C00037B33 /* UMSocialLocalizable.strings in Resources */,
 				3514EBC31BF1EC7D00EA06BB /* moreOrderInfoCell.xib in Resources */,
 				ADCF87711BFC66C7003958E0 /* camp_3.png in Resources */,
@@ -1855,7 +1857,7 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = youyouSchool;
+				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
@@ -1923,7 +1925,7 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = youyouSchool;
+				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;

@@ -26,12 +26,13 @@ class YoYoAPI: NSObject {
     
     override init() {
         ///请求头
-        if let tokenDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath){
-                var headerValue = tokenDict.valueForKey("access_token") as! String
-                httpHeader = [httpHeaderKay:headerValue]
-        }else{
-            
-        }
+//        if let tokenDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath){
+//                var headerValue = tokenDict.valueForKey("access_token") as! String
+//                httpHeader = [httpHeaderKay:headerValue]
+//        }else{
+//            
+//        }
+        httpHeader = [httpHeaderKay:AppDelegate.access_token]
     }
     
     ///GET请求

@@ -74,7 +74,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             self.nameBtn.tag = 3
             
         }else{
-           // self.photoBtn.setBackgroundImage(UIImage.init(data: plistDict["photo"] as! NSData), forState: .Normal)
+            self.photoBtn.setBackgroundImage(UIImage.init(data: plistDict["photo"] as! NSData), forState: .Normal)
             self.nameBtn.setTitle(plistDict["name"] as! String, forState: .Normal)
             self.nameBtn.layer.borderWidth = 0
             self.nameBtn.setTitleColor(Consts.black, forState: .Normal)
