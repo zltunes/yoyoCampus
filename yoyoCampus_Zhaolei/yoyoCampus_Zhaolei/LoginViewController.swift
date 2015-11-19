@@ -253,7 +253,7 @@ class LoginViewController: UIViewController,APIDelegate{
                     Tool.showErrorHUD("密码不对哦!")
                 }
             break
-            
+
             case "info":
                 print("获取info：\(json)")
                 if(json["name"].string == ""){
