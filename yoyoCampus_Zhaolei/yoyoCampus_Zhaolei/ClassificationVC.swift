@@ -24,7 +24,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     var btnScrollOldOffset :CGPoint = CGPoint(x: 0,y: 0)
     var flag = false
     var viewCount = CGFloat()
-    
+    var num = 1
     var idleCategory = NSMutableArray()
     var pageArray = NSMutableArray()
     
