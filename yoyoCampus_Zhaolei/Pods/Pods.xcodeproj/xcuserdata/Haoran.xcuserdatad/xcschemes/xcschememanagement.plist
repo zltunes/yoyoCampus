@@ -69,6 +69,11 @@
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
+		<key>Siren.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -97,7 +102,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>09C9D16A3A9DA4F65393C183E13CE9C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21AC96BA1CE278FA7CE75D7EDEBA3A20</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2DB6C2CD7957113C2BEC554CE594753F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30CF02AA4B666CC1D27B30D139382D67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3890F5BB0C1CF227D3EBF95D5D363C76</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3CBDB21661C0B19CEAD024E4FBD839F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,6 +162,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>61E899593D8C33FAEF1F71CF6750B48B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6847254D016329D4A531D34ED2B6DF81</key>
 		<dict>
 			<key>primary</key>
@@ -152,6 +187,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7EDA70115C644E6DA4551A878B664DEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>82577B0E81028D8E06EFA0D579656D90</key>
 		<dict>
 			<key>primary</key>
@@ -162,7 +202,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B8300E42D072A5ED79039525A5C99618</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CAD69124853F629D5E75679469C8A0C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CBD2614F254C6F10BED8A4F7DA033B70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -173,6 +223,11 @@
 			<true/>
 		</dict>
 		<key>EAAE87A9628A3DFF0C186E93477E0E61</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F725DA3155D952B79AA8E14BFF7B6C97</key>
 		<dict>
 			<key>primary</key>
 			<true/>
