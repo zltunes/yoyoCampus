@@ -65,7 +65,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         let scrollIndicator = UIScrollView()
         let indicatorView = UIView()
         scrollIndicator.frame = CGRectMake(60, 40, windowWidth-100, 3)
-        scrollIndicator.contentSize = CGSize(width: windowWidth-160, height: 3)
+        scrollIndicator.contentSize = CGSize(width: windowWidth-160, height: 0)
         indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
         indicatorView.backgroundColor = UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1)
         scrollIndicator.addSubview(indicatorView)
@@ -195,12 +195,16 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        if(scrollView == self.rootView){
         let offset : CGPoint = scrollView.contentOffset
         self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2, y: offset.y)
+        }
     }
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if(scrollView == self.rootView){
         self.pageView.currentPage = Int(scrollView.contentOffset.x / windowWidth)
         self.scrollPageTurn(self.pageView.currentPage)
+        }
     }
     
     func pageTurn(sender : UIButton){

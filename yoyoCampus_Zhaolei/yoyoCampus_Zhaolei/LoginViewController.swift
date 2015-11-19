@@ -241,10 +241,11 @@ class LoginViewController: UIViewController,APIDelegate{
                     plistDict.setValue(token, forKey: "access_token")
                     plistDict.setValue(self.phoneTextField.text, forKey: "tel")
                     plistDict.setValue(true, forKey: "isLogin")
-                    plistDict.writeToFile(AppDelegate.filePath, atomically: false)
+                    plistDict.writeToFile(AppDelegate.filePath, atomically: true)
                     AppDelegate.isLogin = true
                     AppDelegate.access_token = token
 //                    检测个人信息是否完整
+                    print("access_token:\(token)")
                     setUpOnlineData("info")
                     }else if (json["code"] == 404){
                     Tool.showErrorHUD("该手机号未注册!")
@@ -254,7 +255,8 @@ class LoginViewController: UIViewController,APIDelegate{
             break
             
             case "info":
-                if(json["name"].string == nil){
+                print("获取info：\(json)")
+                if(json["name"].string == ""){
 //                    未完善个人信息
                     let personalInfoVC = PersonalInfoViewController()
                     PersonalInfoViewController.backTitle = nil
@@ -263,7 +265,7 @@ class LoginViewController: UIViewController,APIDelegate{
                 }else{
                     plistDict["name"] = json["name"].string!
 //                    plistDict["phone_num"] = json["phone_num"].string!
-                    plistDict["photo"] = NSData(contentsOfURL: NSURL(string: json["image"].string!)!)
+                    plistDict["photo"] = NSData(contentsOfURL:json["image"].URL!)
                     plistDict["enroll_year"] = json["enroll_year"].string!
                     plistDict["location"] = json["location"].string!
                     plistDict["weibo_bind"] = json["weibo_bind"].int!

@@ -36,13 +36,22 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     }
     
     override func viewDidLoad() {
+        self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
         super.viewDidLoad()
+        
+        Consts.setUpNavigationBarWithBackButton(self, title: "商家", backTitle: "<")
+        
         self.getShopCategory()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        self.hidesBottomBarWhenPushed = false
+        super.viewWillDisappear(animated)
     }
     
     func getShopCategory(){
@@ -131,7 +140,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         
         for(var num = 0 ; num < self.viewCount ; num++){
             let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
-            btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            btn.setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
             btn.titleLabel?.font = UIFont.systemFontOfSize(16)
             self.scrollBtnView.addSubview(btn)
             btn.setTitle((self.shopCategory[num].objectForKey("name")!) as! String, forState: UIControlState.Normal)
@@ -169,9 +178,16 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         //搜索按钮
         let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
         btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navBtnView.addSubview(btnSearch)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
 
+    }
+    
+    func search(){
+        let vc = SearchVC()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -197,6 +213,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             for(var n = 0 ; n < self.viewCount ; n++){
                 if(tableView == tableViewArray[n] as! NSObject){
                     let viewCell = ShopCell()
+                    viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n].objectAtIndex(indexPath.row))
                     return viewCell
                 }
@@ -243,7 +260,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     func btnColorChange(which : Int ){
         for(var num = 0 ; num < self.viewCount ; num++){
             if(num != which){
-                self.btnArray[num].setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                self.btnArray[num].setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
             }
             else{
                 self.btnArray[num].setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
