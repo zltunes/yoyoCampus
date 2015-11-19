@@ -1,0 +1,10 @@
+_Store
+DerivedData
+.*.sw?
+*.cso
+tmp
+*.mode1v3
+*.pbxuser
+*.xcworkspace
+xcuserdata
+console.log
