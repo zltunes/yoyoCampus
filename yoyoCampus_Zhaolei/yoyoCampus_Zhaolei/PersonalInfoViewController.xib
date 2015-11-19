@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalInfoViewController" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
@@ -17,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbL-mC-zNV">
-                    <rect key="frame" x="29" y="416" width="261" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbL-mC-zNV">
+                    <rect key="frame" x="30" y="416" width="261" height="42"/>
                     <animations/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -39,17 +40,16 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="THl-DC-eqx">
-                    <rect key="frame" x="0.0" y="180" width="320" height="142"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWv-WK-1ej">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWv-WK-1ej">
                     <rect key="frame" x="0.0" y="4" width="320" height="131"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AT-ai-6AZ">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AT-ai-6AZ">
                             <rect key="frame" x="112" y="16" width="100" height="100"/>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="4k6-dp-IyT"/>
+                                <constraint firstAttribute="height" constant="100" id="G6M-5b-YSk"/>
+                            </constraints>
                             <state key="normal" title="Button" image="photo_button_apply"/>
                             <connections>
                                 <action selector="uploadImage:" destination="-1" eventType="touchUpInside" id="TcW-Nv-rY1"/>
@@ -58,10 +58,31 @@
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="9AT-ai-6AZ" firstAttribute="top" secondItem="YWv-WK-1ej" secondAttribute="top" constant="16" id="4vk-SH-l8l"/>
+                        <constraint firstItem="9AT-ai-6AZ" firstAttribute="leading" secondItem="YWv-WK-1ej" secondAttribute="leading" constant="112" id="96p-dr-wPJ"/>
+                        <constraint firstAttribute="width" secondItem="YWv-WK-1ej" secondAttribute="height" multiplier="320:131" id="Wva-AS-7C7"/>
+                    </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="THl-DC-eqx">
+                    <rect key="frame" x="0.0" y="180" width="320" height="142"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="THl-DC-eqx" secondAttribute="trailing" id="4cU-1b-dzz"/>
+                <constraint firstItem="lbL-mC-zNV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="IQ5-ym-v5X"/>
+                <constraint firstItem="THl-DC-eqx" firstAttribute="top" secondItem="YWv-WK-1ej" secondAttribute="bottom" constant="45" id="JwR-bh-f8n"/>
+                <constraint firstItem="lbL-mC-zNV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LWy-GY-fKv"/>
+                <constraint firstAttribute="trailing" secondItem="YWv-WK-1ej" secondAttribute="trailing" id="MmE-lZ-JiC"/>
+                <constraint firstItem="YWv-WK-1ej" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PB4-kn-iN7"/>
+                <constraint firstItem="lbL-mC-zNV" firstAttribute="top" secondItem="THl-DC-eqx" secondAttribute="bottom" constant="94" id="gSV-WZ-yoj"/>
+                <constraint firstItem="THl-DC-eqx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="syK-fd-Wwi"/>
+                <constraint firstItem="YWv-WK-1ej" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="4" id="yB0-tB-pv2"/>
+            </constraints>
             <point key="canvasLocation" x="415" y="114"/>
         </view>
         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="srarch_icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="f5h-8B-0iK">

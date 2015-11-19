@@ -92,6 +92,7 @@
 		35B3EB391BDDCAB00015A894 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B3EB381BDDCAB00015A894 /* libz.tbd */; };
 		35C200041BB96070006A4058 /* IdleGoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C200021BB96070006A4058 /* IdleGoodViewController.swift */; };
 		35C200051BB96070006A4058 /* IdleGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C200031BB96070006A4058 /* IdleGoodViewController.xib */; };
+		35C5C4201BFDEEAC0095FC71 /* SelectLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5C41F1BFDEEAC0095FC71 /* SelectLocationVC.swift */; };
 		35C772A81BDF0A380054D08E /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C772A21BDF0A380054D08E /* libzbar.a */; };
 		35C772A91BDF0A380054D08E /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C772A41BDF0A380054D08E /* zbar-back.png */; };
 		35C772AA1BDF0A380054D08E /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 35C772A51BDF0A380054D08E /* zbar-help.html */; };
@@ -343,6 +344,7 @@
 		35B3EB381BDDCAB00015A894 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		35C200021BB96070006A4058 /* IdleGoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdleGoodViewController.swift; sourceTree = "<group>"; };
 		35C200031BB96070006A4058 /* IdleGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdleGoodViewController.xib; sourceTree = "<group>"; };
+		35C5C41F1BFDEEAC0095FC71 /* SelectLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationVC.swift; sourceTree = "<group>"; };
 		35C7728E1BDF0A380054D08E /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		35C7728F1BDF0A380054D08E /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		35C772901BDF0A380054D08E /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -649,13 +651,13 @@
 		35593FA71BB0FF2600817020 /* SwiftSources */ = {
 			isa = PBXGroup;
 			children = (
-				AD3F80B71BF7A54900852AF1 /* 商家 */,
-				AD3F80B61BF7A54000852AF1 /* 主页 */,
 				35DE76061BDB697800BAA880 /* extensionCALayer.swift */,
 				3598B7941BB02FE700AD6BFE /* AppDelegate.swift */,
 				35593FAE1BB1000700817020 /* CustomNavigationController.swift */,
 				353DF3341BDBACA200272C00 /* TestViewController.swift */,
 				353DF3351BDBACA200272C00 /* TestViewController.xib */,
+				AD3F80B61BF7A54000852AF1 /* 主页 */,
+				AD3F80B71BF7A54900852AF1 /* 商家 */,
 				3543B0F41BD7782600B2BA60 /* 商品上传 */,
 				3543B0EB1BD777A800B2BA60 /* 个人中心 */,
 				35C2FF8C1BB81D87006A4058 /* 登录注册 */,
@@ -1200,6 +1202,7 @@
 				ADCF873E1BFC6606003958E0 /* shopView.swift */,
 				ADCF873F1BFC6606003958E0 /* studyView.swift */,
 				ADCF87401BFC6606003958E0 /* ViewCell.swift */,
+				35C5C41F1BFDEEAC0095FC71 /* SelectLocationVC.swift */,
 			);
 			name = "主页";
 			sourceTree = "<group>";
@@ -1605,6 +1608,7 @@
 				353DFCC71BC54D3A0039293B /* shopRemarkCell.swift in Sources */,
 				35593FCB1BB1368D00817020 /* FindPwdViewController.swift in Sources */,
 				35DE75FF1BDB66CF00BAA880 /* payCodeCell.swift in Sources */,
+				35C5C4201BFDEEAC0095FC71 /* SelectLocationVC.swift in Sources */,
 				35C772E51BDF1DE70054D08E /* cellWithTwoBtns.swift in Sources */,
 				ADCF87471BFC6606003958E0 /* studyView.swift in Sources */,
 				3594CC471BDD263600037B33 /* DXAlertView.m in Sources */,

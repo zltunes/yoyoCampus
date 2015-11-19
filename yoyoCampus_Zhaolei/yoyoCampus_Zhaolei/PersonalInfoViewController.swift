@@ -237,6 +237,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         switch(tag){
             
             case "token":
+                Tool.showProgressHUD("上传中")
                 self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
                 //1:获取token
                 api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
@@ -403,8 +404,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             AppDelegate.location = self.infoData["location"]!
             plistDict?.writeToFile(AppDelegate.filePath, atomically: true)
 //            转到首页
-            let vc = PersonCenterVC()
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.popToRootViewControllerAnimated(true)
             
             break
             
