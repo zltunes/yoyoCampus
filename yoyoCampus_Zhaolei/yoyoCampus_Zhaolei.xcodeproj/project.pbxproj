@@ -150,6 +150,8 @@
 		35E7C14D1BD9209300DB6141 /* OrderCellWithBtn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C14B1BD9209300DB6141 /* OrderCellWithBtn.xib */; };
 		35FE54DE1BD21FF20007543D /* YoYoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE54DD1BD21FF20007543D /* YoYoAPI.swift */; };
 		35FE54E01BD226FD0007543D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE54DF1BD226FD0007543D /* Config.swift */; };
+		AD3FEC1F1BFDFE730071C22E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3FEC1D1BFDFE730071C22E /* TableViewCell.swift */; };
+		AD3FEC201BFDFE730071C22E /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD3FEC1E1BFDFE730071C22E /* TableViewCell.xib */; };
 		AD90023F1BF9747D0019219A /* ShopGoodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90023E1BF9747D0019219A /* ShopGoodsVC.swift */; };
 		AD9002411BF974990019219A /* ShopGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9002401BF974990019219A /* ShopGoodsCell.swift */; };
 		AD9002431BF9B4B20019219A /* shopDetail.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9002421BF9B4B20019219A /* shopDetail.png */; };
@@ -434,6 +436,8 @@
 		3B6B2F02E825D43080A8D9D8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		691656D5057848C78D2955A9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A99CCF8C203C632F43C58926 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD3FEC1D1BFDFE730071C22E /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		AD3FEC1E1BFDFE730071C22E /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		AD90023E1BF9747D0019219A /* ShopGoodsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodsVC.swift; sourceTree = "<group>"; };
 		AD9002401BF974990019219A /* ShopGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGoodsCell.swift; sourceTree = "<group>"; };
 		AD9002421BF9B4B20019219A /* shopDetail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopDetail.png; sourceTree = "<group>"; };
@@ -663,6 +667,8 @@
 				35C2FF8C1BB81D87006A4058 /* 登录注册 */,
 				35C2FF8D1BB81DE2006A4058 /* 进入详情 */,
 				3590FDE21BF9DDA300261CBB /* 搜索 */,
+				AD3FEC1D1BFDFE730071C22E /* TableViewCell.swift */,
+				AD3FEC1E1BFDFE730071C22E /* TableViewCell.xib */,
 			);
 			name = SwiftSources;
 			sourceTree = "<group>";
@@ -1497,6 +1503,7 @@
 				3577407F1BC4163F0005281B /* remarkCell.xib in Resources */,
 				ADCF87761BFC66C7003958E0 /* car_2.png in Resources */,
 				3594CC2D1BDD085C00037B33 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				AD3FEC201BFDFE730071C22E /* TableViewCell.xib in Resources */,
 				35E7C1451BD9155600DB6141 /* AboutVC.xib in Resources */,
 				ADCF87721BFC66C7003958E0 /* camp_4.png in Resources */,
 				ADCF87781BFC66C7003958E0 /* home_1.png in Resources */,
@@ -1615,6 +1622,7 @@
 				3590FDF31BF9DEAE00261CBB /* SearchMoreCell.swift in Sources */,
 				35DE76071BDB697800BAA880 /* extensionCALayer.swift in Sources */,
 				35593FA41BB0FF0800817020 /* Consts.swift in Sources */,
+				AD3FEC1F1BFDFE730071C22E /* TableViewCell.swift in Sources */,
 				AD90024E1BFACCF30019219A /* MyIdleVC.swift in Sources */,
 				35DE76121BDB731F00BAA880 /* OneLabelCell.swift in Sources */,
 				3577407E1BC4163F0005281B /* remarkCell.swift in Sources */,
@@ -1864,7 +1872,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1932,7 +1940,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
