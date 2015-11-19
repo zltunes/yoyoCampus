@@ -191,6 +191,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
             }
             setBtnText()
         }
+        
         Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/category/idle/",headers:httpHeader).responseJSON{
             response in
             let json = JSON(response.result.value!)
