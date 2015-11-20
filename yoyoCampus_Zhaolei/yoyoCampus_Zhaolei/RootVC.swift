@@ -19,28 +19,36 @@ let httpHeader = ["access_token": "d2bfd4c2-8460-11e5-82bd-00163e021195"]
 
 class RootVC: UIViewController,UIScrollViewDelegate{
 
+//
+//    var scrollRootView = UIScrollView()
+//    var scrollBannerView = UIScrollView()
+//    var bannerView = UIImageView()
+//    
+//    var btnSale = UIButton()
+//    var btnCamp = UIButton()
+//    var btnCar = UIButton()
+//    var btnClothes = UIButton()
+//    var btnStudy = UIButton()
+//    var btnShop = UIButton()
       var idleCategory = NSMutableArray()
       var categoryRoot = NSMutableArray()
 
     var searchBtn = UIButton(frame: CGRectMake(windowWidth*0.9, 10, 20, 20))
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Consts.setUpNavigationBarWithBackButton(self, title: "东南大学九龙湖校区", backTitle: "")
-        
+        self.automaticallyAdjustsScrollViewInsets = false
         
         self.searchBtn.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
-        self.searchBtn.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchBtn)
+        
+        Consts.setUpNavigationBarWithBackButton(self, title: "主页", backTitle: "<")
         
         self.view.backgroundColor = UIColor .whiteColor()
-        
-        
+
         
         //获取类目
         
         //总界面是一个scrollRootView
-        let scrollRootView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight - 64))
+        let scrollRootView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
         scrollRootView.backgroundColor = UIColor(red: 234/255, green: 236/255, blue: 234/255, alpha: 1)
         scrollRootView.delegate = self
         scrollRootView.directionalLockEnabled = true
@@ -48,7 +56,6 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         scrollRootView.showsHorizontalScrollIndicator = false
         scrollRootView.contentSize = CGSizeMake(windowWidth, windowHeight*1.8)
         scrollRootView.scrollEnabled = true
-        scrollRootView.showsVerticalScrollIndicator = false
         self.view.addSubview(scrollRootView)
 	    //banner的scrollView
         let scrollBannerView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight*0.25))
@@ -61,8 +68,6 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         //翻页效果加进去会比较好，控制左右拖动的随意性
         scrollBannerView.pagingEnabled = true
         scrollRootView.addSubview(scrollBannerView)
-        
-        
         
         let bannerView1 = UIImageView(frame: CGRectMake(windowWidth, 0, windowWidth, scrollBannerView.frame.size.height))
         bannerView1.image = UIImage(named: "banner1.png")
@@ -86,7 +91,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         
         let texSale = UILabel(frame: CGRectMake(CGRectGetMinX(btnSale.frame), CGRectGetMaxY(btnSale.frame)+5, 70, 10))
         texSale.text = "闲置"
-        texSale.font = UIFont.systemFontOfSize(16)
+        texSale.font = UIFont(name: "Verdana", size: 15)
         texSale.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texSale)
         
@@ -98,7 +103,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnCamp)
         
         let texCamp = UILabel(frame: CGRectMake(CGRectGetMinX(btnCamp.frame), CGRectGetMaxY(btnSale.frame)+5, 70, 10))
-        texCamp.font = UIFont.systemFontOfSize(16)
+        texCamp.font = UIFont(name: "Verdana", size: 15)
         texCamp.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texCamp)
         
@@ -111,7 +116,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnCar)
         
         let texCar = UILabel(frame: CGRectMake(CGRectGetMinX(btnCar.frame),CGRectGetMaxY(btnSale.frame)+5, 70, 10))
-        texCar.font = UIFont.systemFontOfSize(16)
+        texCar.font = UIFont(name: "Thonburi", size: 15)
         texCar.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texCar)
         
@@ -123,7 +128,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnClothes)
         
         let texClothes = UILabel(frame: CGRectMake(CGRectGetMinX(btnClothes.frame), CGRectGetMaxY(btnClothes.frame)+5, 70, 10))
-        texClothes.font = UIFont.systemFontOfSize(16)
+        texClothes.font = UIFont(name: "Thonburi ", size: 15)
         texClothes.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texClothes)
         
@@ -135,7 +140,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnStudy)
         
         let texStudy = UILabel(frame: CGRectMake(CGRectGetMinX(btnStudy.frame), CGRectGetMaxY(btnStudy.frame)+5, 70, 10))
-        texStudy.font = UIFont.systemFontOfSize(16)
+        texStudy.font = UIFont(name: "Thonburi", size: 15)
         texStudy.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texStudy)
         
@@ -147,7 +152,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnShop)
         
         let texShop = UILabel(frame: CGRectMake(CGRectGetMinX(btnShop.frame), CGRectGetMaxY(btnShop.frame)+5, 70, 10))
-        texShop.font = UIFont.systemFontOfSize(16)
+        texShop.font = UIFont(name: "Thonburi", size: 15)
         texShop.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texShop)
         
@@ -191,7 +196,6 @@ class RootVC: UIViewController,UIScrollViewDelegate{
             }
             setBtnText()
         }
-        
         Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/category/idle/",headers:httpHeader).responseJSON{
             response in
             let json = JSON(response.result.value!)
@@ -205,17 +209,6 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        self.hidesBottomBarWhenPushed = false
-        super.viewWillDisappear(animated)
-    }
-    
-    func search(){
-        let vc = SearchVC()
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
@@ -236,17 +229,6 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         }
 
     }
-    
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

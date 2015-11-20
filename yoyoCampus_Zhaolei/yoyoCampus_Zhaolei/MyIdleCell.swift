@@ -47,7 +47,7 @@ class MyIdleCell: UITableViewCell {
         self.addSubview(idlePrice)
         self.idlePrice = idlePrice
         
-        let btnEdit = UIButton(frame: CGRectMake(self.frame.width - 30, 20, 60, 25))
+        let btnEdit = UIButton(frame: CGRectMake(windowWidth*0.8, 20, 60, 25))
         btnEdit.layer.borderWidth = 1
         btnEdit.layer.masksToBounds = true
         btnEdit.layer.cornerRadius = 5
@@ -59,7 +59,7 @@ class MyIdleCell: UITableViewCell {
         self.btnEdit = btnEdit
         
         
-        let btnState = UIButton(frame: CGRectMake(self.frame.width - 30, CGRectGetMaxY(btnEdit.frame)+25, 60, 25))
+        let btnState = UIButton(frame: CGRectMake(windowWidth*0.8, CGRectGetMaxY(btnEdit.frame)+25, 60, 25))
         btnState.backgroundColor = UIColor.whiteColor()
         btnState.layer.borderColor = UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1).CGColor
         btnState.layer.borderWidth = 1

@@ -30,12 +30,17 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
     
     var didReceiveData = false
     
-    
+    override func viewWillAppear(animated: Bool) {
+        self.scrollIndicator.contentOffset.x = -(CGFloat(self.pageView.currentPage) * windowWidth/2)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
+        Consts.setUpNavigationBarWithBackButton(self,title: "我的闲置", backTitle: "<")
         self.httpGetData()
+        
 
     }
 
@@ -192,12 +197,16 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offset : CGPoint = scrollView.contentOffset
-        self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2, y: offset.y)
+        if(scrollView == self.rootView){
+            let offset : CGPoint = scrollView.contentOffset
+            self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / 2, y: offset.y)
+        }
     }
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        self.pageView.currentPage = Int(scrollView.contentOffset.x / windowWidth)
-        self.scrollPageTurn(self.pageView.currentPage)
+        if(scrollView == self.rootView){
+            self.pageView.currentPage = Int(scrollView.contentOffset.x / windowWidth)
+            self.scrollPageTurn(self.pageView.currentPage)
+        }
     }
     
     func pageTurn(sender : UIButton){
@@ -297,6 +306,10 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         
             }
         }
+    }
+    
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
 }

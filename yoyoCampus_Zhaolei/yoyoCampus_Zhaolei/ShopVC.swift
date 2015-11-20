@@ -32,26 +32,19 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     var scrollIndicator = UIScrollView()
     
     override func viewWillAppear(animated: Bool) {
-        
+        self.scrollIndicator.contentOffset.x = -CGFloat(self.pageView.currentPage) * windowWidth / CGFloat(self.viewCount)
     }
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
+        Consts.setUpNavigationBarWithBackButton(self,title: "商家", backTitle: "<")
         super.viewDidLoad()
-        
-        Consts.setUpNavigationBarWithBackButton(self, title: "商家", backTitle: "<")
-        
         self.getShopCategory()
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        self.hidesBottomBarWhenPushed = false
-        super.viewWillDisappear(animated)
     }
     
     func getShopCategory(){
@@ -173,21 +166,16 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             tableView.rowHeight = (windowHeight+100)/6
             tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
             tableView.footer.tag = num
+            tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
+            tableView.header.tag = num
         }
         
         //搜索按钮
         let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
         btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
-        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navBtnView.addSubview(btnSearch)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
 
-    }
-    
-    func search(){
-        let vc = SearchVC()
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -229,20 +217,23 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             if(tableView == self.tableViewArray[num] as! NSObject){
                let shopGoodsVC = ShopGoodsVC()
                shopGoodsVC.getGroupURL(String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!))
+                shopGoodsVC.shopTitleName = String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("name")as! String)
                 self.navigationController?.pushViewController(shopGoodsVC, animated: true)
             }
         }
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        self.pageView.currentPage = Int(Float(rootView.contentOffset.x) / Float(windowWidth))
-        scrollPageTurn(self.pageView.currentPage)
-
+        if(scrollView == self.rootView){
+            self.pageView.currentPage = Int(Float(rootView.contentOffset.x) / Float(windowWidth))
+            scrollPageTurn(self.pageView.currentPage)
+        }
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offset : CGPoint = scrollView.contentOffset
-        self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / CGFloat(self.viewCount), y: offset.y)
-        
+        if(scrollView == self.rootView){
+            let offset : CGPoint = scrollView.contentOffset
+            self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / CGFloat(self.viewCount), y: offset.y)
+        }
     }
     func pageTurn(sender : UIButton){
         self.rootView.contentOffset = CGPoint(x: CGFloat(sender.tag) * windowWidth, y: 0)
@@ -287,6 +278,17 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         }
     }
     
-    
+    func headerRefreshing(sender : AnyObject){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/shop/search/",headers:httpHeader,parameters:["location":"东南大学九龙湖校区","page":"1","category":self.shopCategory[sender.tag].objectForKey("name")!]).responseJSON(options:NSJSONReadingOptions.MutableContainers){
+            response in
+            var json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            
+            self.resultArray[sender.tag] = responseJson.arrayObject!
+            self.tableViewArray[sender.tag].reloadData()
+            (self.tableViewArray[sender.tag]as! UITableView).header!.endRefreshing()
+            self.pageArray[sender.tag] = 1
+        }
+    }
     
 }

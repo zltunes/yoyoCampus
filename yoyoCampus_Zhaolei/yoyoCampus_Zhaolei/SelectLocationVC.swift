@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectLocationVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class SelectLocationVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

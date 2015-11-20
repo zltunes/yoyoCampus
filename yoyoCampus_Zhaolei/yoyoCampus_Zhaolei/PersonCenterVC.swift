@@ -27,6 +27,8 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+
         self.setUpNavigationBar()
         self.setUpInitialLooking()
         self.setUpActions()

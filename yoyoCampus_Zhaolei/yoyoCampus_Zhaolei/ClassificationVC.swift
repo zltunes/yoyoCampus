@@ -24,7 +24,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     var btnScrollOldOffset :CGPoint = CGPoint(x: 0,y: 0)
     var flag = false
     var viewCount = CGFloat()
-    var num = 1
+    
     var idleCategory = NSMutableArray()
     var pageArray = NSMutableArray()
     
@@ -38,6 +38,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
 
     var oldBtnTag:Int = 0
     var newBtnTag:Int = 0
+    
+    var btnWidth = CGFloat()
     
     
     //盛放结果的数组
@@ -67,11 +69,21 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     var orderImage3 = UIImageView()
     var orderImage4 = UIImageView()
     
+    var orderCount = 0
+    var orderText : [String] = ["view_number","score","last_update","price"]
     
+    override func viewWillAppear(animated: Bool) {
+        self.scrollBtnView.contentOffset.x = self.lessX
+        self.scrollIndicator.contentOffset.x = -self.btnLeftX-self.lessX
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.lightGrayColor()
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        Consts.setUpNavigationBarWithBackButton(self, title: self.categoryName as String, backTitle: "<")
+
         
         if(self.isIdle == false){
             Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/label/",parameters: ["category":categoryName],headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
@@ -125,6 +137,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 
                 //小绿条105
                 let scrollIndicator = UIScrollView()
+                scrollIndicator.autoresizesSubviews = false
                 let indicatorView = UIView()
                 if(self.viewCount > 4){
                     scrollIndicator.frame = CGRectMake(0, 37, 80 * self.viewCount, 3)
@@ -148,9 +161,11 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 var btnWidth = CGFloat()
                 if(self.viewCount > 4){
                     btnWidth = 80
+                    self.btnWidth = btnWidth
                 }
                 else{
                     btnWidth = windowWidth/self.viewCount
+                    self.btnWidth = btnWidth
                 }
                 for(var num = 0 ; num < json["label"].count ; num++){
                     let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
@@ -184,6 +199,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     tableView.rowHeight = (windowHeight+100)/6
                     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
                     tableView.footer.tag = num
+                    tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
                 }
                 
                 
@@ -236,11 +252,13 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             
             //小绿条105
             let scrollIndicator = UIScrollView()
+            scrollIndicator.autoresizesSubviews = false
             let indicatorView = UIView()
             if(self.viewCount > 4){
                 scrollIndicator.frame = CGRectMake(0, 37, 80 * self.viewCount, 3)
                 scrollIndicator.contentSize = CGSizeMake(80 * self.viewCount, 3)
                 indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
+                print("1")
             }
             else{
                 scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
@@ -295,6 +313,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 tableView.rowHeight = (windowHeight+100)/6
                 tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerIdleRefreshing:")
                 tableView.footer.tag = num
+                tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"headerIdleRefreshing:")
             }
              self.httpRequestIdleData(self.dataNum)
             
@@ -347,7 +366,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             pageView.currentPage = Int(Float(rootView.contentOffset.x) / Float(windowWidth))
             scrollPageTurn(self.pageView.currentPage)
             if(pageView.currentPage > oldPage){
-                self.btnLeftX += 80
+                self.btnLeftX += self.btnWidth
                 if(self.btnLeftX > windowWidth/2 && self.moreX != 0){
                     var moveTemp = self.btnLeftX - windowWidth/2 + 40
                     if(self.moreX - moveTemp <= 0){
@@ -367,7 +386,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 oldPage = pageView.currentPage
             }
             if(pageView.currentPage < oldPage){
-                self.btnLeftX -= 80
+                self.btnLeftX -= self.btnWidth
                 if(self.btnLeftX < windowWidth/2-80 && self.lessX != 0){
                     var moveTemp = windowWidth/2 - 40 - self.btnLeftX
                     if(self.lessX - moveTemp <= 0){
@@ -386,9 +405,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 }
                 oldPage = pageView.currentPage
             }
-        }
-        if(scrollView == self.scrollBtnView){
-            self.btnScrollOldOffset = scrollView.contentOffset
         }
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -423,7 +439,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     func scrollBtnView(newTag : Int){
         let jumpNum = newTag - self.oldPage
         if(pageView.currentPage > self.oldPage){
-            self.btnLeftX += CGFloat(jumpNum)*80
+            self.btnLeftX += CGFloat(jumpNum)*self.btnWidth
             if(self.btnLeftX > windowWidth/2 && self.moreX != 0){
                 let moveTemp = self.btnLeftX - windowWidth/2 + 40
                 if(self.moreX - moveTemp <= 0){
@@ -443,7 +459,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             oldPage = pageView.currentPage
         }
         if(pageView.currentPage < self.oldPage){
-            self.btnLeftX = self.btnLeftX + CGFloat(jumpNum)*80
+            self.btnLeftX = self.btnLeftX + CGFloat(jumpNum)*self.btnWidth
             if(self.btnLeftX < windowWidth/2-80 && self.lessX != 0){
                 let moveTemp = windowWidth/2 - 40 - self.btnLeftX
                 if(self.lessX - moveTemp <= 0){
@@ -547,28 +563,36 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         switch(which){
         case 0:
             self.orderBtn1.setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage1.image = UIImage(named: "order_12")
             self.orderBtn2.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage2.image = UIImage(named: "order_21")
             self.orderBtn3.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage3.image = UIImage(named: "order_31")
             self.orderBtn4.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage4.image = UIImage(named: "order_41")
         case 1:
             self.orderBtn1.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage1.image = UIImage(named: "order_11")
             self.orderBtn2.setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage2.image = UIImage(named: "order_22")
             self.orderBtn3.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage3.image = UIImage(named: "order_31")
             self.orderBtn4.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage4.image = UIImage(named: "order_41")
         case 2:
             self.orderBtn1.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage1.image = UIImage(named: "order_11")
             self.orderBtn2.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage2.image = UIImage(named: "order_21")
             self.orderBtn3.setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage3.image = UIImage(named: "order_32")
             self.orderBtn4.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage4.image = UIImage(named: "order_41")
         case 3:
             self.orderBtn1.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage1.image = UIImage(named: "order_11")
             self.orderBtn2.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
+            self.orderImage2.image = UIImage(named: "order_21")
             self.orderBtn3.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1), forState: UIControlState.Normal)
             self.orderImage3.image = UIImage(named: "order_31")
             self.orderBtn4.setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
@@ -579,15 +603,56 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     }
     func orderBtn1Select(sender : UIButton){
         self.orderColorChange(0)
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+            self.orderCount = 0
+            self.pageArray[self.pageView.currentPage] = 1
+            self.tableViewArray[self.pageView.currentPage].reloadData()
+        }
     }
     func orderBtn2Select(sender : UIButton){
         self.orderColorChange(1)
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"score"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+            self.orderCount = 1
+            self.pageArray[self.pageView.currentPage] = 1
+            self.tableViewArray[self.pageView.currentPage].reloadData()
+
+        }
     }
     func orderBtn3Select(sender : UIButton){
         self.orderColorChange(2)
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"last_update"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+            self.orderCount = 2
+            self.pageArray[self.pageView.currentPage] = 1
+            self.tableViewArray[self.pageView.currentPage].reloadData()
+
+
+        }
     }
     func orderBtn4Select(sender : UIButton){
         self.orderColorChange(3)
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"price"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+            self.orderCount = 3
+            self.pageArray[self.pageView.currentPage] = 1
+            self.tableViewArray[self.pageView.currentPage].reloadData()
+
+
+        }
     }
     
     //tableview 相关函数
@@ -645,10 +710,11 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(0.5)
         if(rect.origin.y < 0){
-            rect.origin.y += 64
+            rect.origin.y += 60
         }
         orderLabel.frame = rect
         UIView.commitAnimations()
+        self.orderColorChange(0)
     }
     
     //隐藏注册事件
@@ -707,7 +773,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     func footerRefreshing(sender : AnyObject){
         var page :Int = (self.pageArray[sender.tag]as! Int)
         page++
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/", parameters: ["location":"东南大学九龙湖校区","page":page,"category":self.categoryName,"label":self.labelName[sender.tag]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/", parameters: ["location":"东南大学九龙湖校区","page":page,"category":self.categoryName,"label":self.labelName[sender.tag],"order":self.orderText[self.orderCount]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
             response in
             let temp = JSON(response.result.value!)
             let responseJson = temp["result"]
@@ -735,7 +801,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     func footerIdleRefreshing(sender : AnyObject){
         var page : Int = (self.pageArray[sender.tag]as! Int)
         page++
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/", parameters: ["location":"东南大学九龙湖校区","page":page,"category":self.idleCategory[sender.tag]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/", parameters: ["location":"东南大学九龙湖校区","page":page,"category":self.idleCategory[sender.tag],"order":self.orderText[self.orderCount]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
             response in
             let temp = JSON(response.result.value!)
             let responseJson = temp["result"]
@@ -759,5 +825,33 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         }
     }
     
+    func headerRefreshing(sender : AnyObject){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"order":self.orderText[self.orderCount],"label":self.labelName[self.pageView.currentPage]]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+            self.pageArray[self.pageView.currentPage] = 1
+            self.tableViewArray[self.pageView.currentPage].reloadData()
+            (self.tableViewArray[self.pageView.currentPage] as! UITableView).header!.endRefreshing()
+            
+        }
+    }
+    func headerIdleRefreshing(sender : AnyObject){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/", parameters: ["location":"东南大学九龙湖校区","page":1,"category":self.idleCategory[self.pageView.currentPage],"order":self.orderText[self.orderCount]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["result"]
+            
+            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+            self.pageArray[self.pageView.currentPage] = 1
+            self.tableViewArray[self.pageView.currentPage].reloadData()
+            (self.tableViewArray[self.pageView.currentPage] as! UITableView).header!.endRefreshing()
+        }
+    }
+    
+    func goBack(){
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
 }

@@ -16,6 +16,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     var isSingleView = Bool()
     var groupURL = String()
     var shopID = String()
+    var shopTitleName = String()
     
     var navBtnView = UIView(frame: CGRectMake(windowWidth*0.9, 20, windowWidth*0.2, 64))
 
@@ -38,20 +39,22 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     var moreX = CGFloat()
     var lessX : CGFloat = 0
     var btnLeftX : CGFloat = 0
+    var btnWidth  = CGFloat()
     
     var oldBtnTag:Int = 0
     var newBtnTag:Int = 0
     
-
-    
     override func viewWillAppear(animated: Bool) {
 
+        self.scrollBtnView.contentOffset.x = self.lessX
+        self.scrollIndicator.contentOffset.x = -self.btnLeftX - self.lessX
     }
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
         super.viewDidLoad()
         self.httpGetGroup()
+        Consts.setUpNavigationBarWithBackButton(self, title: self.shopTitleName , backTitle: "<")
 
 
     }
@@ -103,7 +106,6 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             response in
             let json = JSON(response.result.value!)
             var responseJson = json["result"]
-            print(responseJson.arrayObject!)
             self.didReceiveOneGroupData(responseJson.arrayObject!)
         }
     }
@@ -112,7 +114,6 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         self.pageArray.append(1)
         self.dataNum++
         if(self.dataNum == self.viewCount){
-            print(self.resultData[0])
             self.setView()
         }
         if(self.dataNum != self.viewCount){
@@ -171,10 +172,18 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             
             //btn
             var btnX:CGFloat = 0
-            let btnWidth : CGFloat = windowWidth/CGFloat(self.viewCount)
+            var btnWidth = CGFloat()
+            if(self.viewCount > 4){
+                btnWidth = 80
+                self.btnWidth = 80
+            }
+            if(self.viewCount <= 4){
+                btnWidth = windowWidth / CGFloat(self.viewCount)
+                self.btnWidth = btnWidth
+            }
             
             for(var num = 0 ; num < self.viewCount ; num++){
-                let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
+                let btn = UIButton(frame: CGRectMake(btnX ,0, btnWidth, 37))
                 btn.setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
                 btn.titleLabel?.font = UIFont.systemFontOfSize(16)
                 self.scrollBtnView.addSubview(btn)
@@ -216,6 +225,8 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             tableView.rowHeight = (windowHeight+100)/6
             tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
             tableView.footer.tag = num
+            tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
+            tableView.header.tag = num
         }
         
         //商家详情按钮
@@ -271,7 +282,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             pageView.currentPage = Int(Float(rootView.contentOffset.x) / Float(windowWidth))
             scrollPageTurn(self.pageView.currentPage)
             if(pageView.currentPage > oldPage){
-                self.btnLeftX += 80
+                self.btnLeftX += self.btnWidth
                 if(self.btnLeftX > windowWidth/2 && self.moreX != 0){
                     var moveTemp = self.btnLeftX - windowWidth/2 + 40
                     if(self.moreX - moveTemp <= 0){
@@ -291,7 +302,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                 oldPage = pageView.currentPage
             }
             if(pageView.currentPage < oldPage){
-                self.btnLeftX -= 80
+                self.btnLeftX -= self.btnWidth
                 if(self.btnLeftX < windowWidth/2-80 && self.lessX != 0){
                     var moveTemp = windowWidth/2 - 40 - self.btnLeftX
                     if(self.lessX - moveTemp <= 0){
@@ -343,7 +354,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     func scrollBtnView(newTag : Int){
         let jumpNum = newTag - self.oldPage
         if(pageView.currentPage > self.oldPage){
-            self.btnLeftX += CGFloat(jumpNum)*80
+            self.btnLeftX += CGFloat(jumpNum)*self.btnWidth
             if(self.btnLeftX > windowWidth/2 && self.moreX != 0){
                 let moveTemp = self.btnLeftX - windowWidth/2 + 40
                 if(self.moreX - moveTemp <= 0){
@@ -363,7 +374,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             oldPage = pageView.currentPage
         }
         if(pageView.currentPage < self.oldPage){
-            self.btnLeftX = self.btnLeftX + CGFloat(jumpNum)*80
+            self.btnLeftX = self.btnLeftX + CGFloat(jumpNum)*self.btnWidth
             if(self.btnLeftX < windowWidth/2-80 && self.lessX != 0){
                 let moveTemp = windowWidth/2 - 40 - self.btnLeftX
                 if(self.lessX - moveTemp <= 0){
@@ -399,7 +410,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     func footerRefreshing(sender : AnyObject){
         if(self.isSingleView == true){
             self.pageArray[sender.tag]++
-            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",parameters: ["page":self.pageArray[sender.tag],"location":"东南大学九龙湖校区","shop_id":self.shopID]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",parameters: ["page":self.pageArray[sender.tag],"location":"东南大学九龙湖校区","shop_id":self.shopID],headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
                 response in
                 let json = JSON(response.result.value!)
                 var responseJson = json["result"]
@@ -419,7 +430,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         }
         if(self.isSingleView == false){
             self.pageArray[sender.tag]++
-            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",parameters: ["page":self.pageArray[sender.tag],"location":"东南大学九龙湖校区","shop_id":self.shopID,"group":self.groupArray[sender.tag]]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",parameters: ["page":self.pageArray[sender.tag],"location":"东南大学九龙湖校区","shop_id":self.shopID,"group":self.groupArray[sender.tag]],headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
                 response in
                 let json = JSON(response.result.value!)
                 var responseJson = json["result"]
@@ -440,10 +451,39 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         
     }
     
+    func headerRefreshing(sender : AnyObject){
+        if(self.isSingleView == true){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",parameters: ["page":"1","location":"东南大学九龙湖校区","shop_id":self.shopID],headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultData.removeAllObjects()
+                for(var num = 0 ; num < responseJson.count ; num++){
+                    self.resultData.addObject(responseJson.arrayObject![num])
+                }
+                self.tableViewArray[sender.tag].reloadData()
+                (self.tableViewArray[sender.tag]as! UITableView).header!.endRefreshing()
+            }
+        }
+        if(self.isSingleView == false){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",parameters: ["page":1,"location":"东南大学九龙湖校区","shop_id":self.shopID,"group":self.groupArray[sender.tag]],headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                var json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultData[self.pageView.currentPage] = responseJson.arrayObject!
+                self.tableViewArray[sender.tag].reloadData
+                (self.tableViewArray[sender.tag]as! UITableView).header!.endRefreshing()
+            }
+        }
+    }
+    
     func intoDetail(){
         let shopDetail = ShopDetailVC()
         shopDetail.shopID = self.shopID
         self.navigationController?.pushViewController(shopDetail, animated: true)
+    }
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
 }
