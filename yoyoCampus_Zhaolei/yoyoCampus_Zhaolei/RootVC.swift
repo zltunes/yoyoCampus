@@ -19,17 +19,6 @@ let httpHeader = ["access_token": "d2bfd4c2-8460-11e5-82bd-00163e021195"]
 
 class RootVC: UIViewController,UIScrollViewDelegate{
 
-//
-//    var scrollRootView = UIScrollView()
-//    var scrollBannerView = UIScrollView()
-//    var bannerView = UIImageView()
-//    
-//    var btnSale = UIButton()
-//    var btnCamp = UIButton()
-//    var btnCar = UIButton()
-//    var btnClothes = UIButton()
-//    var btnStudy = UIButton()
-//    var btnShop = UIButton()
       var idleCategory = NSMutableArray()
       var categoryRoot = NSMutableArray()
     
@@ -44,13 +33,15 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.location, backTitle: "")
         
         let leftItem = UIBarButtonItem(image: UIImage.init(named: "xianzhi_status bar_search"), style: .Plain, target: self, action: "selectLocation")
+        leftItem.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = leftItem
         
 
         self.automaticallyAdjustsScrollViewInsets = false
 
-        
-        self.searchBtn.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        let rightItem = UIBarButtonItem(image: UIImage.init(named: "home_2"), style: .Plain, target: self, action: "search")
+        rightItem.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightItem
         
         Consts.setUpNavigationBarWithBackButton(self, title: "主页", backTitle: "<")
         
@@ -236,9 +227,6 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

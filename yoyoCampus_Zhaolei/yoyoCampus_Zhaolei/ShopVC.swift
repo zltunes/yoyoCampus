@@ -42,6 +42,11 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         self.getShopCategory()
 
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.hidesBottomBarWhenPushed = false
+        super.viewWillDisappear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -180,14 +185,18 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
 
         }
         
-
-        
         //搜索按钮
         let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
         btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navBtnView.addSubview(btnSearch)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
 
+    }
+    
+    func search(){
+        let vc = SearchVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -222,18 +231,18 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         let defaultCell = UITableViewCell()
         return defaultCell
     }
-    
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         for(var num = 0 ; num < self.viewCount ; num++){
             if(tableView == self.tableViewArray[num] as! NSObject){
                let shopGoodsVC = ShopGoodsVC()
 
                shopGoodsVC.shopID =  String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!)
 
-               shopGoodsVC.getGroupURL(String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!))
+               shopGoodsVC.shopID = String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!)
                 shopGoodsVC.shopTitleName = String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("name")as! String)
-
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(shopGoodsVC, animated: true)
             }
         }

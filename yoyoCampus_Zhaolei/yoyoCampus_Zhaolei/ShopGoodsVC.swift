@@ -276,11 +276,14 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         return 0
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let vc = ShopGoodViewController()
+        vc.goods_ID = ""
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
+
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if(scrollView == self.rootView){
             pageView.currentPage = Int(Float(rootView.contentOffset.x) / Float(windowWidth))
