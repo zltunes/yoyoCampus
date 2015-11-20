@@ -71,7 +71,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     var api = YoYoAPI()
     
-    internal var goods_ID = "563a11f690c4907a0449c2a5"
+    internal var goods_ID = ""
     
     var shop_ID = ""
     

@@ -93,6 +93,12 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         
     }
     
+    func setExtraCellLineHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
+    }
+    
     func setAllView(){
         
         //根scrollview
@@ -173,7 +179,10 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             tableView.rowHeight = (windowHeight+100)/6
             tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
             tableView.footer.tag = num
+            setExtraCellLineHidden(tableView)
         }
+        
+
         
         //搜索按钮
         let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
@@ -228,7 +237,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         for(var num = 0 ; num < self.viewCount ; num++){
             if(tableView == self.tableViewArray[num] as! NSObject){
                let shopGoodsVC = ShopGoodsVC()
-               shopGoodsVC.getGroupURL(String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!))
+               shopGoodsVC.shopID =  String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!)
                 self.navigationController?.pushViewController(shopGoodsVC, animated: true)
             }
         }

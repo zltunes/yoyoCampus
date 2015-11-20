@@ -13,7 +13,7 @@ import MJRefresh
 
 class ShopDetailVC: UIViewController {
     
-    var shopID = String()
+    internal var shopID = String()
     
     //var resultArray = Dictionary()
     var upView = UIView()

@@ -15,7 +15,8 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
   
     var isSingleView = Bool()
     var groupURL = String()
-    var shopID = String()
+    
+    internal var shopID:String = ""
     
     var navBtnView = UIView(frame: CGRectMake(windowWidth*0.9, 20, windowWidth*0.2, 64))
 
@@ -60,12 +61,10 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         super.didReceiveMemoryWarning()
     }
     
-    func getGroupURL(shopId:String){
-        self.shopID = shopId
-        self.groupURL = "http://api2.hloli.me:9001/v1.0/shop/" + shopId + "/group/"
-    }
-    
     func httpGetGroup(){
+        
+        self.groupURL = "http://api2.hloli.me:9001/v1.0/shop/\(shopID)/group/"
+        
         Alamofire.request(.GET, self.groupURL, headers: httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
             response in
             let json = JSON(response.result.value!)
@@ -103,7 +102,6 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             response in
             let json = JSON(response.result.value!)
             var responseJson = json["result"]
-            print(responseJson.arrayObject!)
             self.didReceiveOneGroupData(responseJson.arrayObject!)
         }
     }
@@ -112,7 +110,6 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         self.pageArray.append(1)
         self.dataNum++
         if(self.dataNum == self.viewCount){
-            print(self.resultData[0])
             self.setView()
         }
         if(self.dataNum != self.viewCount){
@@ -265,6 +262,10 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         return 0
     }
     
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if(scrollView == self.rootView){

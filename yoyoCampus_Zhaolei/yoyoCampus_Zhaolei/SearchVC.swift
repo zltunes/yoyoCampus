@@ -68,6 +68,11 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.hidesBottomBarWhenPushed = true
+        super.viewWillAppear(animated)
+    }
+    
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         self.table.backgroundColor = Consts.grayView
@@ -195,13 +200,13 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
                 }else if(shopPage > 1 && json["result"].count == 0){
                     shopFinished = true
                 }
+            setEmptyMarkHidden()
             break
             
         default:
             break
             
         }
-        setEmptyMarkHidden()
         self.table.reloadData()
     }
     
@@ -433,6 +438,8 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
                 }
             }
 
+             
+            
             break
             
         case 2:
@@ -539,19 +546,20 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
             break
             
         case 2:
-//            if(cell!.isKindOfClass(SearchShopCell.self)){
-//                let vc = ShopGoodViewController()
-//                vc.shop_ID = shopArray[indexPath.row]["shop_id"].string!
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            }else if(cell!.isKindOfClass(SearchMoreCell)){
-//                if(shopFinished){
-//                    shopPage = 1
-//                    shopFinished = false
-//                }else{
-//                    shopPage += 1
-//                }
-//                setUpOnlineData("search_shop")
-//            }
+            if(cell!.isKindOfClass(SearchShopCell.self)){
+                let vc = ShopGoodsVC()
+                vc.shopID = shopArray[indexPath.row]["shop_id"].string!
+                
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if(cell!.isKindOfClass(SearchMoreCell)){
+                if(shopFinished){
+                    shopPage = 1
+                    shopFinished = false
+                }else{
+                    shopPage += 1
+                }
+                setUpOnlineData("search_shop")
+            }
             break
             
         default:

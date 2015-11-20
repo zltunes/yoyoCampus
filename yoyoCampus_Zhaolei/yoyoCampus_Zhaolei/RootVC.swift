@@ -21,12 +21,18 @@ class RootVC: UIViewController,UIScrollViewDelegate{
 
       var idleCategory = NSMutableArray()
       var categoryRoot = NSMutableArray()
+    
+    internal var locationTitle:String = ""
+    
 
     var searchBtn = UIButton(frame: CGRectMake(windowWidth*0.9, 10, 20, 20))
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Consts.setUpNavigationBarWithBackButton(self, title: "东南大学九龙湖校区", backTitle: "")
+        Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.location, backTitle: "")
+        
+        let leftItem = UIBarButtonItem(image: UIImage.init(named: "xianzhi_status bar_search"), style: .Plain, target: self, action: "selectLocation")
+        self.navigationItem.leftBarButtonItem = leftItem
         
         
         self.searchBtn.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
@@ -200,11 +206,15 @@ class RootVC: UIViewController,UIScrollViewDelegate{
                 self.idleCategory.addObject(categoryName)
             }
         }
-
-        
         // Do any additional setup after loading the view.
     }
-
+    
+    func selectLocation(){
+        let vc = SelectLocationVC()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         self.hidesBottomBarWhenPushed = false
         super.viewWillDisappear(animated)
@@ -226,27 +236,17 @@ class RootVC: UIViewController,UIScrollViewDelegate{
             let classVc = ClassificationVC()
             classVc.isIdle = false
             classVc.categoryName = self.categoryRoot[sender.tag] as! NSString
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(classVc, animated: true)
         }
         else{
             let classVc = ClassificationVC()
             classVc.idleCategory = self.idleCategory
             classVc.isIdle = true
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(classVc, animated: true)
         }
 
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
