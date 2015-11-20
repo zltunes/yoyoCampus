@@ -189,14 +189,14 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 }
                 //创建tableview
                 for(var num = 0 ; num < Int(self.viewCount) ; num++){
-                    var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-150))
+                    var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-48))
                     self.viewArray[num].addSubview(tableView)
                     self.tableViewArray.addObject(tableView)
                     tableView.tag = num
                     tableView.backgroundColor = UIColor.whiteColor()
                     tableView.dataSource = self
                     tableView.delegate = self
-                    tableView.rowHeight = (windowHeight+100)/6
+                    tableView.rowHeight = 230 * Consts.ratio
                     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
                     tableView.footer.tag = num
                     tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
@@ -700,6 +700,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         let defaultCell = UITableViewCell()
         return defaultCell
     }
+    
     
     //点击排序的图标事件
     func orderClick(sender : AnyObject){

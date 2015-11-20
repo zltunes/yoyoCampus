@@ -231,7 +231,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
 
                shopGoodsVC.shopID =  String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!)
 
-               shopGoodsVC.getGroupURL(String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!))
+//               shopGoodsVC.getGroupURL(String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!))
                 shopGoodsVC.shopTitleName = String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("name")as! String)
 
                 self.navigationController?.pushViewController(shopGoodsVC, animated: true)

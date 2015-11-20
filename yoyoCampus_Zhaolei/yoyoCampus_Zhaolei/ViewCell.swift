@@ -23,14 +23,12 @@ class ViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        var goodsImage = UIImageView(frame: CGRectMake(5, 15, windowWidth/3, windowWidth/6+20))
-        goodsImage.backgroundColor = UIColor.yellowColor()
+        var goodsImage = UIImageView(frame: CGRectMake(40 * Consts.ratio, 20 * Consts.ratio, 174 * Consts.ratio, 130 * Consts.ratio))
         self.addSubview(goodsImage)
         self.goodsImage = goodsImage
         
-        var goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, 17, windowWidth/2, 20))
-        //goodsName.text = "汤山温泉两天一夜游"
-        goodsName.font = UIFont(name: "San Francisco", size: 17)
+        var goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 16 * Consts.ratio))
+        goodsName.font = UIFont(name: "San Francisco", size: 16)
         self.goodsName = goodsName
         self.addSubview(goodsName)
         
