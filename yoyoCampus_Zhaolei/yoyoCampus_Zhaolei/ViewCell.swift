@@ -28,13 +28,13 @@ class ViewCell: UITableViewCell {
         self.addSubview(goodsImage)
         self.goodsImage = goodsImage
         
-        var goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, 17, windowWidth/2, 10))
+        var goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, 17, windowWidth/2, 20))
         //goodsName.text = "汤山温泉两天一夜游"
         goodsName.font = UIFont(name: "San Francisco", size: 17)
         self.goodsName = goodsName
         self.addSubview(goodsName)
         
-        var goodsShopName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(goodsName.frame)+20, windowWidth/3, 10))
+        var goodsShopName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(goodsName.frame)+15, windowWidth/3, 10))
         //goodsShopName.text = "二傻子"
         goodsShopName.font = UIFont(name: "Verdana", size: 13)
         goodsShopName.textColor = UIColor(red: 20/255, green: 120/255, blue: 100/255, alpha: 1)
@@ -59,7 +59,7 @@ class ViewCell: UITableViewCell {
         self.originalPrice = originalPrice
         self.addSubview(originalPrice)
         
-        var newPrice = UILabel(frame: CGRectMake(windowWidth*0.85, CGRectGetMaxY(goodsShopName.frame)+15, 50, 10))
+        var newPrice = UILabel(frame: CGRectMake(windowWidth*0.83, CGRectGetMaxY(goodsShopName.frame)+15, 70, 10))
         //newPrice.text = "￥9999"
         newPrice.textColor = UIColor.redColor()
         newPrice.font = UIFont(name: "Verdana", size: 15)

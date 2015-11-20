@@ -15,7 +15,6 @@ class ShopDetailVC: UIViewController {
     
     internal var shopID = String()
     
-    //var resultArray = Dictionary()
     var upView = UIView()
     var downView = DownView()
     var shopImage = UIImageView()
@@ -31,7 +30,6 @@ class ShopDetailVC: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
         self.setView()
-
         self.httpGetShopDetail()
         
     }
@@ -51,6 +49,8 @@ class ShopDetailVC: UIViewController {
             self.shopPhone.text = json["phone_num"].string!
             self.shopAdd.text = json["address"].string!
             self.shopText.text = json["description"].string!
+
+            Consts.setUpNavigationBarWithBackButton(self, title: self.shopName.text, backTitle: "<")
 
         }
     }
@@ -117,7 +117,9 @@ class ShopDetailVC: UIViewController {
         
     
     }
-    
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     
 }
