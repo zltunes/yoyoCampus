@@ -271,9 +271,8 @@ class LoginViewController: UIViewController,APIDelegate{
                     plistDict["weibo_bind"] = json["weibo_bind"].int!
                     plistDict["weixin_bind"] = json["weixin_bind"].int!
                     plistDict.writeToFile(AppDelegate.filePath, atomically: false)
-                    let vc = PersonCenterVC()
-                    self.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
+
+                    self.navigationController?.popToRootViewControllerAnimated(true)
             }
             break
             

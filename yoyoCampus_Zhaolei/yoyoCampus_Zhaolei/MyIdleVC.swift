@@ -196,6 +196,12 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         return 0
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = IdleGoodViewController()
+        vc.idle_id = ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if(scrollView == self.rootView){
             let offset : CGPoint = scrollView.contentOffset
