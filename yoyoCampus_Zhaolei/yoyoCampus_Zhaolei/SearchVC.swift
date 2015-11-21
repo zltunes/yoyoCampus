@@ -200,13 +200,13 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
                 }else if(shopPage > 1 && json["result"].count == 0){
                     shopFinished = true
                 }
-            setEmptyMarkHidden()
             break
             
         default:
             break
             
         }
+        setEmptyMarkHidden()
         self.table.reloadData()
     }
     
