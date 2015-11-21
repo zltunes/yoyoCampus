@@ -199,15 +199,46 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         }
         return 0
     }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        print("1")
+        if(tableView == self.tableViewGoods){
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ViewCell
+            let goodsId : String = tempCell.dataCell.objectForKey("goods_id")as! String
+            Alamofire.request(.DELETE, "http://api2.hloli.me:9001/v1.0/goods/collection/" + goodsId,headers:httpHeader).responseJSON(){
+                response in
+                self.resultGoodsArray.removeObjectAtIndex(indexPath.row)
+                self.tableViewGoods.reloadData()
+            }
+        }
+        if(tableView == self.tableViewShop){
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ShopCell
+            let shopId : String = tempCell.shopId
+            Alamofire.request(.DELETE, "http://api2.hloli.me:9001/v1.0/shop/collection/" + shopId,headers:httpHeader).responseJSON(){
+                response in
+                self.resultShopArray.removeObjectAtIndex(indexPath.row)
+                self.tableViewShop.reloadData()
+            }
+        }
+        
     }
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(tableView == self.tableViewGoods){
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ViewCell
+            let vc = ShopGoodViewController()
+            vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as!String
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if(tableView == self.tableViewShop){
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ShopCell
+            let vc = ShopGoodsVC()
+            vc.shopID = tempCell.shopId
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

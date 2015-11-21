@@ -20,6 +20,9 @@ class MyIdleCell: UITableViewCell {
     var isActive : Bool = Bool()
     var idleID = String()
 
+    var belongedVC = MyIdleVC()
+    var cellIndex = Int()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -93,13 +96,18 @@ class MyIdleCell: UITableViewCell {
     func clickOff(sender : UIButton){
         Alamofire.request(.PUT, "http://api2.hloli.me:9001/v1.0/idle/\(self.idleID)" ,headers:httpHeader,parameters:["is_active":0],encoding:.JSON).responseJSON{
             response in
-            print(response.result.value)
+            self.belongedVC.resultOffArray.addObject(self.belongedVC.resultOnArray.objectAtIndex(self.cellIndex))
+            self.belongedVC.resultOnArray.removeObjectAtIndex(self.cellIndex)
+            self.belongedVC.tableViewOn.reloadData()
+            
         }
     }
     func clickOn(sender : UIButton){
         Alamofire.request(.PUT, "http://api2.hloli.me:9001/v1.0/idle/\(self.idleID)" ,headers:httpHeader,parameters:["is_active":1],encoding:.JSON).responseJSON{
             response in
-            print(response.result.value)
+            self.belongedVC.resultOnArray.addObject(self.belongedVC.resultOffArray.objectAtIndex(self.cellIndex))
+            self.belongedVC.resultOffArray.removeObjectAtIndex(self.cellIndex)
+            self.belongedVC.tableViewOff.reloadData()
         }
     }
     

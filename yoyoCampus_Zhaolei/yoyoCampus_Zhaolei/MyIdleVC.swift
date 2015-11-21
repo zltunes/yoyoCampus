@@ -166,6 +166,8 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
                 var cell = MyIdleCell()
                 cell.isActive = true
                 cell.setCellData(self.resultOnArray[indexPath.row])
+                cell.belongedVC = self
+                cell.cellIndex = indexPath.row
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
                 return cell
             }
@@ -174,6 +176,8 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
                 cell.isActive = false
                 cell.setCellData(self.resultOffArray[indexPath.row])
                 cell.selectionStyle = UITableViewCellSelectionStyle.None
+                cell.belongedVC = self
+                cell.cellIndex = indexPath.row
                 return cell
             }
         }
@@ -197,8 +201,10 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! MyIdleCell
         let vc = IdleGoodViewController()
-        vc.idle_id = ""
+        vc.idle_id = tempCell.idleID
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -226,6 +232,11 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
             self.tableViewOff.reloadData()
             self.btnColorChange(1)
         }
+    }
+    func pageNumTurn(sender : Int){
+        self.pageView.currentPage = sender
+        self.rootView.contentOffset = CGPoint(x: CGFloat(sender) * windowWidth, y: 0)
+        self.btnColorChange(sender)
     }
     func scrollPageTurn(sender : Int){
         if(sender == 0){

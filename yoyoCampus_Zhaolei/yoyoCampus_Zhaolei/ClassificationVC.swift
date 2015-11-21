@@ -189,14 +189,14 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 }
                 //创建tableview
                 for(var num = 0 ; num < Int(self.viewCount) ; num++){
-                    var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-150))
+                    var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-48))
                     self.viewArray[num].addSubview(tableView)
                     self.tableViewArray.addObject(tableView)
                     tableView.tag = num
                     tableView.backgroundColor = UIColor.whiteColor()
                     tableView.dataSource = self
                     tableView.delegate = self
-                    tableView.rowHeight = (windowHeight+100)/6
+                    tableView.rowHeight = 230 * Consts.ratio
                     tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
                     tableView.footer.tag = num
                     tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
@@ -685,6 +685,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = false
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
+                    print(viewCell.dataCell)
                     return viewCell
                 }
             }
@@ -696,6 +697,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = true
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
+                    print(viewCell.dataCell)
+
                     return viewCell
                 }
 
@@ -707,12 +710,14 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(self.isIdle == true){
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = IdleGoodViewController()
-            vc.idle_id = ""
+            vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = ShopGoodViewController()
-            vc.goods_ID = ""
+            vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as! String
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

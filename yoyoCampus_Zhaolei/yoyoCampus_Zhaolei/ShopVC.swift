@@ -238,8 +238,6 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             if(tableView == self.tableViewArray[num] as! NSObject){
                let shopGoodsVC = ShopGoodsVC()
 
-               shopGoodsVC.shopID =  String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!)
-
                shopGoodsVC.shopID = String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("shop_id")!)
                 shopGoodsVC.shopTitleName = String(self.resultArray[num].objectAtIndex(indexPath.row).objectForKey("name")as! String)
                 self.hidesBottomBarWhenPushed = true
