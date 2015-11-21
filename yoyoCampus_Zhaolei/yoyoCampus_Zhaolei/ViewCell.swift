@@ -19,32 +19,31 @@ class ViewCell: UITableViewCell {
     var newPrice = UILabel()
     var goodsDiscount = UILabel()
     var isIdleCell :Bool = Bool()
+    var dataCell = NSDictionary()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        var goodsImage = UIImageView(frame: CGRectMake(40 * Consts.ratio, 20 * Consts.ratio, 174 * Consts.ratio, 130 * Consts.ratio))
+        let goodsImage = UIImageView(frame: CGRectMake(40 * Consts.ratio, 20 * Consts.ratio, 174 * Consts.ratio, 130 * Consts.ratio))
         self.addSubview(goodsImage)
         self.goodsImage = goodsImage
         
-        var goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 16 * Consts.ratio))
-        goodsName.font = UIFont(name: "San Francisco", size: 16)
+        let goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 16 * Consts.ratio))
+        goodsName.font = UIFont(name: "Verdana", size: 16)
         self.goodsName = goodsName
         self.addSubview(goodsName)
         
-        var goodsShopName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(goodsName.frame)+15, windowWidth/3, 10))
-        //goodsShopName.text = "二傻子"
-        goodsShopName.font = UIFont(name: "Verdana", size: 13)
+        let goodsShopName = UILabel(frame: CGRectMake(CGRectGetMinX(goodsName.frame), CGRectGetMaxY(goodsName.frame)+(28 * Consts.ratio), windowWidth/3, 10))
+        goodsShopName.font = UIFont(name: "Verdana", size: 12)
         goodsShopName.textColor = UIColor(red: 20/255, green: 120/255, blue: 100/255, alpha: 1)
         self.goodsShopName = goodsShopName
         self.addSubview(goodsShopName)
         
-        let viewImage1 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(goodsShopName.frame)+15, 10, 10))
+        let viewImage1 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(goodsShopName.frame)+(28 * Consts.ratio), 10, 10))
         viewImage1.image = UIImage(named: "viewcell_1")
         self.addSubview(viewImage1)
         
         var viewNum = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+35, CGRectGetMaxY(goodsShopName.frame)+15, windowWidth/3, 10))
-        //viewNum.text = "2人感兴趣"
         viewNum.textColor = UIColor.grayColor()
         viewNum.font = UIFont(name: "Verdana", size: 11)
         self.viewNum = viewNum
@@ -65,7 +64,7 @@ class ViewCell: UITableViewCell {
         self.addSubview(newPrice)
         
         
-        let viewImage2 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(viewImage1.frame)+10, 10, 10))
+        let viewImage2 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(viewImage1.frame)+(22 * Consts.ratio), 10, 10))
         viewImage2.image = UIImage(named: "viewcell_2")
         self.addSubview(viewImage2)
 
@@ -83,13 +82,15 @@ class ViewCell: UITableViewCell {
     }
     
     func setData(data: AnyObject){
-        
+        self.dataCell = data as! NSDictionary
         if(self.isIdleCell == false){
             self.goodsName.text = (data["name"]!! as! String)
             self.goodsShopName.text = (data["shop_name"]!! as! String)
             self.viewNum.text = String(data["view_number"]!!) + "人感兴趣"
-            self.originalPrice.text = "￥" + String(data["original_price"]!!)
-            self.newPrice.text = "￥" + String(data["price"]!!)
+            let tempOriPrice = (data["original_price"] as! CGFloat) / 100
+            self.originalPrice.text = "￥" + String(tempOriPrice)
+            let tempNewPrice = data["price"]as!CGFloat / 100
+            self.newPrice.text = "￥" + String(tempNewPrice)
             self.goodsDiscount.text = "凭借悠悠万能优惠卡减免" + String(data["discount"]!!) + "元"
             
             self.goodsImage.sd_setImageWithURL(NSURL(string:data["image"]!! as! String))
@@ -98,7 +99,8 @@ class ViewCell: UITableViewCell {
             self.goodsName.text = (data["name"]!! as!String)
             self.goodsShopName.text = (data["user_name"]!! as!String)
             self.viewNum.text = String(data["view_number"]!!) + "人感兴趣"
-            self.newPrice.text = "￥" + String(data["price"]!!)
+            let tempNewPrice = data["price"]as!CGFloat / 100
+            self.newPrice.text = "￥" + String(tempNewPrice)
             self.goodsImage.sd_setImageWithURL(NSURL(string: data["image"]!! as!String))
         }
     }

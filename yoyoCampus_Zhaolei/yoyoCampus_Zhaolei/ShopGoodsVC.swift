@@ -276,11 +276,15 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         return 0
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ViewCell
+        let vc = ShopGoodViewController()
+        vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as!String
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
+
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if(scrollView == self.rootView){
             pageView.currentPage = Int(Float(rootView.contentOffset.x) / Float(windowWidth))
@@ -439,9 +443,11 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                 let json = JSON(response.result.value!)
                 var responseJson = json["result"]
                 if(responseJson.count != 0){
+                    var tempArray =  self.resultData[sender.tag].mutableCopy()
                     for(var num = 0 ; num < responseJson.count ; num++){
-                        self.resultData[sender.tag].addObject(responseJson.arrayObject![num])
+                        tempArray.addObject(responseJson.arrayObject![num])
                     }
+                    self.resultData.replaceObjectAtIndex(sender.tag, withObject: tempArray)
                     self.tableViewArray[sender.tag].reloadData()
                     (self.tableViewArray[sender.tag]as! UITableView).footer!.endRefreshing()
                 }

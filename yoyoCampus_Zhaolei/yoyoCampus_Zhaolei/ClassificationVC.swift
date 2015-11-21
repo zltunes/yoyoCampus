@@ -340,6 +340,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         
         let btnSearch = UIButton(frame: CGRectMake(CGRectGetMaxX(btnOrder.frame)+5, 23, 20, 20))
         btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navBtnView.addSubview(btnSearch)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
@@ -349,7 +350,10 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         // Do any additional setup after loading the view.
         
 }
-    
+    func search(){
+        let vc = SearchVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
 
 
@@ -681,6 +685,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = false
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
+                    print(viewCell.dataCell)
                     return viewCell
                 }
             }
@@ -692,6 +697,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = true
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
+                    print(viewCell.dataCell)
+
                     return viewCell
                 }
 
@@ -701,6 +708,19 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         return defaultCell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(self.isIdle == true){
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
+            let vc = IdleGoodViewController()
+            vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
+            let vc = ShopGoodViewController()
+            vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as! String
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     //点击排序的图标事件
     func orderClick(sender : AnyObject){

@@ -17,7 +17,7 @@ class ShopCell: UITableViewCell {
     var shopName = UILabel()
     var shopMain = UILabel()
     var shopAdd = UILabel()
-    
+    var shopId = String()
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -60,6 +60,7 @@ class ShopCell: UITableViewCell {
     }
     
     func setData(data:AnyObject){
+        self.shopId = (data["shop_id"]!!as!String)
         self.shopImage.sd_setImageWithURL(NSURL(string: data["image"]!!as! String))
         self.shopName.text = (data["name"]!! as!String)
         self.shopMain.text = "主营：" + (data["main"]!! as!String)
