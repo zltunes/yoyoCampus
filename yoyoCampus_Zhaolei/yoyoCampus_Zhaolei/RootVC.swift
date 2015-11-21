@@ -119,7 +119,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnCar)
         
         let texCar = UILabel(frame: CGRectMake(CGRectGetMinX(btnCar.frame),CGRectGetMaxY(btnSale.frame)+5, 70, 10))
-        texCar.font = UIFont(name: "Thonburi", size: 15)
+        texCar.font = UIFont(name: "Verdana", size: 15)
         texCar.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texCar)
         
@@ -131,7 +131,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnClothes)
         
         let texClothes = UILabel(frame: CGRectMake(CGRectGetMinX(btnClothes.frame), CGRectGetMaxY(btnClothes.frame)+5, 70, 10))
-        texClothes.font = UIFont(name: "Thonburi ", size: 15)
+        texClothes.font = UIFont(name: "Verdana", size: 15)
         texClothes.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texClothes)
         
@@ -143,7 +143,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnStudy)
         
         let texStudy = UILabel(frame: CGRectMake(CGRectGetMinX(btnStudy.frame), CGRectGetMaxY(btnStudy.frame)+5, 70, 10))
-        texStudy.font = UIFont(name: "Thonburi", size: 15)
+        texStudy.font = UIFont(name: "Verdana", size: 15)
         texStudy.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texStudy)
         
@@ -155,7 +155,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(btnShop)
         
         let texShop = UILabel(frame: CGRectMake(CGRectGetMinX(btnShop.frame), CGRectGetMaxY(btnShop.frame)+5, 70, 10))
-        texShop.font = UIFont(name: "Thonburi", size: 15)
+        texShop.font = UIFont(name: "Verdana", size: 15)
         texShop.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texShop)
         
