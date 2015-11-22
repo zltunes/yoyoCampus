@@ -63,11 +63,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
 
     @IBOutlet var inScrollIndicator: UIView!
 
-
-    ///评论视图
-//    var remarkTableView = UITableView()
-    
-
     @IBOutlet var remarkTableView: UITableView!
     
     ///详情视图
@@ -82,10 +77,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     //右侧底部
 
     @IBOutlet var rightBottomView: UIView!
-    
 
-
-    
     @IBOutlet var repostRemarkBtn: UIButton!//tag:6
     
     //页控制器
@@ -129,7 +121,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     var is_collected:Int = 0
     
     ///要查看的闲置id
-    internal var idle_id = "563f036c90c490786ec029f0"
+    internal var idle_id = ""
     
     ///存放评论
     var commentsJSON:[JSON] = []
@@ -169,6 +161,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     func setUpInitialLooking(){
 //        Tool.showProgressHUD("加载中")
+        
+        print(self.idle_id)
         
         let newWidth = self.view.frame.width
         
@@ -381,10 +375,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     @IBAction func BtnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://点赞
+            print("点赞")
             setUpOnlineData("idleLike")
             self.praiseBtn.tag = 10
             break
         case 10://取消点赞
+            print("取消点赞")
             setUpOnlineData("idleUnlike")
             self.praiseBtn.tag = 0
             break
@@ -573,6 +569,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func didReceiveJsonResults(json: JSON, tag: String) {
         switch(tag){
         case "idleView":
+            print(json)
             self.bigImgView.sd_setImageWithURL(NSURL(string: json["image"].string!), placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
                 self.goodNameLabel.text = json["name"].string!
             self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
@@ -627,11 +624,12 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
             
         case "idleLike":
+            print("like返回:\(json)")
             self.setUpOnlineData("idleView")
-            
             break
         
         case "idleUnlike":
+            print("unlike返回\(json)")
             self.setUpOnlineData("idleView")
             break
             

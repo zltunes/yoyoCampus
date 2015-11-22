@@ -93,7 +93,7 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="yTl-7E-27h"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="97B184A1-C8E9-4173-B944-9750F4D0EE17" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="E62B4ED5-64F3-4118-8573-7AB473843E16" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
                     <rect key="frame" x="8" y="7" width="304" height="191"/>
                     <animations/>
                     <constraints>
@@ -294,15 +294,6 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="1Ws-5n-poD"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gP-ou-PD7">
-                    <rect key="frame" x="33" y="238" width="157" height="24"/>
-                    <animations/>
-                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="新东方"/>
-                    <connections>
-                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="hXS-db-x2m"/>
-                    </connections>
-                </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKU-kQ-nHZ">
                     <rect key="frame" x="8" y="315" width="304" height="2"/>
                     <subviews>
@@ -359,6 +350,15 @@
                     </constraints>
                     <connections>
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="Be4-NX-XfI"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gP-ou-PD7">
+                    <rect key="frame" x="33" y="238" width="157" height="24"/>
+                    <animations/>
+                    <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="新东方"/>
+                    <connections>
+                        <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="hXS-db-x2m"/>
                     </connections>
                 </button>
             </subviews>
@@ -433,7 +433,7 @@
         </tableView>
     </objects>
     <resources>
-        <image name="97B184A1-C8E9-4173-B944-9750F4D0EE17" width="97" height="72">
+        <image name="E62B4ED5-64F3-4118-8573-7AB473843E16" width="97" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

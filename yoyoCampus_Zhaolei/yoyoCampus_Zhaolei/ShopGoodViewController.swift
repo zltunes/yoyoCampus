@@ -417,6 +417,9 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBAction func btnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://进入店铺
+            let vc = ShopGoodsVC()
+            vc.shopID = self.shop_ID
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case 1://详情
             self.horizontalScroll.contentOffset = CGPoint(x: 0, y: 0)
@@ -425,6 +428,9 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.horizontalScroll.contentOffset = CGPoint(x: self.horizontalScroll.frame.width, y: 0)
             break
         case 3://店铺
+            let vc = ShopGoodsVC()
+            vc.shopID = self.shop_ID
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case 4://收藏
             setUpOnlineData("collect")
@@ -500,6 +506,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func didReceiveJsonResults(json: JSON, tag: String) {
         switch(tag){
             case "goodsView":
+                self.shop_ID = json["shop_id"].string!
                 self.image = json["image"].URL!
                 self.shop_image = json["shop_image"].URL!
                 self.is_collected = json["is_collected"].int!

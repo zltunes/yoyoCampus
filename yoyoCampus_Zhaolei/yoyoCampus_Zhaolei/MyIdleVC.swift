@@ -204,7 +204,7 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! MyIdleCell
         let vc = IdleGoodViewController()
         vc.idle_id = tempCell.idleID
-
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

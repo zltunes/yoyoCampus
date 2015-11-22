@@ -71,6 +71,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         
         Alamofire.request(.GET, self.groupURL, headers: httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
             response in
+            print(response.result.value)
             let json = JSON(response.result.value!)
             var responseJson = json["group"]
             for(var num = 0 ; num < responseJson.count ; num++){
@@ -281,6 +282,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ViewCell
         let vc = ShopGoodViewController()
         vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as!String
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -490,6 +492,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     func intoDetail(){
         let shopDetail = ShopDetailVC()
         shopDetail.shopID = self.shopID
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(shopDetail, animated: true)
     }
     func goBack(){

@@ -258,7 +258,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 scrollIndicator.frame = CGRectMake(0, 37, 80 * self.viewCount, 3)
                 scrollIndicator.contentSize = CGSizeMake(80 * self.viewCount, 3)
                 indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
-                print("1")
             }
             else{
                 scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
@@ -352,6 +351,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
 }
     func search(){
         let vc = SearchVC()
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -685,7 +685,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = false
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
-                    print(viewCell.dataCell)
                     return viewCell
                 }
             }
@@ -697,7 +696,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = true
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
-                    print(viewCell.dataCell)
 
                     return viewCell
                 }
@@ -713,11 +711,13 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = IdleGoodViewController()
             vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = ShopGoodViewController()
             vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as! String
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

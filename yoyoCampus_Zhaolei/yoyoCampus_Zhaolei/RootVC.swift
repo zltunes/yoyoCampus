@@ -32,7 +32,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         
         Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.location, backTitle: "")
         
-        let leftItem = UIBarButtonItem(image: UIImage.init(named: "xianzhi_status bar_search"), style: .Plain, target: self, action: "selectLocation")
+        let leftItem = UIBarButtonItem(image: UIImage.init(named: "shouye_dingwei_xxhdpi.png"), style: .Plain, target: self, action: "selectLocation")
         leftItem.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = leftItem
         
@@ -43,7 +43,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         rightItem.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = rightItem
         
-        Consts.setUpNavigationBarWithBackButton(self, title: "主页", backTitle: "<")
+        Consts.setUpNavigationBarWithBackButton(self, title: "东南大学九龙湖校区", backTitle: "<")
         
         self.view.backgroundColor = UIColor .whiteColor()
 
@@ -51,7 +51,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         //获取类目
         
         //总界面是一个scrollRootView
-        let scrollRootView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        let scrollRootView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight-100))
         scrollRootView.backgroundColor = UIColor(red: 234/255, green: 236/255, blue: 234/255, alpha: 1)
         scrollRootView.delegate = self
         scrollRootView.directionalLockEnabled = true

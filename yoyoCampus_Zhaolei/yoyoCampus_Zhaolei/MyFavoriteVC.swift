@@ -230,12 +230,14 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
             let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ViewCell
             let vc = ShopGoodViewController()
             vc.goods_ID = tempCell.dataCell.objectForKey("goods_id")as!String
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if(tableView == self.tableViewShop){
             let tempCell = tableView.cellForRowAtIndexPath(indexPath)as! ShopCell
             let vc = ShopGoodsVC()
             vc.shopID = tempCell.shopId
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
             
         }

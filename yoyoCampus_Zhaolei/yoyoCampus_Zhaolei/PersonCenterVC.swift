@@ -114,6 +114,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                 Tool.showErrorHUD("请先登录!")
             }else{
                 let myIdleVC = MyIdleVC()
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(myIdleVC, animated: true)
                 
             }
@@ -123,6 +124,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
                 Tool.showErrorHUD("请先登录!")
             }else{
                 let myCollection = MyFavoriteVC()
+                self.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(myCollection, animated: true)
             }
             break
