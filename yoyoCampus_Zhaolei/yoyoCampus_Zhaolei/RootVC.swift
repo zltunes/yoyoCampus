@@ -10,6 +10,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SDWebImage
+
 
 
 let  windowWidth = UIScreen .mainScreen().bounds.width
@@ -21,9 +23,12 @@ class RootVC: UIViewController,UIScrollViewDelegate{
 
       var idleCategory = NSMutableArray()
       var categoryRoot = NSMutableArray()
+      var advArray = NSMutableArray()
+    
+     var scrollBannerView = UIScrollView()
     
     internal var locationTitle:String = ""
-    
+     var advURL = NSMutableArray()
 
     var searchBtn = UIButton(frame: CGRectMake(windowWidth*0.9, 10, 20, 20))
     override func viewDidLoad() {
@@ -66,19 +71,21 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         scrollBannerView.directionalLockEnabled = true
         scrollBannerView.showsHorizontalScrollIndicator = true
         scrollBannerView.showsVerticalScrollIndicator = false
-        scrollBannerView.contentSize = CGSizeMake(windowWidth*2, windowHeight*0.25)
+       // scrollBannerView.contentSize = CGSizeMake(windowWidth*2, windowHeight*0.25)
         scrollBannerView.backgroundColor = UIColor.whiteColor()
         //翻页效果加进去会比较好，控制左右拖动的随意性
         scrollBannerView.pagingEnabled = true
         scrollRootView.addSubview(scrollBannerView)
+        self.scrollBannerView = scrollBannerView
         
-        let bannerView1 = UIImageView(frame: CGRectMake(windowWidth, 0, windowWidth, scrollBannerView.frame.size.height))
-        bannerView1.image = UIImage(named: "banner1.png")
-        scrollBannerView.addSubview(bannerView1)
-        
-        let bannerView2 = UIImageView(frame: CGRectMake(0, 0, windowWidth, scrollBannerView.frame.size.height))
-        bannerView2.image = UIImage(named: "banner2.png")
-        scrollBannerView.addSubview(bannerView2)
+        self.getAdv()
+//        let bannerView1 = UIImageView(frame: CGRectMake(windowWidth, 0, windowWidth, scrollBannerView.frame.size.height))
+//        bannerView1.image = UIImage(named: "banner1.png")
+//        scrollBannerView.addSubview(bannerView1)
+//
+//        let bannerView2 = UIImageView(frame: CGRectMake(0, 0, windowWidth, scrollBannerView.frame.size.height))
+//        bannerView2.image = UIImage(named: "banner2.png")
+//        scrollBannerView.addSubview(bannerView2)
         
         //6个按键的布置
         let btnBackView = UIView(frame: CGRectMake(0, CGRectGetMaxY(scrollBannerView.frame)+10, windowWidth, windowHeight*0.32))
@@ -249,5 +256,32 @@ class RootVC: UIViewController,UIScrollViewDelegate{
             self.navigationController?.pushViewController(classVc, animated: true)
         }
 
+    }
+    func getAdv(){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/advertisement/",headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            response in
+            let json = JSON(response.result.value!)
+            var responseJson = json["advertisement"]
+            for(var num = 0 ; num < responseJson.count ; num++){
+                self.advArray.addObject(responseJson.arrayObject![num])
+            }
+            self.setAdv()
+        }
+    }
+    func setAdv(){
+        self.scrollBannerView.contentSize = CGSizeMake(windowWidth * CGFloat(self.advArray.count) , windowHeight * 0.25)
+        for(var num = 0 ; num < self.advArray.count ; num++){
+            let bannerView = UIImageView(frame: CGRectMake(windowWidth * CGFloat(num), 0, windowWidth, self.scrollBannerView.frame.size.height))
+            bannerView.sd_setImageWithURL(NSURL(string: self.advArray[num].objectForKey("image")!as!String))
+            bannerView.userInteractionEnabled = true
+            bannerView.tag = num
+            let action = UITapGestureRecognizer.init(target: self, action: "advTouched:")
+            bannerView.addGestureRecognizer(action)
+            self.scrollBannerView.addSubview(bannerView)
+        }
+        
+    }
+    func advTouched(sender : AnyObject){
+        UIApplication.sharedApplication().openURL(NSURL(string: self.advArray[sender.view!!.tag].objectForKey("link")!as!String)!)
     }
 }

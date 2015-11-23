@@ -160,6 +160,9 @@
 		AD90024E1BFACCF30019219A /* MyIdleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90024D1BFACCF30019219A /* MyIdleVC.swift */; };
 		AD9002501BFACD040019219A /* MyFavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90024F1BFACD040019219A /* MyFavoriteVC.swift */; };
 		AD9002521BFADA170019219A /* MyIdleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9002511BFADA170019219A /* MyIdleCell.swift */; };
+		ADAC087F1C02F9B30053B0EF /* order_11.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC087D1C02F9B30053B0EF /* order_11.png */; };
+		ADAC08801C02F9B30053B0EF /* order_22.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC087E1C02F9B30053B0EF /* order_22.png */; };
+		ADAC08821C02FDFB0053B0EF /* idle_Add.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC08811C02FDFB0053B0EF /* idle_Add.png */; };
 		ADCF87411BFC6606003958E0 /* CampVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF87391BFC6606003958E0 /* CampVC.swift */; };
 		ADCF87421BFC6606003958E0 /* campView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF873A1BFC6606003958E0 /* campView.swift */; };
 		ADCF87431BFC6606003958E0 /* CarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF873B1BFC6606003958E0 /* CarVC.swift */; };
@@ -446,6 +449,9 @@
 		AD90024D1BFACCF30019219A /* MyIdleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIdleVC.swift; sourceTree = "<group>"; };
 		AD90024F1BFACD040019219A /* MyFavoriteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavoriteVC.swift; sourceTree = "<group>"; };
 		AD9002511BFADA170019219A /* MyIdleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIdleCell.swift; sourceTree = "<group>"; };
+		ADAC087D1C02F9B30053B0EF /* order_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_11.png; sourceTree = "<group>"; };
+		ADAC087E1C02F9B30053B0EF /* order_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_22.png; sourceTree = "<group>"; };
+		ADAC08811C02FDFB0053B0EF /* idle_Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle_Add.png; sourceTree = "<group>"; };
 		ADCF87391BFC6606003958E0 /* CampVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampVC.swift; sourceTree = "<group>"; };
 		ADCF873A1BFC6606003958E0 /* campView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = campView.swift; sourceTree = "<group>"; };
 		ADCF873B1BFC6606003958E0 /* CarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarVC.swift; sourceTree = "<group>"; };
@@ -1227,6 +1233,9 @@
 		AD3F80CC1BF7A68600852AF1 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				ADAC08811C02FDFB0053B0EF /* idle_Add.png */,
+				ADAC087D1C02F9B30053B0EF /* order_11.png */,
+				ADAC087E1C02F9B30053B0EF /* order_22.png */,
 				ADCF87811BFC676D003958E0 /* sale_1.png */,
 				ADCF87821BFC676D003958E0 /* sale_2.png */,
 				ADCF87831BFC676D003958E0 /* sale_3.png */,
@@ -1436,6 +1445,7 @@
 				ADCF876C1BFC66C7003958E0 /* btn_4.png in Resources */,
 				ADCF87941BFC676D003958E0 /* shop_2.png in Resources */,
 				ADCF877C1BFC66C7003958E0 /* order_21.png in Resources */,
+				ADAC08821C02FDFB0053B0EF /* idle_Add.png in Resources */,
 				35C772EA1BDF1F600054D08E /* twoLabelCell.xib in Resources */,
 				ADCF877F1BFC66C7003958E0 /* order_41.png in Resources */,
 				3594CBFF1BDCA83D00037B33 /* remarkVC.xib in Resources */,
@@ -1445,6 +1455,7 @@
 				ADCF87741BFC66C7003958E0 /* camp_6.png in Resources */,
 				3594CC2C1BDD085C00037B33 /* UMSShareListController.xib in Resources */,
 				ADCF879E1BFC676D003958E0 /* viewcell_2.png in Resources */,
+				ADAC087F1C02F9B30053B0EF /* order_11.png in Resources */,
 				ADCF877D1BFC66C7003958E0 /* order_31.png in Resources */,
 				35C772AC1BDF0A380054D08E /* zbar-samples.png in Resources */,
 				35DE75D11BDB5E5900BAA880 /* OrderDetailVC.xib in Resources */,
@@ -1492,6 +1503,7 @@
 				3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */,
 				35DE76001BDB66CF00BAA880 /* payCodeCell.xib in Resources */,
 				3590FDF01BF9DE8E00261CBB /* SearchShopCell.xib in Resources */,
+				ADAC08801C02F9B30053B0EF /* order_22.png in Resources */,
 				3590FDE61BF9DDF800261CBB /* SearchVC.xib in Resources */,
 				ADCF87981BFC676D003958E0 /* study_2.png in Resources */,
 				3594CC231BDD085C00037B33 /* UMSocialLocalizable.strings in Resources */,

@@ -80,7 +80,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = Consts.grayView
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         Consts.setUpNavigationBarWithBackButton(self, title: self.categoryName as String, backTitle: "<")
 
@@ -90,6 +90,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 response in
                 let json = JSON(response.result.value!)
                 //后台获取label的名字
+                
                 for(var count = 0 ; count < json["label"].count ; count++){
                     let name = json["label",count].stringValue
                     self.labelName.addObject(name)
@@ -97,118 +98,120 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 let totalCount:CGFloat = CGFloat(json["label"].count)
                 self.viewCount = totalCount
                 
-                
-                self.httpRequestShopData(self.dataNum)
-                
-                //创建滑动窗口
-                let scrollRootVC = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
-                scrollRootVC.delegate = self
-                scrollRootVC.directionalLockEnabled = true
-                scrollRootVC.showsHorizontalScrollIndicator = true
-                scrollRootVC.showsVerticalScrollIndicator = false
-                scrollRootVC.contentSize = CGSizeMake(windowWidth*totalCount, windowHeight)
-                scrollRootVC.pagingEnabled = true
-                self.rootView = scrollRootVC
-                self.view.addSubview(scrollRootVC)
-                //创建页面控制器
-                let pageCtl = UIPageControl(frame: CGRectMake(100, windowHeight-50, 50, 20))
-                pageCtl.numberOfPages = Int(self.viewCount)
-                pageCtl.currentPage = 0
-                self.pageView = pageCtl
-                self.view .addSubview(pageCtl)
-                
-                //创建按钮滑动view（按钮加在这上面）
-                let scrollBtnView = UIScrollView(frame: CGRectMake(0,0,windowWidth,40))
-                scrollBtnView.backgroundColor = UIColor.whiteColor()
-                scrollBtnView.delegate = self
-                scrollBtnView.directionalLockEnabled = true
-                scrollBtnView.showsHorizontalScrollIndicator = false
-                self.scrollBtnView = scrollBtnView
-                if(self.viewCount > 4){
-                    scrollBtnView.contentSize = CGSizeMake(windowWidth, 30)
-                    self.moreX = 80 * self.viewCount - windowWidth
+                if(json["label"].count != 0){
+                    self.httpRequestShopData(self.dataNum)
+                    //创建滑动窗口
+                    let scrollRootVC = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+                    scrollRootVC.backgroundColor = Consts.grayView
+                    scrollRootVC.delegate = self
+                    scrollRootVC.directionalLockEnabled = true
+                    scrollRootVC.showsHorizontalScrollIndicator = true
+                    scrollRootVC.showsVerticalScrollIndicator = false
+                    scrollRootVC.contentSize = CGSizeMake(windowWidth*totalCount, windowHeight)
+                    scrollRootVC.pagingEnabled = true
+                    self.rootView = scrollRootVC
+                    self.view.addSubview(scrollRootVC)
+                    //创建页面控制器
+                    let pageCtl = UIPageControl(frame: CGRectMake(100, windowHeight-50, 50, 20))
+                    pageCtl.numberOfPages = Int(self.viewCount)
+                    pageCtl.currentPage = 0
+                    self.pageView = pageCtl
+                    self.view .addSubview(pageCtl)
+                    
+                    //创建按钮滑动view（按钮加在这上面）
+                    let scrollBtnView = UIScrollView(frame: CGRectMake(0,0,windowWidth,40))
+                    scrollBtnView.backgroundColor = UIColor.whiteColor()
+                    scrollBtnView.delegate = self
+                    scrollBtnView.directionalLockEnabled = true
+                    scrollBtnView.showsHorizontalScrollIndicator = false
+                    self.scrollBtnView = scrollBtnView
+                    if(self.viewCount > 4){
+                        scrollBtnView.contentSize = CGSizeMake(windowWidth, 30)
+                        self.moreX = 80 * self.viewCount - windowWidth
+                    }
+                    else{
+                        scrollBtnView.contentSize = CGSizeMake(windowWidth, 30)
+                        self.moreX = 0
+                    }
+                    self.view.addSubview(scrollBtnView)
+                    
+                    
+                    //小绿条105
+                    let scrollIndicator = UIScrollView()
+                    scrollIndicator.autoresizesSubviews = false
+                    let indicatorView = UIView()
+                    if(self.viewCount > 4){
+                        scrollIndicator.frame = CGRectMake(0, 37, 80 * self.viewCount, 3)
+                        scrollIndicator.contentSize = CGSizeMake(80 * self.viewCount, 3)
+                        indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
+                    }
+                    else{
+                        scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
+                        scrollIndicator.contentSize = CGSize(width: windowWidth, height: 3)
+                        indicatorView.frame = CGRect(x: 0, y: 0, width: windowWidth/self.viewCount, height: 3)
+                    }
+                    self.scrollBtnView.addSubview(scrollIndicator)
+                    self.scrollIndicator = scrollIndicator
+                    
+                    indicatorView.backgroundColor = UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1)
+                    scrollIndicator.addSubview(indicatorView)
+                    
+                    
+                    //创建按钮
+                    var btnX:CGFloat = 0
+                    var btnWidth = CGFloat()
+                    if(self.viewCount > 4){
+                        btnWidth = 80
+                        self.btnWidth = btnWidth
+                    }
+                    else{
+                        btnWidth = windowWidth/self.viewCount
+                        self.btnWidth = btnWidth
+                    }
+                    for(var num = 0 ; num < json["label"].count ; num++){
+                        let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
+                        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                        btn.titleLabel?.font = UIFont.systemFontOfSize(16)
+                        self.scrollBtnView.addSubview(btn)
+                        btn.setTitle((self.labelName[num] as! String), forState: UIControlState.Normal)
+                        btn.tag = num
+                        btn.addTarget(self, action: Selector("pageTurn:"), forControlEvents: UIControlEvents.TouchUpInside)
+                        btnX += btnWidth
+                        self.btnArray.addObject(btn)
+                    }
+                    //创建页面
+                    var viewX : CGFloat = 0
+                    for(var num = 0 ; num < json["label"].count ; num++){
+                        let view = UIView(frame: CGRectMake(viewX, 0, windowWidth, windowHeight))
+                        view.backgroundColor = Consts.grayView
+                        self.rootView.addSubview(view)
+                        self.viewArray.addObject(view)
+                        viewX += windowWidth
+                    }
+                    //创建tableview
+                    for(var num = 0 ; num < Int(self.viewCount) ; num++){
+                        var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-48))
+                        self.viewArray[num].addSubview(tableView)
+                        self.tableViewArray.addObject(tableView)
+                        tableView.tag = num
+                        tableView.backgroundColor = UIColor.whiteColor()
+                        tableView.dataSource = self
+                        tableView.delegate = self
+                        tableView.rowHeight = 230 * Consts.ratio
+                        tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
+                        tableView.footer.tag = num
+                        tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
+                    }
+                    
+                    
+                    /********************************/
+                    //排序按钮和label的设置           //
+                    
+                    self.setBtnOrder()
                 }
-                else{
-                    scrollBtnView.contentSize = CGSizeMake(windowWidth, 30)
-                    self.moreX = 0
+                if(json["label"].count == 0){
+                    self.isEmptyView()
                 }
-                self.view.addSubview(scrollBtnView)
-                
-                
-                //小绿条105
-                let scrollIndicator = UIScrollView()
-                scrollIndicator.autoresizesSubviews = false
-                let indicatorView = UIView()
-                if(self.viewCount > 4){
-                    scrollIndicator.frame = CGRectMake(0, 37, 80 * self.viewCount, 3)
-                    scrollIndicator.contentSize = CGSizeMake(80 * self.viewCount, 3)
-                    indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
-                }
-                else{
-                    scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
-                    scrollIndicator.contentSize = CGSize(width: windowWidth, height: 3)
-                    indicatorView.frame = CGRect(x: 0, y: 0, width: windowWidth/self.viewCount, height: 3)
-                }
-                self.scrollBtnView.addSubview(scrollIndicator)
-                self.scrollIndicator = scrollIndicator
-                
-                indicatorView.backgroundColor = UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1)
-                scrollIndicator.addSubview(indicatorView)
-                
-                
-                //创建按钮
-                var btnX:CGFloat = 0
-                var btnWidth = CGFloat()
-                if(self.viewCount > 4){
-                    btnWidth = 80
-                    self.btnWidth = btnWidth
-                }
-                else{
-                    btnWidth = windowWidth/self.viewCount
-                    self.btnWidth = btnWidth
-                }
-                for(var num = 0 ; num < json["label"].count ; num++){
-                    let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
-                    btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-                    btn.titleLabel?.font = UIFont.systemFontOfSize(16)
-                    self.scrollBtnView.addSubview(btn)
-                    btn.setTitle((self.labelName[num] as! String), forState: UIControlState.Normal)
-                    btn.tag = num
-                    btn.addTarget(self, action: Selector("pageTurn:"), forControlEvents: UIControlEvents.TouchUpInside)
-                    btnX += btnWidth
-                    self.btnArray.addObject(btn)
-                }
-                //创建页面
-                var viewX : CGFloat = 0
-                for(var num = 0 ; num < json["label"].count ; num++){
-                    let view = UIView(frame: CGRectMake(viewX, 0, windowWidth, windowHeight))
-                    view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
-                    self.rootView.addSubview(view)
-                    self.viewArray.addObject(view)
-                    viewX += windowWidth
-                }
-                //创建tableview
-                for(var num = 0 ; num < Int(self.viewCount) ; num++){
-                    var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-48))
-                    self.viewArray[num].addSubview(tableView)
-                    self.tableViewArray.addObject(tableView)
-                    tableView.tag = num
-                    tableView.backgroundColor = UIColor.whiteColor()
-                    tableView.dataSource = self
-                    tableView.delegate = self
-                    tableView.rowHeight = 230 * Consts.ratio
-                    tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
-                    tableView.footer.tag = num
-                    tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
-                }
-                
-                
-                /********************************/
-                 //排序按钮和label的设置           //
-                
-                self.setBtnOrder()
-                
-                
             }
         }
         if(self.isIdle == true){
@@ -216,6 +219,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             
             
             let scrollRootVC = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+            scrollRootVC.backgroundColor = Consts.grayView
             scrollRootVC.delegate = self
             scrollRootVC.directionalLockEnabled = true
             scrollRootVC.showsHorizontalScrollIndicator = false
@@ -258,7 +262,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 scrollIndicator.frame = CGRectMake(0, 37, 80 * self.viewCount, 3)
                 scrollIndicator.contentSize = CGSizeMake(80 * self.viewCount, 3)
                 indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
-                print("1")
             }
             else{
                 scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
@@ -296,26 +299,30 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             var viewX : CGFloat = 0
             for(var num = 0 ; num < Int(self.viewCount) ; num++){
                 let view = UIView(frame: CGRectMake(viewX, 0, windowWidth, windowHeight))
-                view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
+                view.backgroundColor = Consts.grayView
                 self.rootView.addSubview(view)
                 self.viewArray.addObject(view)
                 viewX += windowWidth
             }
             //创建tableview
             for(var num = 0 ; num < Int(self.viewCount) ; num++){
-                let tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-150))
+                let tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-60))
                 self.viewArray[num].addSubview(tableView)
                 self.tableViewArray.addObject(tableView)
                 tableView.tag = num
                 tableView.backgroundColor = UIColor.whiteColor()
                 tableView.dataSource = self
                 tableView.delegate = self
-                tableView.rowHeight = (windowHeight+100)/6
+                tableView.rowHeight = 230 * Consts.ratio
                 tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerIdleRefreshing:")
                 tableView.footer.tag = num
                 tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"headerIdleRefreshing:")
             }
              self.httpRequestIdleData(self.dataNum)
+            
+            var idleAddBtn = UIButton(frame: CGRectMake(windowWidth*0.8, windowHeight-130, 40,40))
+            idleAddBtn.setBackgroundImage(UIImage(named: "idle_Add"), forState: UIControlState.Normal)
+            self.view.addSubview(idleAddBtn)
             
             /********************************/
              //排序按钮和label的设置           //
@@ -498,7 +505,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         self.orderLabel.hidden = true
         self.view.addSubview(self.orderLabel)
         
-        let orderBtn1 = UIButton(frame: CGRectMake(10, 0, windowWidth/4.5, windowHeight*0.1))
+        let orderBtn1 = UIButton(frame: CGRectMake(20, 0, windowWidth/4.5, windowHeight*0.1))
         orderBtn1.setTitle("人气最高", forState: UIControlState.Normal)
         orderBtn1.titleLabel?.font = UIFont.systemFontOfSize(15)
         orderBtn1.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -511,20 +518,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         self.orderBtn1 = orderBtn1
         self.orderImage1 = orderImage1
         
-        let orderBtn2 = UIButton(frame:CGRectMake(CGRectGetMaxX(orderBtn1.frame)+5, 0, windowWidth/4.5, windowHeight*0.1))
-        orderBtn2.setTitle("评价最高", forState: UIControlState.Normal)
-        orderBtn2.titleLabel?.font = UIFont.systemFontOfSize(15)
-        orderBtn2.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        orderBtn2.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -40, 0)
-        orderBtn2.addTarget(self, action: Selector("orderBtn2Select:"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.orderLabel.addSubview(orderBtn2)
-        let orderImage2 = UIImageView(frame: CGRectMake(25, 10, 25, 25))
-        orderImage2.image = UIImage(named: "order_21")
-        orderBtn2.addSubview(orderImage2)
-        self.orderBtn2 = orderBtn2
-        self.orderImage2 = orderImage2
         
-        let orderBtn3 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn2.frame)+5, 0, windowWidth/4.5, windowHeight*0.1))
+        let orderBtn3 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn1.frame)+30, 0, windowWidth/4.5, windowHeight*0.1))
         orderBtn3.setTitle("最新发布", forState: UIControlState.Normal)
         orderBtn3.titleLabel?.font = UIFont.systemFontOfSize(15)
         orderBtn3.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -537,7 +532,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         self.orderBtn3 = orderBtn3
         self.orderImage3 = orderImage3
         
-        let orderBtn4 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn3.frame)+5, 0, windowWidth/4.5, windowHeight*0.1))
+        let orderBtn4 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn3.frame)+30, 0, windowWidth/4.5, windowHeight*0.1))
         orderBtn4.setTitle("价格最低", forState: UIControlState.Normal)
         orderBtn4.titleLabel?.font = UIFont.systemFontOfSize(15)
         orderBtn4.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -607,56 +602,83 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     }
     func orderBtn1Select(sender : UIButton){
         self.orderColorChange(0)
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
-            response in
-            let json = JSON(response.result.value!)
-            var responseJson = json["result"]
-            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
-            self.orderCount = 0
-            self.pageArray[self.pageView.currentPage] = 1
-            self.tableViewArray[self.pageView.currentPage].reloadData()
+        if(self.isIdle == false){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+                self.orderCount = 0
+                self.pageArray[self.pageView.currentPage] = 1
+                self.tableViewArray[self.pageView.currentPage].reloadData()
+            }
         }
-    }
-    func orderBtn2Select(sender : UIButton){
-        self.orderColorChange(1)
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"score"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
-            response in
-            let json = JSON(response.result.value!)
-            var responseJson = json["result"]
-            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
-            self.orderCount = 1
-            self.pageArray[self.pageView.currentPage] = 1
-            self.tableViewArray[self.pageView.currentPage].reloadData()
-
+        if(self.isIdle == true){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+                self.orderCount = 0
+                self.pageArray[self.pageView.currentPage] = 1
+                self.tableViewArray[self.pageView.currentPage].reloadData()
+            }
         }
+        
     }
+    
     func orderBtn3Select(sender : UIButton){
         self.orderColorChange(2)
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"last_update"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
-            response in
-            let json = JSON(response.result.value!)
-            var responseJson = json["result"]
-            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
-            self.orderCount = 2
-            self.pageArray[self.pageView.currentPage] = 1
-            self.tableViewArray[self.pageView.currentPage].reloadData()
-
-
+        if(self.isIdle == false){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"last_update"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+                self.orderCount = 2
+                self.pageArray[self.pageView.currentPage] = 1
+                self.tableViewArray[self.pageView.currentPage].reloadData()
+                
+                
+            }
+        }
+        if(self.isIdle == true){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+                self.orderCount = 2
+                self.pageArray[self.pageView.currentPage] = 1
+                self.tableViewArray[self.pageView.currentPage].reloadData()
+            }
         }
     }
     func orderBtn4Select(sender : UIButton){
         self.orderColorChange(3)
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"price"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
-            response in
-            let json = JSON(response.result.value!)
-            var responseJson = json["result"]
-            self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
-            self.orderCount = 3
-            self.pageArray[self.pageView.currentPage] = 1
-            self.tableViewArray[self.pageView.currentPage].reloadData()
-
-
+        if(self.isIdle == false){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.categoryName,"label":self.labelName[self.pageView.currentPage],"order":"price"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+                self.orderCount = 3
+                self.pageArray[self.pageView.currentPage] = 1
+                self.tableViewArray[self.pageView.currentPage].reloadData()
+            }
         }
+        if(self.isIdle == true){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+                response in
+                let json = JSON(response.result.value!)
+                var responseJson = json["result"]
+                self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
+                self.orderCount = 3
+                self.pageArray[self.pageView.currentPage] = 1
+                self.tableViewArray[self.pageView.currentPage].reloadData()
+            }
+        }
+        
     }
     
     //tableview 相关函数
@@ -685,7 +707,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = false
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
-                    print(viewCell.dataCell)
                     return viewCell
                 }
             }
@@ -697,8 +718,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = true
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
-                    print(viewCell.dataCell)
-
                     return viewCell
                 }
 
@@ -713,7 +732,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = IdleGoodViewController()
             vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
-            self.navigationController?.pushViewController(vc, animated: true)
+                        self.navigationController?.pushViewController(vc, animated: true)
         }else{
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = ShopGoodViewController()
@@ -873,6 +892,9 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     
     func goBack(){
         self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    func isEmptyView(){
+        self.view.backgroundColor = UIColor.whiteColor()
     }
     
 }

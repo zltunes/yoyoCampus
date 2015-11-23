@@ -53,7 +53,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     }
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
+        self.view.backgroundColor = Consts.grayView
         super.viewDidLoad()
         self.httpGetGroup()
         Consts.setUpNavigationBarWithBackButton(self, title: self.shopTitleName , backTitle: "<")

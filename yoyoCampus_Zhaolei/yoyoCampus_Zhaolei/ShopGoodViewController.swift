@@ -498,6 +498,7 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
+        print(json)
         switch(tag){
             case "goodsView":
                 self.image = json["image"].URL!

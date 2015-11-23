@@ -36,7 +36,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
     }
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
+        self.view.backgroundColor = Consts.grayView
         Consts.setUpNavigationBarWithBackButton(self,title: "商家", backTitle: "<")
         super.viewDidLoad()
         self.getShopCategory()
@@ -101,6 +101,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         
         //根scrollview
         let scrollRootVC = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        scrollRootVC.backgroundColor = Consts.grayView
         scrollRootVC.delegate = self
         scrollRootVC.directionalLockEnabled = true
         scrollRootVC.showsHorizontalScrollIndicator = true
@@ -159,7 +160,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         var viewX : CGFloat = 0
         for(var num = 0 ; num < self.viewCount ; num++){
             let view = UIView(frame: CGRectMake(viewX, 0, windowWidth, windowHeight))
-            view.backgroundColor = UIColor(red: 235/255, green: 234/255, blue: 234/255, alpha: 1)
+            view.backgroundColor = Consts.grayView
             self.rootView.addSubview(view)
             self.viewArray.addObject(view)
             viewX += windowWidth
@@ -167,7 +168,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         
         //tableView
         for(var num = 0 ; num < self.viewCount ; num++){
-            var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-150))
+            var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-50))
             self.viewArray[num].addSubview(tableView)
             self.tableViewArray.addObject(tableView)
             tableView.tag = num
