@@ -67,13 +67,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("faie.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("favade.plist")
         
         let  plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
         if plistDict == nil{
 //            为.plist创建字典
-            var dict:NSMutableDictionary = ["access_token":""]
+            var dict:NSMutableDictionary = ["access_token":"guest"]
             dict.setObject(false, forKey: "isLogin")
             dict.setObject("", forKey: "tel")
             dict.setObject("", forKey: "photo")

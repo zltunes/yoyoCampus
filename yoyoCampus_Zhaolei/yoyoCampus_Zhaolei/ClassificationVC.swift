@@ -627,7 +627,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             self.orderCount = 1
             self.pageArray[self.pageView.currentPage] = 1
             self.tableViewArray[self.pageView.currentPage].reloadData()
-
+            
         }
     }
     func orderBtn3Select(sender : UIButton){

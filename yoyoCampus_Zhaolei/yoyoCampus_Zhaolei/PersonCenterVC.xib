@@ -35,17 +35,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9as-EP-H8S">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="171"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiH-LO-9Ws">
-                            <rect key="frame" x="120" y="15" width="80" height="80"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="KiH-LO-9Ws" secondAttribute="height" multiplier="1:1" id="bNx-9c-ck2"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="shoppage_btn_head portrait"/>
-                            <connections>
-                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="ubd-WK-qPH"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQq-aq-M3p">
                             <rect key="frame" x="59" y="136" width="66" height="30"/>
                             <animations/>
@@ -111,6 +100,22 @@
                             </state>
                             <connections>
                                 <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="2gx-CR-06X"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiH-LO-9Ws">
+                            <rect key="frame" x="120" y="15" width="80" height="80"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="KiH-LO-9Ws" secondAttribute="height" multiplier="1:1" id="bNx-9c-ck2"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="shoppage_btn_head portrait"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="40"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="ubd-WK-qPH"/>
                             </connections>
                         </button>
                     </subviews>

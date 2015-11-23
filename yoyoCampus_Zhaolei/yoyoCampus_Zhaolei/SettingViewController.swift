@@ -174,7 +174,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 print("logout")
                 plistDict.setObject(false, forKey: "isLogin")
                 plistDict.setObject("", forKey: "tel")
-                plistDict.setObject("", forKey: "access_token")
+                plistDict.setObject("guest", forKey: "access_token")
                 plistDict.setObject("", forKey: "photo")
                 plistDict.setObject("", forKey: "name")
                 plistDict.setObject("", forKey: "enroll_year")

@@ -14,7 +14,7 @@ import SwiftyJSON
 
 let  windowWidth = UIScreen .mainScreen().bounds.width
 let  windowHeight = UIScreen .mainScreen().bounds.height
-let httpHeader = ["access_token": "d2bfd4c2-8460-11e5-82bd-00163e021195"]
+let httpHeader = ["access_token": AppDelegate.access_token]
 
 
 class RootVC: UIViewController,UIScrollViewDelegate{
@@ -29,7 +29,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+
         Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.location, backTitle: "")
         
         let leftItem = UIBarButtonItem(image: UIImage.init(named: "shouye_dingwei_xxhdpi.png"), style: .Plain, target: self, action: "selectLocation")
