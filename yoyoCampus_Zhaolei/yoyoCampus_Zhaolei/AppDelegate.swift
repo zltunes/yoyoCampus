@@ -45,9 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
     var tabBarController = UITabBarController()
     
 //    三个tab各自的navigationController
-    var navigationController_home = CustomNavigationController()
-    var navigationController_shop = CustomNavigationController()
-    var navigationController_my = CustomNavigationController()
+    static var navigationController_home = CustomNavigationController()
+    static var navigationController_shop = CustomNavigationController()
+    static var navigationController_my = CustomNavigationController()
     
 //    三个rootViewController
     var homeVC = RootVC()
@@ -126,11 +126,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
         self.myVC.tabBarItem.selectedImage = UIImage.init(named: "my center_btn_me_p_xxhdpi")
         self.myVC.title = "个人"
         
-        self.navigationController_home = CustomNavigationController(rootViewController: homeVC)
-        self.navigationController_shop = CustomNavigationController(rootViewController: shopVC)
-        self.navigationController_my = CustomNavigationController(rootViewController: myVC)
+        AppDelegate.navigationController_home = CustomNavigationController(rootViewController: homeVC)
+        AppDelegate.navigationController_shop = CustomNavigationController(rootViewController: shopVC)
+        AppDelegate.navigationController_my = CustomNavigationController(rootViewController: myVC)
 
-        self.tabBarController.viewControllers = [navigationController_home,navigationController_shop,navigationController_my]
+        self.tabBarController.viewControllers = [AppDelegate.navigationController_home,AppDelegate.navigationController_shop,AppDelegate.navigationController_my]
         self.tabBarController.tabBar.tintColor = Consts.tintGreen
         self.window?.rootViewController = self.tabBarController
         
