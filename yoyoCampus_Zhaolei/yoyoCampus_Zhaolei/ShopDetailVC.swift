@@ -104,6 +104,7 @@ class ShopDetailVC: UIViewController {
         complainBtn.layer.cornerRadius = 5
         complainBtn.setTitle("举 报 商 家", forState: UIControlState.Normal)
         complainBtn.tintColor = UIColor.whiteColor()
+        complainBtn.addTarget(self, action: Selector("gotoComplain:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(complainBtn)
         
         let shopText = UILabel(frame: CGRectMake(40,170,windowWidth-90,downView.frame.height-180))
@@ -156,5 +157,11 @@ class ShopDetailVC: UIViewController {
         }
     }
     
+    func gotoComplain(sender : UIButton){
+        let shopComplain = ShopComplain()
+        shopComplain.shopId = self.shopID
+        self.navigationController?.pushViewController(shopComplain, animated:true)
+        
+    }
     
 }

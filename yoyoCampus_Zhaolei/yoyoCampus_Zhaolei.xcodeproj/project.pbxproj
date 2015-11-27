@@ -162,6 +162,7 @@
 		AD9002521BFADA170019219A /* MyIdleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9002511BFADA170019219A /* MyIdleCell.swift */; };
 		AD994EDB1C086E3E00E805E9 /* myfavorite_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AD994ED91C086E3E00E805E9 /* myfavorite_1.png */; };
 		AD994EDC1C086E3E00E805E9 /* myfavorite_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AD994EDA1C086E3E00E805E9 /* myfavorite_2.png */; };
+		AD994EE01C08777700E805E9 /* ShopComplain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD994EDF1C08777700E805E9 /* ShopComplain.swift */; };
 		ADAC087F1C02F9B30053B0EF /* order_11.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC087D1C02F9B30053B0EF /* order_11.png */; };
 		ADAC08801C02F9B30053B0EF /* order_22.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC087E1C02F9B30053B0EF /* order_22.png */; };
 		ADAC08821C02FDFB0053B0EF /* idle_Add.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC08811C02FDFB0053B0EF /* idle_Add.png */; };
@@ -453,6 +454,7 @@
 		AD9002511BFADA170019219A /* MyIdleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIdleCell.swift; sourceTree = "<group>"; };
 		AD994ED91C086E3E00E805E9 /* myfavorite_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfavorite_1.png; sourceTree = "<group>"; };
 		AD994EDA1C086E3E00E805E9 /* myfavorite_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfavorite_2.png; sourceTree = "<group>"; };
+		AD994EDF1C08777700E805E9 /* ShopComplain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopComplain.swift; sourceTree = "<group>"; };
 		ADAC087D1C02F9B30053B0EF /* order_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_11.png; sourceTree = "<group>"; };
 		ADAC087E1C02F9B30053B0EF /* order_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_22.png; sourceTree = "<group>"; };
 		ADAC08811C02FDFB0053B0EF /* idle_Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle_Add.png; sourceTree = "<group>"; };
@@ -1302,6 +1304,7 @@
 			children = (
 				AD9002451BF9B7B90019219A /* ShopDetailVC.swift */,
 				AD9002491BF9CB730019219A /* DownView.swift */,
+				AD994EDF1C08777700E805E9 /* ShopComplain.swift */,
 			);
 			name = "商家详情";
 			sourceTree = "<group>";
@@ -1658,6 +1661,7 @@
 				ADCF87421BFC6606003958E0 /* campView.swift in Sources */,
 				35E7C1381BD9127E00DB6141 /* OrdersVC.swift in Sources */,
 				3590FDEB1BF9DE7C00261CBB /* SearchGoodsCell.swift in Sources */,
+				AD994EE01C08777700E805E9 /* ShopComplain.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
 				35E7C1441BD9155600DB6141 /* AboutVC.swift in Sources */,
 				3543B0F11BD777DF00B2BA60 /* PersonalInfomationViewController.swift in Sources */,
