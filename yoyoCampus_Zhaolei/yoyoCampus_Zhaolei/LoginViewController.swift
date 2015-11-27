@@ -376,13 +376,6 @@ class LoginViewController: UIViewController,APIDelegate{
         self.view.endEditing(true)
     }
     
-//    测试进入其他界面
-    func test(){
-        let vc = TestViewController()
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }

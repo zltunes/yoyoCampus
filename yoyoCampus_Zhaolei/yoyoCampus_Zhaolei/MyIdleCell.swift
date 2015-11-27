@@ -19,7 +19,7 @@ class MyIdleCell: UITableViewCell,APIDelegate{
     
     var idleImageStr:String = ""
     var idleName:String = ""
-    var idlePrice:Int = 0
+    var idlePrice:Float = 0.0
     var idelDescription:String = ""
     var idleCategory:String = ""
     
@@ -101,7 +101,7 @@ class MyIdleCell: UITableViewCell,APIDelegate{
         
         self.idleImageStr = data["image"]as! String
         self.idleName = data["name"]as! String
-        self.idlePrice = data["price"]as! Int
+        self.idlePrice = Float(data["price"] as! Int)/100
 
         
         self.idleImageView.sd_setImageWithURL(NSURL(string: idleImageStr))

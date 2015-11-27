@@ -95,7 +95,6 @@ class OrderPayVC: UIViewController,APIDelegate {
                             self.chargeData = try! NSJSONSerialization.dataWithJSONObject(response.result.value!, options: NSJSONWritingOptions())
                             self.chargeString = NSString(data: self.chargeData, encoding: NSUTF8StringEncoding)! as String
                             Pingpp.createPayment(self.chargeString, appURLScheme: "wxcd544705acc90854"){ (result, error) -> Void in
-                                print("result:\(result)")
                                 let vc = OrderDetailVC()
                                 vc.order_ID = self.order_ID
                                 self.hidesBottomBarWhenPushed = true

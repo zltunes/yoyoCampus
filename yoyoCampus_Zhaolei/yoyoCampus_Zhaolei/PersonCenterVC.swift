@@ -253,13 +253,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             }
         }
     }
-    
-    func test(){
-        let vc = TestViewController()
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
+
     func didReceiveJsonResults(json: JSON, tag: String) {
         
     }

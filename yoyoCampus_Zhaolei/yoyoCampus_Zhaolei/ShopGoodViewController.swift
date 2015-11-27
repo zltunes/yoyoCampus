@@ -517,7 +517,6 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        print(json)
         switch(tag){
             case "goodsView":
                 self.shop_ID = json["shop_id"].string!

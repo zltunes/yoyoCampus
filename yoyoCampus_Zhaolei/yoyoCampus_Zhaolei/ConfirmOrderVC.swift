@@ -104,7 +104,6 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
         switch(tag){
             case "orderCreate":
                 let orderID = json["order_id"]
-                print("order_id:\(orderID)")
                 let vc = OrderPayVC()
                 vc.order_ID = json["order_id"].string!
                 self.navigationController?.pushViewController(vc, animated: true)

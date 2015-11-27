@@ -191,6 +191,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     //创建tableview
                     for(var num = 0 ; num < Int(self.viewCount) ; num++){
                         var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-48))
+                        self.setExtraCellLineHidden(tableView)
                         self.viewArray[num].addSubview(tableView)
                         self.tableViewArray.addObject(tableView)
                         tableView.tag = num
@@ -307,6 +308,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             //创建tableview
             for(var num = 0 ; num < Int(self.viewCount) ; num++){
                 let tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-60))
+                self.setExtraCellLineHidden(tableView)
                 self.viewArray[num].addSubview(tableView)
                 self.tableViewArray.addObject(tableView)
                 tableView.tag = num
@@ -351,6 +353,12 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         let vc = SearchVC()
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setExtraCellLineHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
     }
     
     func addIdle(){
