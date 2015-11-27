@@ -67,11 +67,20 @@ class ShopComplain: UIViewController,UITextViewDelegate {
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     func gotoCommit(sender:UIButton){
-        Alamofire.request(.POST, "http://api2.hloli.me:9001/v1.0/report/",headers:httpHeader,parameters:["shop_id":self.shopId,"content":self.complainText.text!],encoding:.JSON).responseJSON(){
+        if(self.complainText.text.isEmpty){
+            Tool.showErrorHUD("反馈不可为空!")
+        }else{
+            Alamofire.request(.POST, "http://api2.hloli.me:9001/v1.0/report/",headers:httpHeader,parameters:["shop_id":self.shopId,"content":self.complainText.text!],encoding:.JSON).responseJSON(){
             response in
-            
+            if(response.result.error == nil){
+                Tool.showSuccessHUD("感谢您的反馈!")
+                self.navigationController?.popViewControllerAnimated(true)
+            }
         }
+        }
+        
     }
  
     func textViewDidChange(textView: UITextView) {
@@ -82,6 +91,10 @@ class ShopComplain: UIViewController,UITextViewDelegate {
         else{
             self.placeLabel.hidden = true
         }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.complainText.resignFirstResponder()
     }
 
 }
