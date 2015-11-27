@@ -25,6 +25,8 @@ class ShopDetailVC: UIViewController {
     var shopAdd = UILabel()
     var shopDescription = UILabel()
     var shopText = UILabel()
+    var btnCollectStar = UIButton()
+    var isCollect = Bool()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +51,29 @@ class ShopDetailVC: UIViewController {
             self.shopPhone.text = json["phone_num"].string!
             self.shopAdd.text = json["address"].string!
             self.shopText.text = json["description"].string!
-
             Consts.setUpNavigationBarWithBackButton(self, title: self.shopName.text, backTitle: "<")
-
+            
+            if(json["is_collected"].intValue == 0){
+                self.btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_1"), forState: UIControlState.Normal)
+                self.isCollect = false
+            }
+            if(json["is_collected"].intValue == 1){
+                self.btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_2"), forState: UIControlState.Normal)
+                self.isCollect = true
+            }
         }
     }
     
     func setView(){
+        
+        let collectStar = UIView(frame: CGRectMake(windowWidth*0.9, 20, 20, 20))
+        var btnCollectStar = UIButton(frame: CGRectMake(0, 0, 20, 20))
+        btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_1.png"), forState: UIControlState.Normal)
+        btnCollectStar.addTarget(self, action: Selector("collectShop:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.btnCollectStar = btnCollectStar
+        collectStar.addSubview(btnCollectStar)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: collectStar)
+        
         let upView = UIView(frame: CGRectMake(0,0,windowWidth,windowHeight*0.25))
         upView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(upView)
@@ -119,6 +137,23 @@ class ShopDetailVC: UIViewController {
     }
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func collectShop(sender : UIButton){
+        if(self.isCollect == false){
+            Alamofire.request(.POST, "http://api2.hloli.me:9001/v1.0/shop/collection/" + self.shopID,headers:httpHeader).responseJSON(){
+                response in
+                 self.btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_2"), forState: UIControlState.Normal)
+                self.isCollect == true
+            }
+        }
+        if(self.isCollect == true){
+            Alamofire.request(.DELETE, "http://api2.hloli.me:9001/v1.0/shop/collection/" + self.shopID,headers:httpHeader).responseJSON(){
+                response in
+                self.btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_1"), forState: UIControlState.Normal)
+                self.isCollect == false
+            }
+        }
     }
     
     
