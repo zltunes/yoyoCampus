@@ -11,10 +11,21 @@ import Alamofire
 import SwiftyJSON
 import MJRefresh
 
-class MyIdleCell: UITableViewCell {
-    var idleImage = UIImageView()
-    var idleName = UILabel()
-    var idlePrice = UILabel()
+class MyIdleCell: UITableViewCell,APIDelegate{
+    
+    var idleImageView = UIImageView()
+    var idleNameLabel = UILabel()
+    var idlePriceLabel = UILabel()
+    
+    var idleImageStr:String = ""
+    var idleName:String = ""
+    var idlePrice:Float = 0.0
+    var idelDescription:String = ""
+    var idleCategory:String = ""
+    
+    var api = YoYoAPI()
+    var idleDetailURL:String = ""
+    
     var btnEdit = UIButton()
     var btnState = UIButton()
     var isActive : Bool = Bool()
@@ -35,20 +46,22 @@ class MyIdleCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        api.delegate = self
+        
         let idleImage = UIImageView(frame: CGRectMake(5, 15, windowWidth/3, windowWidth/6+20))
         idleImage.backgroundColor = UIColor.yellowColor()
         self.addSubview(idleImage)
-        self.idleImage = idleImage
+        self.idleImageView = idleImage
         
         let idleName = UILabel(frame: CGRectMake(CGRectGetMaxX(idleImage.frame)+20, 17, windowWidth/3, 20))
         idleName.font = UIFont(name: "Verdana", size: 17)
-        self.idleName = idleName
+        self.idleNameLabel = idleName
         self.addSubview(idleName)
         
         let idlePrice = UILabel(frame: CGRectMake(idleName.frame.origin.x,CGRectGetMaxY(idleName.frame)+30, 100, 20))
         idlePrice.textColor = UIColor.redColor()
         self.addSubview(idlePrice)
-        self.idlePrice = idlePrice
+        self.idlePriceLabel = idlePrice
         
         let btnEdit = UIButton(frame: CGRectMake(windowWidth*0.8, 20, 60, 25))
         btnEdit.layer.borderWidth = 1
@@ -58,6 +71,7 @@ class MyIdleCell: UITableViewCell {
         btnEdit.setTitle("编辑", forState: UIControlState.Normal)
         btnEdit.setTitleColor(UIColor(red: 73/255, green: 185/255, blue: 162/255, alpha: 1), forState: UIControlState.Normal)
         btnEdit.titleLabel?.font = UIFont(name: "Verdana", size: 14)
+        btnEdit.addTarget(self, action: "edit", forControlEvents: .TouchUpInside)
         self.contentView.addSubview(btnEdit)
         self.btnEdit = btnEdit
         
@@ -72,8 +86,7 @@ class MyIdleCell: UITableViewCell {
         btnState.layer.cornerRadius = 5
         self.contentView.addSubview(btnState)
         self.btnState = btnState
-        
-        
+
     }
 
     func setCellData(data : AnyObject){
@@ -86,11 +99,25 @@ class MyIdleCell: UITableViewCell {
             btnState.addTarget(self, action: Selector("clickOn:"), forControlEvents: UIControlEvents.TouchUpInside)
         }
         
-        self.idleImage.sd_setImageWithURL(NSURL(string: data["image"]!! as! String))
-        self.idleName.text = (data["name"]!! as! String)
-        self.idlePrice.text = "￥" + String(data["price"]as! Int)
+        self.idleImageStr = data["image"]as! String
+        self.idleName = data["name"]as! String
+        self.idlePrice = Float(data["price"] as! Int)/100
+
         
-        self.idleID = data["idle_id"]!! as! String
+        self.idleImageView.sd_setImageWithURL(NSURL(string: idleImageStr))
+        self.idleNameLabel.text = idleName
+        self.idlePriceLabel.text = "￥ \(self.idlePrice)"
+        
+        self.idleID = data["idle_id"]as! String
+        
+        idleDetailURL = "\(Consts.mainUrl)/v1.0/idle/\(idleID)"
+        
+        api.httpRequest("GET", url: idleDetailURL, params: nil, tag: "detail")
+    }
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        self.idelDescription = json["description"].string!
+        self.idleCategory = json["category"].string!
     }
     
     func clickOff(sender : UIButton){
@@ -102,6 +129,7 @@ class MyIdleCell: UITableViewCell {
             
         }
     }
+    
     func clickOn(sender : UIButton){
         Alamofire.request(.PUT, "http://api2.hloli.me:9001/v1.0/idle/\(self.idleID)" ,headers:httpHeader,parameters:["is_active":1],encoding:.JSON).responseJSON{
             response in
@@ -109,6 +137,19 @@ class MyIdleCell: UITableViewCell {
             self.belongedVC.resultOffArray.removeObjectAtIndex(self.cellIndex)
             self.belongedVC.tableViewOff.reloadData()
         }
+    }
+    
+    func edit(){
+        let vc = MyUploadGoodsViewController()
+        vc.infoData = ["category":idleCategory,"name":idleName,"price":idlePrice,"other":idelDescription]
+        vc.imgData = NSData(contentsOfURL: NSURL(string: self.idleImageStr)!)!
+        vc.imgUploaded = true
+        vc.idleID = self.idleID
+        vc.isEditIdleGoods = true
+        vc.uploadButton.sd_setImageWithURL(NSURL(string: self.idleImageStr), forState: .Normal)
+        
+        AppDelegate.navigationController_my.visibleViewController?.hidesBottomBarWhenPushed = true
+        AppDelegate.navigationController_my.pushViewController(vc, animated: true)
     }
     
     required init?(coder aDecoder: NSCoder) {

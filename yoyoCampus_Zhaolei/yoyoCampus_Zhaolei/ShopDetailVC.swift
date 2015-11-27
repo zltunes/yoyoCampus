@@ -134,8 +134,8 @@ class ShopDetailVC: UIViewController {
         self.downView.addSubview(shopAdd)
         self.shopAdd = shopAdd
         
-    
     }
+    
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }

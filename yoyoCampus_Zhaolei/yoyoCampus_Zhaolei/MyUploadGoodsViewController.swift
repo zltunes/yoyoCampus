@@ -10,6 +10,8 @@ import UIKit
 import SwiftyJSON
 
 class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate,UITableViewDataSource,AFPickerViewDataSource,AFPickerViewDelegate,UITextFieldDelegate,ACEExpandableTableViewDelegate,APIDelegate{
+
+    internal var isEditIdleGoods:Bool = false
     
     ///tags:
     //101:商品名称textField
@@ -24,7 +26,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     var staticLabel2 = UILabel()
     
     ///上传图片按钮
-    var uploadButton = UIButton()
+    internal var uploadButton = UIButton()
     
     ///下一步按钮
     var nextButton = UIButton()
@@ -43,17 +45,18 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     var api = YoYoAPI()
     
-    var idleID:String = ""
+    internal var idleID:String = ""
     
     ///上传
     var uploadURL:String = ""
     
     var uploadGoodsInfoURL:String = ""
     
-    ///闲置创建
-    
+    ///闲置类目
+    var idleCategoryURL:String = ""
+    var idleCategorysJSON:[JSON] = []
     ///滚动数据
-    var pickerData : NSMutableArray = ["生活用品","数码电子","课本","xxx","yyy","1","2","3","4","5"]
+    var pickerData : [String] = []
     
     ///picker当前选择缓存
     var pickerCache = "商品分类"
@@ -75,10 +78,10 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     var toMainPageButton = UIButton()
     
     ///当前状态,对应第几步:1-初始;
-    var currentState = 1
+    internal var currentState = 1
     
     ///用户选择分类暂存
-    var infoData : NSMutableDictionary = ["category":"商品分类","other":"","name":"","price":0]
+    internal var infoData : NSMutableDictionary = ["category":"商品分类","other":"","name":"","price":0]
     
     ///当前textview行高
     var textHeight : CGFloat = 80 * Consts.ratio
@@ -87,7 +90,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     var tapGesture = UITapGestureRecognizer()
     
     ///图片上传标记
-    var imgUploaded = false
+    internal var imgUploaded = false
 
 //    api param
     var param:[String:AnyObject] = ["":""]
@@ -176,6 +179,8 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         self.toMainPageButton = Consts.setUpButton("返 回 主 页", frame: CGRect(x: 74 * Consts.ratio, y: self.toGoodsButton.frame.maxY + 60 * Consts.ratio, width: 572 * Consts.ratio, height: 96 * Consts.ratio), font: Consts.ft18, radius: Consts.radius)
         self.toMainPageButton.hidden = true
         self.view.addSubview(self.toMainPageButton)
+        
+        setUpOnlineData("idleCategory")
     }
     
     func setUpGestures(){
@@ -316,6 +321,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     func setUpOnlineData(tag:String){
         switch(tag){
+            
             case "token":
             self.uploadURL = "\(Consts.mainUrl)/v1.0/static/token/"
             api.httpRequest("POST", url: self.uploadURL, params: nil, tag: "token")
@@ -323,7 +329,16 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         
             case "info":
             self.uploadGoodsInfoURL = "\(Consts.mainUrl)/v1.0/idle/"
-            api.httpRequest("POST", url: self.uploadGoodsInfoURL, params: self.param, tag: "info")
+            if(!isEditIdleGoods){
+                api.httpRequest("POST", url: self.uploadGoodsInfoURL, params: self.param, tag: "info")
+            }else{
+                api.httpRequest("PUT", url: self.uploadGoodsInfoURL, params: self.param, tag: "info")
+            }
+            break
+            
+            case "idleCategory":
+            self.idleCategoryURL = "\(Consts.mainUrl)/v1.0/category/idle/"
+            api.httpRequest("GET", url: self.idleCategoryURL, params: nil, tag: "idleCategory")
             break
             
         default:
@@ -359,13 +374,11 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
         }else if (sender.titleLabel?.text == "返回修改"){
             self.alert2.close()
         }else if (sender.titleLabel?.text == "确认提交"){
+            Tool.showProgressHUD("上传中")
             setUpOnlineData("token")
         }else if (sender.titleLabel?.text == "查 看 商 品 详 情"){
             let vc = IdleGoodViewController()
             vc.idle_id = self.idleID
-//            self.presentViewController(vc, animated: true, completion: { () -> Void in
-//                vc.setUpNavigaitonBar()
-//            })
             self.navigationController?.pushViewController(vc, animated: true)
         }else if (sender.titleLabel?.text == "返 回 主 页"){
             self.navigationController?.popToRootViewControllerAnimated(true)
@@ -541,6 +554,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                     cell.input.tag = 101
                 case 1:
                     cell.input.placeholder = "商品价格"
+                    cell.input.keyboardType = .NumberPad
                     let priceStr = self.infoData.objectForKey("price") as! Int
                     if(priceStr != 0){
                         cell.input.text = "\(priceStr)"
@@ -627,11 +641,11 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     func pickerView(pickerView: AFPickerView!, didSelectRow row: Int) {
 //        self.infoData.setValue(self.pickerData.objectAtIndex(row)as! String, forKey: "category")
-        self.pickerCache = self.pickerData.objectAtIndex(row)as! String
+        self.pickerCache = self.pickerData[row]
     }
     
     func pickerView(pickerView: AFPickerView!, titleForRow row: Int) -> String! {
-        return self.pickerData.objectAtIndex(row) as! String
+        return self.pickerData[row]
     }
     
     func numberOfRowsInPickerView(pickerView: AFPickerView!) -> Int {
@@ -728,10 +742,15 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
                 self.setUpOnlineData("info")
                 }, option: nil)
             break
+            
         case "info":
-            self.idleID = json["idle_id"].string!
-            print("个人闲置发布成功!idle_id:\(self.idleID)")
-            Tool.showSuccessHUD("提交成功!")
+            if(!self.isEditIdleGoods){
+                self.idleID = json["idle_id"].string!
+                Tool.showSuccessHUD("提交成功!")
+            }else{
+//                Tool.dismissHUD()
+                Tool.showSuccessHUD("修改成功!")
+            }
             self.alert2.close()
             self.staticLabel1.hidden = true
             self.successImg.image = UIImage(data: self.imgData)
@@ -745,6 +764,14 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             Consts.setUpNavigationBarWithBackButton(self, title: "发布成功", backTitle: nil)
             self.currentState = 3
             break
+            
+        case "idleCategory":
+            self.idleCategorysJSON = json["category"].array!
+            for idleCategoryJSON in idleCategorysJSON{
+                self.pickerData.append(idleCategoryJSON["name"].string!)
+            }
+            break
+
         default:
             break
             

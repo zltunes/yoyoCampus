@@ -16,7 +16,7 @@ import SDWebImage
 
 let  windowWidth = UIScreen .mainScreen().bounds.width
 let  windowHeight = UIScreen .mainScreen().bounds.height
-let httpHeader = ["access_token": "d2bfd4c2-8460-11e5-82bd-00163e021195"]
+let httpHeader = ["access_token": AppDelegate.access_token]
 
 
 class RootVC: UIViewController,UIScrollViewDelegate{
@@ -34,7 +34,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+
         Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.location, backTitle: "")
         
         let leftItem = UIBarButtonItem(image: UIImage.init(named: "shouye_dingwei_xxhdpi.png"), style: .Plain, target: self, action: "selectLocation")
@@ -64,6 +64,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         scrollRootView.showsHorizontalScrollIndicator = false
         scrollRootView.contentSize = CGSizeMake(windowWidth, windowHeight*1.8)
         scrollRootView.scrollEnabled = true
+        scrollRootView.showsVerticalScrollIndicator = false
         self.view.addSubview(scrollRootView)
 	    //banner的scrollView
         let scrollBannerView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight*0.25))
@@ -79,13 +80,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         self.scrollBannerView = scrollBannerView
         
         self.getAdv()
-//        let bannerView1 = UIImageView(frame: CGRectMake(windowWidth, 0, windowWidth, scrollBannerView.frame.size.height))
-//        bannerView1.image = UIImage(named: "banner1.png")
-//        scrollBannerView.addSubview(bannerView1)
-//
-//        let bannerView2 = UIImageView(frame: CGRectMake(0, 0, windowWidth, scrollBannerView.frame.size.height))
-//        bannerView2.image = UIImage(named: "banner2.png")
-//        scrollBannerView.addSubview(bannerView2)
+
         
         //6个按键的布置
         let btnBackView = UIView(frame: CGRectMake(0, CGRectGetMaxY(scrollBannerView.frame)+10, windowWidth, windowHeight*0.32))

@@ -367,22 +367,31 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     //    评论点赞
     func remark_likeBtnClicked(sender:UIButton){
+        if(AppDelegate.isLogin == true){
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! shopRemarkCell
         self.commentLikeURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)/comment/\(cell.commentID)/useful/"
         commentsJSON[sender.tag]["useful_clicked"] = 1
         commentsJSON[sender.tag]["useful_number"].int!++
         setUpOnlineData("commentLike")
+        }else{
+            Tool.showErrorHUD("请先登录!")
+        }
     }
     
     //     评论取消点赞
     func remark_unlikeBtnClicked(sender:UIButton){
+        if(AppDelegate.isLogin == true){
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! shopRemarkCell
         self.commentUnlikeURL = "\(Consts.mainUrl)/v1.0/goods/\(self.goods_ID)/comment/\(cell.commentID)/useful/"
         commentsJSON[sender.tag]["useful_clicked"] = 0
         commentsJSON[sender.tag]["useful_number"].int!--
         setUpOnlineData("commentUnlike")
+        }else{
+            Tool.showErrorHUD("请先登录!")
+        }
+        
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -433,7 +442,11 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case 4://收藏
+            if(AppDelegate.isLogin == true){
             setUpOnlineData("collect")
+            }else{
+                Tool.showErrorHUD("请先登录!")
+            }
             break
         case 5://咨询
             self.showMenu()
@@ -504,7 +517,6 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func didReceiveJsonResults(json: JSON, tag: String) {
-        print(json)
         switch(tag){
             case "goodsView":
                 self.shop_ID = json["shop_id"].string!

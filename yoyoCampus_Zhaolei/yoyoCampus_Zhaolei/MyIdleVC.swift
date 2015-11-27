@@ -109,6 +109,7 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         
         var tableViewOn = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
         view1.addSubview(tableViewOn)
+        self.setExtralCellLinesHidden(tableViewOn)
         tableViewOn.rowHeight = windowHeight/5
         tableViewOn.delegate = self
         tableViewOn.dataSource = self
@@ -119,6 +120,7 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         self.tableViewOn = tableViewOn
         
         var tableViewOff = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
+        self.setExtralCellLinesHidden(tableViewOff)
         tableViewOff.rowHeight = windowHeight/5
         tableViewOff.dataSource = self
         tableViewOff.delegate = self
@@ -154,6 +156,12 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
             self.tableViewOn.reloadData()
             self.tableViewOff.reloadData()
         }
+    }
+    
+    func setExtralCellLinesHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -53,15 +53,11 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
     
     func setUpNavigationBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "个人中心", backTitle: "")
-        
-        let right = UIBarButtonItem(title: "test", style: .Plain, target: self, action: "test")
-        right.tintColor = Consts.white
-        self.navigationItem.rightBarButtonItem = right
     }
     
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
-        
+        self.photoBtn.layer.cornerRadius = self.photoBtn.frame.width/2
         self.plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
         
         
@@ -257,13 +253,7 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
             }
         }
     }
-    
-    func test(){
-        let vc = TestViewController()
-        self.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
+
     func didReceiveJsonResults(json: JSON, tag: String) {
         
     }

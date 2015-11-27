@@ -345,7 +345,9 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
         
         case 1:
             //店铺详情
-            Tool.showSuccessHUD("进入店铺!")
+            let vc = ShopGoodsVC()
+            vc.shopID = orderDetailJSON["shop","shop_id"].string!
+            self.navigationController?.pushViewController(vc, animated: true)
             break
             
         default:

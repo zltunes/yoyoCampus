@@ -191,6 +191,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     //创建tableview
                     for(var num = 0 ; num < Int(self.viewCount) ; num++){
                         var tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-48))
+                        self.setExtraCellLineHidden(tableView)
                         self.viewArray[num].addSubview(tableView)
                         self.tableViewArray.addObject(tableView)
                         tableView.tag = num
@@ -214,9 +215,9 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 }
             }
         }
+        
         if(self.isIdle == true){
             self.viewCount = CGFloat(self.idleCategory.count)
-            
             
             let scrollRootVC = UIScrollView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
             scrollRootVC.backgroundColor = Consts.grayView
@@ -307,6 +308,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             //创建tableview
             for(var num = 0 ; num < Int(self.viewCount) ; num++){
                 let tableView = UITableView(frame: CGRectMake(0, 43, windowWidth, windowHeight-60))
+                self.setExtraCellLineHidden(tableView)
                 self.viewArray[num].addSubview(tableView)
                 self.tableViewArray.addObject(tableView)
                 tableView.tag = num
@@ -322,21 +324,11 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             
             var idleAddBtn = UIButton(frame: CGRectMake(windowWidth*0.8, windowHeight-130, 40,40))
             idleAddBtn.setBackgroundImage(UIImage(named: "idle_Add"), forState: UIControlState.Normal)
+            idleAddBtn.addTarget(self, action: "addIdle", forControlEvents: .TouchUpInside)
             self.view.addSubview(idleAddBtn)
             
-            /********************************/
-             //排序按钮和label的设置           //
-            
            self.setBtnOrder()
-
-            
         }
-        
-        
-        /*******************************/
-   
-      
-
         
         //搜索和排序按键
         let btnOrder = UIButton(frame: CGRectMake(windowWidth*0.09, 23, 20, 20))
@@ -363,15 +355,22 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-
+    func setExtraCellLineHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
+    }
+    
+    func addIdle(){
+        let vc = MyUploadGoodsViewController()
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if(scrollView == self.rootView){
@@ -419,6 +418,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             }
         }
     }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if(scrollView == self.rootView){
             let offset : CGPoint = scrollView.contentOffset
@@ -719,7 +719,6 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     viewCell.isIdleCell = true
                     viewCell.selectionStyle = UITableViewCellSelectionStyle.None
                     viewCell.setData(self.resultArray[n] .objectAtIndex(indexPath.row))
-
                     return viewCell
                 }
 
@@ -734,6 +733,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = IdleGoodViewController()
             vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
+            self.navigationController?.pushViewController(vc, animated: true)
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
             self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)

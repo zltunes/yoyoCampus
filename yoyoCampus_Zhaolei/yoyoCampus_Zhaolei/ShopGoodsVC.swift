@@ -71,7 +71,6 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         
         Alamofire.request(.GET, self.groupURL, headers: httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
             response in
-            print(response.result.value)
             let json = JSON(response.result.value!)
             var responseJson = json["group"]
             for(var num = 0 ; num < responseJson.count ; num++){
@@ -211,11 +210,12 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         //tableView
         for(var num = 0 ; num < self.viewCount ; num++){
             var tableView = UITableView()
+            self.setExtraCellLineHidden(tableView)
             if(self.isSingleView == true){
-                 tableView.frame = CGRectMake(0, 0, windowWidth, windowHeight-150)
+                 tableView.frame = CGRectMake(0, 0, windowWidth, windowHeight-50)
             }
             if(self.isSingleView == false){
-                 tableView.frame = CGRectMake(0, 43, windowWidth, windowHeight-150)
+                 tableView.frame = CGRectMake(0, 43, windowWidth, windowHeight-50)
             }
             self.viewArray[num].addSubview(tableView)
             self.tableViewArray.addObject(tableView)
@@ -239,6 +239,12 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         
         
         
+    }
+    
+    func setExtraCellLineHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

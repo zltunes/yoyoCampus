@@ -116,6 +116,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         
         var tableViewGoods = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
         view1.addSubview(tableViewGoods)
+        self.setExtralCellLinesHidden(tableViewGoods)
         tableViewGoods.rowHeight = windowHeight/5
         tableViewGoods.delegate = self
         tableViewGoods.dataSource = self
@@ -126,6 +127,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         self.tableViewGoods = tableViewGoods
         
         var tableViewShop = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
+        self.setExtralCellLinesHidden(tableViewShop)
         tableViewShop.rowHeight = windowHeight/5
         tableViewShop.dataSource = self
         tableViewShop.delegate = self
@@ -353,6 +355,11 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         }
     }
     
+    func setExtralCellLinesHidden(tableView:UITableView){
+        let view = UIView()
+        view.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = view
+    }
     
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)

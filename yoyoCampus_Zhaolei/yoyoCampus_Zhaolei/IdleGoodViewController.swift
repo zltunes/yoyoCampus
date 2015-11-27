@@ -160,9 +160,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     }
     
     func setUpInitialLooking(){
-//        Tool.showProgressHUD("加载中")
-        
-        print(self.idle_id)
         
         let newWidth = self.view.frame.width
         
@@ -375,14 +372,20 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     @IBAction func BtnClicked(sender: UIButton) {
         switch(sender.tag){
         case 0://点赞
-            print("点赞")
-            setUpOnlineData("idleLike")
-            self.praiseBtn.tag = 10
+            if(AppDelegate.isLogin == true){
+                setUpOnlineData("idleLike")
+                self.praiseBtn.tag = 10
+            }else{
+                Tool.showErrorHUD("请先登录!")
+            }
             break
         case 10://取消点赞
-            print("取消点赞")
-            setUpOnlineData("idleUnlike")
-            self.praiseBtn.tag = 0
+            if(AppDelegate.isLogin == true){
+                setUpOnlineData("idleUnlike")
+                self.praiseBtn.tag = 0
+            }else{
+                Tool.showErrorHUD("请先登录!")
+            }
             break
         case 1://新东方
             break
@@ -393,22 +396,34 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             self.horizontalScroll.contentOffset = CGPoint(x:self.horizontalScroll.frame.width, y: 0)
             break
         case 4://收藏
+            if(AppDelegate.isLogin == true){
             setUpOnlineData("collect")
+            }else{
+                Tool.showErrorHUD("请先登录!")
+            }
         case 11://取消收藏
+            if(AppDelegate.isLogin == true){
             setUpOnlineData("collectCancel")
+            }else{
+                Tool.showErrorHUD("请先登录!")
+            }
             break
         case 5://咨询
             self.showMenu()
             break
         case 6://发表
-            self.remarkTextView.resignFirstResponder()
+            if(AppDelegate.isLogin == true){
+                self.remarkTextView.resignFirstResponder()
             if(self.remarkTextView.text.isEmpty || self.remarkTextView.text == "请评论......"){
                 
             }else{
                 self.param_commentCreate = ["content":self.remarkTextView.text]
                 setUpOnlineData("commentCreate")
             }
-            self.remarkTextView.text = "请评论......"
+                self.remarkTextView.text = "请评论......"
+            }else{
+                Tool.showErrorHUD("请先登录!")
+            }
             break
             
         default:
@@ -417,21 +432,29 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     }
 //    评论点赞
     func remark_likeBtnClicked(sender:UIButton){
+        if(AppDelegate.isLogin == true){
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
         self.commentLikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
         commentsJSON[sender.tag]["useful_clicked"] = true
         commentsJSON[sender.tag]["useful_number"].int!++
         setUpOnlineData("commentLike")
+        }else{
+            Tool.showErrorHUD("请先登录!")
+        }
     }
 //     评论取消点赞
     func remark_unlikeBtnClicked(sender:UIButton){
+        if(AppDelegate.isLogin == true){
         let indexpath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let cell = self.remarkTableView.cellForRowAtIndexPath(indexpath) as! remarkCell
         self.commentUnlikeURL = "\(Consts.mainUrl)/v1.0/idle/\(self.idle_id)/comment/\(cell.commentID)/useful/"
         commentsJSON[sender.tag]["useful_clicked"] = false
         commentsJSON[sender.tag]["useful_number"].int!--
         setUpOnlineData("commentUnlike")
+        }else{
+            Tool.showErrorHUD("请先登录!")
+        }
     }
 
     //remarkTableView代理方法
@@ -455,7 +478,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     
     func setupCell(cell:remarkCell, atIndexPath indexPath:NSIndexPath){
         
-//        print(commentsJSON)
         cell.backgroundColor = Consts.grayView
         cell.photo.sd_setImageWithURL(commentsJSON[indexPath.row]["image"].URL!, placeholderImage: UIImage.init(named: "bear_icon_register"))
         cell.layer.cornerRadius = cell.photo.frame.width/2
@@ -569,7 +591,6 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
     func didReceiveJsonResults(json: JSON, tag: String) {
         switch(tag){
         case "idleView":
-            print(json)
             self.bigImgView.sd_setImageWithURL(NSURL(string: json["image"].string!), placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
                 self.goodNameLabel.text = json["name"].string!
             self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
@@ -624,12 +645,10 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             break
             
         case "idleLike":
-            print("like返回:\(json)")
             self.setUpOnlineData("idleView")
             break
         
         case "idleUnlike":
-            print("unlike返回\(json)")
             self.setUpOnlineData("idleView")
             break
             
