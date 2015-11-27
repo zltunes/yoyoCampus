@@ -67,16 +67,16 @@ class ShopDetailVC: UIViewController {
         self.view.addSubview(downView)
         self.downView = downView
         
-        let shopImage = UIImageView(frame: CGRectMake(windowWidth*0.5-50,10,100,100))
+        let shopImage = UIImageView(frame: CGRectMake(windowWidth*0.5-40,10,80,80))
         shopImage.backgroundColor = UIColor.yellowColor()
         shopImage.layer.masksToBounds = true
-        shopImage.layer.cornerRadius = 50
-        self.view.addSubview(shopImage)
+        shopImage.layer.cornerRadius = 40
+        self.upView.addSubview(shopImage)
         self.shopImage = shopImage
         
-        let shopName = UILabel(frame: CGRectMake(0,CGRectGetMaxY(shopImage.frame)+20,windowWidth,20))
+        let shopName = UILabel(frame: CGRectMake(0,CGRectGetMaxY(upView.frame)-20,windowWidth,10))
         shopName.textAlignment = NSTextAlignment.Center
-        self.view.addSubview(shopName)
+        self.upView.addSubview(shopName)
         self.shopName = shopName
         
         let complainBtn = UIButton(type: UIButtonType.RoundedRect)
