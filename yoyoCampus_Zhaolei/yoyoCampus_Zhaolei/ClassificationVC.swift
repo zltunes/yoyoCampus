@@ -733,11 +733,9 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = IdleGoodViewController()
             vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
-            self.navigationController?.pushViewController(vc, animated: true)
             self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-            self.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+
         }else{
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = ShopGoodViewController()

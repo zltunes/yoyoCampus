@@ -187,11 +187,14 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         }
         
         //搜索按钮
-        let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
-        btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
-        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
-        self.navBtnView.addSubview(btnSearch)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
+//        let btnSearch = UIButton(frame: CGRectMake(windowWidth*0.09+20, 23, 20, 20))
+//        btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
+//        btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
+//        self.navBtnView.addSubview(btnSearch)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "home_2.png"), style: .Plain, target: self, action: "search")
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
     }
     
