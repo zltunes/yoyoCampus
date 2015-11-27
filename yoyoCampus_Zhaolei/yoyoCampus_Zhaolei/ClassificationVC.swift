@@ -644,7 +644,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             }
         }
         if(self.isIdle == true){
-            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"last_update"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
                 response in
                 let json = JSON(response.result.value!)
                 var responseJson = json["result"]
@@ -669,7 +669,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             }
         }
         if(self.isIdle == true){
-            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"view_number"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
+            Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/",headers:httpHeader,parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":"price"]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
                 response in
                 let json = JSON(response.result.value!)
                 var responseJson = json["result"]
@@ -733,8 +733,11 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = IdleGoodViewController()
             vc.idle_id = tempCell.dataCell.objectForKey("idle_id") as! String
+            self.navigationController?.pushViewController(vc, animated: true)
             self.hidesBottomBarWhenPushed = true
-                        self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
+            self.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }else{
             let tempCell = tableView.cellForRowAtIndexPath(indexPath) as! ViewCell
             let vc = ShopGoodViewController()
@@ -753,11 +756,11 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(0.5)
         if(rect.origin.y < 0){
-            rect.origin.y += 60
+            rect.origin.y += windowHeight*0.1
         }
         orderLabel.frame = rect
         UIView.commitAnimations()
-        self.orderColorChange(0)
+        self.orderColorChange(self.orderCount)
     }
     
     //隐藏注册事件
@@ -881,7 +884,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         }
     }
     func headerIdleRefreshing(sender : AnyObject){
-        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/", parameters: ["location":"东南大学九龙湖校区","page":1,"category":self.idleCategory[self.pageView.currentPage],"order":self.orderText[self.orderCount]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
+        Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/idle/search/", parameters: ["location":"东南大学九龙湖校区","page":"1","category":self.idleCategory[self.pageView.currentPage],"order":self.orderText[self.orderCount]], headers: httpHeader).responseJSON(options:NSJSONReadingOptions.MutableContainers){
             response in
             let json = JSON(response.result.value!)
             var responseJson = json["result"]
@@ -890,6 +893,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             self.pageArray[self.pageView.currentPage] = 1
             self.tableViewArray[self.pageView.currentPage].reloadData()
             (self.tableViewArray[self.pageView.currentPage] as! UITableView).header!.endRefreshing()
+            print(self.orderCount)
         }
     }
     

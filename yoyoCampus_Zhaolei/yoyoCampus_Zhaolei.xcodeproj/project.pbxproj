@@ -157,6 +157,9 @@
 		AD90024E1BFACCF30019219A /* MyIdleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90024D1BFACCF30019219A /* MyIdleVC.swift */; };
 		AD9002501BFACD040019219A /* MyFavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD90024F1BFACD040019219A /* MyFavoriteVC.swift */; };
 		AD9002521BFADA170019219A /* MyIdleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9002511BFADA170019219A /* MyIdleCell.swift */; };
+		AD994EDB1C086E3E00E805E9 /* myfavorite_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AD994ED91C086E3E00E805E9 /* myfavorite_1.png */; };
+		AD994EDC1C086E3E00E805E9 /* myfavorite_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AD994EDA1C086E3E00E805E9 /* myfavorite_2.png */; };
+		AD994EE01C08777700E805E9 /* ShopComplain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD994EDF1C08777700E805E9 /* ShopComplain.swift */; };
 		ADAC087F1C02F9B30053B0EF /* order_11.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC087D1C02F9B30053B0EF /* order_11.png */; };
 		ADAC08801C02F9B30053B0EF /* order_22.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC087E1C02F9B30053B0EF /* order_22.png */; };
 		ADAC08821C02FDFB0053B0EF /* idle_Add.png in Resources */ = {isa = PBXBuildFile; fileRef = ADAC08811C02FDFB0053B0EF /* idle_Add.png */; };
@@ -442,6 +445,9 @@
 		AD90024D1BFACCF30019219A /* MyIdleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIdleVC.swift; sourceTree = "<group>"; };
 		AD90024F1BFACD040019219A /* MyFavoriteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFavoriteVC.swift; sourceTree = "<group>"; };
 		AD9002511BFADA170019219A /* MyIdleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIdleCell.swift; sourceTree = "<group>"; };
+		AD994ED91C086E3E00E805E9 /* myfavorite_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfavorite_1.png; sourceTree = "<group>"; };
+		AD994EDA1C086E3E00E805E9 /* myfavorite_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myfavorite_2.png; sourceTree = "<group>"; };
+		AD994EDF1C08777700E805E9 /* ShopComplain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopComplain.swift; sourceTree = "<group>"; };
 		ADAC087D1C02F9B30053B0EF /* order_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_11.png; sourceTree = "<group>"; };
 		ADAC087E1C02F9B30053B0EF /* order_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order_22.png; sourceTree = "<group>"; };
 		ADAC08811C02FDFB0053B0EF /* idle_Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle_Add.png; sourceTree = "<group>"; };
@@ -1221,6 +1227,8 @@
 		AD3F80CC1BF7A68600852AF1 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				AD994ED91C086E3E00E805E9 /* myfavorite_1.png */,
+				AD994EDA1C086E3E00E805E9 /* myfavorite_2.png */,
 				ADAC08811C02FDFB0053B0EF /* idle_Add.png */,
 				ADAC087D1C02F9B30053B0EF /* order_11.png */,
 				ADAC087E1C02F9B30053B0EF /* order_22.png */,
@@ -1284,6 +1292,7 @@
 			children = (
 				AD9002451BF9B7B90019219A /* ShopDetailVC.swift */,
 				AD9002491BF9CB730019219A /* DownView.swift */,
+				AD994EDF1C08777700E805E9 /* ShopComplain.swift */,
 			);
 			name = "商家详情";
 			sourceTree = "<group>";
@@ -1459,6 +1468,7 @@
 				ADCF87911BFC676D003958E0 /* sale_2.png in Resources */,
 				353DFCC81BC54D3A0039293B /* shopRemarkCell.xib in Resources */,
 				3590FDF41BF9DEAE00261CBB /* SearchMoreCell.xib in Resources */,
+				AD994EDC1C086E3E00E805E9 /* myfavorite_2.png in Resources */,
 				359383161BB4EDD300AA0E15 /* cellWithBtn.xib in Resources */,
 				3594CC291BDD085C00037B33 /* UMShareEditViewControlleriPad.xib in Resources */,
 				3590FDEC1BF9DE7C00261CBB /* SearchGoodsCell.xib in Resources */,
@@ -1501,6 +1511,7 @@
 				ADCF877A1BFC66C7003958E0 /* home_3.png in Resources */,
 				3577407F1BC4163F0005281B /* remarkCell.xib in Resources */,
 				ADCF87761BFC66C7003958E0 /* car_2.png in Resources */,
+				AD994EDB1C086E3E00E805E9 /* myfavorite_1.png in Resources */,
 				3594CC2D1BDD085C00037B33 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				35E7C1451BD9155600DB6141 /* AboutVC.xib in Resources */,
 				ADCF87721BFC66C7003958E0 /* camp_4.png in Resources */,
@@ -1635,6 +1646,7 @@
 				ADCF87421BFC6606003958E0 /* campView.swift in Sources */,
 				35E7C1381BD9127E00DB6141 /* OrdersVC.swift in Sources */,
 				3590FDEB1BF9DE7C00261CBB /* SearchGoodsCell.swift in Sources */,
+				AD994EE01C08777700E805E9 /* ShopComplain.swift in Sources */,
 				35593FA61BB0FF0E00817020 /* Tool.swift in Sources */,
 				35E7C1441BD9155600DB6141 /* AboutVC.swift in Sources */,
 				3543B0F11BD777DF00B2BA60 /* PersonalInfomationViewController.swift in Sources */,
@@ -1868,7 +1880,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1936,7 +1948,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
