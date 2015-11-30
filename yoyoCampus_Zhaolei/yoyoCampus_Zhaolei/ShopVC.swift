@@ -176,13 +176,13 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             tableView.dataSource = self
             tableView.delegate = self
             tableView.rowHeight = (windowHeight+100)/6
-            tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
-            tableView.footer.tag = num
+            tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
+            tableView.mj_footer.tag = num
 
             setExtraCellLineHidden(tableView)
 
-            tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
-            tableView.header.tag = num
+            tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
+            tableView.mj_header.tag = num
 
         }
         
@@ -295,7 +295,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             var responseJson = json["result"]
             if(responseJson.count == 0){
                 self.pageArray[sender.tag]--
-                (self.tableViewArray[sender.tag]as! UITableView).footer!.endRefreshing()
+                (self.tableViewArray[sender.tag]as! UITableView).mj_footer!.endRefreshing()
             }
             if(responseJson.count != 0){
                 for(var num = 0 ; num < responseJson.count ; num++){
@@ -314,7 +314,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             
             self.resultArray[sender.tag] = responseJson.arrayObject!
             self.tableViewArray[sender.tag].reloadData()
-            (self.tableViewArray[sender.tag]as! UITableView).header!.endRefreshing()
+            (self.tableViewArray[sender.tag]as! UITableView).mj_header!.endRefreshing()
             self.pageArray[sender.tag] = 1
         }
     }

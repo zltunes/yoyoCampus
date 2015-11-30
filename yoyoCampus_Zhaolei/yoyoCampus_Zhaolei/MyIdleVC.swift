@@ -113,10 +113,10 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         tableViewOn.rowHeight = windowHeight/5
         tableViewOn.delegate = self
         tableViewOn.dataSource = self
-        tableViewOn.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
-        tableViewOn.header.tag = 0
-        tableViewOn.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
-        tableViewOn.footer.tag = 0
+        tableViewOn.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
+        tableViewOn.mj_header.tag = 0
+        tableViewOn.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
+        tableViewOn.mj_footer.tag = 0
         self.tableViewOn = tableViewOn
         
         var tableViewOff = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
@@ -124,10 +124,10 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
         tableViewOff.rowHeight = windowHeight/5
         tableViewOff.dataSource = self
         tableViewOff.delegate = self
-        tableViewOff.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
-        tableViewOff.header.tag = 1
-        tableViewOff.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
-        tableViewOff.footer.tag = 1
+        tableViewOff.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
+        tableViewOff.mj_header.tag = 1
+        tableViewOff.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
+        tableViewOff.mj_footer.tag = 1
         view2.addSubview(tableViewOff)
         self.tableViewOff = tableViewOff
         
@@ -275,7 +275,7 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
                 var responseJson = json["idle"]
                 self.resultOnArray = NSMutableArray(array: responseJson.arrayObject!)
                 self.tableViewOn.reloadData()
-                self.tableViewOn.header!.endRefreshing()
+                self.tableViewOn.mj_header!.endRefreshing()
             }
         }
         if(sender.tag == 1){
@@ -285,7 +285,7 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
                 var responseJson = json["idle"]
                 self.resultOffArray = NSMutableArray(array: responseJson.arrayObject!)
                 self.tableViewOff.reloadData()
-                self.tableViewOff.header.endRefreshing()
+                self.tableViewOff.mj_header.endRefreshing()
             }
         }
     }
@@ -299,14 +299,14 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
                 var responseJson = json["idle"]
                 if(responseJson.count == 0){
                     self.pageOn--
-                    self.tableViewOn.footer!.endRefreshing()
+                    self.tableViewOn.mj_footer!.endRefreshing()
                 }
                 if(responseJson.count != 0 ){
                     for(var num = 0 ; num < responseJson.count ; num++){
                         self.resultOnArray.addObject(responseJson.arrayObject![num])
                     }
                     self.tableViewOn.reloadData()
-                    self.tableViewOn.footer!.endRefreshing()
+                    self.tableViewOn.mj_footer!.endRefreshing()
                 }
             }
         }
@@ -319,14 +319,14 @@ class MyIdleVC: UIViewController,UIScrollViewDelegate,UITableViewDelegate,UITabl
                 
                 if(responseJson.count == 0){
                     self.pageOff--
-                    self.tableViewOff.footer!.endRefreshing()
+                    self.tableViewOff.mj_footer!.endRefreshing()
                 }
                 if(responseJson.count != 0){
                     for(var num = 0 ; num < responseJson.count ; num++){
                         self.resultOffArray.addObject(responseJson.arrayObject![num])
                     }
                     self.tableViewOff.reloadData()
-                    self.tableViewOff.footer!.endRefreshing()
+                    self.tableViewOff.mj_footer!.endRefreshing()
                 }
         
             }

@@ -50,7 +50,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         self.table.showsVerticalScrollIndicator = false
-        self.table.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        self.table.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
         setUpOnlineData("orderDetailView")
     }
     
@@ -376,7 +376,7 @@ class OrderDetailVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVie
                 orderDetailJSON = json
                 self.orderStatus = json["status"].int!
                 self.table.reloadData()
-                self.table.header.endRefreshing()
+                self.table.mj_header.endRefreshing()
             break
             
             case "refund":

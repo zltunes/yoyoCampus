@@ -176,8 +176,8 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.remarkTableView.backgroundColor = Consts.grayView
         self.remarkTableView.showsVerticalScrollIndicator = false
         
-        self.remarkTableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
-        self.remarkTableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
+        self.remarkTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        self.remarkTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
         
         //设置horizontalScrollView
@@ -567,15 +567,15 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             
             case "commentsView":
                 if(json["goods_comment"].count == 0 && self.commentPage > 1){
-                    self.remarkTableView.footer.endRefreshingWithNoMoreData()
+                    self.remarkTableView.mj_footer.endRefreshingWithNoMoreData()
                     self.commentPage--
                 }else if(json["goods_comment"].count > 0 && self.commentPage > 1){
                     self.commentsJSON += json["goods_comment"].array!
                 }else if(self.commentPage == 1){
                     self.commentsJSON = json["goods_comment"].array!
                 }
-                self.remarkTableView.header.endRefreshing()
-                self.remarkTableView.footer.endRefreshing()
+                self.remarkTableView.mj_header.endRefreshing()
+                self.remarkTableView.mj_footer.endRefreshing()
                 self.remarkTableView.reloadData()
                 Tool.dismissHUD()
             break

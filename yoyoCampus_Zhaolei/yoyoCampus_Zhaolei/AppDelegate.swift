@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import Siren
 import SwiftyJSON
 
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     
@@ -35,11 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
     
     static var wechat_photoURL:NSURL = NSURL()
     
-    var force_update:Int = 0
-    
-    var updateURL:String = ""
-    
-    var api = YoYoAPI()
     
 //    最底层：tabbarController
     var tabBarController = UITabBarController()
@@ -62,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         IQKeyboardManager.sharedManager().disableInViewControllerClass(PersonalInfoViewController)
         
-        api.delegate = self
         //访问沙盒文件PersonInfo.plist
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
@@ -134,41 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,APIDelegate{
         self.tabBarController.tabBar.tintColor = Consts.tintGreen
         self.window?.rootViewController = self.tabBarController
         
-        setupOnlineData("update")
-        
         return true
     }
-//  更新版本
-    func setupSiren(){
-        
-        let siren = Siren.sharedInstance
 
-        siren.appID = Consts.appID
-        
-        if(force_update == 1){
-            siren.alertType = .Force
-        }else{
-            siren.alertType = .Option
-        }
-        
-        siren.forceLanguageLocalization = .ChineseSimplified
-//        siren.countryCode = "86"//如果不支持美国app store则需要
-        siren.checkVersion(.Immediately)
-        
-    }
     
-    func setupOnlineData(tag:String){
-        if(tag == "update"){
-            self.updateURL = "\(Consts.mainUrl)/v1.0/update/"
-            api.httpRequest("GET", url: updateURL, params: nil, tag: "update")
-        }
-    }
-    
-    func didReceiveJsonResults(json: JSON, tag: String) {
-        if let force_update = json["force_update"].int{
-            setupSiren()
-        }
-    }
     
 //      微信系统回调方法
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {

@@ -35,6 +35,7 @@
 #import "UITableView+FDIndexPathHeightCache.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "UITableView+FDTemplateLayoutCellDebug.h"
+#import "UMCheckUpdate.h"
 
 #import "AFPickerView.h"
 

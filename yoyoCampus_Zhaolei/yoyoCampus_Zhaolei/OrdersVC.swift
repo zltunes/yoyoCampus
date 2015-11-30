@@ -55,9 +55,9 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
         
-        self.table.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        self.table.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
         
-        self.table.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
+        self.table.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
         setUpOnlineData("ordersView")
 
@@ -231,7 +231,7 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 emptyLabel.hidden = true
 //                刷新无更多数据
                 ordersPage--
-                table.footer.endRefreshingWithNoMoreData()
+                table.mj_footer.endRefreshingWithNoMoreData()
             }else if(json["orders"].count > 0 && ordersPage > 1){
                 emptyLabel.hidden = true
                 ordersJSON+=json["orders"].array!
@@ -242,13 +242,13 @@ class OrdersVC: UIViewController,UITableViewDelegate,UITableViewDataSource,APIDe
                 ordersJSON = json["orders"].array!
             }
             table.reloadData()
-            table.header.endRefreshing()
-            table.footer.endRefreshing()
+            table.mj_header.endRefreshing()
+            table.mj_footer.endRefreshing()
             break
             
         case "refund":
             Tool.showSuccessHUD("退款会在3-5个工作日返回您的支付账户")
-            self.table.header.beginRefreshing()
+            self.table.mj_header.beginRefreshing()
             break
             
         default:

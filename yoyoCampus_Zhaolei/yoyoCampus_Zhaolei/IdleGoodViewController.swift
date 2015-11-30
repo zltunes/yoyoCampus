@@ -194,10 +194,10 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
 //        self.remarkTableView.fd_debugLogEnabled = true
         
         ///下拉刷新：添加头部控件方法  
-        self.remarkTableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
+        self.remarkTableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing")
         
         ///上拉加载
-        self.remarkTableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
+        self.remarkTableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing")
         
         //设置水平滑动.frame已在xib定义
 //        self.horizontalScroll.addSubview(self.detailView)
@@ -626,7 +626,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             
         case "commentView":
             if(json["idle_comment"].count == 0 && self.commentPage > 1){
-                self.remarkTableView.footer.endRefreshingWithNoMoreData()
+                self.remarkTableView.mj_footer.endRefreshingWithNoMoreData()
                 self.commentPage--
             }else if(json["idle_comment"].count > 0 && self.commentPage > 1){
                 self.commentsJSON = self.commentsJSON + json["idle_comment"].array!
@@ -635,8 +635,8 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
             }
             self.remarkTableView.reloadData()
             Tool.dismissHUD()
-            self.remarkTableView.header.endRefreshing()
-            self.remarkTableView.footer.endRefreshing()
+            self.remarkTableView.mj_header.endRefreshing()
+            self.remarkTableView.mj_footer.endRefreshing()
             
             break
             

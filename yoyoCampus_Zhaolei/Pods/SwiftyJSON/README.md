@@ -1,5 +1,7 @@
 #SwiftyJSON [中文介绍](http://tangplin.github.io/swiftyjson/)
 
+[![Travis CI](https://travis-ci.org/SwiftyJSON/SwiftyJSON.svg?branch=master)](https://travis-ci.org/SwiftyJSON/SwiftyJSON)
+
 SwiftyJSON makes it easy to deal with JSON data in Swift.
 
 1. [Why is the typical JSON handling in Swift NOT good](#why-is-the-typical-json-handling-in-swift-not-good)
@@ -26,12 +28,9 @@ The code would look like this:
 
 ```swift
 
-let JSONObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
-
-if let statusesArray = JSONObject as? [AnyObject],
-   let status = statusesArray[0] as? [String: AnyObject],
-   let user = status["user"] as? [String: AnyObject],
-   let username = user["name"] as? String {
+if let statusesArray = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [[String: AnyObject]],
+    let user = statusesArray[0]["user"] as? [String: AnyObject],
+    let username = user["name"] as? String {
     // Finally we got the username
 }
 
@@ -43,10 +42,9 @@ Even if we use optional chaining, it would be messy:
 
 ```swift
 
-let JSONObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil)
-
-if let username = (((JSONObject as? [AnyObject])?[0] as? [String: AnyObject])?["user"] as? [String: AnyObject])?["name"] as? String {
-    // What a disaster
+if let JSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [[String: AnyObject]],
+    let username = (JSONObject[0]["user"] as? [String: AnyObject])?["name"] as? String {
+        // There's our username
 }
 
 ```
@@ -364,16 +362,15 @@ json[path] = "that"
 
 SwiftyJSON nicely wraps the result of the Alamofire JSON response handler:
 ```swift
-Alamofire.request(.GET, url, parameters: parameters)
-  .responseJSON { (req, res, json, error) in
-    if(error != nil) {
-      NSLog("Error: \(error)")
-      print(req)
-      print(res)
+Alamofire.request(.GET, url).validate().responseJSON { response in
+    switch response.result {
+    case .Success:
+        if let value = response.result.value {
+          let json = JSON(value)
+          print("JSON: \(json)")
+        }
+    case .Failure(let error):
+        print(error)
     }
-    else {
-      NSLog("Success: \(url)")
-      var json = JSON(json!)
-    }
-  }
+}
 ```

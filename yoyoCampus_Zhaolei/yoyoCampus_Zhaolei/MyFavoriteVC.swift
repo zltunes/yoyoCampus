@@ -120,10 +120,10 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         tableViewGoods.rowHeight = windowHeight/5
         tableViewGoods.delegate = self
         tableViewGoods.dataSource = self
-        tableViewGoods.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
-        tableViewGoods.header.tag = 0
-        tableViewGoods.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
-        tableViewGoods.footer.tag = 0
+        tableViewGoods.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
+        tableViewGoods.mj_header.tag = 0
+        tableViewGoods.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
+        tableViewGoods.mj_footer.tag = 0
         self.tableViewGoods = tableViewGoods
         
         var tableViewShop = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
@@ -131,10 +131,10 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         tableViewShop.rowHeight = windowHeight/5
         tableViewShop.dataSource = self
         tableViewShop.delegate = self
-        tableViewShop.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
-        tableViewShop.header.tag = 1
-        tableViewShop.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
-        tableViewShop.footer.tag = 1
+        tableViewShop.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
+        tableViewShop.mj_header.tag = 1
+        tableViewShop.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: Selector("footerRefreshing:"))
+        tableViewShop.mj_footer.tag = 1
         view2.addSubview(tableViewShop)
         self.tableViewShop = tableViewShop
     }
@@ -299,7 +299,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
                 var responseJson = json["collection"]
                 self.resultGoodsArray = NSMutableArray(array: responseJson.arrayObject!)
                 self.tableViewGoods.reloadData()
-                self.tableViewGoods.header!.endRefreshing()
+                self.tableViewGoods.mj_header!.endRefreshing()
             }
         }
         if(sender.tag == 1){
@@ -309,7 +309,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
                 var responseJson = json["collection"]
                 self.resultShopArray = NSMutableArray(array: responseJson.arrayObject!)
                 self.tableViewShop.reloadData()
-                self.tableViewShop.header!.endRefreshing()
+                self.tableViewShop.mj_header!.endRefreshing()
             }
         }
     }
@@ -323,14 +323,14 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
                 var responseJson = json["collection"]
                 if(responseJson.count == 0){
                     self.pageGoods--
-                    self.tableViewGoods.footer!.endRefreshing()
+                    self.tableViewGoods.mj_footer!.endRefreshing()
                 }
                 if(responseJson.count != 0 ){
                     for(var num = 0 ; num < responseJson.count ; num++){
                         self.resultGoodsArray.addObject(responseJson.arrayObject![num])
                     }
                     self.tableViewGoods.reloadData()
-                    self.tableViewGoods.footer!.endRefreshing()
+                    self.tableViewGoods.mj_footer!.endRefreshing()
                 }
             }
         }
@@ -342,14 +342,14 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
                 var responseJson = json["collection"]
                 if(responseJson.count == 0){
                     self.pageShop--
-                    self.tableViewShop.footer!.endRefreshing()
+                    self.tableViewShop.mj_footer!.endRefreshing()
                 }
                 if(responseJson.count != 0){
                     for(var num = 0 ; num < responseJson.count ; num++){
                         self.resultShopArray.addObject(responseJson.arrayObject![num])
                     }
                     self.tableViewShop.reloadData()
-                    self.tableViewShop.footer!.endRefreshing()
+                    self.tableViewShop.mj_footer!.endRefreshing()
                 }
             }
         }

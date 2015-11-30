@@ -26,6 +26,7 @@
 		3543B0FC1BD7B17D00B2BA60 /* ConnectPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0FB1BD7B17D00B2BA60 /* ConnectPhoneViewController.swift */; };
 		3543B0FF1BD7B6D800B2BA60 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543B0FD1BD7B6D800B2BA60 /* CouponViewController.swift */; };
 		3543B1001BD7B6D800B2BA60 /* CouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3543B0FE1BD7B6D800B2BA60 /* CouponViewController.xib */; };
+		35554BD31C0985A700399822 /* libUMCheckUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35554BD21C0985A700399822 /* libUMCheckUpdate.a */; };
 		35593F811BB0FBA100817020 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35593F7E1BB0FBA100817020 /* ProgressHUD.bundle */; };
 		35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F801BB0FBA100817020 /* ProgressHUD.m */; };
 		35593FA01BB0FC3E00817020 /* AFPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35593F9F1BB0FC3E00817020 /* AFPickerView.m */; };
@@ -254,6 +255,8 @@
 		3543B0FB1BD7B17D00B2BA60 /* ConnectPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectPhoneViewController.swift; sourceTree = "<group>"; };
 		3543B0FD1BD7B6D800B2BA60 /* CouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		3543B0FE1BD7B6D800B2BA60 /* CouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CouponViewController.xib; sourceTree = "<group>"; };
+		35554BD11C09857C00399822 /* UMCheckUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMCheckUpdate.h; sourceTree = "<group>"; };
+		35554BD21C0985A700399822 /* libUMCheckUpdate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMCheckUpdate.a; sourceTree = "<group>"; };
 		35593F7E1BB0FBA100817020 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		35593F7F1BB0FBA100817020 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		35593F801BB0FBA100817020 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
@@ -513,6 +516,7 @@
 				35C772D11BDF0CF30054D08E /* Foundation.framework in Frameworks */,
 				35C772CF1BDF0CB50054D08E /* UIKit.framework in Frameworks */,
 				35B3EB2F1BDDCA7C0015A894 /* libiconv.tbd in Frameworks */,
+				35554BD31C0985A700399822 /* libUMCheckUpdate.a in Frameworks */,
 				35C772CD1BDF0BC90054D08E /* QuartzCore.framework in Frameworks */,
 				35C772CB1BDF0BBE0054D08E /* CoreVideo.framework in Frameworks */,
 				35C772C91BDF0BB50054D08E /* CoreMedia.framework in Frameworks */,
@@ -616,6 +620,8 @@
 				3594CC361BDD0B0F00037B33 /* Wechat */,
 				3594CC081BDD085C00037B33 /* UMSocial_Sdk_4.2.5 */,
 				35593FA11BB0FC6400817020 /* Header.h */,
+				35554BD11C09857C00399822 /* UMCheckUpdate.h */,
+				35554BD21C0985A700399822 /* libUMCheckUpdate.a */,
 				3594CC041BDCABB700037B33 /* RatingBar */,
 				35089E261BD3EDA300FCB857 /* CheckNetwork */,
 				35593F9D1BB0FC2800817020 /* AFPickerView */,
@@ -1843,6 +1849,7 @@
 					"$(PROJECT_DIR)/TencentOpenAPI",
 					"$(PROJECT_DIR)/Wechat",
 					"$(PROJECT_DIR)/ZBarSDK",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1913,6 +1920,7 @@
 					"$(PROJECT_DIR)/TencentOpenAPI",
 					"$(PROJECT_DIR)/Wechat",
 					"$(PROJECT_DIR)/ZBarSDK",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

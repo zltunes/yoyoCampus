@@ -224,10 +224,10 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             tableView.dataSource = self
             tableView.delegate = self
             tableView.rowHeight = (windowHeight+100)/6
-            tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
-            tableView.footer.tag = num
-            tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
-            tableView.header.tag = num
+            tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
+            tableView.mj_footer.tag = num
+            tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
+            tableView.mj_header.tag = num
         }
         
         //商家详情按钮
@@ -435,11 +435,11 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                         self.resultData.addObject(responseJson.arrayObject![num])
                     }
                     self.tableViewArray[sender.tag].reloadData()
-                    (self.tableViewArray[sender.tag]as! UITableView).footer!.endRefreshing()
+                    (self.tableViewArray[sender.tag]as! UITableView).mj_footer!.endRefreshing()
                 }
                 if(responseJson.count == 0){
                     self.pageArray[sender.tag]--
-                    (self.tableViewArray[sender.tag]as! UITableView).footer!.endRefreshing()
+                    (self.tableViewArray[sender.tag]as! UITableView).mj_footer!.endRefreshing()
                 }
                 
             }
@@ -457,11 +457,11 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                     }
                     self.resultData.replaceObjectAtIndex(sender.tag, withObject: tempArray)
                     self.tableViewArray[sender.tag].reloadData()
-                    (self.tableViewArray[sender.tag]as! UITableView).footer!.endRefreshing()
+                    (self.tableViewArray[sender.tag]as! UITableView).mj_footer!.endRefreshing()
                 }
                 if(responseJson.count == 0){
                     self.pageArray[sender.tag]--
-                    (self.tableViewArray[sender.tag]as! UITableView).footer!.endRefreshing()
+                    (self.tableViewArray[sender.tag]as! UITableView).mj_footer!.endRefreshing()
                 }
             }
             
@@ -480,7 +480,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                     self.resultData.addObject(responseJson.arrayObject![num])
                 }
                 self.tableViewArray[sender.tag].reloadData()
-                (self.tableViewArray[sender.tag]as! UITableView).header!.endRefreshing()
+                (self.tableViewArray[sender.tag]as! UITableView).mj_header!.endRefreshing()
             }
         }
         if(self.isSingleView == false){
@@ -490,7 +490,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
                 var responseJson = json["result"]
                 self.resultData[self.pageView.currentPage] = responseJson.arrayObject!
                 self.tableViewArray[sender.tag].reloadData
-                (self.tableViewArray[sender.tag]as! UITableView).header!.endRefreshing()
+                (self.tableViewArray[sender.tag]as! UITableView).mj_header!.endRefreshing()
             }
         }
     }

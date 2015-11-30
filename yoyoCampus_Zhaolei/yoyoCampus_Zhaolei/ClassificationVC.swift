@@ -199,9 +199,9 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                         tableView.dataSource = self
                         tableView.delegate = self
                         tableView.rowHeight = 230 * Consts.ratio
-                        tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
-                        tableView.footer.tag = num
-                        tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
+                        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
+                        tableView.mj_footer.tag = num
+                        tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "headerRefreshing:")
                     }
                     
                     
@@ -316,9 +316,9 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 tableView.dataSource = self
                 tableView.delegate = self
                 tableView.rowHeight = 230 * Consts.ratio
-                tableView.footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerIdleRefreshing:")
-                tableView.footer.tag = num
-                tableView.header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"headerIdleRefreshing:")
+                tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerIdleRefreshing:")
+                tableView.mj_footer.tag = num
+                tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"headerIdleRefreshing:")
             }
              self.httpRequestIdleData(self.dataNum)
             
@@ -830,13 +830,13 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 self.tableViewArray[sender.tag].reloadData()
                 self.pageArray[sender.tag] = page
                 var temp :UITableView = self.tableViewArray[sender.tag] as! UITableView
-                temp.footer!.endRefreshing()
+                temp.mj_footer!.endRefreshing()
             }
             else{
                 page--
                 self.pageArray[sender.tag] = page
                 var temp :UITableView = self.tableViewArray[sender.tag] as! UITableView
-                temp.footer!.endRefreshing()
+                temp.mj_footer!.endRefreshing()
             }
            
             
@@ -858,13 +858,13 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 self.tableViewArray[sender.tag].reloadData()
                 self.pageArray[sender.tag] = page
                 let temp :UITableView = self.tableViewArray[sender.tag] as! UITableView
-                temp.footer!.endRefreshing()
+                temp.mj_footer!.endRefreshing()
             }
             else{
                 page--
                 self.pageArray[sender.tag] = page
                 let temp :UITableView = self.tableViewArray[sender.tag] as! UITableView
-                temp.footer!.endRefreshing()
+                temp.mj_footer!.endRefreshing()
             }
         }
     }
@@ -877,7 +877,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
             self.pageArray[self.pageView.currentPage] = 1
             self.tableViewArray[self.pageView.currentPage].reloadData()
-            (self.tableViewArray[self.pageView.currentPage] as! UITableView).header!.endRefreshing()
+            (self.tableViewArray[self.pageView.currentPage] as! UITableView).mj_header!.endRefreshing()
             
         }
     }
@@ -890,7 +890,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             self.resultArray[self.pageView.currentPage] = responseJson.arrayObject!
             self.pageArray[self.pageView.currentPage] = 1
             self.tableViewArray[self.pageView.currentPage].reloadData()
-            (self.tableViewArray[self.pageView.currentPage] as! UITableView).header!.endRefreshing()
+            (self.tableViewArray[self.pageView.currentPage] as! UITableView).mj_header!.endRefreshing()
             print(self.orderCount)
         }
     }
