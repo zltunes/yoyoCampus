@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     
+    var introl_viewed:Bool = true
     ///用户登录状态
     static var isLogin:Bool = false
     ///用户手机号
@@ -22,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     ///用户所在校区
     static var location:String = ""
     ///access_token
-    static var access_token:String = ""
+    static var access_token:String = "guest"
     ///沙盒，存储isLogin\tel\access_token
     static var filePath:String = ""
     
@@ -36,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
 //    最底层：tabbarController
-    var tabBarController = UITabBarController()
+    static var tabBarController = UITabBarController()
     
 //    三个tab各自的navigationController
     static var navigationController_home = CustomNavigationController()
@@ -60,9 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("favade.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("ihui.plist")
         
-        let  plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
+        let plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
         if plistDict == nil{
 //            为.plist创建字典
@@ -76,8 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             dict.setObject(0, forKey: "weibo_bind")
             dict.setObject(0, forKey: "weixin_bind")
             dict.setObject([""], forKey: "search_history")
-            
             dict.writeToFile(AppDelegate.filePath, atomically:false)
+            
+            self.introl_viewed = false
+           
         }else{
             AppDelegate.isLogin = plistDict?.valueForKey("isLogin") as! Bool
             AppDelegate.tel = plistDict?.valueForKey("tel") as! String
@@ -123,9 +126,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         AppDelegate.navigationController_shop = CustomNavigationController(rootViewController: shopVC)
         AppDelegate.navigationController_my = CustomNavigationController(rootViewController: myVC)
 
-        self.tabBarController.viewControllers = [AppDelegate.navigationController_home,AppDelegate.navigationController_shop,AppDelegate.navigationController_my]
-        self.tabBarController.tabBar.tintColor = Consts.tintGreen
-        self.window?.rootViewController = self.tabBarController
+        AppDelegate.tabBarController.viewControllers = [AppDelegate.navigationController_home,AppDelegate.navigationController_shop,AppDelegate.navigationController_my]
+        AppDelegate.tabBarController.tabBar.tintColor = Consts.tintGreen
+        AppDelegate.tabBarController.tabBar.backgroundColor = Consts.white
+        
+//        if(self.introl_viewed){
+//            self.window?.rootViewController = AppDelegate.tabBarController
+//        }else{
+//            self.window?.rootViewController = IntrolVC()
+//        }
+        print("plistDict\(plistDict)")
+        if(plistDict == nil){
+            self.window?.rootViewController = IntrolVC()
+        }else{
+            self.window?.rootViewController = AppDelegate.tabBarController
+        }
+        
         
         return true
     }

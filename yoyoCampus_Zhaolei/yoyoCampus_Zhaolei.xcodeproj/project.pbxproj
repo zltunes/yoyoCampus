@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2DB5DF49D013FE6DE339BC07 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99CCF8C203C632F43C58926 /* Pods.framework */; };
 		35089E251BD3ED4500FCB857 /* CheckNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 35089E241BD3ED4500FCB857 /* CheckNetwork.m */; };
+		350E23091C0C774900C227E2 /* IntrolVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E23071C0C774900C227E2 /* IntrolVC.swift */; };
+		350E230A1C0C774900C227E2 /* IntrolVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350E23081C0C774900C227E2 /* IntrolVC.xib */; };
 		3514EBC31BF1EC7D00EA06BB /* moreOrderInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3514EBC21BF1EC7D00EA06BB /* moreOrderInfoCell.xib */; };
 		35229B701BE4FA8D0087531B /* bindVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35229B6E1BE4FA8D0087531B /* bindVC.swift */; };
 		35229B711BE4FA8D0087531B /* bindVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35229B6F1BE4FA8D0087531B /* bindVC.xib */; };
@@ -238,6 +240,8 @@
 /* Begin PBXFileReference section */
 		35089E231BD3ED4500FCB857 /* CheckNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckNetwork.h; sourceTree = "<group>"; };
 		35089E241BD3ED4500FCB857 /* CheckNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckNetwork.m; sourceTree = "<group>"; };
+		350E23071C0C774900C227E2 /* IntrolVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntrolVC.swift; sourceTree = "<group>"; };
+		350E23081C0C774900C227E2 /* IntrolVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntrolVC.xib; sourceTree = "<group>"; };
 		3514EBC21BF1EC7D00EA06BB /* moreOrderInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moreOrderInfoCell.xib; sourceTree = "<group>"; };
 		35229B6E1BE4FA8D0087531B /* bindVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bindVC.swift; sourceTree = "<group>"; };
 		35229B6F1BE4FA8D0087531B /* bindVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = bindVC.xib; sourceTree = "<group>"; };
@@ -565,6 +569,15 @@
 			name = CheckNetwork;
 			sourceTree = "<group>";
 		};
+		350E23061C0C771800C227E2 /* 介绍页 */ = {
+			isa = PBXGroup;
+			children = (
+				350E23071C0C774900C227E2 /* IntrolVC.swift */,
+				350E23081C0C774900C227E2 /* IntrolVC.xib */,
+			);
+			name = "介绍页";
+			sourceTree = "<group>";
+		};
 		353DFCBF1BC549930039293B /* 店铺商品 */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +681,7 @@
 				35DE76061BDB697800BAA880 /* extensionCALayer.swift */,
 				3598B7941BB02FE700AD6BFE /* AppDelegate.swift */,
 				35593FAE1BB1000700817020 /* CustomNavigationController.swift */,
+				350E23061C0C771800C227E2 /* 介绍页 */,
 				AD3F80B61BF7A54000852AF1 /* 主页 */,
 				AD3F80B71BF7A54900852AF1 /* 商家 */,
 				3543B0F41BD7782600B2BA60 /* 商品上传 */,
@@ -1446,6 +1460,7 @@
 				3543B1001BD7B6D800B2BA60 /* CouponViewController.xib in Resources */,
 				ADCF87771BFC66C7003958E0 /* car_3.png in Resources */,
 				ADCF876C1BFC66C7003958E0 /* btn_4.png in Resources */,
+				350E230A1C0C774900C227E2 /* IntrolVC.xib in Resources */,
 				ADCF87941BFC676D003958E0 /* shop_2.png in Resources */,
 				ADCF877C1BFC66C7003958E0 /* order_21.png in Resources */,
 				ADAC08821C02FDFB0053B0EF /* idle_Add.png in Resources */,
@@ -1661,6 +1676,7 @@
 				35593FC71BB1366C00817020 /* LoginViewController.swift in Sources */,
 				35FE54DE1BD21FF20007543D /* YoYoAPI.swift in Sources */,
 				ADCF87411BFC6606003958E0 /* CampVC.swift in Sources */,
+				350E23091C0C774900C227E2 /* IntrolVC.swift in Sources */,
 				ADCF87441BFC6606003958E0 /* carView.swift in Sources */,
 				35593F821BB0FBA100817020 /* ProgressHUD.m in Sources */,
 				35E7C1331BD8B54A00DB6141 /* cellWithLabel.swift in Sources */,
