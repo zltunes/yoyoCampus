@@ -150,6 +150,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             self.scrollBtnView.addSubview(btn)
             btn.setTitle((self.shopCategory[num].objectForKey("name")!) as! String, forState: UIControlState.Normal)
             btn.tag = num
+            btn.titleLabel?.font = UIFont(name: "Verdana", size: 14)
             btn.addTarget(self, action: Selector("pageTurn:"), forControlEvents: UIControlEvents.TouchUpInside)
             btnX += btnWidth
             self.btnArray.addObject(btn)
@@ -264,7 +265,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
         }
     }
     func pageTurn(sender : UIButton){
-        self.rootView.contentOffset = CGPoint(x: CGFloat(sender.tag) * windowWidth, y: 0)
+        self.rootView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * windowWidth, y: 0), animated:true)
         pageView.currentPage = sender.tag
         btnColorChange(sender.tag)
         self.tableViewArray[sender.tag].reloadData()

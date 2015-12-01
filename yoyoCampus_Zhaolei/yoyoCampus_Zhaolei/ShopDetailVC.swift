@@ -146,14 +146,14 @@ class ShopDetailVC: UIViewController {
             Alamofire.request(.POST, "http://api2.hloli.me:9001/v1.0/shop/collection/" + self.shopID,headers:httpHeader).responseJSON(){
                 response in
                  self.btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_2"), forState: UIControlState.Normal)
-                self.isCollect == true
+                self.isCollect = true
             }
         }
         if(self.isCollect == true){
             Alamofire.request(.DELETE, "http://api2.hloli.me:9001/v1.0/shop/collection/" + self.shopID,headers:httpHeader).responseJSON(){
                 response in
                 self.btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_1"), forState: UIControlState.Normal)
-                self.isCollect == false
+                self.isCollect = false
             }
         }
     }
