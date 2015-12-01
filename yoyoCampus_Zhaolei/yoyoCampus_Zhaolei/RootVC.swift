@@ -86,9 +86,9 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.backgroundColor = UIColor.whiteColor()
         scrollRootView.addSubview(btnBackView)
         
-        let btnSale = UIButton(frame: CGRectMake(70 * Consts.ratio, 10, 66, 66))
+        let btnSale = UIButton(frame: CGRectMake(70 * Consts.ratio, 10, 130*Consts.ratio, 130*Consts.ratio))
         btnSale.setBackgroundImage(UIImage(named: "btn_1"), forState: UIControlState.Normal)
-        btnSale.layer.cornerRadius = 33
+        btnSale.layer.cornerRadius = btnSale.frame.width/2
         btnSale.addTarget(self, action: "btnAction:", forControlEvents: UIControlEvents.TouchUpInside)
         btnSale.tag = 5
         btnBackView.addSubview(btnSale)
@@ -100,11 +100,11 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         texSale.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texSale)
         
-        let btnCamp = UIButton(frame: CGRectMake(CGRectGetMaxX(btnSale.frame)+96*Consts.ratio, CGRectGetMinY(btnSale.frame), 66, 66))
+        let btnCamp = UIButton(frame: CGRectMake(CGRectGetMaxX(btnSale.frame)+96*Consts.ratio, CGRectGetMinY(btnSale.frame), 130*Consts.ratio, 130*Consts.ratio))
         btnCamp.setBackgroundImage(UIImage(named: "btn_2"), forState: UIControlState.Normal)
         btnCamp.addTarget(self, action: "btnAction:", forControlEvents: UIControlEvents.TouchUpInside)
         btnCamp.tag = 0
-        btnCamp.layer.cornerRadius = 33
+        btnCamp.layer.cornerRadius = btnCamp.frame.width/2
         btnBackView.addSubview(btnCamp)
         
         let texCamp = UILabel(frame: CGRectMake(CGRectGetMinX(btnCamp.frame), CGRectGetMaxY(btnSale.frame)+5, 70, 10))
@@ -114,11 +114,11 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnBackView.addSubview(texCamp)
         
         
-        let btnCar = UIButton(frame: CGRectMake(CGRectGetMaxX(btnCamp.frame)+96*Consts.ratio, CGRectGetMinY(btnCamp.frame), 66, 66))
+        let btnCar = UIButton(frame: CGRectMake(CGRectGetMaxX(btnCamp.frame)+96*Consts.ratio, CGRectGetMinY(btnCamp.frame), 130*Consts.ratio, 130*Consts.ratio))
         btnCar.setBackgroundImage(UIImage(named: "btn_3"), forState: UIControlState.Normal)
         btnCar.addTarget(self, action: "btnAction:", forControlEvents: UIControlEvents.TouchUpInside)
         btnCar.tag = 1
-        btnCar.layer.cornerRadius = 33
+        btnCar.layer.cornerRadius = btnCar.frame.width/2
         btnBackView.addSubview(btnCar)
         
         let texCar = UILabel(frame: CGRectMake(CGRectGetMinX(btnCar.frame),CGRectGetMaxY(btnSale.frame)+5, 70, 10))
@@ -127,11 +127,11 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         texCar.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texCar)
         
-        let btnClothes = UIButton(frame: CGRectMake(CGRectGetMinX(btnSale.frame), CGRectGetMaxY(btnSale.frame)+55*Consts.ratio, 66, 66))
+        let btnClothes = UIButton(frame: CGRectMake(CGRectGetMinX(btnSale.frame), CGRectGetMaxY(btnSale.frame)+55*Consts.ratio, 130*Consts.ratio, 130*Consts.ratio))
         btnClothes.setBackgroundImage(UIImage(named: "btn_4"), forState: UIControlState.Normal)
         btnClothes.addTarget(self, action: "btnAction:", forControlEvents: UIControlEvents.TouchUpInside)
         btnClothes.tag = 2
-        btnClothes.layer.cornerRadius = 33
+        btnClothes.layer.cornerRadius = btnClothes.frame.width/2
         btnBackView.addSubview(btnClothes)
         
         let texClothes = UILabel(frame: CGRectMake(CGRectGetMinX(btnClothes.frame), CGRectGetMaxY(btnClothes.frame)+5, 70, 10))
@@ -140,11 +140,11 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         texClothes.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texClothes)
         
-        let btnStudy = UIButton(frame: CGRectMake(CGRectGetMaxX(btnClothes.frame)+96*Consts.ratio, CGRectGetMinY(btnClothes.frame), 66, 66))
+        let btnStudy = UIButton(frame: CGRectMake(CGRectGetMaxX(btnClothes.frame)+96*Consts.ratio, CGRectGetMinY(btnClothes.frame), 130*Consts.ratio, 130*Consts.ratio))
         btnStudy.setBackgroundImage(UIImage(named: "btn_5"), forState: UIControlState.Normal)
         btnStudy.addTarget(self, action: "btnAction:", forControlEvents: UIControlEvents.TouchUpInside)
         btnStudy.tag = 3
-        btnStudy.layer.cornerRadius = 33
+        btnStudy.layer.cornerRadius = btnStudy.frame.width/2
         btnBackView.addSubview(btnStudy)
         
         let texStudy = UILabel(frame: CGRectMake(CGRectGetMinX(btnStudy.frame), CGRectGetMaxY(btnStudy.frame)+5, 70, 10))
@@ -153,11 +153,11 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         texStudy.textAlignment = NSTextAlignment.Center
         btnBackView.addSubview(texStudy)
         
-        let btnShop = UIButton(frame: CGRectMake(CGRectGetMaxX(btnStudy.frame)+96*Consts.ratio, CGRectGetMinY(btnStudy.frame), 66,66))
+        let btnShop = UIButton(frame: CGRectMake(CGRectGetMaxX(btnStudy.frame)+96*Consts.ratio, CGRectGetMinY(btnStudy.frame), 130*Consts.ratio,130*Consts.ratio))
         btnShop.setBackgroundImage(UIImage(named: "btn_6"), forState: UIControlState.Normal)
         btnShop.addTarget(self, action: "btnAction:", forControlEvents: UIControlEvents.TouchUpInside)
         btnShop.tag = 4
-        btnShop.layer.cornerRadius = 33
+        btnShop.layer.cornerRadius = btnShop.frame.width/2
         btnBackView.addSubview(btnShop)
         
         let texShop = UILabel(frame: CGRectMake(CGRectGetMinX(btnShop.frame), CGRectGetMaxY(btnShop.frame)+5, 70, 10))
@@ -311,6 +311,17 @@ class RootVC: UIViewController,UIScrollViewDelegate{
             classVc.isIdle = true
             self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(classVc, animated: true)
+        }
+    }
+    
+    func differentDevice(){
+        if(Consts.device() == "iphone5"){
+            
+        }
+        if(Consts.device() == "iphone6"){
+            
+        }
+        if(Consts.device() == "iphone6plus"){
         }
     }
 }

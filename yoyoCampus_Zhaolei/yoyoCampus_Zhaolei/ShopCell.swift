@@ -31,23 +31,22 @@ class ShopCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         //
-        var shopImage = UIImageView(frame: CGRectMake(5, 15, windowWidth/3, windowWidth/6+20))
-        shopImage.backgroundColor = UIColor.yellowColor()
+        var shopImage = UIImageView(frame: CGRectMake(20*Consts.ratio, 30*Consts.ratio, 174*Consts.ratio, 130*Consts.ratio))
         self.addSubview(shopImage)
         self.shopImage = shopImage
         
-        var shopName = UILabel(frame: CGRectMake(CGRectGetMaxX(shopImage.frame)+20, 17, windowWidth/2, 10))
-        shopName.font = UIFont(name: "Verdana", size: 17)
+        var shopName = UILabel(frame: CGRectMake(CGRectGetMaxX(shopImage.frame)+30*Consts.ratio, 20*Consts.ratio, windowWidth/2, 10))
+        shopName.font = UIFont(name: "Verdana", size: 15)
         self.shopName = shopName
         self.addSubview(shopName)
         
-        var shopMain = UILabel(frame: CGRectMake(shopName.frame.origin.x, CGRectGetMaxY(shopName.frame)+20, windowWidth/2, 10))
+        var shopMain = UILabel(frame: CGRectMake(shopName.frame.origin.x, CGRectGetMaxY(shopName.frame)+26*Consts.ratio, windowWidth/2, 10))
         shopMain.font = UIFont(name: "Verdana", size: 13)
         shopMain.textColor = UIColor.grayColor()
         self.shopMain = shopMain
         self.addSubview(shopMain)
         
-        var shopAdd = UILabel(frame: CGRectMake(shopName.frame.origin.x, CGRectGetMaxY(shopMain.frame)+20, windowWidth/2, 10))
+        var shopAdd = UILabel(frame: CGRectMake(shopName.frame.origin.x, CGRectGetMaxY(shopMain.frame)+30*Consts.ratio, windowWidth/2, 10))
         shopAdd.font = UIFont(name: "Verdana", size: 13)
         shopAdd.textColor = UIColor.grayColor()
         self.shopAdd = shopAdd

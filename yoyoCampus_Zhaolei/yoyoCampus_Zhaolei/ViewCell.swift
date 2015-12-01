@@ -20,6 +20,7 @@ class ViewCell: UITableViewCell {
     var goodsDiscount = UILabel()
     var isIdleCell :Bool = Bool()
     var dataCell = NSDictionary()
+    var viewImage2 = UIImageView()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,6 +67,7 @@ class ViewCell: UITableViewCell {
         
         let viewImage2 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(viewImage1.frame)+(22 * Consts.ratio), 10, 10))
         viewImage2.image = UIImage(named: "viewcell_2")
+        self.viewImage2 = viewImage2
         self.addSubview(viewImage2)
 
         var goodsDiscount = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+35, CGRectGetMinY(viewImage2.frame), windowWidth/2, 10))
@@ -102,6 +104,7 @@ class ViewCell: UITableViewCell {
             let tempNewPrice = data["price"]as!CGFloat / 100
             self.newPrice.text = "￥" + String(tempNewPrice)
             self.goodsImage.sd_setImageWithURL(NSURL(string: data["image"]!! as!String))
+            self.viewImage2.hidden = true
         }
     }
     

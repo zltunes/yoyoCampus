@@ -354,7 +354,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 tableView.backgroundColor = UIColor.whiteColor()
                 tableView.dataSource = self
                 tableView.delegate = self
-                tableView.rowHeight = 230 * Consts.ratio
+                tableView.rowHeight = 170 * Consts.ratio
                 tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerIdleRefreshing:")
                 tableView.mj_footer.tag = num
                 tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"headerIdleRefreshing:")

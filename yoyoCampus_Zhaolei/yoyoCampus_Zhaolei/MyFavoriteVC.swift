@@ -47,7 +47,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         if(self.pageView.currentPage == 2){
             self.pageTurn(self.btnIdle)
         }
-        self.scrollIndicator.contentOffset.x = -(CGFloat(self.pageView.currentPage) * windowWidth/2)
+        self.scrollIndicator.contentOffset.x = -(CGFloat(self.pageView.currentPage) * windowWidth/3)
     }
     
     
@@ -77,7 +77,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         self.view.addSubview(scrollRootVC)
         
         let pageCtl = UIPageControl(frame: CGRectMake(100, windowHeight-50, 50, 20))
-        pageCtl.numberOfPages = 2
+        pageCtl.numberOfPages = 3
         pageCtl.currentPage = 0
         self.pageView = pageCtl
         self.view .addSubview(pageCtl)
@@ -141,7 +141,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         let tableViewGoods = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
         view1.addSubview(tableViewGoods)
         self.setExtralCellLinesHidden(tableViewGoods)
-        tableViewGoods.rowHeight = windowHeight/5
+        tableViewGoods.rowHeight = 230*Consts.ratio
         tableViewGoods.delegate = self
         tableViewGoods.dataSource = self
         tableViewGoods.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
@@ -152,7 +152,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         
         let tableViewShop = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
         self.setExtralCellLinesHidden(tableViewShop)
-        tableViewShop.rowHeight = windowHeight/5
+        tableViewShop.rowHeight = 190*Consts.ratio
         tableViewShop.dataSource = self
         tableViewShop.delegate = self
         tableViewShop.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
@@ -164,7 +164,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
         
         let tableViewIdle = UITableView(frame: CGRectMake(0, 45, windowWidth, windowHeight))
         self.setExtralCellLinesHidden(tableViewIdle)
-        tableViewIdle.rowHeight = windowHeight/5
+        tableViewIdle.rowHeight = 170*Consts.ratio
         tableViewIdle.dataSource = self
         tableViewIdle.delegate = self
         tableViewIdle.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: Selector("headerRefreshing:"))
@@ -341,7 +341,7 @@ class MyFavoriteVC: UIViewController,UIScrollViewDelegate ,UITableViewDataSource
             self.btnColorChange(1)
         }
         if(sender.tag == 2){
-            self.tableViewIdle.reloadData()
+           self.tableViewIdle.reloadData()
             self.btnColorChange(2)
         }
         
