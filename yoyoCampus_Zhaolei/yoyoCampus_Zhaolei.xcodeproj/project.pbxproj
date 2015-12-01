@@ -1391,7 +1391,7 @@
 				TargetAttributes = {
 					3598B7901BB02FE700AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = TV6QKK88A3;
+						DevelopmentTeam = AHBF9E2V27;
 					};
 					3598B7A41BB02FE800AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
@@ -1884,7 +1884,7 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
+				PRODUCT_BUNDLE_IDENTIFIER = zhr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
@@ -1953,7 +1953,7 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
+				PRODUCT_BUNDLE_IDENTIFIER = zhr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;

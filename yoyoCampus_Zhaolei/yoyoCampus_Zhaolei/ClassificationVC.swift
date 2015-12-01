@@ -146,9 +146,30 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                         indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
                     }
                     else{
-                        scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
-                        scrollIndicator.contentSize = CGSize(width: windowWidth, height: 3)
-                        indicatorView.frame = CGRect(x: 0, y: 0, width: windowWidth/self.viewCount, height: 3)
+                        if(self.viewCount == 0){print("0")}
+                        if(self.viewCount == 1){
+                            scrollIndicator.frame = CGRectMake(windowWidth/2-100*Consts.ratio, 37, 200*Consts.ratio, 3)
+                            scrollIndicator.contentSize = CGSize(width: 200*Consts.ratio, height: 3)
+                            indicatorView.frame = CGRect(x: 0, y: 0, width: 200*Consts.ratio, height: 3)
+                        }
+                        if(self.viewCount == 2){
+                            scrollIndicator.frame = CGRectMake(100*Consts.ratio, 37, windowWidth-200*Consts.ratio, 3)
+                            scrollIndicator.contentSize = CGSize(width: windowWidth-200*Consts.ratio, height: 3)
+                            indicatorView.frame = CGRect(x: 0, y: 0, width: 170*Consts.ratio, height: 3)
+                        }
+                        if(self.viewCount == 3){
+                            scrollIndicator.frame = CGRectMake(60*Consts.ratio, 37, windowWidth-120*Consts.ratio, 3)
+                            scrollIndicator.contentSize = CGSize(width: windowWidth-120*Consts.ratio, height: 3)
+                            indicatorView.frame = CGRect(x: 0, y: 0, width: 120*Consts.ratio, height: 3)
+                        }
+                        if(self.viewCount == 4){
+                            scrollIndicator.frame = CGRectMake(40*Consts.ratio, 37, windowWidth-80*Consts.ratio, 3)
+                            scrollIndicator.contentSize = CGSize(width: windowWidth-80*Consts.ratio, height: 3)
+                            indicatorView.frame = CGRect(x: 0, y: 0, width: 100*Consts.ratio, height: 3)
+                        }
+//                        scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
+//                        scrollIndicator.contentSize = CGSize(width: windowWidth, height: 3)
+//                        indicatorView.frame = CGRect(x: 0, y: 0, width: windowWidth/self.viewCount, height: 3)
                     }
                     self.scrollBtnView.addSubview(scrollIndicator)
                     self.scrollIndicator = scrollIndicator
@@ -265,9 +286,27 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 indicatorView.frame = CGRect(x: 0, y: 0, width: 80, height: 3)
             }
             else{
-                scrollIndicator.frame = CGRectMake(0, 37, windowWidth, 3)
-                scrollIndicator.contentSize = CGSize(width: windowWidth, height: 3)
-                indicatorView.frame = CGRect(x: 0, y: 0, width: windowWidth/self.viewCount, height: 3)
+                if(self.viewCount == 0){}
+                if(self.viewCount == 1){
+                    scrollIndicator.frame = CGRectMake(windowWidth/2-100*Consts.ratio, 37, 200*Consts.ratio, 3)
+                    scrollIndicator.contentSize = CGSize(width: 200*Consts.ratio, height: 3)
+                    indicatorView.frame = CGRect(x: 0, y: 0, width: 200*Consts.ratio, height: 3)
+                }
+                if(self.viewCount == 2){
+                    scrollIndicator.frame = CGRectMake(100*Consts.ratio, 37, windowWidth-200*Consts.ratio, 3)
+                    scrollIndicator.contentSize = CGSize(width: windowWidth-200*Consts.ratio, height: 3)
+                    indicatorView.frame = CGRect(x: 0, y: 0, width: 170*Consts.ratio, height: 3)
+                }
+                if(self.viewCount == 3){
+                    scrollIndicator.frame = CGRectMake(60*Consts.ratio, 37, windowWidth-120*Consts.ratio, 3)
+                    scrollIndicator.contentSize = CGSize(width: windowWidth-120*Consts.ratio, height: 3)
+                    indicatorView.frame = CGRect(x: 0, y: 0, width: 120*Consts.ratio, height: 3)
+                }
+                if(self.viewCount == 4){
+                    scrollIndicator.frame = CGRectMake(40*Consts.ratio, 37, windowWidth-80*Consts.ratio, 3)
+                    scrollIndicator.contentSize = CGSize(width: windowWidth-80*Consts.ratio, height: 3)
+                    indicatorView.frame = CGRect(x: 0, y: 0, width: 100*Consts.ratio, height: 3)
+                }
             }
             self.scrollBtnView.addSubview(scrollIndicator)
             self.scrollIndicator = scrollIndicator
