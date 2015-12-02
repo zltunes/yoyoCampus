@@ -236,6 +236,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         btnDetail.addTarget(self, action: Selector("intoDetail"), forControlEvents: UIControlEvents.TouchUpInside)
         self.navBtnView.addSubview(btnDetail)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "shopDetail.png"), style: .Plain, target: self, action: "intoDetail")
         
         
         

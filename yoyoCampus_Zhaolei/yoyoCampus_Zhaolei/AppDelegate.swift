@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     
+    var introductionView = ZWIntroductionViewController()
     ///用户登录状态
     static var isLogin:Bool = false
     ///用户手机号
@@ -22,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     ///用户所在校区
     static var location:String = ""
     ///access_token
-    static var access_token:String = ""
+    static var access_token:String = "guest"
     ///沙盒，存储isLogin\tel\access_token
     static var filePath:String = ""
     
@@ -36,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
 //    最底层：tabbarController
-    var tabBarController = UITabBarController()
+    static var tabBarController = UITabBarController()
     
 //    三个tab各自的navigationController
     static var navigationController_home = CustomNavigationController()
@@ -50,6 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.backgroundColor = UIColor.whiteColor()
+        self.window?.rootViewController = AppDelegate.tabBarController
+        self.window?.makeKeyAndVisible()
+        
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         //键盘基本设置
@@ -60,9 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("favade.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("nuinca.plist")
         
-        let  plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
+        let plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
         if plistDict == nil{
 //            为.plist创建字典
@@ -75,9 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             dict.setObject("", forKey: "location")
             dict.setObject(0, forKey: "weibo_bind")
             dict.setObject(0, forKey: "weixin_bind")
-            dict.setObject([""], forKey: "search_history")
-            
             dict.writeToFile(AppDelegate.filePath, atomically:false)
+           
         }else{
             AppDelegate.isLogin = plistDict?.valueForKey("isLogin") as! Bool
             AppDelegate.tel = plistDict?.valueForKey("tel") as! String
@@ -123,9 +128,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         AppDelegate.navigationController_shop = CustomNavigationController(rootViewController: shopVC)
         AppDelegate.navigationController_my = CustomNavigationController(rootViewController: myVC)
 
-        self.tabBarController.viewControllers = [AppDelegate.navigationController_home,AppDelegate.navigationController_shop,AppDelegate.navigationController_my]
-        self.tabBarController.tabBar.tintColor = Consts.tintGreen
-        self.window?.rootViewController = self.tabBarController
+        AppDelegate.tabBarController.viewControllers = [AppDelegate.navigationController_home,AppDelegate.navigationController_shop,AppDelegate.navigationController_my]
+        AppDelegate.tabBarController.tabBar.tintColor = Consts.tintGreen
+        AppDelegate.tabBarController.tabBar.backgroundColor = Consts.white
+        
+
+        print(plistDict)
+        if(plistDict == nil){
+            
+            let introImgNameArray = ["Intro_Screen1","Intro_Screen2","Intro_Screen3","Intro_Screen4"]
+            self.introductionView = ZWIntroductionViewController(coverImageNames: introImgNameArray)
+            self.window?.addSubview(self.introductionView.view)
+            
+            self.introductionView.didSelectedEnter = {
+            self.introductionView.view.removeFromSuperview()
+            self.introductionView.view = nil
+            }
+        }
         
         return true
     }

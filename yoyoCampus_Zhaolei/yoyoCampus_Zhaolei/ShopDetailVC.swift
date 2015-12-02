@@ -72,7 +72,8 @@ class ShopDetailVC: UIViewController {
         btnCollectStar.addTarget(self, action: Selector("collectShop:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.btnCollectStar = btnCollectStar
         collectStar.addSubview(btnCollectStar)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: collectStar)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: collectStar) 
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "myfavorite_1.png"), style: .Plain, target: self, action: "collectShop:")
         
         let upView = UIView(frame: CGRectMake(0,0,windowWidth,windowHeight*0.25))
         upView.backgroundColor = UIColor.whiteColor()
