@@ -47,6 +47,7 @@ PODS:
   - SZTextView (1.2.1)
   - UITableView+FDTemplateLayoutCell (1.4.beta)
   - XHRealTimeBlur (1.7)
+  - ZWIntroductionViewController (0.2.2)
 
 DEPENDENCIES:
   - ACEExpandableTextCell
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - SDWebImage
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
+  - ZWIntroductionViewController
 
 EXTERNAL SOURCES:
   SwiftyJSON:
@@ -92,5 +94,6 @@ SPEC CHECKSUMS:
   SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   UITableView+FDTemplateLayoutCell: 9d20bf0518f3c01e42ae614243b97f1161063d27
   XHRealTimeBlur: 661fadd5691ba2d349758e8fd5fbdb499ac55f8c
+  ZWIntroductionViewController: 4ba9df33f091312e3518e3866ffa3cb49b4890e7
 
 COCOAPODS: 0.39.0

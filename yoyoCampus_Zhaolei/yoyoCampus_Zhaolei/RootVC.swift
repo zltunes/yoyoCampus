@@ -256,6 +256,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/advertisement/",headers:httpHeader).responseJSON(options: NSJSONReadingOptions.MutableContainers){
             response in
             let json = JSON(response.result.value!)
+            print(json)
             var responseJson = json["advertisement"]
             for(var num = 0 ; num < responseJson.count ; num++){
                 self.advArray.addObject(responseJson.arrayObject![num])

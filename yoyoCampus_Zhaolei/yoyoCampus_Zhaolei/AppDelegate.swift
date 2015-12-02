@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     
-    var introl_viewed:Bool = true
+    var introductionView = ZWIntroductionViewController()
     ///用户登录状态
     static var isLogin:Bool = false
     ///用户手机号
@@ -51,6 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.backgroundColor = UIColor.whiteColor()
+        self.window?.rootViewController = AppDelegate.tabBarController
+        self.window?.makeKeyAndVisible()
+        
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         //键盘基本设置
@@ -61,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("ihui.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("nuinca.plist")
         
         let plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
@@ -76,10 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             dict.setObject("", forKey: "location")
             dict.setObject(0, forKey: "weibo_bind")
             dict.setObject(0, forKey: "weixin_bind")
-            dict.setObject([""], forKey: "search_history")
             dict.writeToFile(AppDelegate.filePath, atomically:false)
-            
-            self.introl_viewed = false
            
         }else{
             AppDelegate.isLogin = plistDict?.valueForKey("isLogin") as! Bool
@@ -130,18 +132,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         AppDelegate.tabBarController.tabBar.tintColor = Consts.tintGreen
         AppDelegate.tabBarController.tabBar.backgroundColor = Consts.white
         
-//        if(self.introl_viewed){
-//            self.window?.rootViewController = AppDelegate.tabBarController
-//        }else{
-//            self.window?.rootViewController = IntrolVC()
-//        }
-        print("plistDict\(plistDict)")
+
+        print(plistDict)
         if(plistDict == nil){
-            self.window?.rootViewController = IntrolVC()
-        }else{
-            self.window?.rootViewController = AppDelegate.tabBarController
+            
+            let introImgNameArray = ["Intro_Screen1","Intro_Screen2","Intro_Screen3","Intro_Screen4"]
+            self.introductionView = ZWIntroductionViewController(coverImageNames: introImgNameArray)
+            self.window?.addSubview(self.introductionView.view)
+            
+            self.introductionView.didSelectedEnter = {
+            self.introductionView.view.removeFromSuperview()
+            self.introductionView.view = nil
+            }
         }
-        
         
         return true
     }

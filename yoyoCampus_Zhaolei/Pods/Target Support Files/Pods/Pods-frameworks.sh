@@ -99,6 +99,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/UITableView_FDTemplateLayoutCell.framework"
   install_framework "Pods/XHRealTimeBlur.framework"
+  install_framework "Pods/ZWIntroductionViewController.framework"
   install_framework "Pods/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -117,5 +118,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/UITableView_FDTemplateLayoutCell.framework"
   install_framework "Pods/XHRealTimeBlur.framework"
+  install_framework "Pods/ZWIntroductionViewController.framework"
   install_framework "Pods/pop.framework"
 fi
