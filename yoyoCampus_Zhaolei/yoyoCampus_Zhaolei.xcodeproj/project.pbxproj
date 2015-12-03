@@ -40,6 +40,7 @@
 		356E83421C06B68C002EE483 /* ClassificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356E83411C06B68C002EE483 /* ClassificationVC.swift */; };
 		3577407E1BC4163F0005281B /* remarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3577407C1BC4163F0005281B /* remarkCell.swift */; };
 		3577407F1BC4163F0005281B /* remarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3577407D1BC4163F0005281B /* remarkCell.xib */; };
+		357B3E871C0F238B0085B6F9 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357B3E861C0F238B0085B6F9 /* pop.framework */; };
 		3590FDE51BF9DDF800261CBB /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590FDE31BF9DDF800261CBB /* SearchVC.swift */; };
 		3590FDE61BF9DDF800261CBB /* SearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3590FDE41BF9DDF800261CBB /* SearchVC.xib */; };
 		3590FDEB1BF9DE7C00261CBB /* SearchGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590FDE91BF9DE7C00261CBB /* SearchGoodsCell.swift */; };
@@ -273,6 +274,7 @@
 		356E83411C06B68C002EE483 /* ClassificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassificationVC.swift; sourceTree = "<group>"; };
 		3577407C1BC4163F0005281B /* remarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remarkCell.swift; sourceTree = "<group>"; };
 		3577407D1BC4163F0005281B /* remarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remarkCell.xib; sourceTree = "<group>"; };
+		357B3E861C0F238B0085B6F9 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = "Pods/../build/Debug-iphoneos/pop.framework"; sourceTree = "<group>"; };
 		3590FDE31BF9DDF800261CBB /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		3590FDE41BF9DDF800261CBB /* SearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchVC.xib; sourceTree = "<group>"; };
 		3590FDE91BF9DE7C00261CBB /* SearchGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGoodsCell.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				357B3E871C0F238B0085B6F9 /* pop.framework in Frameworks */,
 				35C772D11BDF0CF30054D08E /* Foundation.framework in Frameworks */,
 				35C772CF1BDF0CB50054D08E /* UIKit.framework in Frameworks */,
 				35B3EB2F1BDDCA7C0015A894 /* libiconv.tbd in Frameworks */,
@@ -1181,6 +1184,7 @@
 		98BF19C490AFD5F77C720512 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				357B3E861C0F238B0085B6F9 /* pop.framework */,
 				35C772D01BDF0CF30054D08E /* Foundation.framework */,
 				35C772CE1BDF0CB50054D08E /* UIKit.framework */,
 				35C772CC1BDF0BC90054D08E /* QuartzCore.framework */,
@@ -1838,6 +1842,7 @@
 					"$(PROJECT_DIR)",
 					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
 					"$(PROJECT_DIR)/TencentOpenAPI",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = yoyoCampus_Zhaolei/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1909,6 +1914,7 @@
 					"$(PROJECT_DIR)",
 					"\"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries\"",
 					"$(PROJECT_DIR)/TencentOpenAPI",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = yoyoCampus_Zhaolei/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

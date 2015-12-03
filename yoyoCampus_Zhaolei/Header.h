@@ -6,10 +6,6 @@
 //  Copyright © 2015年 DuZhiXia. All rights reserved.
 //
 
-//注释部分库均由cocoaPods导入
-    //Network
-//#import "AFNetworking.h"
-//#import "AFNetworkActivityIndicatorManager.h"
 
 #import "Reachability.h"
 #import "CheckNetwork.h"
@@ -17,15 +13,17 @@
 #import "ProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
-#import "CustomIOSAlertView.h"
 #import "ACEExpandableTextCell.h"
 #import "PopMenu.h"
+#import "POP.h"
 #import "QiniuSDK.h"
 #import "HappyDNS.h"
 #import "RatingBar.h"
+#import "CustomIOSAlertView.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialQQHandler.h"
+#import "UMSocialDataService.h"
 #import "DXAlertView.h"
 #import "UMSocialDataService.h"
 #import "ZBarSDK.h"

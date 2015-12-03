@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
         self.window?.rootViewController = AppDelegate.tabBarController
         self.window?.makeKeyAndVisible()
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("nuinca.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("anuiciojmrw.plist")
         
         let plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
@@ -132,12 +132,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         AppDelegate.tabBarController.tabBar.tintColor = Consts.tintGreen
         AppDelegate.tabBarController.tabBar.backgroundColor = Consts.white
         
-
-        print(plistDict)
+//        self.window?.rootViewController = AppDelegate.tabBarController
+        print("appdelegate:plistDict:   \(plistDict)")
         if(plistDict == nil){
             
             let introImgNameArray = ["Intro_Screen1","Intro_Screen2","Intro_Screen3","Intro_Screen4"]
-            self.introductionView = ZWIntroductionViewController(coverImageNames: introImgNameArray)
+            let enterBtn = UIButton(type: .System)
+            enterBtn.setTitle("进 入 YoYo 之 旅 !", forState: .Normal)
+            enterBtn.tintColor = Consts.tintGreen
+            enterBtn.layer.cornerRadius = 3
+            enterBtn.layer.borderWidth = 1
+            enterBtn.layer.borderColor = Consts.tintGreen.CGColor
+//            enterBtn.titleLabel?.font = UIFont().fontWithSize(20.0)
+            
+            self.introductionView = ZWIntroductionViewController(coverImageNames: introImgNameArray, backgroundImageNames: nil, button: enterBtn)
             self.window?.addSubview(self.introductionView.view)
             
             self.introductionView.didSelectedEnter = {

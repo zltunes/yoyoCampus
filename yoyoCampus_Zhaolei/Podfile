@@ -12,9 +12,9 @@ pod 'ACEExpandableTextCell'
 
 pod 'IQKeyboardManager'
 
-pod 'AFNetworking'
+pod 'CustomIOSAlertView', '~> 0.9.3'
 
-pod 'CustomIOSAlertView'
+pod 'AFNetworking'
 
 pod 'MJRefresh'
 

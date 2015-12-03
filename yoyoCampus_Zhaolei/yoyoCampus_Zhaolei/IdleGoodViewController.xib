@@ -93,7 +93,7 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="yTl-7E-27h"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="564AA545-D6B6-412F-A82B-716FF24C6CDB" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="F6F6E29E-532B-444B-8FA4-308F7456D5CB" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
                     <rect key="frame" x="8" y="7" width="304" height="191"/>
                     <animations/>
                     <constraints>
@@ -229,6 +229,13 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vgL-Ig-S4e">
                             <rect key="frame" x="0.0" y="0.0" width="304" height="129"/>
                             <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="efX-pg-kYI">
+                                    <rect key="frame" x="0.0" y="0.0" width="147" height="129"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pta-zy-6Hq">
                                     <rect key="frame" x="155" y="0.0" width="149" height="129"/>
                                     <animations/>
@@ -238,13 +245,6 @@
                                         <outlet property="delegate" destination="-1" id="XIr-ft-h3O"/>
                                     </connections>
                                 </tableView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="efX-pg-kYI">
-                                    <rect key="frame" x="0.0" y="0.0" width="147" height="129"/>
-                                    <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -432,7 +432,7 @@
         </tableView>
     </objects>
     <resources>
-        <image name="564AA545-D6B6-412F-A82B-716FF24C6CDB" width="97" height="72">
+        <image name="F6F6E29E-532B-444B-8FA4-308F7456D5CB" width="97" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
