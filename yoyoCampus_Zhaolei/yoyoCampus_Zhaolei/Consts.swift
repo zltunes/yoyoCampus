@@ -10,7 +10,20 @@ import UIKit
 import AVFoundation
 
 class Consts {
-    
+
+//设备型号
+   class func device() ->String {
+        if(windowWidth == 320){
+            return "iphone5"
+        }
+        if(windowWidth == 375){
+            return "iphone6"
+        }
+        if(windowWidth == 414){
+            return "iphone6plus"
+        }
+        return"iphone4"
+    }
 //appID(自动更新版本需要)
     
     static let appID:String = "376771144"
