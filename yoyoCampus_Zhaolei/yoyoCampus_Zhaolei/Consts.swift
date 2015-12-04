@@ -363,4 +363,46 @@ class Consts {
         return NSMutableAttributedString(string: str as String, attributes: attributes)
     }
     
+    ///对裁剪图片进行处理,可选压缩
+    class func handlePicture(originPic: UIImage, aimSize: CGSize, zipped: Bool)->UIImage {
+        let originSize : CGSize = originPic.size
+        var newSize : CGSize = aimSize
+        let wRate : CGFloat = originSize.width / aimSize.width
+        let hRate : CGFloat = originSize.height / aimSize.height
+        if(!zipped){
+            if((originSize.width > aimSize.width)||(originSize.height > aimSize.height)){
+                if(wRate < hRate){
+                    newSize = CGSize(width: aimSize.width * hRate, height: originSize.height)
+                }else{
+                    newSize = CGSize(width: originSize.width, height: aimSize.height * wRate)
+                }
+            }
+        }
+        
+        if(!((originSize.width == newSize.width)&&(originSize.height == newSize.height))){
+            let wRate : CGFloat = originSize.width / newSize.width
+            let hRate : CGFloat = originSize.height / newSize.height
+            
+            var imageRef = CGImage?()
+            
+            if (hRate > wRate){
+                imageRef = CGImageCreateWithImageInRect(originPic.CGImage, CGRect(x: 0, y: originSize.height / 2 - wRate * newSize.height / 2, width: originSize.width, height: wRate * newSize.height))
+            }else{
+                imageRef = CGImageCreateWithImageInRect(originPic.CGImage, CGRect(x: originSize.width / 2 - hRate * newSize.width / 2, y: 0, width: hRate * newSize.width, height: originSize.height))
+            }
+            UIGraphicsBeginImageContext(newSize)
+            
+            let con = UIGraphicsGetCurrentContext()
+            CGContextTranslateCTM(con, 0.0, newSize.height)
+            CGContextScaleCTM(con, 1.0, -1.0)
+            CGContextDrawImage(con, CGRectMake(0, 0, newSize.width, newSize.height), imageRef)
+            let fImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return fImage
+        }else{
+            return originPic
+        }
+    }
+
+    
 }

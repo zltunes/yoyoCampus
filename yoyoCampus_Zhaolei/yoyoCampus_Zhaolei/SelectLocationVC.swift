@@ -19,6 +19,8 @@ class SelectLocationVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     var locationArray:[JSON] = []
     
+    internal var isEditPersonInfo:Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpNavigationBar()
@@ -81,6 +83,14 @@ class SelectLocationVC: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.table.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if(isEditPersonInfo){
+            AppDelegate.location = (cell?.textLabel?.text)!
+        }else{
+            AppDelegate.selectedLocation = (cell?.textLabel?.text)!
+        }
+        
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     

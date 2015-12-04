@@ -184,7 +184,7 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 plistDict.writeToFile(AppDelegate.filePath, atomically: true)
             
                 AppDelegate.isLogin = false
-                AppDelegate.access_token = ""
+                AppDelegate.access_token = "guest"
                 AppDelegate.tel = ""
                 AppDelegate.location = ""
             
