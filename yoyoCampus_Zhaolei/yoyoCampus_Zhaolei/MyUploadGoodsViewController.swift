@@ -239,6 +239,7 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
             alertDetail.layer.masksToBounds = true
             self.alert1.containerView = alertDetail
             self.alert1.buttonTitles = nil
+            self.alert1.show()
         }else if(num == 2){
             let alertDetail = UIView(frame: CGRect(x:0 , y: 0, width: 576 * Consts.ratio, height: 438 * Consts.ratio))
             alertDetail.backgroundColor = Consts.white
@@ -654,6 +655,10 @@ class MyUploadGoodsViewController: UIViewController,UIImagePickerControllerDeleg
     
     func showAlert(sender: UIButton){
         if(sender.tag == 103){
+            print("testAlert")
+//            let testAlert = CustomIOSAlertView()
+//            let view = UIView()
+//            testAlert.containerView = view
             self.setUpAlertViews(1)
             self.alert1.show()
         }else if(sender.tag == 104){

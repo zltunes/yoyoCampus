@@ -53,7 +53,7 @@ DEPENDENCIES:
   - ACEExpandableTextCell
   - AFNetworking
   - Alamofire (~> 3.0)
-  - CustomIOSAlertView
+  - CustomIOSAlertView (~> 0.9.3)
   - IQKeyboardManager
   - MJRefresh
   - Pingpp/Alipay (~> 2.1.0)
