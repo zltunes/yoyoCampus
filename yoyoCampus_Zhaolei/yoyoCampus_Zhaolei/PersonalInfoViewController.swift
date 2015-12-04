@@ -78,6 +78,12 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.infoData["location"] = AppDelegate.location
+        self.table.reloadData()
+    }
+    
     @IBAction func uploadImage(sender: UIButton) {
         let newSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "拍照","相册")
         newSheet.showInView(self.view)
@@ -127,11 +133,11 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     ///选好照片后
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        self.uploadBtn.setImage(image,forState: .Normal)
         self.imgUploaded = true
-        
+        let operatedImg = Consts.handlePicture(image, aimSize: self.uploadBtn.frame.size, zipped: false)
+        self.uploadBtn.setImage(operatedImg, forState: .Normal)
 //        将选好的img转化为nsdata型，图片为jpeg格式
-        self.imgData = UIImageJPEGRepresentation(image, 1.0)!
+        self.imgData = UIImageJPEGRepresentation(operatedImg, 1.0)!
 
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -146,6 +152,8 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     
     func setUpInitialLooking(){
         self.view.backgroundColor = Consts.grayView
+        self.uploadBtn.layer.cornerRadius = self.uploadBtn.frame.width/2
+        self.uploadBtn.layer.masksToBounds = true
     }
     
     func setUpAlertView(){
@@ -210,8 +218,10 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
         switch(sender.tag){
         case 0://location
 //            跳转到“选择校区”界面
-            sender.setTitle("东南大学九龙湖校区", forState: .Normal)
-            infoData["location"] = "东南大学九龙湖校区"
+            self.hidesBottomBarWhenPushed = true
+            let vc = SelectLocationVC()
+            vc.isEditPersonInfo = true
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case 1://enroll_year
              self.alert.show()
@@ -337,6 +347,7 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.table.deselectRowAtIndexPath(indexPath, animated: true)
+        
     }
     
     //pickerView delegate

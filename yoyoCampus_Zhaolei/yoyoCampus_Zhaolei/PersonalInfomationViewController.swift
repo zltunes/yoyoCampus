@@ -72,10 +72,18 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         self.setUpAlertView()
         self.setUpAlertViewWithName()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.plisDict["location"] = AppDelegate.location
+        self.plisDict.writeToFile(AppDelegate.filePath, atomically: true)
+        self.param["location"] = AppDelegate.location
+        self.personTable.reloadData()
+        super.viewWillAppear(animated)
     }
     
     func setUpNavigationBar(){
@@ -194,19 +202,17 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                 case 0:
                     cell.label1.text = "绑定手机"
                     cell.label1.sizeToFit()
-//                    cell.label2.text = self.infoData["phone_num"]
                     cell.label2.text = self.plisDict["tel"] as? String
+                    cell.accessoryType = .None
                     cell.label2.sizeToFit()
                 case 1:
                     cell.label1.text = "学校"
                     cell.label1.sizeToFit()
-//                    cell.label2.text = self.infoData["location"]
                     cell.label2.text = self.plisDict["location"] as? String
                     cell.label2.sizeToFit()
                 case 2:
                     cell.label1.text = "入学年份"
                     cell.label1.sizeToFit()
-//                    cell.label2.text = self.infoData["enroll_year"]
                     cell.label2.text = self.plisDict["enroll_year"] as? String
                     cell.label2.sizeToFit()
                 default:
@@ -316,7 +322,10 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
                     
                     break
                 case 1://学校
-                    
+                    let vc = SelectLocationVC()
+                    vc.isEditPersonInfo = true
+                    self.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
                     break
                 case 2://入学年份
                     self.alert.show()
@@ -380,11 +389,12 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
     
         let indexpath = NSIndexPath(forRow: 0, inSection: 0)
         let cell =  self.personTable.cellForRowAtIndexPath(indexpath) as! PersonInfomationCell1
-        cell.img.image = image
+        let operatedImg = Consts.handlePicture(image, aimSize: cell.img.frame.size, zipped: false)
+        cell.img.image = operatedImg
         self.imgUploaded = true
         
         //        将选好的img转化为nsdata型，图片为jpeg格式
-        self.imgData = UIImageJPEGRepresentation(image, 1.0)!
+        self.imgData = UIImageJPEGRepresentation(operatedImg, 1.0)!
         
         setUpOnlineData("token")
         
@@ -462,7 +472,6 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
         
         self.changeNameTextField = UITextField(frame: CGRect(x: 0, y: 100 * Consts.ratio, width: 500 * Consts.ratio, height: 100 * Consts.ratio))
         self.changeNameTextField.font = Consts.ft15
-//        self.changeNameTextField.text = self.infoData["name"]
         self.changeNameTextField.text = self.plisDict["name"] as? String
         self.changeNameTextField.center.x = alertDetail.frame.width/2
         self.changeNameTextField.backgroundColor = Consts.white
@@ -542,6 +551,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
             qiniuToken = json["token"].string!
             qiniuKey = json["key"].string!
             self.param = ["image":qiniuKey]
+            Tool.showProgressHUD("上传中")
             
             upManager.putData(self.imgData, key: qiniuKey, token: self.qiniuToken, complete: { (info, key, resp) -> Void in
                 //                图片上传完毕后才向后台更新用户数据,同时更新plistDict
@@ -552,6 +562,7 @@ class PersonalInfomationViewController: UIViewController,UITableViewDelegate,UIT
             break
             
         case "info":
+            Tool.showSuccessHUD("修改成功!")
             break
             
         default:

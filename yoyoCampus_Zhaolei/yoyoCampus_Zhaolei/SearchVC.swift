@@ -151,17 +151,17 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
     func setUpOnlineData(tag:String){
         switch(tag){
             case "search_goods":
-                goodsParam = ["keyword":searchText,"location":AppDelegate.location,"page":goodsPage]
+                goodsParam = ["keyword":searchText,"location":AppDelegate.selectedLocation,"page":goodsPage]
                 api.httpRequest("GET", url:goodsURL, params: goodsParam, tag: "search_goods")
             break
             
             case "search_idle":
-                idleParam = ["keyword":searchText,"location":AppDelegate.location,"page":idlePage]
+                idleParam = ["keyword":searchText,"location":AppDelegate.selectedLocation,"page":idlePage]
                 api.httpRequest("GET", url: idleURL, params: idleParam, tag: "search_idle")
             break
             
             case "search_shop":
-                shopParam = ["keyword":searchText,"location":AppDelegate.location,"page":shopPage]
+                shopParam = ["keyword":searchText,"location":AppDelegate.selectedLocation,"page":shopPage]
                 api.httpRequest("GET", url: shopURL, params: shopParam, tag: "search_shop")
             break
             
@@ -173,6 +173,7 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
     func didReceiveJsonResults(json: JSON, tag: String) {
         switch(tag){
             case "search_goods":
+                print(json)
                 if(goodsPage == 1){
                     self.goodsArray = json["result"].array!
                 }else if(goodsPage > 1 && json["result"].count > 0){
@@ -183,6 +184,7 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
             break
             
             case "search_idle":
+                print(json)
                 if(idlePage == 1){
                     self.idleArray = json["result"].array!
                 }else if(idlePage > 1 && json["result"].count > 0){
@@ -193,6 +195,7 @@ class SearchVC: UIViewController,UITextFieldDelegate,APIDelegate,UITableViewDele
             break
             
             case "search_shop":
+                print(json)
                 if(shopPage == 1){
                     self.shopArray = json["result"].array!
                 }else if(shopPage > 1 && json["result"].count > 0){

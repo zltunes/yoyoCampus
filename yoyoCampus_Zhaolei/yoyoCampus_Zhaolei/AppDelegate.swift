@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     static var tel:String = ""
     ///用户所在校区
     static var location:String = ""
+    ///用户所选校区
+    static var selectedLocation:String = "东南大学九龙湖校区"
     ///access_token
     static var access_token:String = "guest"
     ///沙盒，存储isLogin\tel\access_token
@@ -66,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("anuiciojmrw.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("anumrcaow.plist")
         
         let plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
@@ -88,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             AppDelegate.tel = plistDict?.valueForKey("tel") as! String
             AppDelegate.access_token = plistDict?.valueForKey("access_token") as! String
             AppDelegate.location = plistDict?.valueForKey("location") as! String
+            
         }
         
         print("isLogin:\(AppDelegate.isLogin)")
@@ -133,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         AppDelegate.tabBarController.tabBar.backgroundColor = Consts.white
         
 //        self.window?.rootViewController = AppDelegate.tabBarController
-        print("appdelegate:plistDict:   \(plistDict)")
+//        print("appdelegate:plistDict:   \(plistDict)")
         if(plistDict == nil){
             
             let introImgNameArray = ["Intro_Screen1","Intro_Screen2","Intro_Screen3","Intro_Screen4"]

@@ -35,7 +35,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         super.viewDidLoad()
 
 
-        Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.location, backTitle: "")
+        Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.selectedLocation, backTitle: "")
         
         let leftItem = UIBarButtonItem(image: UIImage.init(named: "shouye_dingwei_xxhdpi.png"), style: .Plain, target: self, action: "selectLocation")
         leftItem.tintColor = UIColor.whiteColor()
@@ -48,7 +48,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         rightItem.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = rightItem
         
-        Consts.setUpNavigationBarWithBackButton(self, title: "东南大学九龙湖校区", backTitle: "<")
+        Consts.setUpNavigationBarWithBackButton(self, title: AppDelegate.selectedLocation, backTitle: "<")
         
         self.view.backgroundColor = UIColor .whiteColor()
 
@@ -215,6 +215,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
     
     func selectLocation(){
         let vc = SelectLocationVC()
+        vc.isEditPersonInfo = false
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

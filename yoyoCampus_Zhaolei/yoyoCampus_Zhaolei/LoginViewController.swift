@@ -78,10 +78,6 @@ class LoginViewController: UIViewController,APIDelegate{
     
     func setUpNavigationBar(){
         Consts.setUpNavigationBarWithBackButton(self, title: "登  录", backTitle:"<")
-
-        let right = UIBarButtonItem(title: "test", style: .Plain, target: self, action: "test")
-        right.tintColor = Consts.white
-        self.navigationItem.rightBarButtonItem = right
     }
 
     func setUpInitialLooking(){

@@ -42,9 +42,8 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBOutlet var toBuyBtn: UIButton!//tag = 6为字体加粗
     
-    @IBOutlet var collectBtn: UIButton!//tag = 4,收藏心形
+    @IBOutlet var collectBtn: UIButton!
     
-    @IBOutlet var collectBtn_text: UIButton!//tag=4,收藏文字
     
     var commentPage:Int = 1
     
@@ -524,13 +523,11 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 self.shop_image = json["shop_image"].URL!
                 self.is_collected = json["is_collected"].int!
                 if(self.is_collected == 1){
-                    self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+                    self.collectBtn.setBackgroundImage(UIImage(named: "homepage_btn_collection_n"), forState: .Normal)
                     self.collectBtn.tag = 10
-                    self.collectBtn_text.tag = 10
                 }else{
-                    self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+                    self.collectBtn.setBackgroundImage(UIImage(named: "homepage_btn_collection_p"), forState: .Normal)
                     self.collectBtn.tag = 4
-                    self.collectBtn_text.tag = 4
                 }
                 self.photoImgView.sd_setImageWithURL(self.image, placeholderImage: UIImage.init(named: "Commodity editor_btn_picture"))
                 self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: self.image)!), forState: .Normal)
@@ -589,15 +586,13 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
             break
             
             case "collect":
-                self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_p"), forState: .Normal)
+                self.collectBtn.setBackgroundImage(UIImage(named: "homepage_btn_collection_n"), forState: .Normal)
                 self.collectBtn.tag = 10
-                self.collectBtn_text.tag = 10
             break
             
             case "collectCancel":
-                self.collectBtn.setBackgroundImage(UIImage(named: "xiangqing_tab bar_collect_n"), forState: .Normal)
+                self.collectBtn.setBackgroundImage(UIImage(named: "homepage_btn_collection_p"), forState: .Normal)
                 self.collectBtn.tag = 4
-                self.collectBtn_text.tag = 4
             break
             
         default:

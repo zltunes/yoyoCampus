@@ -20,13 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FOa-cQ-9Mn">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FOa-cQ-9Mn">
                     <rect key="frame" x="0.0" y="194" width="320" height="253"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="FOa-cQ-9Mn" secondAttribute="height" multiplier="320:253" id="yLu-j9-vGn"/>
-                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="xXv-V4-kkL"/>
                         <outlet property="delegate" destination="-1" id="2Ql-8t-2IY"/>
@@ -106,7 +103,9 @@
                             <rect key="frame" x="120" y="15" width="80" height="80"/>
                             <animations/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="80" id="7wU-4x-6bE"/>
                                 <constraint firstAttribute="width" secondItem="KiH-LO-9Ws" secondAttribute="height" multiplier="1:1" id="bNx-9c-ck2"/>
+                                <constraint firstAttribute="width" constant="80" id="qYx-Qy-UYy"/>
                             </constraints>
                             <state key="normal" backgroundImage="shoppage_btn_head portrait"/>
                             <userDefinedRuntimeAttributes>
@@ -127,7 +126,6 @@
                         <constraint firstItem="NQq-aq-M3p" firstAttribute="height" secondItem="S0a-Fw-gz3" secondAttribute="height" id="C2z-JQ-qr0"/>
                         <constraint firstAttribute="trailing" secondItem="U6n-a3-hSn" secondAttribute="trailing" constant="30" id="FCc-fn-lsI"/>
                         <constraint firstItem="U6n-a3-hSn" firstAttribute="height" secondItem="S0a-Fw-gz3" secondAttribute="height" id="FRM-2O-Tck"/>
-                        <constraint firstItem="KiH-LO-9Ws" firstAttribute="width" secondItem="9as-EP-H8S" secondAttribute="height" multiplier="80:171" id="O2L-Ns-bP6"/>
                         <constraint firstItem="NQq-aq-M3p" firstAttribute="leading" secondItem="S0a-Fw-gz3" secondAttribute="trailing" constant="3" id="ROC-ML-ACk"/>
                         <constraint firstAttribute="trailing" secondItem="U6n-a3-hSn" secondAttribute="trailing" constant="30" id="Sun-K6-NVT"/>
                         <constraint firstAttribute="bottom" secondItem="eSQ-2H-kaK" secondAttribute="bottom" constant="8" id="U2P-we-YOo"/>
@@ -156,7 +154,6 @@
                 <constraint firstAttribute="trailing" secondItem="FOa-cQ-9Mn" secondAttribute="trailing" id="Wq9-lM-eaq"/>
                 <constraint firstAttribute="trailing" secondItem="9as-EP-H8S" secondAttribute="trailing" id="XHE-ya-agk"/>
                 <constraint firstItem="9as-EP-H8S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dHg-3u-aZe"/>
-                <constraint firstAttribute="trailing" secondItem="FOa-cQ-9Mn" secondAttribute="trailing" id="im3-vP-1Ar"/>
                 <constraint firstItem="9as-EP-H8S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="sAS-yI-nr9"/>
             </constraints>
             <point key="canvasLocation" x="461" y="350"/>
