@@ -41,6 +41,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     
     var btnWidth = CGFloat()
     
+    var idleAddBtn = UIButton()
     
     //盛放结果的数组
     var resultArray = NSMutableArray()
@@ -192,7 +193,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                     for(var num = 0 ; num < json["label"].count ; num++){
                         let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
                         btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-                        btn.titleLabel?.font = UIFont.systemFontOfSize(16)
+                        btn.titleLabel?.font = UIFont(name: "Verdana", size: 15)
                         self.scrollBtnView.addSubview(btn)
                         btn.setTitle((self.labelName[num] as! String), forState: UIControlState.Normal)
                         btn.tag = num
@@ -327,7 +328,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             for(var num = 0 ; num < Int(self.viewCount) ; num++){
                 let btn = UIButton(frame: CGRectMake(btnX,0, btnWidth, 37))
                 btn.setTitleColor(UIColor(red: 90/255, green: 90/255, blue: 90/255, alpha: 1), forState: UIControlState.Normal)
-                btn.titleLabel?.font = UIFont.systemFontOfSize(16)
+                btn.titleLabel?.font = UIFont(name: "Verdana", size: 15)
                 self.scrollBtnView.addSubview(btn)
                 btn.setTitle((self.idleCategory[num] as! String), forState: UIControlState.Normal)
                 btn.tag = num
@@ -361,10 +362,11 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             }
              self.httpRequestIdleData(self.dataNum)
             
-            var idleAddBtn = UIButton(frame: CGRectMake(windowWidth*0.8, windowHeight-130, 40,40))
+            var idleAddBtn = UIButton(frame: CGRectMake(windowWidth*0.8, windowHeight-130, 110*Consts.ratio,110*Consts.ratio))
             idleAddBtn.setBackgroundImage(UIImage(named: "idle_Add"), forState: UIControlState.Normal)
             idleAddBtn.addTarget(self, action: "addIdle", forControlEvents: .TouchUpInside)
             self.view.addSubview(idleAddBtn)
+            self.idleAddBtn = idleAddBtn
             
            self.setBtnOrder()
         }
@@ -456,6 +458,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 oldPage = pageView.currentPage
             }
         }
+        self.idleAddBtn.hidden = false
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -466,6 +469,13 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
             }
             else{
                 self.scrollIndicator.contentOffset = CGPoint(x: -offset.x / self.viewCount, y: offset.y)
+            }
+        }
+        if(self.isIdle == true){
+            for(var num = 0 ; num < self.tableViewArray.count ; num++){
+                if(scrollView == self.tableViewArray[num] as! NSObject){
+                    self.idleAddBtn.hidden = true
+                }
             }
         }
 
@@ -545,41 +555,41 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         self.orderLabel.hidden = true
         self.view.addSubview(self.orderLabel)
         
-        let orderBtn1 = UIButton(frame: CGRectMake(20, 0, windowWidth/4.5, windowHeight*0.1))
+        let orderBtn1 = UIButton(frame: CGRectMake(80*Consts.ratio, 0, (windowWidth-320*Consts.ratio)/3, windowHeight*0.1))
         orderBtn1.setTitle("人气最高", forState: UIControlState.Normal)
-        orderBtn1.titleLabel?.font = UIFont.systemFontOfSize(15)
+        orderBtn1.titleLabel?.font = UIFont(name: "Verdana", size: 14)
         orderBtn1.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         orderBtn1.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -40, 0)
         orderBtn1.addTarget(self, action: Selector("orderBtn1Select:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.orderLabel.addSubview(orderBtn1)
-        let orderImage1 = UIImageView(frame: CGRectMake(25, 10, 25, 25))
+        let orderImage1 = UIImageView(frame: CGRectMake((orderBtn1.titleLabel?.center.x)!-20*Consts.ratio, 10, 25, 25))
         orderImage1.image = UIImage(named: "order_12")
         orderBtn1.addSubview(orderImage1)
         self.orderBtn1 = orderBtn1
         self.orderImage1 = orderImage1
         
         
-        let orderBtn3 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn1.frame)+30, 0, windowWidth/4.5, windowHeight*0.1))
+        let orderBtn3 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn1.frame)+80*Consts.ratio, 0, orderBtn1.frame.width, orderBtn1.frame.height))
         orderBtn3.setTitle("最新发布", forState: UIControlState.Normal)
-        orderBtn3.titleLabel?.font = UIFont.systemFontOfSize(15)
+        orderBtn3.titleLabel?.font = UIFont(name: "Verdana", size: 14)
         orderBtn3.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         orderBtn3.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -40, 0)
         orderBtn3.addTarget(self, action: Selector("orderBtn3Select:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.orderLabel.addSubview(orderBtn3)
-        let orderImage3 = UIImageView(frame: CGRectMake(25, 10, 25, 25))
+        let orderImage3 = UIImageView(frame: CGRectMake((orderBtn3.titleLabel?.center.x)!-20*Consts.ratio, 10, 25, 25))
         orderImage3.image = UIImage(named: "order_31")
         orderBtn3.addSubview(orderImage3)
         self.orderBtn3 = orderBtn3
         self.orderImage3 = orderImage3
         
-        let orderBtn4 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn3.frame)+30, 0, windowWidth/4.5, windowHeight*0.1))
+        let orderBtn4 = UIButton(frame: CGRectMake(CGRectGetMaxX(orderBtn3.frame)+80*Consts.ratio, 0, orderBtn1.frame.width, orderBtn1.frame.height))
         orderBtn4.setTitle("价格最低", forState: UIControlState.Normal)
-        orderBtn4.titleLabel?.font = UIFont.systemFontOfSize(15)
+        orderBtn4.titleLabel?.font = UIFont(name: "Verdana", size: 14)
         orderBtn4.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         orderBtn4.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -40, 0)
         orderBtn4.addTarget(self, action: Selector("orderBtn4Select:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.orderLabel.addSubview(orderBtn4)
-        let orderImage4 = UIImageView(frame: CGRectMake(25, 10, 25, 25))
+        let orderImage4 = UIImageView(frame: CGRectMake((orderBtn4.titleLabel?.center.x)!-20*Consts.ratio, 10, 25, 25))
         orderImage4.image = UIImage(named: "order_41")
         orderBtn4.addSubview(orderImage4)
         self.orderBtn4 = orderBtn4

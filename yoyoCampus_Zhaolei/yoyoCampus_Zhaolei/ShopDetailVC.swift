@@ -66,14 +66,13 @@ class ShopDetailVC: UIViewController {
     
     func setView(){
         
-        let collectStar = UIView(frame: CGRectMake(windowWidth*0.9, 20, 20, 20))
-        var btnCollectStar = UIButton(frame: CGRectMake(0, 0, 20, 20))
+        let collectStar = UIView(frame: CGRectMake(windowWidth*0.9, 20, 50*Consts.ratio, 50*Consts.ratio))
+        var btnCollectStar = UIButton(frame: CGRectMake(0, 0, 50*Consts.ratio, 50*Consts.ratio))
         btnCollectStar.setBackgroundImage(UIImage(named: "myfavorite_1.png"), forState: UIControlState.Normal)
         btnCollectStar.addTarget(self, action: Selector("collectShop:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.btnCollectStar = btnCollectStar
         collectStar.addSubview(btnCollectStar)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: collectStar) 
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "myfavorite_1.png"), style: .Plain, target: self, action: "collectShop:")
         
         let upView = UIView(frame: CGRectMake(0,0,windowWidth,windowHeight*0.25))
         upView.backgroundColor = UIColor.whiteColor()
