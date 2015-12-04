@@ -176,7 +176,7 @@ class ShopVC: UIViewController,UIScrollViewDelegate ,UITableViewDelegate,UITable
             tableView.backgroundColor = UIColor.whiteColor()
             tableView.dataSource = self
             tableView.delegate = self
-            tableView.rowHeight = (windowHeight+100)/6
+            tableView.rowHeight = 190*Consts.ratio
             tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "footerRefreshing:")
             tableView.mj_footer.tag = num
 
