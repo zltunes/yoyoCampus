@@ -29,7 +29,7 @@ class ViewCell: UITableViewCell {
         self.addSubview(goodsImage)
         self.goodsImage = goodsImage
         
-        let goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 16 * Consts.ratio))
+        let goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 25 * Consts.ratio))
         goodsName.font = UIFont(name: "Verdana", size: 15)
         self.goodsName = goodsName
         self.addSubview(goodsName)

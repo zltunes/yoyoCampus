@@ -93,7 +93,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnSale.tag = 5
         btnBackView.addSubview(btnSale)
         
-        let texSale = UILabel(frame: CGRectMake(CGRectGetMinX(btnSale.frame), CGRectGetMaxY(btnSale.frame)+5, 70, 10))
+        let texSale = UILabel(frame: CGRectMake(CGRectGetMinX(btnSale.frame), CGRectGetMaxY(btnSale.frame)+5*Consts.ratio,btnSale.frame.width,20*Consts.ratio))
         texSale.text = "闲置"
         texSale.font = UIFont(name: "Verdana", size: 14)
         texSale.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
@@ -107,7 +107,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnCamp.layer.cornerRadius = btnCamp.frame.width/2
         btnBackView.addSubview(btnCamp)
         
-        let texCamp = UILabel(frame: CGRectMake(CGRectGetMinX(btnCamp.frame), CGRectGetMaxY(btnSale.frame)+5, 70, 10))
+        let texCamp = UILabel(frame: CGRectMake(CGRectGetMinX(btnCamp.frame), CGRectGetMaxY(btnSale.frame)+5*Consts.ratio, btnSale.frame.width, 20*Consts.ratio))
         texCamp.font = UIFont(name: "Verdana", size: 14)
         texCamp.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         texCamp.textAlignment = NSTextAlignment.Center
@@ -121,7 +121,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnCar.layer.cornerRadius = btnCar.frame.width/2
         btnBackView.addSubview(btnCar)
         
-        let texCar = UILabel(frame: CGRectMake(CGRectGetMinX(btnCar.frame),CGRectGetMaxY(btnSale.frame)+5, 70, 10))
+        let texCar = UILabel(frame: CGRectMake(CGRectGetMinX(btnCar.frame),CGRectGetMaxY(btnSale.frame)+5*Consts.ratio, btnSale.frame.width, 20*Consts.ratio))
         texCar.font = UIFont(name: "Verdana", size: 14)
         texCar.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         texCar.textAlignment = NSTextAlignment.Center
@@ -134,7 +134,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnClothes.layer.cornerRadius = btnClothes.frame.width/2
         btnBackView.addSubview(btnClothes)
         
-        let texClothes = UILabel(frame: CGRectMake(CGRectGetMinX(btnClothes.frame), CGRectGetMaxY(btnClothes.frame)+5, 70, 10))
+        let texClothes = UILabel(frame: CGRectMake(CGRectGetMinX(btnClothes.frame), CGRectGetMaxY(btnClothes.frame)+5*Consts.ratio, btnSale.frame.width, 20*Consts.ratio))
         texClothes.font = UIFont(name: "Verdana", size: 14)
         texClothes.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         texClothes.textAlignment = NSTextAlignment.Center
@@ -147,7 +147,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnStudy.layer.cornerRadius = btnStudy.frame.width/2
         btnBackView.addSubview(btnStudy)
         
-        let texStudy = UILabel(frame: CGRectMake(CGRectGetMinX(btnStudy.frame), CGRectGetMaxY(btnStudy.frame)+5, 70, 10))
+        let texStudy = UILabel(frame: CGRectMake(CGRectGetMinX(btnStudy.frame), CGRectGetMaxY(btnStudy.frame)+5*Consts.ratio, btnSale.frame.width, 20*Consts.ratio))
         texStudy.font = UIFont(name: "Verdana", size: 14)
         texStudy.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         texStudy.textAlignment = NSTextAlignment.Center
@@ -160,7 +160,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         btnShop.layer.cornerRadius = btnShop.frame.width/2
         btnBackView.addSubview(btnShop)
         
-        let texShop = UILabel(frame: CGRectMake(CGRectGetMinX(btnShop.frame), CGRectGetMaxY(btnShop.frame)+5, 70, 10))
+        let texShop = UILabel(frame: CGRectMake(CGRectGetMinX(btnShop.frame), CGRectGetMaxY(btnShop.frame)+5*Consts.ratio, btnSale.frame.width, 20*Consts.ratio))
         texShop.font = UIFont(name: "Verdana", size: 14)
         texShop.textColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         texShop.textAlignment = NSTextAlignment.Center
