@@ -80,7 +80,6 @@
 		359727281BB4279F00B2E4C9 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 359727271BB4279F00B2E4C9 /* data.plist */; };
 		3598B7951BB02FE700AD6BFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7941BB02FE700AD6BFE /* AppDelegate.swift */; };
 		3598B79C1BB02FE800AD6BFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3598B79B1BB02FE800AD6BFE /* Assets.xcassets */; };
-		3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */; };
 		3598B7AA1BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7A91BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift */; };
 		3598B7B51BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3598B7B41BB02FE800AD6BFE /* yoyoCampus_ZhaoleiUITests.swift */; };
 		35A751971BE6380900555254 /* bindToPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A751951BE6380900555254 /* bindToPhoneVC.swift */; };
@@ -334,7 +333,6 @@
 		3598B7911BB02FE700AD6BFE /* yoyoCampus_Zhaolei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yoyoCampus_Zhaolei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3598B7941BB02FE700AD6BFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3598B79B1BB02FE800AD6BFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3598B79E1BB02FE800AD6BFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3598B7A01BB02FE800AD6BFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3598B7A51BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yoyoCampus_ZhaoleiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3598B7A91BB02FE800AD6BFE /* yoyoCampus_ZhaoleiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yoyoCampus_ZhaoleiTests.swift; sourceTree = "<group>"; };
@@ -686,7 +684,6 @@
 			isa = PBXGroup;
 			children = (
 				35593FC21BB103E200817020 /* Main.storyboard */,
-				3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */,
 				3598B7A01BB02FE800AD6BFE /* Info.plist */,
 				3598B79B1BB02FE800AD6BFE /* Assets.xcassets */,
 				359727271BB4279F00B2E4C9 /* data.plist */,
@@ -1395,7 +1392,7 @@
 				TargetAttributes = {
 					3598B7901BB02FE700AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = AHBF9E2V27;
+						DevelopmentTeam = TV6QKK88A3;
 					};
 					3598B7A41BB02FE800AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
@@ -1485,7 +1482,6 @@
 				35229B711BE4FA8D0087531B /* bindVC.xib in Resources */,
 				ADCF87971BFC676D003958E0 /* study_1.png in Resources */,
 				3594CC281BDD085C00037B33 /* UMShareEditViewController.xib in Resources */,
-				3598B79F1BB02FE800AD6BFE /* LaunchScreen.storyboard in Resources */,
 				AD9002431BF9B4B20019219A /* shopDetail.png in Resources */,
 				ADCF87731BFC66C7003958E0 /* camp_5.png in Resources */,
 				35C772D81BDF174A0054D08E /* ConfirmOrderVC.xib in Resources */,
@@ -1735,14 +1731,6 @@
 			name = UMSocialLocalizable.strings;
 			sourceTree = "<group>";
 		};
-		3598B79D1BB02FE800AD6BFE /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3598B79E1BB02FE800AD6BFE /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1832,6 +1820,7 @@
 			baseConfigurationReference = 691656D5057848C78D2955A9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1889,10 +1878,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhr;
+				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1904,6 +1893,7 @@
 			baseConfigurationReference = 3B6B2F02E825D43080A8D9D8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1959,10 +1949,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhr;
+				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};
