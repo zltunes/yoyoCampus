@@ -25,12 +25,17 @@ class RootVC: UIViewController,UIScrollViewDelegate{
       var categoryRoot = NSMutableArray()
       var advArray = NSMutableArray()
     
+    var scrollRootView = UIScrollView()
+    
      var scrollBannerView = UIScrollView()
     
     internal var locationTitle:String = ""
      var advURL = NSMutableArray()
 
     var searchBtn = UIButton(frame: CGRectMake(windowWidth*0.9, 10, 20, 20))
+    
+    var totalHeight:CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,10 +67,11 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         scrollRootView.directionalLockEnabled = true
         scrollRootView.showsVerticalScrollIndicator = true
         scrollRootView.showsHorizontalScrollIndicator = false
-        scrollRootView.contentSize = CGSizeMake(windowWidth, 2530*Consts.ratio)
+        //scrollRootView.contentSize = CGSizeMake(windowWidth, *Consts.ratio)
         scrollRootView.scrollEnabled = true
         scrollRootView.showsVerticalScrollIndicator = false
         self.view.addSubview(scrollRootView)
+        self.scrollRootView = scrollRootView
 	    //banner的scrollView
         let scrollBannerView = UIScrollView(frame: CGRectMake(0, 0, windowWidth, 300*Consts.ratio))
         scrollBannerView.delegate = self
@@ -75,6 +81,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         scrollBannerView.backgroundColor = UIColor.whiteColor()
         //翻页效果加进去会比较好，控制左右拖动的随意性
         scrollBannerView.pagingEnabled = true
+        self.totalHeight += scrollBannerView.frame.height
         scrollRootView.addSubview(scrollBannerView)
         self.scrollBannerView = scrollBannerView
         
@@ -84,6 +91,7 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         //6个按键的布置
         let btnBackView = UIView(frame: CGRectMake(0, CGRectGetMaxY(scrollBannerView.frame), windowWidth, 374*Consts.ratio))
         btnBackView.backgroundColor = UIColor.whiteColor()
+        self.totalHeight += btnBackView.frame.height
         scrollRootView.addSubview(btnBackView)
         
         let btnSale = UIButton(frame: CGRectMake(70 * Consts.ratio, 10, 130*Consts.ratio, 130*Consts.ratio))
@@ -174,30 +182,38 @@ class RootVC: UIViewController,UIScrollViewDelegate{
         let touchCarLabel = UITapGestureRecognizer.init(target: self, action: "nameLabelTouched:")
         let touchStudyLabel = UITapGestureRecognizer.init(target: self, action: "nameLabelTouched:")
         
-        var sale = saleView.init(frame: CGRectMake(0, CGRectGetMaxY(btnBackView.frame)+20*Consts.ratio, windowWidth, 300*Consts.ratio))
+        var sale = saleView.init(frame: CGRectMake(0, CGRectGetMaxY(btnBackView.frame)+15*Consts.ratio, windowWidth, CGFloat(ceilf(Float(300*Consts.ratio)))))
         sale.backgroundColor = UIColor.whiteColor()
         scrollRootView.addSubview(sale)
         sale.nameLabel.addGestureRecognizer(touchSaleLabel)
+        self.totalHeight += (sale.frame.height + 15*Consts.ratio)
         
-        var shop = shopView.init(frame: CGRectMake(0, CGRectGetMaxY(sale.frame)+20*Consts.ratio, windowWidth, 300*Consts.ratio))
+        var shop = shopView.init(frame: CGRectMake(0, CGRectGetMaxY(sale.frame)+15*Consts.ratio, windowWidth, CGFloat(ceilf(Float(300*Consts.ratio)))))
         shop.backgroundColor = UIColor.whiteColor()
         scrollRootView.addSubview(shop)
         shop.nameLabel.addGestureRecognizer(touchShopLabel)
+        self.totalHeight += (shop.frame.height + 15*Consts.ratio)
         
-        var camp = campView.init(frame: CGRectMake(0, CGRectGetMaxY(shop.frame)+20*Consts.ratio, windowWidth, 300*Consts.ratio))
+        var camp = campView.init(frame: CGRectMake(0, CGRectGetMaxY(shop.frame)+15*Consts.ratio, windowWidth, CGFloat(ceilf(Float(300*Consts.ratio)))))
         camp.backgroundColor = UIColor.whiteColor()
         scrollRootView.addSubview(camp)
         camp.nameLabel.addGestureRecognizer(touchCampLabel)
+        self.totalHeight += (camp.frame.height + 15*Consts.ratio)
         
-        var car = carView.init(frame: CGRectMake(0, CGRectGetMaxY(camp.frame)+20*Consts.ratio, windowWidth, 300*Consts.ratio))
+        var car = carView.init(frame: CGRectMake(0, CGRectGetMaxY(camp.frame)+15*Consts.ratio, windowWidth, CGFloat(ceilf(Float(300*Consts.ratio)))))
         car.backgroundColor = UIColor.whiteColor()
         scrollRootView.addSubview(car)
         car.nameLabel.addGestureRecognizer(touchCarLabel)
+        self.totalHeight += (car.frame.height + 15*Consts.ratio)
         
-        var study = studyView.init(frame: CGRectMake(0, CGRectGetMaxY(car.frame)+20*Consts.ratio, windowWidth, 340*Consts.ratio))
+        var study = studyView.init(frame: CGRectMake(0, CGRectGetMaxY(car.frame)+15*Consts.ratio, windowWidth, CGFloat(ceilf(Float(340*Consts.ratio)))))
         study.backgroundColor = UIColor.whiteColor()
         scrollRootView.addSubview(study)
         study.nameLabel.addGestureRecognizer(touchStudyLabel)
+        self.totalHeight += (study.frame.height + 15*Consts.ratio)
+        
+        self.differentDevice()
+        
         
     
         func setBtnText(){
@@ -318,12 +334,14 @@ class RootVC: UIViewController,UIScrollViewDelegate{
     
     func differentDevice(){
         if(Consts.device() == "iphone5"){
-            
+            self.scrollRootView.contentSize = CGSizeMake(windowWidth, self.totalHeight + 15*5*Consts.ratio + 175*Consts.ratio)
         }
         if(Consts.device() == "iphone6"){
+            self.scrollRootView.contentSize = CGSizeMake(windowWidth, self.totalHeight + 15*5*Consts.ratio + 145*Consts.ratio)
             
         }
         if(Consts.device() == "iphone6plus"){
+            self.scrollRootView.contentSize = CGSizeMake(windowWidth, self.totalHeight + 15*5*Consts.ratio + 124*Consts.ratio)
         }
     }
 }

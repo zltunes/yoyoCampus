@@ -22,7 +22,7 @@ class saleView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let nameLabel = UILabel(frame: CGRectMake(0, 0, windowWidth, 50*Consts.ratio))
+        let nameLabel = UILabel(frame: CGRectMake(0, 5*Consts.ratio, windowWidth, 50*Consts.ratio))
         nameLabel.text = "       闲置"
         nameLabel.font = UIFont(name: "Verdana", size: 15)
         self.nameLabel = nameLabel
@@ -34,7 +34,7 @@ class saleView: UIView {
         greenView.backgroundColor = UIColor(red: 25/255, green: 180/255, blue: 160/255, alpha: 1)
         self.addSubview(greenView)
         
-        let image1 = UIImageView(frame: CGRectMake(40*Consts.ratio, CGRectGetMaxY(nameLabel.frame)+20*Consts.ratio, (windowWidth-200*Consts.ratio)/3,160*Consts.ratio))
+        let image1 = UIImageView(frame: CGRectMake(40*Consts.ratio, CGRectGetMaxY(nameLabel.frame)+30*Consts.ratio, (windowWidth-200*Consts.ratio)/3,160*Consts.ratio))
         image1.image = UIImage(named: "sale_1")
         self.addSubview(image1)
         
