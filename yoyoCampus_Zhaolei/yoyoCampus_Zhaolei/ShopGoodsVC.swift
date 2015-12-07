@@ -78,6 +78,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         self.view.backgroundColor = Consts.grayView
         super.viewDidLoad()
         self.httpGetGroup()
+        setUpOnlineData("shopDetail")
         Consts.setUpNavigationBarWithBackButton(self, title: self.shopTitleName , backTitle: "<")
         
         api.delegate = self
@@ -122,7 +123,6 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             }
             self.setView()
         }
-        setUpOnlineData("shopDetail")
     }
     func httpMutableGroupGetGoods(nextData : Int){
         Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters:["page":"1","location":"东南大学九龙湖校区","shop_id":self.shopID,"group":self.groupArray[nextData]]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
@@ -573,6 +573,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     
     func didReceiveJsonResults(json: JSON, tag: String) {
         if(tag == "shopDetail"){
+            self.shopPhoneNum = json["phone_num"].string!
             if(json["is_collected"] == 1){
                 collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_n"), forState: .Normal)
                 shopIsCollected = true
