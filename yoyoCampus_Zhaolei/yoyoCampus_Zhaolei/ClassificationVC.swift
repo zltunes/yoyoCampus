@@ -372,13 +372,13 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         }
         
         //搜索和排序按键
-        let btnOrder = UIButton(frame: CGRectMake(windowWidth*0.09, 23, 20, 20))
+        let btnOrder = UIButton(frame: CGRectMake(windowWidth*0.09-20*Consts.ratio, 23, 40*Consts.ratio, 40*Consts.ratio))
         btnOrder.setBackgroundImage(UIImage(named: "home_3"), forState: UIControlState.Normal)
         btnOrder.addTarget(self, action: Selector("orderClick:"), forControlEvents: UIControlEvents.TouchUpInside)
         self.navBtnView.addSubview(btnOrder)
         
         
-        let btnSearch = UIButton(frame: CGRectMake(CGRectGetMaxX(btnOrder.frame)+5, 23, 20, 20))
+        let btnSearch = UIButton(frame: CGRectMake(CGRectGetMaxX(btnOrder.frame)+20*Consts.ratio, 23, 40*Consts.ratio, 40*Consts.ratio))
         btnSearch.setBackgroundImage(UIImage(named: "home_2"), forState: UIControlState.Normal)
         btnSearch.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
         self.navBtnView.addSubview(btnSearch)
@@ -543,7 +543,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     }
     //排序按钮
     func setBtnOrder(){
-        let dissmissOrder = UITapGestureRecognizer.init(target: self, action: Selector("hideOrder:"))
+        let dissmissOrder = UITapGestureRecognizer.init(target: self, action: Selector("hideOrder"))
         
         self.orderBack.backgroundColor = UIColor.blackColor()
         self.orderBack.alpha = 0.4
@@ -674,7 +674,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 self.tableViewArray[self.pageView.currentPage].reloadData()
             }
         }
-        
+        self.hideOrder()
     }
     
     func orderBtn3Select(sender : UIButton){
@@ -703,6 +703,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 self.tableViewArray[self.pageView.currentPage].reloadData()
             }
         }
+        self.hideOrder()
+
     }
     func orderBtn4Select(sender : UIButton){
         self.orderColorChange(3)
@@ -728,7 +730,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
                 self.tableViewArray[self.pageView.currentPage].reloadData()
             }
         }
-        
+        self.hideOrder()
+
     }
     
     //tableview 相关函数
@@ -811,7 +814,7 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
     }
     
     //隐藏注册事件
-    func hideOrder(sender : AnyObject){
+    func hideOrder(){
         self.orderLabel.frame = CGRect(x: 0, y: -windowHeight*0.1, width: windowHeight, height: windowHeight*0.1)
         self.orderLabel.hidden = true
         self.orderBack.hidden = true
@@ -856,6 +859,8 @@ class ClassificationVC: UIViewController,UIScrollViewDelegate,UITableViewDataSou
         if(self.dataNum == Int(self.viewCount)){
             self.flag = true
             self.scrollPageTurn(0)
+            //self.orderBtn1Select(self.orderBtn1)
+
         }
         else{
             httpRequestIdleData(self.dataNum)
