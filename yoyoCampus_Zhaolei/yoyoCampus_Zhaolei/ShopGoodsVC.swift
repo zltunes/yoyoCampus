@@ -11,13 +11,35 @@ import Alamofire
 import SwiftyJSON
 import MJRefresh
 
-class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate {
+class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate ,APIDelegate{
   
     var isSingleView = Bool()
     var groupURL = String()
-
+    
+    //两种咨询方式
+    var popMenu = PopMenu()
+    
+    //打电话发短信
+    var app = UIApplication.sharedApplication()
+    
+    var api = YoYoAPI()
+    
+    var shopIsCollected:Bool = false
+    
+    var shopPhoneNum = ""
+    
+    var shopDetailURL:String = ""
+    
+    var collectShopURL:String = ""
+    
+    var cancelCollectShopURL:String = ""
+    
+    var collectBtn = UIButton()
+    
+    var consultBtn = UIButton()
     
     internal var shopID:String = ""
+    
     var shopTitleName = String()
     
     var navBtnView = UIView(frame: CGRectMake(windowWidth*0.9, 20, windowWidth*0.2, 64))
@@ -57,8 +79,8 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         super.viewDidLoad()
         self.httpGetGroup()
         Consts.setUpNavigationBarWithBackButton(self, title: self.shopTitleName , backTitle: "<")
-
-
+        
+        api.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +122,7 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             }
             self.setView()
         }
+        setUpOnlineData("shopDetail")
     }
     func httpMutableGroupGetGoods(nextData : Int){
         Alamofire.request(.GET, "http://api2.hloli.me:9001/v1.0/goods/search/",headers:httpHeader,parameters:["page":"1","location":"东南大学九龙湖校区","shop_id":self.shopID,"group":self.groupArray[nextData]]).responseJSON(options: NSJSONReadingOptions.MutableContainers){
@@ -236,12 +259,36 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         btnDetail.addTarget(self, action: Selector("intoDetail"), forControlEvents: UIControlEvents.TouchUpInside)
         self.navBtnView.addSubview(btnDetail)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navBtnView)
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "shopDetail.png"), style: .Plain, target: self, action: "intoDetail")
+
+        //bottomView
+        let newWidth = self.view.frame.width
+        let newHeight = self.view.frame.height
+        let bottomView = UIView(frame: CGRect(x: 0, y: newHeight - 55, width: newWidth, height: 55))
+        bottomView.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 234/255, alpha: 1.0)
+        self.view.addSubview(bottomView)
         
+        collectBtn = UIButton(type: .System)
+        collectBtn.frame = CGRect(x: 150*Consts.ratio, y: 20 * Consts.ratio, width: 25, height: 38)
+        if(self.shopIsCollected == true){
+            collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_n"), forState: .Normal)
+            collectBtn.tag = 11
+        }else if(self.shopIsCollected == false){
+            collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_p"), forState: .Normal)
+            collectBtn.tag = 10
+        }
+        collectBtn.tintColor = Consts.tintGreen
+        bottomView.addSubview(collectBtn)
         
+        consultBtn = UIButton(type: .System)
+        consultBtn.frame = CGRect(x: newWidth - 150 * Consts.ratio - 25, y: 20 * Consts.ratio, width: 25, height: 38)
+        consultBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_consult"), forState: .Normal)
+        consultBtn.tintColor = Consts.tintGreen
+        bottomView.addSubview(consultBtn)
         
+        collectBtn.addTarget(self, action: "collectBtnClicked:", forControlEvents: .TouchUpInside)
+        consultBtn.addTarget(self, action: "showMenu", forControlEvents: .TouchUpInside)
     }
-    
+
     func setExtraCellLineHidden(tableView:UITableView){
         let view = UIView()
         view.backgroundColor = UIColor.clearColor()
@@ -504,6 +551,88 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
     }
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
+    }
+
+    func setUpOnlineData(tag:String){
+        if(tag == "shopDetail"){
+            self.shopDetailURL = "http://api2.hloli.me:9001/v1.0/shop/\(shopID)"
+            api.httpRequest("GET", url: shopDetailURL, params: nil, tag: "shopDetail")
+        }else if(tag == "collectShop"){
+            self.collectShopURL = "http://api2.hloli.me:9001/v1.0/shop/collection/\(shopID)"
+            api.httpRequest("POST", url: collectShopURL, params: nil, tag: "collectShop")
+        }else if(tag == "cancelCollectShop"){
+            self.cancelCollectShopURL = "http://api2.hloli.me:9001/v1.0/shop/collection/\(shopID)"
+            api.httpRequest("DELETE", url: cancelCollectShopURL, params: nil, tag: "cancelCollectShop")
+        }
+    }
+    
+    
+    func didReceiveJsonResults(json: JSON, tag: String) {
+        if(tag == "shopDetail"){
+            if(json["is_collected"] == 1){
+                collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_n"), forState: .Normal)
+                shopIsCollected = true
+                collectBtn.tag = 11
+//                self.setView()
+            }else{
+                collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_p"), forState: .Normal)
+                shopIsCollected = false
+                collectBtn.tag = 10
+            }
+        }else if(tag == "collectShop"){
+            collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_n"), forState: .Normal)
+            shopIsCollected = true
+            collectBtn.tag = 11
+        }else if(tag == "cancelCollectShop"){
+            collectBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_collection_p"), forState: .Normal)
+            shopIsCollected = false
+            collectBtn.tag = 10
+        }
+    }
+    
+    func collectBtnClicked(sender:UIButton){
+        if(sender.tag == 10){//未收藏
+            setUpOnlineData("collectShop")
+        }else if(sender.tag == 11){//已收藏
+            setUpOnlineData("cancelCollectShop")
+        }
+    }
+    
+    //咨询跳出两个选择
+    func showMenu(){
+        //注意空数组的定义.MenuItem为元素类型
+        var items = [MenuItem]()
+        var menuItem = MenuItem(title: "sms", iconName: "xiangqing_btn_message")//短信
+        items.append(menuItem)
+        menuItem = MenuItem(title: "tel", iconName: "xiangqing_btn_call")//电话
+        items.append(menuItem)
+        
+        popMenu = PopMenu(frame: self.view.bounds, items: items)
+        popMenu.menuAnimationType = PopMenuAnimationType.NetEase
+        
+        if(popMenu.isShowed == true){
+            return
+        }
+        
+        popMenu.didSelectedItemCompletion = { (selectedItem) in
+            //点击事件
+            if(selectedItem.title == "sms"){
+                self.app.openURL(NSURL(string: "sms:\(self.shopPhoneNum)")!)
+            }else if(selectedItem.title == "tel"){
+                self.self.webViewCallPhone()
+            }
+        };
+        
+        popMenu.showMenuAtView(self.view)
+    }
+    
+    func  webViewCallPhone(){
+        //        此种方法打完电话可以回到本应用
+        let callWebview = UIWebView()
+        let teleURL = NSURL(string: "tel:\(self.shopPhoneNum)")
+        callWebview.loadRequest(NSURLRequest(URL: teleURL!))
+        //        将uiwebview添加到view
+        self.view.addSubview(callWebview)
     }
 
 }

@@ -93,7 +93,7 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="yTl-7E-27h"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="36091A73-28AA-4A1D-9B7E-A2E8228F008E" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="C4C32E11-AFE5-422B-891C-CFCA6CD1C35C" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
                     <rect key="frame" x="8" y="7" width="304" height="191"/>
                     <animations/>
                     <constraints>
@@ -440,7 +440,7 @@
         </tableView>
     </objects>
     <resources>
-        <image name="36091A73-28AA-4A1D-9B7E-A2E8228F008E" width="97" height="72">
+        <image name="C4C32E11-AFE5-422B-891C-CFCA6CD1C35C" width="97" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

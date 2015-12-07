@@ -264,6 +264,7 @@ class LoginViewController: UIViewController,APIDelegate{
                     plistDict["photo"] = NSData(contentsOfURL:json["image"].URL!)
                     plistDict["enroll_year"] = json["enroll_year"].string!
                     plistDict["location"] = json["location"].string!
+                    AppDelegate.location = json["location"].string!
                     plistDict["weibo_bind"] = json["weibo_bind"].int!
                     plistDict["weixin_bind"] = json["weixin_bind"].int!
                     plistDict.writeToFile(AppDelegate.filePath, atomically: false)
