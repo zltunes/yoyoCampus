@@ -22,7 +22,7 @@ class studyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let nameLabel = UILabel(frame: CGRectMake(0, 0, windowWidth,50*Consts.ratio))
+        let nameLabel = UILabel(frame: CGRectMake(0,5*Consts.ratio, windowWidth,50*Consts.ratio))
         nameLabel.text = "       留学"
         nameLabel.font = UIFont(name: "Verdana", size: 15)
         self.addSubview(nameLabel)

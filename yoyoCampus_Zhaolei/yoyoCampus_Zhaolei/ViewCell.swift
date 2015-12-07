@@ -29,22 +29,23 @@ class ViewCell: UITableViewCell {
         self.addSubview(goodsImage)
         self.goodsImage = goodsImage
         
-        let goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 25 * Consts.ratio))
+        let goodsName = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+(30 * Consts.ratio), 20 * Consts.ratio, windowWidth/2, 35 * Consts.ratio))
         goodsName.font = UIFont(name: "Verdana", size: 15)
+        goodsName.adjustsFontSizeToFitWidth = true
         self.goodsName = goodsName
         self.addSubview(goodsName)
         
-        let goodsShopName = UILabel(frame: CGRectMake(CGRectGetMinX(goodsName.frame), CGRectGetMaxY(goodsName.frame)+(28 * Consts.ratio), windowWidth/3, 10))
+        let goodsShopName = UILabel(frame: CGRectMake(CGRectGetMinX(goodsName.frame), CGRectGetMaxY(goodsName.frame)+(20 * Consts.ratio), windowWidth/3, 25*Consts.ratio))
         goodsShopName.font = UIFont(name: "Verdana", size: 12)
         goodsShopName.textColor = UIColor(red: 20/255, green: 120/255, blue: 100/255, alpha: 1)
         self.goodsShopName = goodsShopName
         self.addSubview(goodsShopName)
         
-        let viewImage1 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(goodsShopName.frame)+(28 * Consts.ratio), 10, 10))
+        let viewImage1 = UIImageView(frame: CGRectMake(CGRectGetMinX(goodsName.frame), CGRectGetMaxY(goodsShopName.frame)+(25 * Consts.ratio), 20*Consts.ratio, 20*Consts.ratio))
         viewImage1.image = UIImage(named: "viewcell_1")
         self.addSubview(viewImage1)
         
-        var viewNum = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+35, CGRectGetMaxY(goodsShopName.frame)+15, windowWidth/3, 10))
+        var viewNum = UILabel(frame: CGRectMake(CGRectGetMaxX(viewImage1.frame)+10*Consts.ratio, CGRectGetMaxY(goodsShopName.frame)+(25*Consts.ratio), 150*Consts.ratio, 20*Consts.ratio))
         viewNum.textColor = UIColor.grayColor()
         viewNum.font = UIFont(name: "Verdana", size: 11)
         self.viewNum = viewNum
@@ -65,12 +66,12 @@ class ViewCell: UITableViewCell {
         self.addSubview(newPrice)
         
         
-        let viewImage2 = UIImageView(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+20, CGRectGetMaxY(viewImage1.frame)+(22 * Consts.ratio), 10, 10))
+        let viewImage2 = UIImageView(frame: CGRectMake(CGRectGetMinX(goodsName.frame), CGRectGetMaxY(viewImage1.frame)+(22 * Consts.ratio), 25*Consts.ratio, 25*Consts.ratio))
         viewImage2.image = UIImage(named: "viewcell_2")
         self.viewImage2 = viewImage2
         self.addSubview(viewImage2)
 
-        var goodsDiscount = UILabel(frame: CGRectMake(CGRectGetMaxX(goodsImage.frame)+35, CGRectGetMinY(viewImage2.frame), windowWidth/2, 10))
+        var goodsDiscount = UILabel(frame: CGRectMake(CGRectGetMaxX(viewImage2.frame)+10*Consts.ratio, CGRectGetMinY(viewImage2.frame)+3*Consts.ratio, windowWidth/2, 20*Consts.ratio))
         //goodsDiscount.text = "凭借悠悠万能优惠卡减免10元"
         goodsDiscount.font = UIFont(name: "Verdana", size: 11)
         goodsDiscount.textColor = UIColor.grayColor()
