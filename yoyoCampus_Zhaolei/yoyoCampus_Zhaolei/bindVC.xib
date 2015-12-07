@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="bindVC" customModule="yoyoCampus_Zhaolei" customModuleProvider="target">
@@ -16,83 +16,134 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bear_icon_register" translatesAutoresizingMaskIntoConstraints="NO" id="V0b-y2-e86">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear_icon_register" translatesAutoresizingMaskIntoConstraints="NO" id="V0b-y2-e86">
                     <rect key="frame" x="110" y="40" width="100" height="100"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="hP0-2c-ID5"/>
+                        <constraint firstAttribute="width" constant="100" id="vlH-lk-Tfq"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="亲爱的YoYo校园用户：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD3-HA-ky9">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲爱的YoYo校园用户：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD3-HA-ky9">
                     <rect key="frame" x="8" y="172" width="144" height="21"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="28j-tm-RCb"/>
+                        <constraint firstAttribute="width" constant="144" id="S3v-cc-mAS"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnl-ia-u9n">
-                    <rect key="frame" x="154" y="172" width="144" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnl-ia-u9n">
+                    <rect key="frame" x="154" y="172" width="158" height="21"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="frq-KD-Jw6"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="为了给您更好的服务，请您关联一个YoYo账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-Nj-YT8">
-                    <rect key="frame" x="8" y="200" width="304" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="为了给您更好的服务，请您关联一个YoYo账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-Nj-YT8">
+                    <rect key="frame" x="8" y="201" width="304" height="30"/>
                     <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="HrA-ha-rl8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="还没有YoYo账号？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wf-eE-NGz">
-                    <rect key="frame" x="8" y="253" width="144" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有YoYo账号？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wf-eE-NGz">
+                    <rect key="frame" x="8" y="253" width="304" height="21"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="d07-QZ-7PL"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEv-z5-oZ3">
-                    <rect key="frame" x="28" y="409" width="264" height="42"/>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEv-z5-oZ3">
+                    <rect key="frame" x="28" y="409" width="264" height="40"/>
                     <animations/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6w3-EU-Re4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="立 即 关 联">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="7"/>
+                            <integer key="value" value="3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="q7b-DS-TjD"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已有YoYo账号？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-hi-kXd">
-                    <rect key="frame" x="8" y="368" width="144" height="21"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOm-WW-V6C">
-                    <rect key="frame" x="28" y="296" width="264" height="42"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOm-WW-V6C">
+                    <rect key="frame" x="28" y="296" width="264" height="40"/>
                     <animations/>
                     <color key="backgroundColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="HRm-Gi-u6V"/>
+                        <constraint firstAttribute="width" constant="264" id="yNz-Qm-9hw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="快 速 注 册">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="7"/>
+                            <integer key="value" value="3"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="tl8-2h-1Ul"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已有YoYo账号？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPQ-hi-kXd">
+                    <rect key="frame" x="8" y="366" width="304" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Z1W-tP-HAz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="V0b-y2-e86" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="2Wm-FP-V1M"/>
+                <constraint firstAttribute="trailing" secondItem="gOm-WW-V6C" secondAttribute="trailing" constant="28" id="3KM-0m-oAW"/>
+                <constraint firstItem="JbG-Nj-YT8" firstAttribute="top" secondItem="yD3-HA-ky9" secondAttribute="bottom" constant="8" id="48E-KP-KQA"/>
+                <constraint firstItem="gOm-WW-V6C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="7i6-0n-1to"/>
+                <constraint firstAttribute="trailing" secondItem="JPQ-hi-kXd" secondAttribute="trailing" constant="8" id="Ats-ku-KxL"/>
+                <constraint firstItem="Xnl-ia-u9n" firstAttribute="leading" secondItem="yD3-HA-ky9" secondAttribute="trailing" constant="2" id="IEV-Lr-tJc"/>
+                <constraint firstAttribute="trailing" secondItem="7Wf-eE-NGz" secondAttribute="trailing" constant="8" id="IQw-Zk-Sae"/>
+                <constraint firstItem="V0b-y2-e86" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ib7-hd-2eh"/>
+                <constraint firstAttribute="trailing" secondItem="JbG-Nj-YT8" secondAttribute="trailing" constant="8" id="Pag-LF-iTG"/>
+                <constraint firstItem="JbG-Nj-YT8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Pkd-ox-VSH"/>
+                <constraint firstItem="yD3-HA-ky9" firstAttribute="top" secondItem="V0b-y2-e86" secondAttribute="bottom" constant="32" id="QC5-x1-LZh"/>
+                <constraint firstItem="Xnl-ia-u9n" firstAttribute="centerY" secondItem="yD3-HA-ky9" secondAttribute="centerY" id="T7l-CX-SYn"/>
+                <constraint firstItem="rEv-z5-oZ3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="Vxc-VE-gLs"/>
+                <constraint firstItem="JPQ-hi-kXd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="ZUb-ql-ckD"/>
+                <constraint firstItem="rEv-z5-oZ3" firstAttribute="top" secondItem="JPQ-hi-kXd" secondAttribute="bottom" constant="22" id="acP-NJ-sPO"/>
+                <constraint firstAttribute="trailing" secondItem="Xnl-ia-u9n" secondAttribute="trailing" constant="8" id="bnV-bc-LpY"/>
+                <constraint firstItem="7Wf-eE-NGz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="e3a-8f-X7Y"/>
+                <constraint firstItem="JPQ-hi-kXd" firstAttribute="top" secondItem="gOm-WW-V6C" secondAttribute="bottom" constant="30" id="h1g-IB-VX2"/>
+                <constraint firstItem="yD3-HA-ky9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="iOr-bj-bfC"/>
+                <constraint firstAttribute="trailing" secondItem="rEv-z5-oZ3" secondAttribute="trailing" constant="28" id="iof-vh-Q4A"/>
+                <constraint firstItem="7Wf-eE-NGz" firstAttribute="top" secondItem="JbG-Nj-YT8" secondAttribute="bottom" constant="22" id="soA-Xk-Nkx"/>
+                <constraint firstItem="gOm-WW-V6C" firstAttribute="top" secondItem="7Wf-eE-NGz" secondAttribute="bottom" constant="22" id="v31-hO-JdS"/>
+            </constraints>
             <point key="canvasLocation" x="367" y="350"/>
         </view>
     </objects>

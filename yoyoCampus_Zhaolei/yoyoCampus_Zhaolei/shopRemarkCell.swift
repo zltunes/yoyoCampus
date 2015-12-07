@@ -44,6 +44,8 @@ class shopRemarkCell: UITableViewCell {
         super.awakeFromNib()
         self.backgroundColor = Consts.grayView
         // Initialization code
+        photo.layer.cornerRadius = photo.frame.width/2
+        photo.layer.masksToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

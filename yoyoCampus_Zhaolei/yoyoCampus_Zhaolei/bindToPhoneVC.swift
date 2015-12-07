@@ -65,7 +65,7 @@ class bindToPhoneVC: UIViewController,APIDelegate {
         self.view.backgroundColor = Consts.grayView
         
         //头像
-        self.img.frame = CGRect(x: 260 * Consts.ratio, y: 200 * Consts.ratio, width: 200 * Consts.ratio, height: 200 * Consts.ratio)
+        self.img.frame = CGRect(x: 260 * Consts.ratio, y: 80 * Consts.ratio, width: 200 * Consts.ratio, height: 200 * Consts.ratio)
         self.img.contentMode = .ScaleAspectFit
         self.img.layer.cornerRadius = self.img.frame.width / 2   //圆角半径＝width/2，形成原型
         self.img.layer.masksToBounds = true
@@ -74,14 +74,14 @@ class bindToPhoneVC: UIViewController,APIDelegate {
         self.view.addSubview(self.img)
         
         //手机号背景
-        self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 480 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        self.phoneView.frame = CGRect(x: 37 * Consts.ratio, y: 350 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.phoneView.layer.cornerRadius = 7
         self.phoneView.layer.masksToBounds = true
         self.phoneView.backgroundColor = Consts.white
         self.view.addSubview(self.phoneView)
         
-        //验证码背景
-        self.verifyCodeView.frame = CGRect(x: 37 * Consts.ratio, y: 590 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
+        //密码背景
+        self.verifyCodeView.frame = CGRect(x: 37 * Consts.ratio, y: 460 * Consts.ratio, width: 650 * Consts.ratio, height: 90 * Consts.ratio)
         self.verifyCodeView.layer.cornerRadius = 7
         self.verifyCodeView.layer.masksToBounds = true
         self.verifyCodeView.backgroundColor = Consts.white
@@ -91,20 +91,22 @@ class bindToPhoneVC: UIViewController,APIDelegate {
         self.phoneImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
         self.phoneImg.image = UIImage.init(named: "register_button_phone")
         self.phoneView.addSubview(self.phoneImg)
-        //验证码图标
+        //密码图标
         self.verifyCodeImg.frame = CGRect(x: 40 * Consts.ratio, y: 24 * Consts.ratio, width: 30 * Consts.ratio, height: 42 * Consts.ratio)
         self.verifyCodeImg.image = UIImage.init(named: "register_button_password")
         self.verifyCodeView.addSubview(self.verifyCodeImg)
 
         //手机号textField
         self.phoneTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width - self.phoneImg.frame.width, height: 90 * Consts.ratio), origin_X: self.phoneImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入手机号");
+        self.phoneTextField.keyboardType = .NumberPad
         self.phoneView.addSubview(self.phoneTextField)
-        //验证码textfield
+        //密码textfield
         self.verifyCodeTextField = Consts.setUpUITextField(CGRect(x: 0, y: 0, width: self.phoneView.frame.width/3, height: 90 * Consts.ratio),origin_X: self.verifyCodeImg.frame.maxX + 22 * Consts.ratio, font: Consts.ft15, textColor: Consts.lightGray, placeholder: "请输入密码")
+        self.verifyCodeTextField.secureTextEntry = true
         self.verifyCodeView.addSubview(self.verifyCodeTextField)
         
         //注册
-        self.bindBtn = Consts.setUpButton("绑  定", frame: CGRect(x: 70 * Consts.ratio, y: newHeight * 0.6, width: newWidth - 140 * Consts.ratio, height: 86 * Consts.ratio), font: Consts.ft24, radius: 7)
+        self.bindBtn = Consts.setUpButton("绑  定", frame: CGRect(x: 70 * Consts.ratio, y: newHeight * 0.5, width: newWidth - 140 * Consts.ratio, height: 86 * Consts.ratio), font: Consts.ft20, radius: 4)
         self.view.addSubview(self.bindBtn)
     }
 

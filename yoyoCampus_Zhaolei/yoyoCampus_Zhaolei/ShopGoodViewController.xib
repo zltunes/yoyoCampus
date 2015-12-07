@@ -139,6 +139,11 @@
                     <state key="normal">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="36K-4q-5sk"/>
                     </connections>
@@ -227,7 +232,7 @@
                                 <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="Uik-kl-2xy"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="tAa-y9-JJk">
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="tAa-y9-JJk">
                             <rect key="frame" x="37" y="9" width="151" height="36"/>
                             <subviews>
                                 <button opaque="NO" tag="3" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZX-6h-bqp">
@@ -246,7 +251,7 @@
                                         <action selector="btnClicked:" destination="-1" eventType="touchUpInside" id="4lu-An-VUd"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0k1-gg-su3">
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0k1-gg-su3">
                                     <rect key="frame" x="128" y="2" width="23" height="33"/>
                                     <animations/>
                                     <state key="normal" backgroundImage="homepage_btn_consult"/>

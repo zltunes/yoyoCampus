@@ -235,10 +235,10 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
             var tableView = UITableView()
             self.setExtraCellLineHidden(tableView)
             if(self.isSingleView == true){
-                 tableView.frame = CGRectMake(0, 0, windowWidth, windowHeight-50)
+                 tableView.frame = CGRectMake(0, 0, windowWidth, windowHeight-100)
             }
             if(self.isSingleView == false){
-                 tableView.frame = CGRectMake(0, 43, windowWidth, windowHeight-50)
+                 tableView.frame = CGRectMake(0, 43, windowWidth, windowHeight-100)
             }
             self.viewArray[num].addSubview(tableView)
             self.tableViewArray.addObject(tableView)
@@ -284,6 +284,10 @@ class ShopGoodsVC: UIViewController,UIScrollViewDelegate,UITableViewDataSource,U
         consultBtn.setBackgroundImage(UIImage.init(named: "homepage_btn_consult"), forState: .Normal)
         consultBtn.tintColor = Consts.tintGreen
         bottomView.addSubview(consultBtn)
+        
+        let bottomLine = UIView(frame: CGRect(x: 0, y: bottomView.frame.minY, width: newWidth, height: 1))
+        bottomLine.backgroundColor = UIColor.lightGrayColor()
+        self.view.addSubview(bottomLine)
         
         collectBtn.addTarget(self, action: "collectBtnClicked:", forControlEvents: .TouchUpInside)
         consultBtn.addTarget(self, action: "showMenu", forControlEvents: .TouchUpInside)

@@ -38,7 +38,6 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
 //      由于perosninfomationviewcontroller中的修改对本页显示内容有影响，
 //       从A push到 B,再从B pop 到 A,A中viewDidLoad()不会再调用,而viewWillAppear()会重新调用
         self.setUpInitialLooking()
-        print("center:viewWillAppear:")
         
     }
     
@@ -66,7 +65,6 @@ class PersonCenterVC: UIViewController,APIDelegate,UITableViewDelegate,UITableVi
         self.view.backgroundColor = Consts.grayView
         self.photoBtn.layer.cornerRadius = self.photoBtn.frame.width/2
         self.photoBtn.layer.masksToBounds = true
-        print("photoBtn.cornerRadius:\(self.photoBtn.layer.cornerRadius)")
         self.plistDict = NSMutableDictionary(contentsOfFile: AppDelegate.filePath)!
         
         self.setExtralCellLinesHidden(self.table)

@@ -115,7 +115,9 @@ class SettingViewController: UIViewController,UITableViewDelegate,UITableViewDat
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             switch (indexPath.section){
             case 0:
-                Tool.showSuccessHUD("当前已是最新版!")
+//                Tool.showSuccessHUD("当前已是最新版!")
+                //        检查更新
+                UMCheckUpdate.checkUpdateWithAppkey("5625ea6667e58e2328001e3f", channel: nil)
                 break
             case 1://跳转至关于界面
                 let vc = AboutVC()

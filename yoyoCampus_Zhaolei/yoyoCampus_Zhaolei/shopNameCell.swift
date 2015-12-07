@@ -19,6 +19,7 @@ class shopNameCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         shopImage.layer.cornerRadius = shopImage.frame.width/2
+        shopImage.layer.masksToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

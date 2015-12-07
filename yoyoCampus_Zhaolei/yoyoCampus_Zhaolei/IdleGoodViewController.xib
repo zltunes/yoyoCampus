@@ -40,7 +40,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-xU-SQs">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-xU-SQs">
                     <rect key="frame" x="8" y="203" width="304" height="30"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -55,7 +55,7 @@
                     <rect key="frame" x="113" y="270" width="15" height="13"/>
                     <animations/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUx-UV-jrp">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUx-UV-jrp">
                     <rect key="frame" x="240" y="266" width="72" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -93,14 +93,15 @@
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="yTl-7E-27h"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="C4C32E11-AFE5-422B-891C-CFCA6CD1C35C" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="B82D405D-8FA3-45C8-93CD-F40F720D77B6" translatesAutoresizingMaskIntoConstraints="NO" id="k4X-I1-km1">
                     <rect key="frame" x="8" y="7" width="304" height="191"/>
                     <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="k4X-I1-km1" secondAttribute="height" multiplier="304:191" id="uH0-dK-0Y9"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdL-z3-mEO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdL-z3-mEO">
                     <rect key="frame" x="33" y="266" width="70" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -171,7 +172,7 @@
                         <constraint firstAttribute="bottom" secondItem="yaW-eb-Ici" secondAttribute="bottom" constant="1" id="psM-lD-Bsf"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4x-mP-rDR">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4x-mP-rDR">
                     <rect key="frame" x="130" y="266" width="60" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -281,7 +282,7 @@
                         <outlet property="delegate" destination="-1" id="1G2-m2-fJb"/>
                     </connections>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-pw-FyJ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-pw-FyJ">
                     <rect key="frame" x="157" y="238" width="155" height="24"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -360,10 +361,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gP-ou-PD7">
-                    <rect key="frame" x="33" y="238" width="157" height="24"/>
+                    <rect key="frame" x="33" y="235" width="157" height="30"/>
                     <animations/>
                     <color key="tintColor" red="0.1019607843" green="0.71764705880000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="新东方"/>
                     <connections>
                         <action selector="BtnClicked:" destination="-1" eventType="touchUpInside" id="hXS-db-x2m"/>
                     </connections>
@@ -440,7 +440,7 @@
         </tableView>
     </objects>
     <resources>
-        <image name="C4C32E11-AFE5-422B-891C-CFCA6CD1C35C" width="97" height="72">
+        <image name="B82D405D-8FA3-45C8-93CD-F40F720D77B6" width="97" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

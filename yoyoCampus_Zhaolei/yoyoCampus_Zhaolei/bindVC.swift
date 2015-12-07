@@ -58,10 +58,12 @@ class bindVC: UIViewController {
 //            注册
             let vc = RegisterViewController()
             vc.registerType = 1
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
 //            关联
             let vc = bindToPhoneVC()
+            self.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

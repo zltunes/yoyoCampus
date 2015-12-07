@@ -53,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-//        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
         self.window?.rootViewController = AppDelegate.tabBarController
         self.window?.makeKeyAndVisible()
@@ -135,8 +134,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         AppDelegate.tabBarController.tabBar.tintColor = Consts.tintGreen
         AppDelegate.tabBarController.tabBar.backgroundColor = Consts.white
         
-//        self.window?.rootViewController = AppDelegate.tabBarController
-//        print("appdelegate:plistDict:   \(plistDict)")
         if(plistDict == nil){
             
             let introImgNameArray = ["Intro_Screen1","Intro_Screen2","Intro_Screen3","Intro_Screen4"]
@@ -156,6 +153,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             self.introductionView.view = nil
             }
         }
+        
+//        检查更新
+        UMCheckUpdate.checkUpdateWithAppkey("5625ea6667e58e2328001e3f", channel: nil)
         
         return true
     }

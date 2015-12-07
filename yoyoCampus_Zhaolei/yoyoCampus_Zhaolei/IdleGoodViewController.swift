@@ -595,6 +595,7 @@ class IdleGoodViewController: UIViewController,UIScrollViewDelegate,UITableViewD
                 self.goodNameLabel.text = json["name"].string!
             self.roundBtn.setBackgroundImage(UIImage(data: NSData(contentsOfURL: json["user_image"].URL!)!), forState: .Normal)
             self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
+            self.roundBtn.layer.masksToBounds = true
             self.shopNameBtn.setTitle(json["user_name"].string!, forState: .Normal)
             let price = Float(json["price"].int!)/100.00
             self.presentPriceLabel.text = "¥ \(price)"

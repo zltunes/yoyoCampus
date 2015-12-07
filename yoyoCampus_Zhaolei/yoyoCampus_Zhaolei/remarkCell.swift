@@ -31,6 +31,8 @@ class remarkCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        photo.layer.cornerRadius = photo.frame.width/2
+        photo.layer.masksToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

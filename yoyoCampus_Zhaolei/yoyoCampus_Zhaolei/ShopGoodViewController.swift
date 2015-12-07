@@ -153,6 +153,8 @@ class ShopGoodViewController: UIViewController,UITableViewDelegate,UITableViewDa
         self.toBuyBtn.titleLabel?.font = UIFont.boldSystemFontOfSize(20.0)
         
         self.roundBtn.layer.cornerRadius = self.roundBtn.frame.width/2
+        
+        self.roundBtn.layer.masksToBounds = true
     
         
         //设置指示器 scrollIndicator && inScrollIndicator
