@@ -162,7 +162,7 @@ class Consts {
     //地址
     /*********************************************/
     
-    static let mainUrl = "http://api2.hloli.me:9001"
+    static let mainUrl = "https://api2.yoyocampus.com:443"
     
     /*********************************************/
     //动画相关
