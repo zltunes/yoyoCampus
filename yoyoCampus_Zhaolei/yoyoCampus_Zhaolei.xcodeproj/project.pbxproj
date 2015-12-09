@@ -41,6 +41,10 @@
 		3577407E1BC4163F0005281B /* remarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3577407C1BC4163F0005281B /* remarkCell.swift */; };
 		3577407F1BC4163F0005281B /* remarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3577407D1BC4163F0005281B /* remarkCell.xib */; };
 		357B3E871C0F238B0085B6F9 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357B3E861C0F238B0085B6F9 /* pop.framework */; };
+		358667A81C171B05007E875B /* libGeTuiSdk-1.3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 358667A71C171B05007E875B /* libGeTuiSdk-1.3.1.a */; };
+		358667AA1C171BF2007E875B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358667A91C171BF2007E875B /* CFNetwork.framework */; };
+		358667AC1C171C0E007E875B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358667AB1C171C0E007E875B /* CoreLocation.framework */; };
+		358667AE1C171C16007E875B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358667AD1C171C16007E875B /* CoreBluetooth.framework */; };
 		3590FDE51BF9DDF800261CBB /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590FDE31BF9DDF800261CBB /* SearchVC.swift */; };
 		3590FDE61BF9DDF800261CBB /* SearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3590FDE41BF9DDF800261CBB /* SearchVC.xib */; };
 		3590FDEB1BF9DE7C00261CBB /* SearchGoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590FDE91BF9DE7C00261CBB /* SearchGoodsCell.swift */; };
@@ -274,6 +278,11 @@
 		3577407C1BC4163F0005281B /* remarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remarkCell.swift; sourceTree = "<group>"; };
 		3577407D1BC4163F0005281B /* remarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remarkCell.xib; sourceTree = "<group>"; };
 		357B3E861C0F238B0085B6F9 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = "Pods/../build/Debug-iphoneos/pop.framework"; sourceTree = "<group>"; };
+		358667A61C171B05007E875B /* GeTuiSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeTuiSdk.h; sourceTree = "<group>"; };
+		358667A71C171B05007E875B /* libGeTuiSdk-1.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGeTuiSdk-1.3.1.a"; sourceTree = "<group>"; };
+		358667A91C171BF2007E875B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		358667AB1C171C0E007E875B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		358667AD1C171C16007E875B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		3590FDE31BF9DDF800261CBB /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		3590FDE41BF9DDF800261CBB /* SearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchVC.xib; sourceTree = "<group>"; };
 		3590FDE91BF9DE7C00261CBB /* SearchGoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchGoodsCell.swift; sourceTree = "<group>"; };
@@ -513,6 +522,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				358667AE1C171C16007E875B /* CoreBluetooth.framework in Frameworks */,
+				358667AC1C171C0E007E875B /* CoreLocation.framework in Frameworks */,
+				358667AA1C171BF2007E875B /* CFNetwork.framework in Frameworks */,
 				357B3E871C0F238B0085B6F9 /* pop.framework in Frameworks */,
 				35C772D11BDF0CF30054D08E /* Foundation.framework in Frameworks */,
 				35C772CF1BDF0CB50054D08E /* UIKit.framework in Frameworks */,
@@ -535,6 +547,7 @@
 				2DB5DF49D013FE6DE339BC07 /* Pods.framework in Frameworks */,
 				3594CC241BDD085C00037B33 /* libUMSocial_Sdk_4.2.5.a in Frameworks */,
 				3594CC401BDD0B0F00037B33 /* libSocialWechat.a in Frameworks */,
+				358667A81C171B05007E875B /* libGeTuiSdk-1.3.1.a in Frameworks */,
 				35C772A81BDF0A380054D08E /* libzbar.a in Frameworks */,
 				3594CC3C1BDD0B0F00037B33 /* libSocialSina.a in Frameworks */,
 			);
@@ -614,6 +627,7 @@
 		35593F771BB0FB0C00817020 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				358667A51C171B05007E875B /* GtSdkLib */,
 				35C772891BDF09DA0054D08E /* 二维码 */,
 				3594CC441BDD262400037B33 /* 分享框 */,
 				3594CC2E1BDD0B0F00037B33 /* Sina */,
@@ -700,6 +714,15 @@
 				3577407D1BC4163F0005281B /* remarkCell.xib */,
 			);
 			name = "个人闲置";
+			sourceTree = "<group>";
+		};
+		358667A51C171B05007E875B /* GtSdkLib */ = {
+			isa = PBXGroup;
+			children = (
+				358667A61C171B05007E875B /* GeTuiSdk.h */,
+				358667A71C171B05007E875B /* libGeTuiSdk-1.3.1.a */,
+			);
+			path = GtSdkLib;
 			sourceTree = "<group>";
 		};
 		3590FDE21BF9DDA300261CBB /* 搜索 */ = {
@@ -1181,6 +1204,9 @@
 		98BF19C490AFD5F77C720512 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				358667AD1C171C16007E875B /* CoreBluetooth.framework */,
+				358667AB1C171C0E007E875B /* CoreLocation.framework */,
+				358667A91C171BF2007E875B /* CFNetwork.framework */,
 				357B3E861C0F238B0085B6F9 /* pop.framework */,
 				35C772D01BDF0CF30054D08E /* Foundation.framework */,
 				35C772CE1BDF0CB50054D08E /* UIKit.framework */,
@@ -1392,7 +1418,12 @@
 				TargetAttributes = {
 					3598B7901BB02FE700AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = AHBF9E2V27;
+						DevelopmentTeam = TV6QKK88A3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					3598B7A41BB02FE800AD6BFE = {
 						CreatedOnToolsVersion = 7.0;
@@ -1844,6 +1875,7 @@
 					"$(PROJECT_DIR)/Wechat",
 					"$(PROJECT_DIR)/ZBarSDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GtSdkLib",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1878,10 +1910,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhr;
+				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -1917,6 +1949,7 @@
 					"$(PROJECT_DIR)/Wechat",
 					"$(PROJECT_DIR)/ZBarSDK",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GtSdkLib",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1949,10 +1982,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = zhr;
+				PRODUCT_BUNDLE_IDENTIFIER = zhaolei;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/Haoran/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/Leon/Desktop/yoyoCampus/yoyoCampus_Zhaolei/Header.h;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 			};

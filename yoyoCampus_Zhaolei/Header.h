@@ -35,7 +35,7 @@
 #import "UITableView+FDTemplateLayoutCellDebug.h"
 #import "UMCheckUpdate.h"
 #import "ZWIntroductionViewController.h"
-
+#import "GeTuiSdk.h"
 #import "AFPickerView.h"
 
 #ifdef __OBJC__
