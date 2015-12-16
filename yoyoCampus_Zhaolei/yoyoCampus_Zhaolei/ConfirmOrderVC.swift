@@ -223,7 +223,7 @@ class ConfirmOrderVC: UIViewController,APIDelegate,UITextViewDelegate,UITableVie
         }
         return UITableViewCell()
     }
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         table.deselectRowAtIndexPath(indexPath, animated: true)
     }

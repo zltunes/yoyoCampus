@@ -414,6 +414,9 @@ class PersonalInfoViewController: UIViewController,UITableViewDelegate,UITableVi
             plistDict?.setValue(self.infoData["location"], forKey: "location")
             AppDelegate.location = self.infoData["location"]!
             plistDict?.writeToFile(AppDelegate.filePath, atomically: true)
+            
+            Tool.dismissHUD();
+            
 //            转到首页
             self.navigationController?.popToRootViewControllerAnimated(true)
             

@@ -12,7 +12,7 @@
 
 + (BOOL)  doesExistenceNetwork
 {
-    Reachability *r = [Reachability reachabilityWithHostName:@"http://api2.hloli.me:9001"] ;
+    Reachability *r = [Reachability reachabilityWithHostName:@"http://baidu.com"] ;
     
     switch ([r currentReachabilityStatus])
     {

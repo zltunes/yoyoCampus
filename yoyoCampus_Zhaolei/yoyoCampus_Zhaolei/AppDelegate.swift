@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GeTuiSdkDelegate{
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as
             NSArray
         let documentDirectory = paths.objectAtIndex(0) as! NSString
-        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("anumrcaow.plist")
+        AppDelegate.filePath = documentDirectory.stringByAppendingPathComponent("vanjeior.plist")
         
         let plistDict = NSMutableDictionary(contentsOfFile:AppDelegate.filePath)
         
@@ -272,7 +272,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,GeTuiSdkDelegate{
     func GeTuiSdkDidReceivePayload(payloadId: String!, andTaskId taskId: String!, andMessageId aMsgId: String!, andOffLine offLine: Bool, fromApplication appId: String!) {
         
         /**
-*汇报个推自定义事件
+        *汇报个推自定义事件
         *actionId：用户自定义的actionid，int类型，取值90001-90999。
         *taskId：下发任务的任务ID。
         *taskId：下发任务的任务ID。
