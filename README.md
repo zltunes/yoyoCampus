@@ -14,7 +14,19 @@
 ------------ | ------------- | ------------| ------------
 ![图片5][5]|![图片6][6]|![图片7][7]|![图片8][8]
 
-
+# 编译环境
+    OS X 10.11.1
+    Xcode-Version 7.1.1
+# 支持平台
+	iOS 7.1 以上
+# 测试机型
+	iPhone 4S
+	iPhone 5
+	iPhone 5S
+	iPhone 6
+	iPhone 6 Plus
+	iPhone 6S
+	iPhone 6S Plus
 
   [1]: http://ww2.sinaimg.cn/large/005tGCqhjw1f1orazgut6j30ku112n1u.jpg
   [2]: http://ww2.sinaimg.cn/large/005tGCqhjw1f1orbbdcimj30ku11275z.jpg
