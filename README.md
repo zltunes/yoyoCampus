@@ -33,7 +33,7 @@
 - Delegate 封装网络请求与 JSON 数据解析（参考 YoYoAPI.swift）
 - SandBox(Property List)纪录用户登录状态及基本信息
 - KVO 实现界面空间间通信(参考 IdleGoodViewController.swift)
-- 使用第三方 SDK 集成推送（[友盟](http://www.umeng.com/)）、更新（友盟）、社会化登录分享（友盟）、图片上传（[七牛云](http://developer.qiniu.com/)）、支付（[Ping++](https://www.pingxx.com/)）
+- 使用第三方 SDK 集成推送（[个推](http://www.getui.com/)）、更新（[友盟](http://www.umeng.com/)）、社会化登录分享（友盟）、图片上传（[七牛云](http://developer.qiniu.com/)）、支付（[Ping++](https://www.pingxx.com/)）
 
   [1]: http://ww2.sinaimg.cn/large/005tGCqhjw1f1orazgut6j30ku112n1u.jpg
   [2]: http://ww2.sinaimg.cn/large/005tGCqhjw1f1orbbdcimj30ku11275z.jpg
