@@ -20,7 +20,7 @@
     OS X 10.11.1
     Xcode-Version 7.1.1
 # 支持平台
-	iOS 7.1 以上
+	iOS 8.0 以上
 # 测试机型
 	iPhone 4S
 	iPhone 5
